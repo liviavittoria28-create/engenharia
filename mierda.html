@@ -1,0 +1,1452 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Engenharia de Software World • A Jornada de Engie</title>
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{
+  --ink:#1e2a4a;--outline:#3d4a7a;--pink:#ff6faf;--pink2:#ff91c5;
+  --purple:#7c6fd8;--purple2:#a99af4;--mint:#4ecdc4;--green:#52bf70;
+  --yellow:#ffd866;--cream:#fff8ed;--sky:#a8d8f0;--grass:#54c774;
+  --blue:#4a7bc9;--orange:#ff9f6b;--red:#ff6b6b;--cyan:#5bc0de;
+  --shadow:0 7px 0 rgba(61,74,122,.85),0 16px 28px rgba(30,42,74,.22)
+}
+html,body{margin:0;min-height:100%;font-family:"Trebuchet MS",Arial,sans-serif;color:var(--ink);overflow-x:hidden}
+body{background:#a8d8f0}
+button{font:inherit}
+button:focus-visible{outline:4px solid #fff;outline-offset:3px}
+#world{min-height:100vh;position:relative;overflow:hidden;background:#a8d8f0}
+
+.sky{position:absolute;inset:0 0 48% 0;
+  background:radial-gradient(circle at 18% 23%,#fff9 0 3px,transparent 4px),
+   radial-gradient(circle at 82% 18%,#fff8 0 4px,transparent 5px),
+   linear-gradient(180deg,#87CEEB,#a8d8f0 70%,#c5e8f7)}
+.rays{position:absolute;left:50%;bottom:-50px;transform:translateX(-50%);width:1300px;height:700px;opacity:.18;
+ background:repeating-conic-gradient(from -12deg at 50% 100%,#fff 0 7deg,transparent 7deg 15deg)}
+.cloud{position:absolute;width:110px;height:32px;border:4px solid var(--outline);border-radius:40px;background:#fff8;z-index:2;box-shadow:5px 5px 0 rgba(61,74,122,.3);animation:cloudDrift 30s ease-in-out infinite}
+.cloud:before,.cloud:after{content:"";position:absolute;background:inherit;border:inherit;border-bottom:0;border-radius:50%;bottom:12px}
+.cloud:before{width:42px;height:42px;left:15px}.cloud:after{width:52px;height:52px;right:8px}
+.cloud.a{top:70px;left:5%}.cloud.b{top:120px;right:6%;transform:scale(.7);animation-delay:-10s}.cloud.c{top:40px;left:38%;transform:scale(.5);animation-delay:-20s}
+@keyframes cloudDrift{0%,100%{transform:translateX(0)}50%{transform:translateX(30px)}}
+
+.topbar{position:relative;z-index:20;padding:16px 22px;display:flex;justify-content:space-between;gap:14px;align-items:center;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:12px}
+.logo-egg{width:48px;height:58px;border:4px solid var(--outline);border-radius:50% 50% 46% 46%;background:linear-gradient(135deg,#fff,#c8e0f5);box-shadow:inset -8px -7px #6fa3d8,4px 5px 0 #fff8;animation:eggWiggle 3s ease-in-out infinite;flex-shrink:0}
+@keyframes eggWiggle{0%,100%{transform:rotate(0)}25%{transform:rotate(-4deg)}75%{transform:rotate(4deg)}}
+.logo h1{font-size:clamp(14px,3vw,20px);margin:0;text-shadow:2px 2px #fff;color:#1e2a4a}
+.logo small{font-weight:800;opacity:.75;font-size:11px}
+.hud{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.hud span{background:#fff8;border:3px solid var(--outline);border-radius:999px;padding:6px 10px;font-weight:900;box-shadow:3px 3px 0 var(--outline);font-size:12px;transition:transform .2s;white-space:nowrap}
+.hud span:hover{transform:translateY(-2px)}
+
+.hero{position:relative;z-index:5;text-align:center;padding:3px 18px 0}
+.hero h2{font-size:clamp(26px,5.5vw,58px);line-height:.95;margin:16px 0 8px;color:#3d4a7a;text-shadow:4px 4px #fff,7px 7px #2a3a6a;letter-spacing:-1px}
+.hero p{font-size:clamp(13px,2.5vw,16px);font-weight:900;max-width:760px;margin:0 auto;color:#1e2a4a}
+.robot{position:relative;margin:20px auto 0;width:min(500px,92vw);z-index:9;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap}
+.robot-device{width:min(255px,80vw);min-height:155px;padding:16px;border:6px solid var(--outline);border-radius:44% 44% 38% 38%;background:linear-gradient(145deg,#fff8ff,#a8c8f0);box-shadow:inset -12px -10px #6fa3d8, inset 8px 7px #fff, 0 7px 0 #fff7;animation:robotBob 4s ease-in-out infinite}
+@keyframes robotBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.screen{background:#c4f3d7;border:4px solid var(--outline);border-radius:22px;padding:10px;position:relative;overflow:hidden;text-align:center}
+.screen:after{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:#fff8;animation:scan 2.8s linear infinite}
+@keyframes scan{to{top:100%}}
+.botface{font-size:46px;line-height:1;animation:float 1.7s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-7px) rotate(2deg)}}
+.mood{font-family:monospace;font-weight:900;font-size:22px}
+.buttons{display:flex;justify-content:center;gap:12px;margin-top:10px}.buttons i{width:20px;height:20px;background:#ff80b7;border:4px solid var(--outline);border-radius:50%;box-shadow:0 3px 0 var(--outline)}
+.robot-tag{background:#fff;border:4px solid var(--outline);padding:9px 13px;border-radius:16px;font-weight:900;transform:rotate(-2deg);box-shadow:4px 4px 0 var(--outline);max-width:280px;font-size:13px}
+
+.map-section{position:relative;z-index:4;margin-top:-2px;min-height:1100px;padding:70px 4vw 100px;background:linear-gradient(#74d17d,#51bd6b);clip-path:polygon(0 3%,100% 0,100% 100%,0 100%);overflow:hidden}
+.map-section:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 10% 25%,#fff4 0 4px,transparent 5px),radial-gradient(circle at 72% 65%,#fff4 0 5px,transparent 6px);opacity:.35}
+.hills{position:absolute;bottom:-10px;left:-5%;width:110%;height:210px;background:#42ad61;border-top:5px solid #398f55;border-radius:50% 50% 0 0}
+.map-title{position:relative;z-index:4;text-align:center;color:#fff;text-shadow:3px 3px #397b50;margin:0 0 12px;font-size:clamp(20px,4vw,27px)}
+.map-sub{position:relative;z-index:4;text-align:center;color:#fff;font-weight:900;margin-bottom:22px;font-size:clamp(11px,2.2vw,14px);padding:0 12px}
+.map{position:relative;z-index:4;max-width:1180px;min-height:900px;margin:auto}
+.path{position:absolute;z-index:0;left:2%;right:2%;top:38%;height:300px;background:#ffd46d;border:5px solid #b98b50;clip-path:polygon(0 30%,10% 55%,22% 42%,36% 62%,50% 35%,64% 58%,78% 40%,92% 60%,100% 45%,100% 85%,92% 70%,78% 90%,64% 72%,50% 92%,36% 68%,22% 85%,10% 65%,0 82%);filter:drop-shadow(0 7px 0 #3d9958)}
+.map-line{position:absolute;z-index:1;left:8%;right:8%;top:48%;height:8px;background:#fff8;border-radius:10px;transform:rotate(-1deg);opacity:.7}
+.locations{position:relative;z-index:3;display:grid;grid-template-columns:repeat(4,1fr);gap:46px 18px}
+.location{position:relative;min-height:260px;cursor:pointer;transition:.25s}
+.location:hover{transform:translateY(-8px)}
+.location.locked{filter:grayscale(.7);opacity:.62;cursor:not-allowed}
+.location.locked:hover{transform:none}
+.house{position:absolute;bottom:25px;left:6%;right:6%;height:150px;background:#fff1cb;border:5px solid var(--outline);border-radius:16px 16px 10px 10px;box-shadow:var(--shadow);padding:58px 8px 8px;text-align:center}
+.roof{position:absolute;left:-12px;right:-12px;top:-80px;height:115px;border:5px solid var(--outline);background:#4a7bc9;clip-path:polygon(50% 0,100% 78%,94% 92%,6% 92%,0 78%);filter:drop-shadow(0 6px 0 #fff5)}
+.roof:after{content:"";position:absolute;left:8%;right:8%;bottom:12px;height:14px;background:#fff6;border-radius:50%}
+.chimney{position:absolute;right:20%;top:-95px;width:22px;height:58px;background:#7a5a3a;border:4px solid var(--outline);border-radius:3px 3px 0 0;z-index:2}
+.chimney:after{content:"";position:absolute;top:-15px;left:-8px;width:34px;height:14px;background:rgba(200,200,200,.6);border-radius:50%;animation:smokeUp 3s ease-in-out infinite}
+@keyframes smokeUp{0%{transform:translateY(0) scale(.6);opacity:.7}100%{transform:translateY(-30px) scale(1.3);opacity:0}}
+.location:nth-child(1) .roof{background:#4a7bc9}
+.location:nth-child(2) .roof{background:#4ecdc4}
+.location:nth-child(3) .roof{background:#7c6fd8}
+.location:nth-child(4) .roof{background:#ffd267}
+.location:nth-child(5) .roof{background:#ff8d9e}
+.location:nth-child(6) .roof{background:#62d5e4}
+.location:nth-child(7) .roof{background:#a985e7}
+.location:nth-child(8) .roof{background:#ffaf61}
+.location:nth-child(9) .roof{background:#5bc0de}
+.location:nth-child(10) .roof{background:#ff6b9d}
+.location:nth-child(11) .roof{background:#7b5bd6}
+.location:nth-child(12) .roof{background:#ffb84a}
+.location:nth-child(13) .roof{background:#8fd14f}
+.location:nth-child(14) .roof{background:#ff5555}
+.window{position:absolute;top:44px;width:34px;height:34px;border:4px solid var(--outline);border-radius:9px;background:#6edbed;z-index:2}
+.window.left{left:10px}.window.right{right:10px}
+.window:before,.window:after{content:"";position:absolute;background:var(--outline)}
+.window:before{top:50%;left:0;width:100%;height:3px;transform:translateY(-50%)}
+.window:after{left:50%;top:0;height:100%;width:3px;transform:translateX(-50%)}
+.door{position:absolute;bottom:6px;left:50%;transform:translateX(-50%);width:44px;height:66px;border:4px solid var(--outline);border-radius:10px 10px 4px 4px;background:#ff94bf;z-index:2}
+.door:after{content:"";position:absolute;right:5px;top:50%;width:7px;height:7px;background:var(--yellow);border-radius:50%;box-shadow:0 0 5px var(--yellow)}
+.sign{position:absolute;top:-108px;left:50%;transform:translateX(-50%);min-width:130px;background:#fff;border:4px solid var(--outline);border-radius:12px;padding:5px 8px;font-weight:900;z-index:6;box-shadow:4px 4px 0 var(--outline);font-size:11px;text-align:center;line-height:1.2}
+.location h3{font-size:16px;margin:0 0 3px}.location p{font-size:10px;font-weight:800;margin:0;line-height:1.3}
+.lock{position:absolute;z-index:10;left:50%;top:28px;transform:translateX(-50%);font-size:39px;filter:drop-shadow(3px 3px 0 #fff);animation:lockShake 2s ease-in-out infinite}
+@keyframes lockShake{0%,90%,100%{transform:translateX(-50%) rotate(0)}95%{transform:translateX(-50%) rotate(-10deg)}}
+.lamp{position:absolute;bottom:7px;left:0;font-size:22px}.tree{position:absolute;bottom:5px;right:0;font-size:25px}
+.bush{position:absolute;bottom:15px;left:18%;font-size:18px;opacity:.9}
+.flower{position:absolute;bottom:2px;right:22%;font-size:14px;animation:flowerBob 2s ease-in-out infinite}
+@keyframes flowerBob{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg)}}
+.ribbon{position:absolute;z-index:8;left:50%;bottom:-4px;transform:translateX(-50%);background:#4a7bc9;border:4px solid var(--outline);color:#fff;border-radius:999px;padding:8px 17px;font-weight:900;box-shadow:4px 4px 0 var(--outline);white-space:nowrap;font-size:13px}
+.progress-wrap{position:relative;z-index:5;max-width:600px;margin:20px auto 0;padding:0 20px}
+.progress-wrap p{color:#fff;text-align:center;font-weight:900;margin:0 0 8px;text-shadow:2px 2px #397b50;font-size:13px}
+.progress-bar{height:22px;background:#fff8;border:4px solid var(--outline);border-radius:99px;overflow:hidden;box-shadow:4px 4px 0 #397b50}
+.progress-fill{height:100%;width:0;background:linear-gradient(90deg,#4ecdc4,#7c6fd8,#ffd267);transition:width .5s ease;border-radius:99px}
+
+.panel{display:none;position:fixed;z-index:100;inset:0;background:#1e2a4acc;backdrop-filter:blur(7px);align-items:center;justify-content:center;padding:10px}
+.lesson{width:min(1120px,100vw);height:min(94vh,900px);background:var(--cream);border:5px solid var(--outline);border-radius:24px;box-shadow:0 14px 0 #0f1a3a,0 30px 50px #0005;overflow:hidden;display:flex;flex-direction:column}
+.lesson-head{padding:14px 18px;background:linear-gradient(90deg,#a8c8f0,#c8b0f3,#bdf1dc);border-bottom:5px solid var(--outline);display:flex;justify-content:space-between;gap:12px;align-items:center}
+.lesson-head h2{margin:0;color:#3d4a7a;font-size:clamp(14px,3vw,22px);line-height:1.3}
+.close{width:42px;height:42px;border:4px solid var(--outline);background:#ff82b6;border-radius:50%;font-size:22px;font-weight:900;cursor:pointer;flex-shrink:0;color:#fff}
+.lesson-body{display:grid;grid-template-columns:230px 1fr;min-height:0;flex:1}
+.side{background:#e4e8f4;border-right:4px solid #8b8cb0;padding:12px;overflow:auto}
+.side button{display:block;width:100%;text-align:left;border:3px solid #6a709a;background:#fff;border-radius:10px;padding:9px;margin-bottom:7px;font-weight:900;cursor:pointer;font-size:12px;line-height:1.3}
+.side button.active{background:#b0c0ef;color:#1e2a4a}
+.content{padding:22px;overflow:auto;-webkit-overflow-scrolling:touch}
+.content h3{font-size:clamp(20px,4vw,28px);margin:0 0 8px;color:#3d4a7a}
+.content h4{color:#4a5a9a;margin:20px 0 8px;font-size:clamp(16px,3vw,19px)}
+.content p,.content li{font-size:clamp(14px,2.4vw,16px);line-height:1.65}
+.content .lead{font-size:clamp(15px,2.6vw,18px);font-weight:900}
+.note{background:#fff;border:4px solid #a8b0d0;border-radius:16px;padding:15px;margin:15px 0;box-shadow:0 5px 0 #d0d8ec}
+.note.tip{background:#e9fff6;border-color:#68b99f}
+.note.warning{background:#fff2d4;border-color:#d9ae5c}
+.note.info{background:#e9f0ff;border-color:#8aa8e8}
+.example{background:#1e2a4a;color:#fff0ff;border:4px solid #4a5a9a;border-radius:14px;padding:15px;font:13px/1.55 Consolas,monospace;white-space:pre-wrap;overflow:auto}
+.example .kw{color:#ff88c8;font-weight:bold}.example .str{color:#ffd866}.example .cm{color:#8aaa7a;font-style:italic}.example .num{color:#88d8ff}
+.diagram{display:grid;grid-template-columns:1fr 60px 1fr;align-items:center;gap:8px;margin:18px 0}
+.dbox{border:4px solid var(--outline);border-radius:14px;background:#fff;padding:14px;text-align:center;font-weight:900;box-shadow:4px 4px 0 #b8c4e0;font-size:13px}
+.arrow{text-align:center;font-size:26px;color:#3d4a7a}
+.compare{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.compare > div{border:4px solid var(--outline);background:#fff;border-radius:16px;padding:14px}
+.compare strong{display:block;color:#4a5a9a;margin-bottom:6px;font-size:15px}
+.compare p,.compare li{font-size:13px;line-height:1.55}
+.quiz{margin-top:24px;padding-top:16px;border-top:5px dashed #a8b0d0}
+.quiz h4{color:#3d4a7a}
+.q{background:#fff;border:4px solid #a8b0d0;border-radius:14px;padding:13px;margin:11px 0}
+.q > b{display:block;margin-bottom:8px;font-size:14px;color:#1e2a4a}
+.q label{display:block;padding:9px 11px;margin:6px 0;background:#f0f4ff;border-radius:9px;cursor:pointer;font-size:13px;border:2px solid transparent;transition:all .15s}
+.q label:hover{background:#e0e8ff;border-color:#a8b0d0}
+.q input[type="radio"]{margin-right:8px}
+.result{font-weight:900;margin-top:10px;font-size:13px}
+.code-challenge{margin-top:22px;background:#e8fdf5;border:4px solid #63ae93;border-radius:18px;padding:15px}
+.code-challenge h4{color:#2a7a5a}
+.code-input{width:100%;min-height:160px;background:#1e2a4a;color:#fff;border:4px solid #4a5a9a;border-radius:12px;padding:12px;font:14px Consolas,monospace;resize:vertical;-webkit-appearance:none}
+.btn{border:4px solid var(--outline);border-radius:12px;background:#7c9ee0;padding:10px 14px;font-weight:900;cursor:pointer;box-shadow:0 4px 0 var(--outline);transition:all .1s;font-size:13px;color:#fff;display:inline-block;margin:4px 4px 0 0}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 var(--outline)}
+.btn.mint{background:#4ecdc4;border-color:#2a8a82}
+.btn.purple{background:#a98fe8;border-color:#6a4fa8}
+.btn.pink{background:#ff7eb4;border-color:#a8406a}
+.btn.green{background:#52bf70;border-color:#2a7a45}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+
+/* BOTÕES DE NAVEGAÇÃO */
+.nav-bar{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 18px;border-top:5px solid var(--outline);background:linear-gradient(90deg,#f0e4f4,#e4ecf8);flex-wrap:wrap}
+.nav-bar .nav-info{font-weight:900;color:#3d4a7a;font-size:12px;text-align:center;flex:1;min-width:120px}
+.nav-bar .btn{font-size:13px;padding:10px 16px;margin:0}
+.nav-btn-prev{background:#a8b0d0}
+.nav-btn-next{background:#52bf70;border-color:#2a7a45}
+
+/* BREADCRUMB */
+.breadcrumb{padding:8px 18px;background:#d8e0f0;border-bottom:3px solid #8b8cb0;font-size:11px;font-weight:900;color:#4a5a9a;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.breadcrumb span{background:#fff;padding:3px 8px;border-radius:8px;border:2px solid #8b8cb0}
+
+.solution-tabs{display:flex;gap:6px;margin:12px 0;flex-wrap:wrap}
+.solution-tabs button{background:#fff;border:3px solid var(--outline);border-radius:10px;padding:7px 12px;font-weight:900;cursor:pointer;font-size:12px}
+.solution-tabs button.active{background:#b0c0ef}
+.solution-panel{display:none}.solution-panel.active{display:block}
+.toast{position:fixed;z-index:200;bottom:22px;left:50%;transform:translate(-50%,120px);background:#fff;border:4px solid var(--outline);border-radius:15px;padding:12px 18px;font-weight:900;box-shadow:5px 5px 0 var(--outline);transition:.35s;max-width:90vw;text-align:center;font-size:13px;color:#1e2a4a}.toast.show{transform:translate(-50%,0)}
+footer{background:#1e2a4a;color:#fff;text-align:center;padding:26px 18px;font-size:12px;line-height:1.7}
+
+@media(max-width:900px){
+  .locations{grid-template-columns:repeat(3,1fr);gap:38px 14px}
+  .lesson-body{grid-template-columns:1fr}
+  .side{border-right:0;border-bottom:4px solid #8b8cb0;display:flex;gap:6px;overflow-x:auto;padding:10px}
+  .side button{min-width:170px;margin:0;font-size:11px}
+}
+@media(max-width:640px){
+  .topbar{padding:10px 14px}
+  .hud{display:none}
+  .locations{grid-template-columns:repeat(2,1fr);gap:30px 10px}
+  .map-section{padding:60px 10px 80px;min-height:1600px}
+  .house{height:135px;padding-top:52px}
+  .roof{top:-70px;height:100px}
+  .chimney{top:-82px;height:50px}
+  .sign{top:-95px;min-width:110px;font-size:9px;padding:4px 6px}
+  .location{min-height:230px}
+  .location h3{font-size:13px}
+  .location p{font-size:9px}
+  .lesson{padding:0;border-radius:16px;height:96vh;width:100vw}
+  .lesson-head{padding:10px 12px}
+  .content{padding:14px}
+  .robot-device{width:min(240px,75vw)}
+  .robot-tag{font-size:11px;max-width:230px}
+  .diagram{grid-template-columns:1fr;gap:6px}
+  .arrow{transform:rotate(90deg)}
+  .hero h2{font-size:clamp(22px,7vw,32px)}
+  .map-title{font-size:18px}
+  .nav-bar{flex-direction:column;gap:8px}
+  .nav-bar .btn{width:100%}
+}
+@media(max-width:400px){
+  .locations{grid-template-columns:1fr;gap:26px}
+  .location{min-height:220px}
+  .house{left:15%;right:15%}
+}
+</style>
+</head>
+<body>
+<div id="world">
+  <div class="sky"></div><div class="rays"></div>
+  <div class="cloud a"></div><div class="cloud b"></div><div class="cloud c"></div>
+  <header class="topbar">
+    <div class="logo">
+      <div class="logo-egg"></div>
+      <div><h1>ENGENHARIA DE SOFTWARE WORLD</h1><small>A jornada de Engie 🚀</small></div>
+    </div>
+    <div class="hud">
+      <span>⭐ XP <b id="xp">0</b></span>
+      <span>🏠 <b id="done">1</b>/14</span>
+      <span>💗 <b id="lives">3</b></span>
+    </div>
+  </header>
+
+  <section class="hero">
+    <h2>O MUNDO DA ENGENHARIA DE SOFTWARE</h2>
+    <p>Aprenda o que é Software, Requisitos, Regras de Negócio, Viabilidade, BPM, Modelos de Processo e muito mais. Cada conhecimento abre uma nova casinha!</p>
+    <div class="robot">
+      <div class="robot-device">
+        <div class="screen">
+          <div class="botface" id="botface">🤖</div>
+          <div class="mood" id="mood">^‿^</div>
+          <b>Olá! Eu sou Engie.</b><br>
+          <small style="font-size:11px">Engenheiro de Software virtual</small>
+        </div>
+        <div class="buttons"><i></i><i></i><i></i></div>
+      </div>
+      <div class="robot-tag">🤖 Engie<br><small>"Vamos construir software de qualidade juntos!"</small></div>
+    </div>
+  </section>
+
+  <section class="map-section">
+    <h2 class="map-title">🌳 MAPA DA JORNADA</h2>
+    <div class="map-sub">Siga a estrada dourada. A primeira casa está aberta!</div>
+    <div class="map">
+      <div class="path"></div><div class="map-line"></div>
+      <div class="locations" id="locations"></div>
+      <div class="ribbon">🚩 INÍCIO DA AVENTURA</div>
+    </div>
+    <div class="progress-wrap">
+      <p>Progresso da Jornada</p>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    </div>
+    <div class="hills"></div>
+  </section>
+  <footer>ENGENHARIA DE SOFTWARE WORLD • Baseado no Roteiro de Atividades 01 • Prof. Dr. Adilson Ferreira da Silva</footer>
+</div>
+
+<div class="panel" id="panel">
+ <div class="lesson">
+  <div class="lesson-head">
+    <h2 id="lessonTitle"></h2>
+    <button class="close" onclick="closeLesson()">×</button>
+  </div>
+  <div class="breadcrumb" id="breadcrumb"></div>
+  <div class="lesson-body">
+   <nav class="side" id="side"></nav>
+   <main class="content" id="content"></main>
+  </div>
+  <div class="nav-bar">
+    <button class="btn nav-btn-prev" id="btnPrev" onclick="prevLesson()">← Anterior</button>
+    <div class="nav-info" id="navInfo">Casa 1 de 14</div>
+    <button class="btn nav-btn-next" id="btnNext" onclick="nextLesson()">Próximo →</button>
+  </div>
+ </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* =========================================================
+   LIÇÕES COMPLETAS — ENGENHARIA DE SOFTWARE
+   ========================================================= */
+const lessons = [
+/* ---------- CASA 1: O QUE É SOFTWARE ---------- */
+{id:1,title:"Casa 1 — O que é Software?",short:"Hardware vs Software, tipos e exemplos.",content:`
+   <h3>💻 Primeiro: o que é Software?</h3>
+   <p class="lead">Software é o conjunto de instruções, programas e dados que fazem o computador funcionar. É a parte <b>lógica</b>, enquanto o hardware é a parte <b>física</b>.</p>
+   <p>Pense assim: o computador é como um corpo humano. O <b>hardware</b> é o corpo (ossos, músculos, órgãos). O <b>software</b> é a mente (pensamentos, memórias, decisões). Sem software, o hardware é só um monte de metal e plástico parado.</p>
+
+   <div class="compare">
+     <div><strong>🔧 Hardware</strong><p>Parte física: processador, memória RAM, HD, teclado, monitor. Você pode tocar.</p></div>
+     <div><strong>💻 Software</strong><p>Parte lógica: programas, sistemas operacionais, aplicativos, jogos. Você não toca.</p></div>
+   </div>
+
+   <div class="note tip"><b>💡 Exemplo prático:</b><br>Um celular é hardware. O Android ou iOS é software. O WhatsApp é software. A câmera é hardware, mas o app de câmera é software.</div>
+
+   <h4>📦 Tipos de Software</h4>
+   <div class="compare">
+     <div><strong>🖥️ Software de Sistema</strong><p>Controla o hardware e dá base para outros programas. Ex: Windows, Linux, macOS, Android, iOS.</p></div>
+     <div><strong>🛠️ Software Utilitário</strong><p>Auxilia na manutenção e segurança. Ex: antivírus, backup, limpadores.</p></div>
+     <div><strong>📱 Software Aplicativo</strong><p>Faz tarefas específicas do usuário. Ex: Word, WhatsApp, Instagram, jogos.</p></div>
+     <div><strong>👨‍💻 Software de Programação</strong><p>Ferramentas para criar outros softwares. Ex: VS Code, compiladores, IDEs.</p></div>
+   </div>
+
+   <h4>🎯 Software sob encomenda vs Software genérico</h4>
+   <div class="diagram">
+     <div class="dbox">🎯 SOB ENCOMENDA<br><small>Feito para um cliente específico</small></div>
+     <div class="arrow">vs</div>
+     <div class="dbox">🌍 GENÉRICO<br><small>Feito para o mercado em geral</small></div>
+   </div>
+   <p>Um sistema de gestão para uma prefeitura é <b>sob encomenda</b>. Um pacote Office vendido para milhões é <b>genérico</b>.</p>
+
+   <h4>🌐 Software não é só computador!</h4>
+   <p>Hoje, software está em tudo: <b>celulares, TVs, carros, geladeiras, relógios, aviões, semáforos, caixas eletrônicos</b>. Todo dispositivo moderno tem software embutido.</p>
+
+   <div class="note warning"><b>⚠️ Para a prova:</b> se a pergunta falar de "parte física" → hardware. Se falar de "instruções", "programas", "parte lógica" → software.</div>
+ `,quiz:[
+  ["O que é software?","Conjunto de instruções e programas que fazem o computador funcionar.",["A parte física do computador.","Conjunto de instruções e programas que fazem o computador funcionar.","Somente jogos."],1],
+  ["Qual das opções é um exemplo de hardware?","Processador.",["WhatsApp.","Processador.","Windows."],1],
+  ["O que é um software de sistema?","Programa que controla o hardware e dá base para outros programas.",["Um jogo.","Programa que controla o hardware e dá base para outros programas.","Um antivírus."],1],
+  ["Qual tipo de software é criado para um cliente específico?","Sob encomenda.",["Genérico.","Sob encomenda.","Utilitário."],1]
+ ]},
+
+/* ---------- CASA 2: ENGENHARIA DE SOFTWARE ---------- */
+{id:2,title:"Casa 2 — O que é Engenharia de Software?",short:"Conceito, objetivo e as 4 camadas.",content:`
+   <h3>🏗️ Engenharia de Software</h3>
+   <p class="lead">Engenharia de Software é uma disciplina de engenharia relacionada com <b>todos os aspectos da produção de software</b>, desde os estágios iniciais de especificação até a manutenção após a entrega.</p>
+
+   <div class="note info"><b>📖 Definição (Sommerville, 2007):</b><br>Engenharia de Software é uma disciplina de engenharia relacionada com todos os aspectos de software, desde os estágios iniciais de especificação de sistema até sua manutenção, depois de entrar em operação.</div>
+
+   <h4>🎯 Objetivo</h4>
+   <p>Proporcionar <b>técnicas</b> para a criação, aperfeiçoamento e implementação de sistemas que atendam às expectativas dos usuários, respeitando prazos e custos.</p>
+
+   <h4>🧱 As 4 Camadas da Engenharia de Software (Pressman, 2006)</h4>
+   <div class="diagram">
+     <div class="dbox">🔧 FERRAMENTAS<br><small>Compiladores, IDEs, debuggers</small></div>
+     <div class="arrow">→</div>
+     <div class="dbox">📐 MÉTODOS<br><small>Tarefas técnicas</small></div>
+   </div>
+   <div class="diagram">
+     <div class="dbox">📋 PROCESSOS<br><small>Cascata, Prototipação, Incremental</small></div>
+     <div class="arrow">→</div>
+     <div class="dbox">🎯 FOCO NA QUALIDADE<br><small>Base de tudo</small></div>
+   </div>
+
+   <h4>🔍 Entendendo cada camada</h4>
+   <div class="compare">
+     <div><strong>🔧 Ferramentas</strong><p>Fornecem apoio automatizado ou semiautomatizado. Ex: compiladores, editores, debuggers, frameworks de teste.</p></div>
+     <div><strong>📐 Métodos</strong><p>Tarefas técnicas para construir o software. Ex: analisar requisitos, elaborar planos de teste, codificar.</p></div>
+     <div><strong>📋 Processos</strong><p>Conjunto de atividades que guiam o desenvolvedor. Ex: cascata, prototipação, incremental.</p></div>
+     <div><strong>🎯 Foco na Qualidade</strong><p>É a base de tudo. O objetivo é sempre entregar um software de qualidade.</p></div>
+   </div>
+
+   <h4>👨‍💻 O que os Engenheiros de Software fazem?</h4>
+   <ul>
+     <li>Desenvolvimento de <b>software sob encomenda</b> (para um cliente específico)</li>
+     <li>Desenvolvimento de <b>software genérico</b> (para o mercado)</li>
+     <li>Manutenção e evolução de sistemas existentes</li>
+     <li>Consultoria técnica em projetos de TI</li>
+   </ul>
+
+   <div class="note tip"><b>💡 Analogia da construção civil:</b><br>Assim como um engenheiro civil usa <b>ferramentas</b> (marreta, nível), segue <b>métodos</b> (fundação, alvenaria) e um <b>processo</b> (planta, cronograma) com foco na <b>qualidade</b> da obra — o engenheiro de software faz o mesmo com software!</div>
+
+   <h4>❓ Por que aplicar Engenharia de Software?</h4>
+   <ul>
+     <li>Utilizar <b>técnicas adequadas</b> para criar software</li>
+     <li><b>Aperfeiçoar e implementar</b> sistemas com qualidade</li>
+     <li>Construir software que <b>atenda às expectativas</b> dos usuários</li>
+     <li>Reduzir riscos, custos e prazos</li>
+   </ul>
+
+   <div class="note warning"><b>⚠️ Para a prova:</b> memorize as 4 camadas na ordem: <b>Ferramentas → Métodos → Processos → Foco na Qualidade</b>. E saiba diferenciar cada uma.</div>
+ `,quiz:[
+  ["O que é Engenharia de Software?","Disciplina que trata de todos os aspectos da produção de software.",["Só programar código.","Disciplina que trata de todos os aspectos da produção de software.","Consertar computadores."],1],
+  ["Quais são as 4 camadas da Engenharia de Software?","Ferramentas, Métodos, Processos e Foco na Qualidade.",["Hardware, Software, Firmware, Middleware.","Ferramentas, Métodos, Processos e Foco na Qualidade.","Código, Teste, Deploy, Produção."],1],
+  ["O que são ferramentas na Engenharia de Software?","Apoio automatizado como compiladores e debuggers.",["Apoio automatizado como compiladores e debuggers.","Pessoas da equipe.","Documentos."],0],
+  ["Qual camada é a base de tudo?","Foco na qualidade.",["Ferramentas.","Foco na qualidade.","Processos."],1],
+  ["Os Engenheiros de Software estão envolvidos com:","Desenvolvimento de software sob encomenda ou genérico.",["Só instalação de software.","Desenvolvimento de software sob encomenda ou genérico.","Só compra de software."],1]
+ ]},
+
+/* ---------- CASA 3: REQUISITOS FUNCIONAIS ---------- */
+{id:3,title:"Casa 3 — Requisitos Funcionais",short:"O que o sistema DEVE FAZER.",content:`
+   <h3>⚙️ Requisitos Funcionais</h3>
+   <p class="lead">Requisitos funcionais correspondem às <b>funcionalidades</b> solicitadas pelos usuários de um sistema e suas derivações.</p>
+   <p>São eles que dizem <b>O QUE</b> o sistema deve fazer. Sem eles, não sabemos o que programar.</p>
+
+   <h4>📋 Exemplos clássicos de Requisitos Funcionais</h4>
+   <ul>
+     <li>📄 <b>Emissão de um relatório</b> de vendas</li>
+     <li>🖥️ <b>Tela de consulta</b> do andamento de vendas</li>
+     <li>📦 <b>Cadastro de equipamentos</b></li>
+     <li>🔐 <b>Login de usuário</b></li>
+     <li>🛒 <b>Adicionar produto ao carrinho</b></li>
+     <li>💳 <b>Processar pagamento</b></li>
+   </ul>
+
+   <h4>🏪 Exemplo: Frente de Caixa de uma Loja</h4>
+   <p>Vamos ver 3 requisitos funcionais para um sistema de caixa de loja:</p>
+   <div class="compare">
+     <div><strong>1. Registrar Venda</strong><p>O sistema deve permitir registrar os produtos vendidos, calcular o total e emitir cupom fiscal.</p></div>
+     <div><strong>2. Consultar Preço</strong><p>O sistema deve permitir consultar o preço de um produto pelo código de barras ou nome.</p></div>
+     <div><strong>3. Aplicar Desconto</strong><p>O sistema deve permitir aplicar descontos percentuais ou em valor fixo sobre o total da venda.</p></div>
+   </div>
+
+   <div class="note tip"><b>💡 Macete:</b> Requisitos funcionais sempre começam com <b>"O sistema deve..."</b> seguido de uma ação. Se você consegue descrever como um "verbo", é funcional.</div>
+
+   <h4>📝 Como identificar um requisito funcional</h4>
+   <p>Pergunte: "Isso é algo que o sistema <b>FAZ</b>?" Se sim, é funcional. Se for "como ele faz" ou "quão bem ele faz", provavelmente é não funcional.</p>
+
+   <div class="note warning"><b>⚠️ Atenção:</b> Não confunda com requisitos não funcionais! "O sistema deve ser rápido" NÃO é funcional (é não funcional). "O sistema deve calcular a média" É funcional.</div>
+ `,quiz:[
+  ["O que são requisitos funcionais?","Funcionalidades que o sistema deve oferecer.",["Como o sistema é construído.","Funcionalidades que o sistema deve oferecer.","Só a interface visual."],1],
+  ["Qual das opções é um requisito funcional?","Emitir relatório de vendas.",["O sistema deve ser rápido.","Emitir relatório de vendas.","O sistema deve ser bonito."],1],
+  ["Um requisito funcional sempre começa com:","O sistema deve...",["O sistema deve...","O sistema precisa ser...","Se o usuário..."],0],
+  ["Qual é exemplo de requisito funcional para um e-commerce?","Adicionar produto ao carrinho.",["O site deve ser bonito.","Adicionar produto ao carrinho.","O site deve carregar rápido."],1]
+ ]},
+
+/* ---------- CASA 4: REQUISITOS NÃO FUNCIONAIS + ISO 9126 ---------- */
+{id:4,title:"Casa 4 — Requisitos Não Funcionais + ISO 9126",short:"Atributos de qualidade e as 6 características.",content:`
+   <h3>✨ Requisitos Não Funcionais</h3>
+   <p class="lead">Requisitos não funcionais são <b>atributos, características ou qualidades</b> que o sistema deve ter para ser bem avaliado pelos usuários.</p>
+   <p>Se os funcionais dizem <b>O QUE</b> o sistema faz, os não funcionais dizem <b>COMO</b> ele faz.</p>
+
+   <h4>📊 ISO/IEC 9126 — Modelo de Qualidade</h4>
+   <p>É uma norma ISO para qualidade de produto de software. A norma brasileira correspondente é a <b>NBR ISO/IEC 9126</b>. Ela se enquadra no modelo de qualidade das normas da família 9000.</p>
+   <p>A norma estabelece <b>6 características principais</b> de qualidade:</p>
+
+   <h4>1️⃣ Funcionalidade</h4>
+   <p>Capacidade do software prover funcionalidades que satisfaçam o usuário em suas necessidades declaradas e implícitas.</p>
+   <ul>
+     <li><b>Adequação</b> — mede o quanto as funcionalidades são adequadas às necessidades</li>
+     <li><b>Acurácia (precisão)</b> — fornece resultados precisos ou com a precisão acordada</li>
+     <li><b>Interoperabilidade</b> — capacidade de interagir com outros sistemas</li>
+     <li><b>Segurança</b> — protege informações e fornece apenas às pessoas autorizadas</li>
+     <li><b>Conformidade</b> — obedece às leis e normas aplicáveis</li>
+   </ul>
+
+   <h4>2️⃣ Confiabilidade</h4>
+   <p>O produto se mantém no nível de desempenho nas condições estabelecidas.</p>
+   <ul>
+     <li><b>Maturidade</b> — capacidade de evitar falhas decorrentes de defeitos</li>
+     <li><b>Tolerância a Falhas</b> — mantém funcionamento adequado mesmo com defeitos</li>
+     <li><b>Recuperabilidade</b> — capacidade de se recuperar após uma falha</li>
+     <li><b>Conformidade</b> — obedece às leis e normas</li>
+   </ul>
+
+   <h4>3️⃣ Usabilidade</h4>
+   <p>Capacidade do produto ser compreendido, aprendido, operado e atraente ao usuário.</p>
+   <ul>
+     <li><b>Inteligibilidade</b> — facilidade de compreender as funcionalidades</li>
+     <li><b>Apreensibilidade</b> — facilidade de aprendizado do sistema</li>
+     <li><b>Operacionalidade</b> — facilidade de operação, incluindo tolerância a erros</li>
+     <li><b>Atratividade</b> — características que atraem o usuário</li>
+     <li><b>Conformidade</b> — obedece às normas</li>
+   </ul>
+
+   <h4>4️⃣ Eficiência</h4>
+   <p>Tempo de execução e recursos compatíveis com o nível de desempenho.</p>
+   <ul>
+     <li><b>Comportamento em Relação ao Tempo</b> — tempos de resposta dentro das especificações</li>
+     <li><b>Utilização de Recursos</b> — recursos consumidos e capacidade de utilizá-los</li>
+     <li><b>Conformidade</b> — obedece às normas</li>
+   </ul>
+
+   <h4>5️⃣ Manutenibilidade</h4>
+   <p>Capacidade do produto ser modificado, incluindo melhorias, correções e adaptações.</p>
+   <ul>
+     <li><b>Analisabilidade</b> — facilidade de diagnosticar problemas e identificar causas</li>
+     <li><b>Modificabilidade</b> — facilidade de modificar o comportamento</li>
+     <li><b>Estabilidade</b> — evita efeitos colaterais após modificações</li>
+     <li><b>Testabilidade</b> — facilidade de testar o sistema modificado</li>
+     <li><b>Conformidade</b> — obedece às normas</li>
+   </ul>
+
+   <h4>6️⃣ Portabilidade</h4>
+   <p>Capacidade do sistema ser transferido de um ambiente para outro.</p>
+   <ul>
+     <li><b>Adaptabilidade</b> — adapta-se a diferentes ambientes sem ações adicionais</li>
+     <li><b>Capacidade para ser Instalado</b> — facilidade de instalação em novo ambiente</li>
+     <li><b>Coexistência</b> — convive com outros softwares no mesmo ambiente</li>
+     <li><b>Capacidade para Substituir</b> — substitui outro sistema especificado</li>
+     <li><b>Conformidade</b> — obedece às normas</li>
+   </ul>
+
+   <div class="note info"><b>📌 Importante:</b> TODAS as 6 características têm uma sub-categoria chamada <b>Conformidade</b>. Ela avalia o quanto o software obedece às leis e normas aplicáveis.</div>
+
+   <h4>🛒 Exemplo: E-commerce</h4>
+   <p>Um requisito não funcional para um e-commerce: <b>"O site deve carregar a página inicial em menos de 2 segundos"</b> (Eficiência — Comportamento em Relação ao Tempo).</p>
+
+   <div class="note warning"><b>⚠️ Cuidado:</b> Requisitos não funcionais geralmente envolvem <b>adjetivos</b>: rápido, bonito, seguro, confiável, fácil, portátil. Se descreve uma qualidade, é não funcional.</div>
+ `,quiz:[
+  ["O que são requisitos não funcionais?","Atributos de qualidade do software.",["Funcionalidades do sistema.","Atributos de qualidade do software.","Só a documentação."],1],
+  ["Qual é um requisito não funcional para e-commerce?","O site deve carregar em menos de 2 segundos.",["Adicionar produto ao carrinho.","O site deve carregar em menos de 2 segundos.","Emitir nota fiscal."],1],
+  ["Qual norma trata da qualidade de produto de software?","ISO/IEC 9126.",["ISO 9001.","ISO/IEC 9126.","NBR 15000."],1],
+  ["Qual das 6 características cuida de 'fácil de modificar'?","Manutenibilidade.",["Funcionalidade.","Manutenibilidade.","Portabilidade."],1],
+  ["O que é Conformidade na ISO 9126?","Obedecer às leis e normas aplicáveis.",["Ser bonito.","Obedecer às leis e normas aplicáveis.","Ser rápido."],1],
+  ["Qual característica cuida de 'evitar falhas decorrentes de defeitos'?","Confiabilidade — Maturidade.",["Usabilidade.","Confiabilidade — Maturidade.","Portabilidade."],1]
+ ]},
+
+/* ---------- CASA 5: LEVANTAMENTO DE REQUISITOS ---------- */
+{id:5,title:"Casa 5 — Levantamento de Requisitos",short:"Conversar com o cliente e entender o problema.",content:`
+   <h3>🔍 Levantamento de Requisitos</h3>
+   <p class="lead">É a atividade realizada pelo desenvolvedor para identificar <b>serviços, objetivos, atributos de qualidade e restrições</b> do sistema, por meio de consulta aos usuários do sistema.</p>
+
+   <h4>🎯 Por que é tão importante?</h4>
+   <p>Se você não entender o problema, vai construir a solução errada. <b>80% dos problemas em software começam no levantamento de requisitos.</b></p>
+
+   <div class="note tip"><b>💡 Analogia do médico:</b><br>Antes de receitar remédio, o médico ouve os sintomas, examina, pergunta ao paciente. O engenheiro de software faz o mesmo: <b>ouve o cliente</b>, entende a dor dele, e só depois "receita" a solução.</div>
+
+   <h4>📋 Técnicas de Levantamento de Requisitos</h4>
+   <div class="compare">
+     <div><strong>🗣️ Entrevistas</strong><p>Conversar diretamente com os usuários e stakeholders.</p></div>
+     <div><strong>📝 Questionários</strong><p>Aplicar formulários para muitas pessoas.</p></div>
+     <div><strong>👀 Observação</strong><p>Ver como o usuário trabalha hoje.</p></div>
+     <div><strong>📚 Análise de Documentos</strong><p>Ler manuais, processos, formulários existentes.</p></div>
+     <div><strong>🧠 Brainstorming</strong><p>Reuniões de ideação com a equipe.</p></div>
+     <div><strong>🎭 Prototipação</strong><p>Mostrar versões iniciais para validar.</p></div>
+   </div>
+
+   <h4>🔄 Fluxo do Levantamento de Requisitos (Figura do PDF)</h4>
+   <div class="diagram">
+     <div class="dbox">👤 USUÁRIO<br><small>Tem problemas</small></div>
+     <div class="arrow">→</div>
+     <div class="dbox">📊 SISTEMA DE INFORMAÇÃO<br><small>Solução proposta</small></div>
+   </div>
+   <div class="diagram">
+     <div class="dbox">🔬 ESTUDO DE VIABILIDADE<br><small>É possível? Vale a pena?</small></div>
+     <div class="arrow">→</div>
+     <div class="dbox">✅ SOLUÇÃO APROVADA<br><small>Desenvolver software</small></div>
+   </div>
+
+   <h4>📋 Especificação de Requisitos</h4>
+   <p>Após o levantamento, os requisitos são <b>documentados</b> em uma Especificação de Requisitos. Este documento serve como contrato entre cliente e desenvolvedor.</p>
+   <div class="note info"><b>📌 O que deve conter:</b><br>• Requisitos Funcionais<br>• Requisitos Não Funcionais<br>• Restrições do sistema<br>• Regras de negócio<br>• Casos de uso</div>
+
+   <h4>🧠 Capacidade Técnica</h4>
+   <p>Depois de levantar os requisitos, é preciso avaliar: <b>"O software pode ser desenvolvido internamente?"</b> — ou precisamos de terceiros/parceiros?</p>
+
+   <h4>📌 Exemplo prático</h4>
+   <p>Cliente: "Quero um sistema para minha padaria."</p>
+   <p>Perguntas do engenheiro:</p>
+   <ul>
+     <li>Quem vai usar? (dono, atendentes, clientes?)</li>
+     <li>O que precisa controlar? (vendas, estoque, fiado?)</li>
+     <li>Como é o processo hoje? (papel, planilha?)</li>
+     <li>Qual o prazo e orçamento?</li>
+   </ul>
+   <p>Só depois de responder tudo isso, você tem os requisitos!</p>
+
+   <div class="note warning"><b>⚠️ Pegadinha da prova:</b> "Levantamento de requisitos" NÃO é a mesma coisa que "levantamento de atributos de qualidade" ou "levantamento de regras de negócio". É o nome técnico do processo completo.</div>
+ `,quiz:[
+  ["O que é levantamento de requisitos?","Atividade de identificar serviços, objetivos e restrições do sistema.",["Programar o sistema.","Atividade de identificar serviços, objetivos e restrições do sistema.","Vender o software."],1],
+  ["Qual NÃO é uma técnica de levantamento de requisitos?","Compilar o código.",["Entrevista.","Compilar o código.","Observação."],1],
+  ["Por que o levantamento de requisitos é importante?","Porque sem entender o problema, construímos a solução errada.",["Porque é divertido.","Porque sem entender o problema, construímos a solução errada.","Porque é obrigatório por lei."],1],
+  ["Quem deve ser consultado no levantamento de requisitos?","Os usuários e stakeholders do sistema.",["Só o gerente.","Os usuários e stakeholders do sistema.","Só o programador."],1],
+  ["O que é avaliado depois do levantamento?","A capacidade técnica de desenvolver o software.",["Se o cliente é rico.","A capacidade técnica de desenvolver o software.","Se o software é bonito."],1]
+ ]},
+
+/* ---------- CASA 6: REGRAS DE NEGÓCIO ---------- */
+{id:6,title:"Casa 6 — Regras de Negócio",short:"As regras que o sistema DEVE respeitar.",content:`
+   <h3>📋 Regras de Negócio</h3>
+   <p class="lead">Regras de negócio são as <b>regras que definem como o negócio funciona</b> e que o sistema deve respeitar. São políticas, condições e restrições que existem na empresa.</p>
+   <p>Diferente dos requisitos funcionais (o que o sistema FAZ), as regras de negócio dizem <b>COMO</b> o negócio deve se comportar, e o sistema precisa respeitar isso.</p>
+
+   <h4>🔍 Diferença entre Requisito Funcional e Regra de Negócio</h4>
+   <div class="compare">
+     <div><strong>⚙️ Requisito Funcional</strong>
+       <p>"O sistema deve calcular o desconto de um cliente." — é a funcionalidade.</p></div>
+     <div><strong>📋 Regra de Negócio</strong>
+       <p>"Clientes com mais de 5 anos de cadastro recebem 10% de desconto." — é a regra que a funcionalidade deve respeitar.</p></div>
+   </div>
+
+   <h4>📌 Exemplos clássicos de Regras de Negócio</h4>
+   <ul>
+     <li>🏦 <b>Banco:</b> Saque máximo de R$ 1.000,00 por dia</li>
+     <li>🛒 <b>E-commerce:</b> Frete grátis para compras acima de R$ 150,00</li>
+     <li>📚 <b>Biblioteca:</b> Empréstimo de até 3 livros por usuário, por 14 dias</li>
+     <li>🎓 <b>Universidade:</b> Aluno com frequência abaixo de 75% é reprovado automaticamente</li>
+     <li>💼 <b>RH:</b> Funcionário com mais de 1 ano tem direito a 30 dias de férias</li>
+     <li>🏥 <b>Hospital:</b> Paciente só pode ser atendido com cadastro completo</li>
+   </ul>
+
+   <h4>🎯 Por que as regras de negócio são importantes?</h4>
+   <ul>
+     <li>Elas <b>guiam o comportamento</b> do sistema</li>
+     <li>Elas <b>refletem as políticas</b> da empresa</li>
+     <li>Elas <b>mudam com o tempo</b> — e o sistema precisa acompanhar</li>
+     <li>Se ignoradas, o sistema pode tomar decisões erradas para o negócio</li>
+   </ul>
+
+   <div class="note tip"><b>💡 Como identificar uma regra de negócio:</b><br>Pergunte: "Existe alguma política da empresa que limita ou condiciona esta operação?" Se sim, é regra de negócio!</div>
+
+   <h4>🔄 Fluxo: Como as regras de negócio afetam o sistema</h4>
+   <div class="diagram">
+     <div class="dbox">🏢 POLÍTICA DA EMPRESA<br><small>Ex: frete grátis acima de R$150</small></div>
+     <div class="arrow">→</div>
+     <div class="dbox">⚙️ REGRA NO SISTEMA<br><small>Validar no checkout</small></div>
+   </div>
+   <div class="diagram">
+     <div class="dbox">👤 USUÁRIO<br><small>Compra R$200</small></div>
+     <div class="arrow">→</div>
+     <div class="dbox">✅ FRETE GRÁTIS<br><small>Sistema aplica automaticamente</small></div>
+   </div>
+
+   <div class="note warning"><b>⚠️ Atenção:</b> Regras de negócio são <b>diferentes</b> de requisitos! O requisito funcional é "calcular frete". A regra de negócio é "frete grátis acima de R$150". O requisito funcional é "calcular média". A regra de negócio é "média >= 6 aprova".</div>
+
+   <h4>📝 Exemplo completo: Sistema de Biblioteca</h4>
+   <div class="compare">
+     <div><strong>Requisitos Funcionais</strong>
+       <p>• Cadastrar livros<br>• Registrar empréstimos<br>• Consultar disponibilidade</p></div>
+     <div><strong>Regras de Negócio</strong>
+       <p>• Usuário pode pegar até 3 livros<br>• Prazo de 14 dias<br>• Multa de R$ 2,00 por dia de atraso</p></div>
+     <div><strong>Requisitos Não Funcionais</strong>
+       <p>• Deve responder em 2 segundos<br>• Deve funcionar em Chrome, Firefox e Edge<br>• Deve proteger dados dos usuários</p></div>
+   </div>
+ `,quiz:[
+  ["O que são regras de negócio?","Políticas e condições que o sistema deve respeitar.",["Funcionalidades do sistema.","Políticas e condições que o sistema deve respeitar.","Só a interface visual."],1],
+  ["Qual é um exemplo de regra de negócio?","Frete grátis para compras acima de R$150.",["Cadastrar produto.","Frete grátis para compras acima de R$150.","Emitir nota fiscal."],1],
+  ["Qual a diferença entre requisito funcional e regra de negócio?","O requisito é O QUE o sistema faz; a regra é COMO o negócio se comporta.",["Não há diferença.","O requisito é O QUE o sistema faz; a regra é COMO o negócio se comporta.","A regra é só decoração."],1],
+  ["Por que as regras de negócio são importantes?","Porque refletem as políticas da empresa e guiam o sistema.",["Porque são bonitas.","Porque refletem as políticas da empresa e guiam o sistema.","Porque são obrigatórias por lei."],1]
+ ]},
+
+/* ---------- CASA 7: PROBLEMAS COM SOFTWARE ---------- */
+{id:7,title:"Casa 7 — Problemas com Software",short:"Por que projetos falham?",content:`
+   <h3>⚠️ Problemas com Software</h3>
+   <p class="lead">A figura de Pressman (2006) mostra que, sem Engenharia de Software, os projetos tendem a falhar. Vamos entender as causas.</p>
+
+   <h4>📉 Os 4 grandes problemas (Pressman, 2006)</h4>
+   <div class="compare">
+     <div><strong>1. Não funcionam como o esperado</strong><p>O software não faz o que deveria. Causa: <b>levantamento de requisitos ineficiente</b>.</p></div>
+     <div><strong>2. Custo maior que o estimado</strong><p>O projeto sai muito mais caro. Causas: <b>retrabalho, escopo mal definido, falta de planejamento</b>.</p></div>
+     <div><strong>3. Mudanças geram problemas</strong><p>Cada alteração quebra o sistema. Causa: <b>arquitetura ruim, requisitos mal documentados</b>.</p></div>
+     <div><strong>4. Entrega fora do prazo</strong><p>O software atrasa. Causas: <b>subestimação, requisitos instáveis</b>.</p></div>
+   </div>
+
+   <h4>📊 A Curva Real vs Ideal (Pressman)</h4>
+   <p>Pressman mostra um gráfico com o <b>índice de falhas</b> ao longo do tempo:</p>
+   <ul>
+     <li><b>Curva idealizada (vermelha):</b> os erros são corrigidos e o índice cai rapidamente.</li>
+     <li><b>Curva real (preta):</b> cada mudança gera novos picos de falhas, e o sistema nunca estabiliza totalmente.</li>
+   </ul>
+   <div class="diagram">
+     <div class="dbox">📉 CURVA IDEALIZADA<br><small>Erros corrigidos rapidamente</small></div>
+     <div class="arrow">vs</div>
+     <div class="dbox">📈 CURVA REAL<br><small>Picos a cada mudança</small></div>
+   </div>
+
+   <div class="note info"><b>📌 Lição:</b> Sem Engenharia de Software, cada mudança gera novos problemas. Com Engenharia, controlamos o caos.</div>
+
+   <h4>🔍 Causas comuns de falhas (para a prova)</h4>
+   <ul>
+     <li>❌ <b>Levantamento de requisitos ineficiente</b> (a maior causa!) — software não funciona como esperado</li>
+     <li>❌ <b>Falta de testes adequados</b> — bugs em produção</li>
+     <li>❌ <b>Prazo irreal</b> — entrega fora do prazo</li>
+     <li>❌ <b>Cliente não sabe o que quer</b> — retrabalho</li>
+     <li>❌ <b>Mudanças de requisitos durante o projeto</b> — problemas com mudanças</li>
+     <li>❌ <b>Falta de comunicação</b> entre equipe e cliente</li>
+     <li>❌ <b>Ausência de planejamento</b> — custo maior que o estimado</li>
+   </ul>
+
+   <div class="note tip"><b>💡 Como evitar:</b> Aplique Engenharia de Software! Use métodos, ferramentas e processos adequados. Faça testes. Documente. Comunique-se bem com o cliente.</div>
+
+   <div class="note warning"><b>⚠️ Para a prova:</b> memorize as 4 causas principais: (1) Levantamento de requisitos ineficiente, (2) Falta de testes, (3) Custo/prazo irreal, (4) Mudanças não gerenciadas.</div>
+ `,quiz:[
+  ["Qual é a principal causa de software não funcionar como esperado?","Levantamento de requisitos ineficiente.",["Falta de computador.","Levantamento de requisitos ineficiente.","Falta de energia."],1],
+  ["O que representa a curva real no gráfico de Pressman?","Que cada mudança gera novos picos de falhas.",["Que o software nunca falha.","Que cada mudança gera novos picos de falhas.","Que o software é perfeito."],1],
+  ["Qual dessas NÃO é uma causa comum de problemas com software?","Boa documentação.",["Prazo irreal.","Boa documentação.","Mudanças de requisitos."],1],
+  ["Como evitar problemas com software?","Aplicando Engenharia de Software.",["Não testando nada.","Aplicando Engenharia de Software.","Programando sem planejar."],1],
+  ["Entrega fora do prazo é causada principalmente por:","Subestimação e requisitos instáveis.",["Falta de computador.","Subestimação e requisitos instáveis.","Excesso de testes."],1]
+ ]},
+
+/* ---------- CASA 8: MODELO CASCATA ---------- */
+{id:8,title:"Casa 8 — Modelo Cascata",short:"Sequencial e sistemático. O primeiro modelo.",content:`
+   <h3>💧 Modelo Cascata (Sequencial Linear)</h3>
+   <p class="lead">É o <b>primeiro modelo de processo de desenvolvimento de software publicado</b>. Caracteriza-se pelo desenvolvimento <b>sequencial e sistemático</b>, onde uma fase se inicia quando outra termina.</p>
+
+   <h4>📋 As 6 Fases do Modelo Cascata</h4>
+   <div class="compare">
+     <div><strong>1. Requisitos</strong><p>Levantamento de serviços, objetivos, atributos de qualidade e restrições do sistema, por meio de consulta aos usuários.</p></div>
+     <div><strong>2. Análise</strong><p>Atividades para compreender o domínio da aplicação, função, desempenho e interface. Requisitos documentados e revistos com o cliente.</p></div>
+     <div><strong>3. Projeto</strong><p>Projeto de múltiplos passos com 4 atributos: <b>estrutura de dados, arquitetura, detalhes procedimentais, interface</b>.</p></div>
+     <div><strong>4. Codificação</strong><p>Construção do código fonte e geração do programa executável, conforme especificado no projeto.</p></div>
+     <div><strong>5. Teste</strong><p>Submissão do software a testes para identificar falhas. Foca em aspectos lógicos internos e funcionais externos.</p></div>
+     <div><strong>6. Manutenção</strong><p>Software entregue ao cliente, podendo sofrer mudanças: correções, atualizações, mudanças na legislação.</p></div>
+   </div>
+
+   <h4>🔄 Fluxo do Modelo Cascata</h4>
+   <div class="diagram">
+     <div class="dbox">📋 REQUISITOS</div>
+     <div class="arrow">→</div>
+     <div class="dbox">🔍 ANÁLISE</div>
+   </div>
+   <div class="diagram">
+     <div class="dbox">📐 PROJETO</div>
+     <div class="arrow">→</div>
+     <div class="dbox">💻 CODIFICAÇÃO</div>
+   </div>
+   <div class="diagram">
+     <div class="dbox">🧪 TESTE</div>
+     <div class="arrow">→</div>
+     <div class="dbox">🔧 MANUTENÇÃO</div>
+   </div>
+
+   <h4>✅ Vantagens</h4>
+   <ul>
+     <li><b>Simplicidade</b> — fácil de entender</li>
+     <li><b>Etapas bem definidas</b> — cada fase tem entregáveis claros</li>
+     <li>Bom para problemas <b>bem compreendidos</b></li>
+   </ul>
+
+   <h4>❌ Desvantagens</h4>
+   <ul>
+     <li><b>Trabalho visível ao usuário apenas na entrega</b></li>
+     <li><b>Requisitos "não podem" mudar</b> — mudanças são custosas</li>
+     <li>Se o cliente errar na fase de requisitos, o erro se propaga</li>
+   </ul>
+
+   <div class="note tip"><b>💡 Quando usar:</b> quando os requisitos são <b>claros e estáveis</b>, e o problema é <b>bem compreendido</b> por usuários e desenvolvedores.</div>
+
+   <div class="note warning"><b>⚠️ Para a prova:</b> Cascata = SEQUENCIAL + SIMPLES + REQUISITOS FIXOS. Desvantagem principal: trabalho visível só na entrega + requisitos não mudam.</div>
+ `,quiz:[
+  ["Qual é o primeiro modelo de processo publicado?","Modelo Cascata.",["Modelo Incremental.","Modelo Cascata.","Modelo de Prototipação."],1],
+  ["Quantas fases tem o Modelo Cascata?","6 fases.",["3 fases.","6 fases.","10 fases."],1],
+  ["Qual é uma vantagem do Modelo Cascata?","Simplicidade e etapas bem definidas.",["Requisitos podem mudar a qualquer momento.","Simplicidade e etapas bem definidas.","Cliente vê o software desde o início."],1],
+  ["Qual é uma desvantagem do Modelo Cascata?","Requisitos não podem mudar facilmente.",["É complexo demais.","Requisitos não podem mudar facilmente.","Não tem documentação."],1],
+  ["Quando é indicado usar o Modelo Cascata?","Quando os requisitos são claros e estáveis.",["Quando o cliente não sabe o que quer.","Quando os requisitos são claros e estáveis.","Quando não há prazo."],1]
+ ]},
+
+/* ---------- CASA 9: MODELO PROTOTIPAÇÃO ---------- */
+{id:9,title:"Casa 9 — Modelo de Prototipação",short:"Quando o problema não é bem compreendido.",content:`
+   <h3>🎨 Modelo de Prototipação</h3>
+   <p class="lead">Foi concebido para ser utilizado em situações onde o <b>problema não é bem compreendido</b> pelos usuários do sistema e desenvolvedores.</p>
+
+   <h4>🎯 Como funciona?</h4>
+   <p>Em vez de construir o software completo de uma vez, você constrói <b>protótipos</b> — versões simplificadas para demonstrar funcionalidades e validar requisitos com o cliente.</p>
+
+   <h4>📋 As 6 Etapas</h4>
+   <div class="compare">
+     <div><strong>1. Coleta e Refinamento</strong><p>Levantamento e especificação de requisitos junto aos usuários.</p></div>
+     <div><strong>2. Projeto Rápido</strong><p>Definição de funcionalidades, interfaces e estruturas de dados necessárias.</p></div>
+     <div><strong>3. Construção do Protótipo</strong><p>Desenvolvimento de uma versão para demonstração do sistema.</p></div>
+     <div><strong>4. Avaliação do Cliente</strong><p>O cliente avalia se o desenvolvedor entendeu o problema.</p></div>
+     <div><strong>5. Refinamento</strong><p>O protótipo é ajustado conforme as observações dos usuários.</p></div>
+     <div><strong>6. Engenharia do Produto</strong><p>Desenvolvimento do software definitivo com base no protótipo aprovado.</p></div>
+   </div>
+
+   <h4>🔄 Ciclo da Prototipação</h4>
+   <div class="diagram">
+     <div class="dbox">📋 COLETA<br><small>Requisitos</small></div>
+     <div class="arrow">→</div>
+     <div class="dbox">⚡ PROJETO RÁPIDO</div>
+   </div>
+   <div class="diagram">
+     <div class="dbox">🔨 CONSTRUÇÃO<br><small>Protótipo</small></div>
+     <div class="arrow">→</div>
+     <div class="dbox">👤 AVALIAÇÃO<br><small>Cliente avalia</small></div>
+   </div>
+   <div class="diagram">
+     <div class="dbox">🔧 REFINAMENTO</div>
+     <div class="arrow">→</div>
+     <div class="dbox">🏗️ ENGENHARIA<br><small>Produto final</small></div>
+   </div>
+
+   <h4>✅ Vantagens</h4>
+   <ul>
+     <li><b>Validação dos requisitos</b> através de interações com o usuário</li>
+     <li>O cliente <b>vê e testa</b> antes da versão final</li>
+     <li>Reduz risco de construir a coisa errada</li>
+   </ul>
+
+   <h4>❌ Desvantagens</h4>
+   <ul>
+     <li>O desenvolvedor <b>tende a não considerar aspectos</b> que foram desconsiderados para facilitar a construção do protótipo</li>
+     <li>Pode gerar expectativas irreais no cliente</li>
+     <li>Pode dar a impressão de que o software está mais pronto do que está</li>
+   </ul>
+
+   <div class="note tip"><b>💡 Quando usar:</b> quando o cliente <b>não sabe exatamente o que quer</b>, ou quando o problema é <b>complexo e mal compreendido</b>.</div>
+
+   <div class="note warning"><b>⚠️ Para a prova:</b> Prototipação = PROBLEMA MAL COMPREENDIDO + INTERAÇÃO COM USUÁRIO + PROTÓTIPO. Desvantagem: desenvolvedor tende a ignorar aspectos desconsiderados no protótipo.</div>
+ `,quiz:[
+  ["Quando o Modelo de Prototipação é mais indicado?","Quando o problema não é bem compreendido.",["Quando os requisitos são claros.","Quando o problema não é bem compreendido.","Quando não há prazo."],1],
+  ["Qual é a principal vantagem da prototipação?","Validação dos requisitos com o usuário.",["É mais rápido que todos.","Validação dos requisitos com o usuário.","Não precisa documentar."],1],
+  ["Qual é a principal desvantagem da prototipação?","O desenvolvedor tende a ignorar aspectos desconsiderados no protótipo.",["É muito caro.","O desenvolvedor tende a ignorar aspectos desconsiderados no protótipo.","Não tem vantagens."],1],
+  ["O que é construído ANTES do produto final na prototipação?","Um protótipo para demonstração.",["O produto final.","Um protótipo para demonstração.","Só a documentação."],1]
+ ]},
+
+/* ---------- CASA 10: MODELO INCREMENTAL ---------- */
+{id:10,title:"Casa 10 — Modelo Incremental",short:"Dividir para conquistar.",content:`
+   <h3>🧩 Modelo Incremental</h3>
+   <p class="lead">Aplica a filosofia <b>"dividir para conquistar"</b>. O desenvolvedor divide o projeto em <b>módulos</b> com baixa coesão e acoplamento, onde cada qual será desenvolvido e acoplado ao sistema.</p>
+
+   <h4>🎯 Como funciona?</h4>
+   <p>Cada módulo desenvolvido é considerado um <b>incremento</b> ao sistema, que é disponibilizado aos usuários <b>desde a primeira entrega</b>.</p>
+   <p>Em vez de esperar o software completo, o usuário já começa a usar partes funcionais.</p>
+
+   <h4>📋 Etapas do Modelo Incremental</h4>
+   <div class="compare">
+     <div><strong>1. Definir Requisitos Iniciais</strong><p>Levantamento do que o sistema precisa fazer.</p></div>
+     <div><strong>2. Atribuir Requisitos a Incrementos</strong><p>Dividir os requisitos em módulos.</p></div>
+     <div><strong>3. Projetar Arquitetura</strong><p>Definir como os módulos vão se integrar.</p></div>
+     <div><strong>4. Desenvolver Incremento</strong><p>Cada módulo é desenvolvido separadamente.</p></div>
+     <div><strong>5. Validar Incremento</strong><p>Testar o módulo desenvolvido.</p></div>
+     <div><strong>6. Integrar Incremento</strong><p>Acoplar ao sistema existente.</p></div>
+     <div><strong>7. Validar Sistema</strong><p>Testar o sistema completo com o novo módulo.</p></div>
+   </div>
+
+   <h4>🔄 Fluxo do Incremental</h4>
+   <div class="diagram">
+     <div class="dbox">📋 REQ. INICIAIS</div>
+     <div class="arrow">→</div>
+     <div class="dbox">🧩 ATRIBUIR A INCREMENTOS</div>
+   </div>
+   <div class="diagram">
+     <div class="dbox">🏗️ PROJETAR ARQUITETURA</div>
+     <div class="arrow">→</div>
+     <div class="dbox">💻 DESENVOLVER INCREMENTO</div>
+   </div>
+   <div class="diagram">
+     <div class="dbox">🧪 VALIDAR / INTEGRAR</div>
+     <div class="arrow">→</div>
+     <div class="dbox">✅ SISTEMA PRONTO</div>
+   </div>
+
+   <h4>✅ Vantagens</h4>
+   <ul>
+     <li>O usuário recebe <b>partes funcionais desde o início</b></li>
+     <li>Reduz risco de construir tudo errado de uma vez</li>
+     <li>Facilita a detecção de problemas cedo</li>
+   </ul>
+
+   <h4>❌ Desvantagens</h4>
+   <ul>
+     <li>Dificuldades para o desenvolvedor efetuar a <b>integração com outros sistemas</b></li>
+     <li>Pode ser necessário refatorar módulos já entregues</li>
+     <li>Requer boa arquitetura desde o começo</li>
+   </ul>
+
+   <div class="note tip"><b>💡 Quando usar:</b> quando o sistema é <b>grande</b> e pode ser dividido em partes menores, ou quando o cliente <b>precisa de funcionalidades parciais rapidamente</b>.</div>
+
+   <div class="note warning"><b>⚠️ Para a prova:</b> Incremental = DIVIDIR PARA CONQUISTAR + ENTREGA POR MÓDULOS + USO DESDE O INÍCIO. Desvantagem: dificuldades de integração com outros sistemas.</div>
+ `,quiz:[
+  ["Qual é a filosofia do Modelo Incremental?","Dividir para conquistar.",["Fazer tudo de uma vez.","Dividir para conquistar.","Não planejar."],1],
+  ["O que é um incremento?","Um módulo desenvolvido e acoplado ao sistema.",["Um bug.","Um módulo desenvolvido e acoplado ao sistema.","Uma fase só de documentação."],1],
+  ["Qual é a principal vantagem do Incremental?","O usuário usa partes funcionais desde o início.",["É mais barato.","O usuário usa partes funcionais desde o início.","Não precisa testar."],1],
+  ["Qual é uma desvantagem do Incremental?","Dificuldades de integração com outros sistemas.",["É lento.","Dificuldades de integração com outros sistemas.","Ninguém gosta."],1]
+ ]},
+
+/* ---------- CASA 11: BPM E ANÁLISE DE PROCESSOS ---------- */
+{id:11,title:"Casa 11 — BPM e Análise de Processos",short:"Business Process Management e como as pessoas trabalham.",content:`
+   <h3>🔄 BPM — Business Process Management</h3>
+   <p class="lead">BPM (Gerenciamento de Processos de Negócio) é uma disciplina que visa <b>analisar, modelar, executar, monitorar e otimizar</b> os processos de uma organização.</p>
+   <p>Antes de construir software, o engenheiro precisa entender <b>como as pessoas trabalham hoje</b>. BPM ajuda nesse mapeamento.</p>
+
+   <h4>📊 O que o BPM estuda?</h4>
+   <div class="compare">
+     <div><strong>📋 Fluxo das Informações</strong><p>Como os dados circulam dentro da empresa: quem cria, quem usa, quem armazena.</p></div>
+     <div><strong>👥 Como as Pessoas Trabalham</strong><p>Quem faz o quê, em que ordem, com quais ferramentas e quanto tempo leva.</p></div>
+   </div>
+
+   <h4>🎯 Por que BPM é importante para Engenharia de Software?</h4>
+   <ul>
+     <li>Identifica <b>gargalos</b> e oportunidades de melhoria</li>
+     <li>Ajuda a <b>definir requisitos</b> com base no processo real</li>
+     <li>Evita construir software que <b>não se encaixa</b> no processo</li>
+     <li>Permite <b>automatizar</b> processos manuais</li>
+   </ul>
+
+   <h4>🔄 Exemplo: Processo de Compras em uma Empresa</h4>
+   <div class="diagram">
+     <div class="dbox">📝 SOLICITANTE<br><small>Pede compra</small></div>
+     <div class="arrow">→</div>
+     <div class="dbox">✅ GESTOR<br><small>Aprova</small></div>
+   </div>
+   <div class="diagram">
+     <div class="dbox">💰 FINANCEIRO<br><small>Verifica verba</small></div>
+     <div class="arrow">→</div>
+     <div class="dbox">🛒 COMPRA<br><small>Realiza pedido</small></div>
+   </div>
+   <div class="diagram">
+     <div class="dbox">📦 RECEBIMENTO<br><small>Confere material</small></div>
+     <div class="arrow">→</div>
+     <div class="dbox">💳 PAGAMENTO<br><small>Paga fornecedor</small></div>
+   </div>
+
+   <h4>📌 Ferramentas de BPM</h4>
+   <ul>
+     <li><b>BPMN</b> (Business Process Model and Notation) — notação padrão para modelar processos</li>
+     <li><b>Fluxogramas</b> — representação visual simplificada</li>
+     <li><b>BPMS</b> — sistemas que automatizam processos</li>
+   </ul>
+
+   <h4>🎯 Análise de Processos (BPM) no contexto do PDF</h4>
+   <p>O PDF destaca a <b>Análise de processos (BPM)</b> como uma etapa importante entre a viabilidade e o desenvolvimento:</p>
+   <div class="diagram">
+     <div class="dbox">🔬 VIABILIDADE<br><small>Aprovada</small></div>
+     <div class="arrow">→</div>
+     <div class="dbox">📊 ANÁLISE DE PROCESSOS<br><small>BPM</small></div>
+   </div>
+   <div class="diagram">
+     <div class="dbox">📋 FLUXO DAS INFORMAÇÕES<br><small>Como os dados circulam</small></div>
+     <div class="arrow">→</div>
+     <div class="dbox">👥 COMO AS PESSOAS TRABALHAM<br><small>Quem faz o quê</small></div>
+   </div>
+
+   <div class="note tip"><b>💡 Analogia:</b> Antes de comprar uma máquina para uma fábrica, você precisa entender como a linha de produção funciona. BPM é esse mapeamento da linha de produção da empresa.</div>
+
+   <div class="note warning"><b>⚠️ Para a prova:</b> BPM = Fluxo das Informações + Como as Pessoas Trabalham. É uma etapa de análise que vem depois do estudo de viabilidade.</div>
+ `,quiz:[
+  ["O que significa BPM?","Business Process Management (Gerenciamento de Processos de Negócio).",["Business Product Management.","Business Process Management (Gerenciamento de Processos de Negócio).","Basic Programming Method."],1],
+  ["O que o BPM estuda?","O fluxo das informações e como as pessoas trabalham.",["Só o código-fonte.","O fluxo das informações e como as pessoas trabalham.","Só o banco de dados."],1],
+  ["Por que BPM é importante para Engenharia de Software?","Ajuda a definir requisitos com base no processo real.",["Porque é bonito.","Ajuda a definir requisitos com base no processo real.","Porque é obrigatório por lei."],1],
+  ["Qual notação é padrão para modelar processos?","BPMN.",["HTML.","BPMN.","CSS."],1]
+ ]},
+
+/* ---------- CASA 12: ESTUDO DE VIABILIDADE ---------- */
+{id:12,title:"Casa 12 — Estudo de Viabilidade",short:"É possível? Vale a pena? Capacidade Técnica.",content:`
+   <h3>🔬 Estudo de Viabilidade</h3>
+   <p class="lead">Antes de desenvolver qualquer software, é preciso avaliar se ele é <b>viável</b>: tecnicamente, economicamente e operacionalmente.</p>
+   <p>É a etapa que responde: <b>"Vale a pena investir neste projeto?"</b></p>
+
+   <h4>📊 Os 3 Tipos de Viabilidade</h4>
+   <div class="compare">
+     <div><strong>💰 Viabilidade Econômica</strong><p>O projeto cabe no orçamento? O retorno justifica o investimento? Os custos são menores que os benefícios?</p></div>
+     <div><strong>🔧 Viabilidade Técnica</strong><p>Existe tecnologia para fazer? A equipe domina as ferramentas? A infraestrutura suporta? O prazo é factível?</p></div>
+     <div><strong>👥 Viabilidade Operacional</strong><p>Os usuários vão adotar o sistema? O processo atual comporta a mudança? Há resistência cultural?</p></div>
+   </div>
+
+   <h4>🎯 Capacidade Técnica</h4>
+   <p>Pergunta-chave: <b>"O software pode ser desenvolvido internamente?"</b></p>
+   <ul>
+     <li>✅ Se <b>sim</b> → desenvolver internamente</li>
+     <li>❌ Se <b>não</b> → contratar terceiros ou adquirir software pronto</li>
+   </ul>
+
+   <h4>🔄 Fluxo Completo do Início do Projeto (Figura do PDF)</h4>
+   <div class="diagram">
+     <div class="dbox">👤 USUÁRIO<br><small>Tem problemas</small></div>
+     <div class="arrow">→</div>
+     <div class="dbox">📊 SISTEMA DE INFORMAÇÃO<br><small>Conceito inicial</small></div>
+   </div>
+   <div class="diagram">
+     <div class="dbox">📋 ESPECIFICAÇÃO DE REQUISITOS<br><small>Documentar o que será feito</small></div>
+     <div class="arrow">→</div>
+     <div class="dbox">🔬 ESTUDO DE VIABILIDADE<br><small>É possível? Vale a pena?</small></div>
+   </div>
+   <div class="diagram">
+     <div class="dbox">🔧 CAPACIDADE TÉCNICA<br><small>Podemos desenvolver internamente?</small></div>
+     <div class="arrow">→</div>
+     <div class="dbox">📊 ANÁLISE DE PROCESSOS (BPM)<br><small>Como funciona hoje?</small></div>
+   </div>
+   <div class="diagram">
+     <div class="dbox">✅ SOLUÇÃO APROVADA<br><small>Viabilidade OK</small></div>
+     <div class="arrow">→</div>
+     <div class="dbox">🏗️ DESENVOLVER SOFTWARE<br><small>Início do projeto</small></div>
+   </div>
+
+   <h4>📌 Exemplo prático</h4>
+   <p>Uma padaria quer um sistema de gestão:</p>
+   <ul>
+     <li><b>Econômica:</b> Custa R$ 5.000, economizará R$ 2.000/mês em retrabalho. Retorno em 3 meses. ✅ Viável</li>
+     <li><b>Técnica:</b> Existem frameworks prontos, a equipe domina. ✅ Viável</li>
+     <li><b>Operacional:</b> Os atendentes são resistentes a computadores? Talvez precise treinamento. ⚠️ Cuidado</li>
+   </ul>
+
+   <div class="note tip"><b>💡 Dica:</b> Se qualquer uma das 3 viabilidades falhar, o projeto deve ser <b>repensado ou cancelado</b>. Não adianta desenvolver algo que ninguém vai usar ou que não traz retorno.</div>
+
+   <div class="note warning"><b>⚠️ Para a prova:</b> Estudo de Viabilidade = Econômica + Técnica + Operacional. Capacidade Técnica = "Podemos desenvolver internamente?"</div>
+ `,quiz:[
+  ["O que é Estudo de Viabilidade?","Avaliar se o projeto é viável antes de desenvolvê-lo.",["Programar o sistema.","Avaliar se o projeto é viável antes de desenvolvê-lo.","Vender o software."],1],
+  ["Quais são os 3 tipos de viabilidade?","Econômica, Técnica e Operacional.",["Alta, Média e Baixa.","Econômica, Técnica e Operacional.","Curta, Média e Longa."],1],
+  ["O que a Capacidade Técnica avalia?","Se o software pode ser desenvolvido internamente.",["Se o cliente é rico.","Se o software pode ser desenvolvido internamente.","Se o software é bonito."],1],
+  ["O que acontece se uma viabilidade falhar?","O projeto deve ser repensado ou cancelado.",["Nada.","O projeto deve ser repensado ou cancelado.","O projeto continua normalmente."],1]
+ ]},
+
+/* ---------- CASA 13: COMPARANDO OS MODELOS ---------- */
+{id:13,title:"Casa 13 — Comparando os Modelos",short:"Cascata vs Prototipação vs Incremental.",content:`
+   <h3>⚖️ Comparando os Modelos de Processo</h3>
+   <p class="lead">Cada modelo tem seu lugar. Vamos comparar lado a lado para você saber quando usar cada um.</p>
+
+   <h4>📊 Tabela Comparativa Completa</h4>
+   <div class="compare">
+     <div><strong>💧 Cascata</strong>
+       <p><b>Quando usar:</b> requisitos claros e estáveis; problema bem compreendido.<br><br>
+       <b>Vantagem:</b> simplicidade; etapas bem definidas.<br><br>
+       <b>Desvantagem:</b> trabalho visível só na entrega; requisitos não mudam.<br><br>
+       <b>Fases:</b> 6 (Requisitos → Análise → Projeto → Codificação → Teste → Manutenção).</p></div>
+     <div><strong>🎨 Prototipação</strong>
+       <p><b>Quando usar:</b> problema mal compreendido; cliente não sabe o que quer.<br><br>
+       <b>Vantagem:</b> valida requisitos com o usuário; reduz risco.<br><br>
+       <b>Desvantagem:</b> desenvolvedor tende a ignorar aspectos não considerados no protótipo.<br><br>
+       <b>Fases:</b> 6 (Coleta → Projeto Rápido → Construção → Avaliação → Refinamento → Engenharia).</p></div>
+     <div><strong>🧩 Incremental</strong>
+       <p><b>Quando usar:</b> sistemas grandes; entregas parciais; uso desde o início.<br><br>
+       <b>Vantagem:</b> uso desde o início; detecta problemas cedo.<br><br>
+       <b>Desvantagem:</b> dificuldades de integração com outros sistemas.<br><br>
+       <b>Fases:</b> 7 (Definir Req → Atribuir → Arquitetura → Desenvolver → Validar → Integrar → Validar Sistema).</p></div>
+   </div>
+
+   <h4>🎯 Como escolher o modelo?</h4>
+   <ul>
+     <li><b>Requisitos claros e fixos?</b> → Cascata</li>
+     <li><b>Cliente não sabe o que quer?</b> → Prototipação</li>
+     <li><b>Sistema grande, pode dividir?</b> → Incremental</li>
+     <li><b>Risco alto, precisa validar cedo?</b> → Prototipação ou Incremental</li>
+     <li><b>Prazo apertado, precisa usar logo?</b> → Incremental</li>
+   </ul>
+
+   <h4>🔍 Pegadinhas comuns na prova</h4>
+   <div class="note warning">
+     <b>⚠️ Fique atento:</b><br><br>
+     • "Simplicidade, etapas bem definidas" → <b>Cascata</b><br>
+     • "Problema não bem compreendido" → <b>Prototipação</b><br>
+     • "Dividir para conquistar" → <b>Incremental</b><br>
+     • "Trabalho visível ao usuário apenas na entrega" → <b>Cascata</b><br>
+     • "Validação de requisitos por interações" → <b>Prototipação</b><br>
+     • "Integração com outros sistemas difícil" → <b>Incremental</b>
+   </div>
+
+   <h4>📌 Desvantagens que confundem</h4>
+   <div class="compare">
+     <div><strong>Prototipação</strong><p>Desvantagem: desenvolvedor tende a não considerar aspectos desconsiderados para facilitar a construção.</p></div>
+     <div><strong>Cascata</strong><p>Desvantagem: trabalho visível apenas na entrega + requisitos "não podem" mudar.</p></div>
+     <div><strong>Incremental</strong><p>Desvantagem: dificuldades para o desenvolvedor efetuar integração com outros sistemas.</p></div>
+   </div>
+
+   <h4>📋 Tabela rápida de vantagens/desvantagens</h4>
+   <div class="compare">
+     <div><strong>💧 Cascata</strong><p>✅ Simples, etapas claras<br>❌ Cliente só vê no final, requisitos fixos</p></div>
+     <div><strong>🎨 Prototipação</strong><p>✅ Valida com usuário, reduz risco<br>❌ Pode ignorar aspectos pós-protótipo</p></div>
+     <div><strong>🧩 Incremental</strong><p>✅ Uso desde o início, detecta problemas cedo<br>❌ Difícil integração com outros sistemas</p></div>
+   </div>
+
+   <div class="note tip"><b>💡 Dica final:</b> memorize esta tabela! Ela cai em quase toda prova de Engenharia de Software.</div>
+ `,quiz:[
+  ["Qual modelo tem como vantagem 'simplicidade e etapas bem definidas'?","Cascata.",["Prototipação.","Cascata.","Incremental."],1],
+  ["Qual modelo é indicado quando o problema NÃO é bem compreendido?","Prototipação.",["Cascata.","Prototipação.","Incremental."],1],
+  ["Qual modelo aplica 'dividir para conquistar'?","Incremental.",["Cascata.","Prototipação.","Incremental."],2],
+  ["Qual modelo tem como desvantagem 'trabalho visível apenas na entrega'?","Cascata.",["Cascata.","Prototipação.","Incremental."],0],
+  ["Qual modelo tem dificuldades de integração com outros sistemas?","Incremental.",["Cascata.","Prototipação.","Incremental."],2],
+  ["Qual modelo valida requisitos através de interações com o usuário?","Prototipação.",["Cascata.","Prototipação.","Incremental."],1]
+ ]},
+
+/* ---------- CASA 14: BOSS FINAL ---------- */
+{id:14,title:"👑 Torre do BOSS — Simulado Final",short:"Desafio final: tudo misturado!",content:`
+   <h3>👑 O BOSS FINAL</h3>
+   <p class="lead">Agora Engie não vai explicar. Você precisa mostrar que entendeu!</p>
+   <p>O simulado mistura todos os conceitos: software, engenharia, requisitos, regras de negócio, ISO 9126, viabilidade, BPM e modelos de processo.</p>
+   <div class="note warning"><b>☠️ Regra:</b> você precisa acertar pelo menos 70% do quiz E ter seu código aprovado para derrotar o BOSS.</div>
+
+   <h4>📚 Tópicos que serão cobrados</h4>
+   <ul>
+     <li>Conceito de Software e seus tipos</li>
+     <li>Engenharia de Software e suas 4 camadas</li>
+     <li>Requisitos Funcionais vs Não Funcionais</li>
+     <li>ISO/IEC 9126 e as 6 características</li>
+     <li>Levantamento de Requisitos e Regras de Negócio</li>
+     <li>Estudo de Viabilidade e Capacidade Técnica</li>
+     <li>BPM e Análise de Processos</li>
+     <li>Problemas com Software</li>
+     <li>Modelo Cascata, Prototipação e Incremental</li>
+   </ul>
+ `,quiz:[
+  ["O que é software?","Conjunto de instruções e programas.",["Parte física.","Conjunto de instruções e programas.","Só jogos."],1],
+  ["Quais são as 4 camadas da Engenharia de Software?","Ferramentas, Métodos, Processos, Foco na Qualidade.",["Hardware, Software, Firmware, Middleware.","Ferramentas, Métodos, Processos, Foco na Qualidade.","Frontend, Backend, BD, DevOps."],1],
+  ["Qual é um requisito funcional?","Emitir relatório.",["Ser rápido.","Emitir relatório.","Ser bonito."],1],
+  ["Qual é um requisito não funcional?","Ser rápido.",["Cadastrar produto.","Ser rápido.","Emitir nota."],1],
+  ["Qual norma trata de qualidade de software?","ISO/IEC 9126.",["ISO 9001.","ISO/IEC 9126.","NBR 15000."],1],
+  ["O que é BPM?","Gerenciamento de Processos de Negócio.",["Business Product Management.","Gerenciamento de Processos de Negócio.","Basic Programming Method."],1],
+  ["Quais são os 3 tipos de viabilidade?","Econômica, Técnica e Operacional.",["Alta, Média e Baixa.","Econômica, Técnica e Operacional.","Curta, Média e Longa."],1],
+  ["Qual é o primeiro modelo de processo publicado?","Cascata.",["Incremental.","Cascata.","Prototipação."],1],
+  ["Qual modelo é indicado quando o problema não é bem compreendido?","Prototipação.",["Cascata.","Prototipação.","Incremental."],1],
+  ["Qual modelo aplica 'dividir para conquistar'?","Incremental.",["Cascata.","Prototipação.","Incremental."],2],
+  ["Qual é a principal causa de problemas com software?","Levantamento de requisitos ineficiente.",["Falta de computador.","Levantamento de requisitos ineficiente.","Falta de energia."],1],
+  ["O que é uma regra de negócio?","Política que o sistema deve respeitar.",["Um bug.","Política que o sistema deve respeitar.","Uma funcionalidade."],1]
+ ]}
+];
+
+/* =========================================================
+   ESTADO
+   ========================================================= */
+let state = JSON.parse(localStorage.getItem("engSoftWorldState") || '{"xp":0,"unlocked":1,"lives":3,"passed":{}}');
+
+function save(){
+  localStorage.setItem("engSoftWorldState", JSON.stringify(state));
+  renderMap();
+  updateHUD();
+  updateProgress();
+}
+
+function updateHUD(){
+  document.getElementById("xp").textContent = state.xp;
+  const passedCount = Object.keys(state.passed).length;
+  document.getElementById("done").textContent = Math.min(passedCount + 1, lessons.length);
+  document.getElementById("lives").textContent = state.lives;
+}
+
+function updateProgress(){
+  const total = lessons.length;
+  const done = Object.keys(state.passed).length;
+  const pct = (done / total) * 100;
+  document.getElementById("progressFill").style.width = pct + "%";
+}
+
+/* =========================================================
+   RENDER MAPA
+   ========================================================= */
+function renderMap(){
+  const root = document.getElementById("locations");
+  root.innerHTML = "";
+  lessons.forEach((l,i) => {
+    const locked = l.id > state.unlocked;
+    const el = document.createElement("div");
+    el.className = "location" + (locked ? " locked" : "");
+    el.onclick = () => locked ? toast("🔒 Complete a casa anterior primeiro!") : openLesson(l.id);
+    el.innerHTML = `
+      <div class="lamp">${i%2?"🌼":"🌱"}</div>
+      <div class="tree">${i%3?"🌳":"🌲"}</div>
+      <div class="bush">${i%2?"🌿":"🍄"}</div>
+      <div class="flower">${i%2?"🌸":"🌺"}</div>
+      ${locked ? '<div class="lock">🔒</div>' : ''}
+      <div class="house">
+        <div class="roof"></div>
+        <div class="chimney"></div>
+        <div class="sign">${l.id === 14 ? "👑 BOSS" : l.title.replace("Casa "+l.id+" — ","")}</div>
+        <div class="window left"></div>
+        <div class="window right"></div>
+        <div class="door"></div>
+        <h3>${l.id === 14 ? "👑 Torre do BOSS" : "🏠 Casa "+l.id}</h3>
+        <p>${l.short}</p>
+      </div>`;
+    root.appendChild(el);
+  });
+}
+
+function toast(msg){
+  const t = document.getElementById("toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  clearTimeout(window.toastTimeout);
+  window.toastTimeout = setTimeout(() => t.classList.remove("show"), 2800);
+}
+
+function switchTab(btn, panelId){
+  const parent = btn.parentElement;
+  parent.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const container = btn.closest('.content') || btn.closest('.lesson');
+  const panels = container.querySelectorAll('.solution-panel');
+  panels.forEach(p => p.classList.remove('active'));
+  const target = document.getElementById(panelId);
+  if(target) target.classList.add('active');
+}
+
+/* =========================================================
+   ABRIR LIÇÃO
+   ========================================================= */
+function openLesson(id){
+  const l = lessons.find(x => x.id === id);
+  if(!l) return;
+
+  document.getElementById("lessonTitle").textContent = l.title;
+
+  // Breadcrumb
+  const bc = document.getElementById("breadcrumb");
+  bc.innerHTML = `<span>📍 Você está aqui:</span> <span>Casa ${id} de ${lessons.length}</span> <span>${l.short}</span>`;
+
+  // Sidebar
+  const side = document.getElementById("side");
+  side.innerHTML = "";
+  lessons.filter(x => x.id <= state.unlocked).forEach(x => {
+    const b = document.createElement("button");
+    b.textContent = (x.id === 14 ? "👑 " : "🏠 ") + x.id + " • " + x.short;
+    b.className = x.id === id ? "active" : "";
+    b.onclick = () => openLesson(x.id);
+    side.appendChild(b);
+  });
+
+  // Conteúdo
+  let html = l.content;
+  html += `<div class="quiz"><h4>🧪 Mini-Quiz da Casa</h4><p><b>Você precisa acertar pelo menos 70% para desbloquear a próxima.</b></p><div id="quizArea">`;
+  l.quiz.forEach((q,i) => {
+    html += `<div class="q"><b>${i+1}. ${q[0]}</b>${q[2].map((a,j) => `<label><input type="radio" name="q${id}_${i}" value="${j}"> ${a}</label>`).join("")}<div id="rf${id}_${i}" class="result"></div></div>`;
+  });
+  html += `<button class="btn" onclick="grade(${id})">✨ VERIFICAR RESPOSTAS</button><div id="quizResult" class="result"></div></div></div>`;
+
+  // Desafio de código
+  if(id < 14){
+    html += `<div class="code-challenge"><h4>💻 Desafio Prático</h4><p>${challengeText(id)}</p><textarea class="code-input" id="code_${id}" placeholder="Escreva sua resposta aqui..."></textarea><br><button class="btn mint" onclick="checkCode(${id})">TESTAR MINHA RESPOSTA</button><div id="codeResult_${id}" class="result"></div></div>`;
+  } else {
+    html += `
+    <div class="code-challenge" style="background:#fff0f8;border-color:#e070b0">
+      <h4>☠️ DESAFIO FINAL DO BOSS</h4>
+      <p><b>Escreva uma análise completa para um sistema de <u>ACADEMIA</u>:</b></p>
+      <ul>
+        <li>Cite 3 <b>Requisitos Funcionais</b></li>
+        <li>Cite 2 <b>Requisitos Não Funcionais</b> (com característica ISO 9126)</li>
+        <li>Cite 2 <b>Regras de Negócio</b> da academia</li>
+        <li>Faça um <b>Estudo de Viabilidade</b> (Econômica, Técnica, Operacional)</li>
+        <li>Indique qual <b>Modelo de Processo</b> você usaria e por quê</li>
+      </ul>
+      <textarea class="code-input" id="code_14" placeholder="Digite sua análise completa aqui..." style="min-height:220px"></textarea>
+      <button class="btn" onclick="submitBoss()">⚔️ ENFRENTAR O BOSS</button>
+      <button class="btn purple" onclick="peekSolution()">👀 Ver Solução Modelo</button>
+      <div class="result" id="codeResult_14"></div>
+    </div>`;
+  }
+
+  document.getElementById("content").innerHTML = html;
+  document.getElementById("panel").style.display = "flex";
+
+  // Botões de navegação
+  document.getElementById("navInfo").textContent = `Casa ${id} de ${lessons.length}`;
+  document.getElementById("btnPrev").disabled = (id === 1);
+  document.getElementById("btnNext").disabled = (id === lessons.length);
+  // "Próximo" só libera se completou ou se já está desbloqueado
+  if(id >= state.unlocked && !state.passed[id]){
+    document.getElementById("btnNext").disabled = true;
+    document.getElementById("btnNext").title = "Complete o quiz para liberar";
+  }
+
+  // Scroll para o topo
+  setTimeout(() => { document.getElementById("content").scrollTop = 0; }, 50);
+}
+
+function challengeText(id){
+  const c = {
+    1:"Cite 3 exemplos de software que você usa no dia a dia e classifique cada um (sistema, aplicativo, utilitário ou programação).",
+    2:"Explique com suas palavras o que é Engenharia de Software e cite as 4 camadas.",
+    3:"Cite 3 requisitos funcionais para um sistema de caixa de supermercado.",
+    4:"Cite 2 requisitos não funcionais para um aplicativo de banco e indique a característica ISO 9126 de cada um.",
+    5:"Você é o engenheiro contratado para fazer um sistema de petshop. Liste 5 perguntas que você faria ao dono no levantamento de requisitos.",
+    6:"Cite 3 regras de negócio para um sistema de biblioteca.",
+    7:"Explique por que o levantamento de requisitos ineficiente é a maior causa de problemas com software.",
+    8:"Explique o Modelo Cascata com suas palavras e cite 1 vantagem e 1 desvantagem.",
+    9:"Explique quando usar o Modelo de Prototipação e qual sua principal desvantagem.",
+    10:"Explique o Modelo Incremental e por que ele aplica 'dividir para conquistar'.",
+    11:"Explique o que é BPM e por que ele é importante para a Engenharia de Software.",
+    12:"Explique os 3 tipos de Estudo de Viabilidade e dê exemplos.",
+    13:"Compare Cascata, Prototipação e Incremental em uma frase cada."
+  };
+  return c[id];
+}
+
+/* =========================================================
+   NAVEGAÇÃO ENTRE CASAS
+   ========================================================= */
+function nextLesson(){
+  const current = lessons.findIndex(l => l.title === document.getElementById("lessonTitle").textContent);
+  if(current === -1 || current >= lessons.length - 1) return;
+  const nextId = lessons[current + 1].id;
+  if(nextId > state.unlocked){
+    toast("🔒 Complete o quiz desta casa para desbloquear a próxima!");
+    return;
+  }
+  openLesson(nextId);
+}
+
+function prevLesson(){
+  const current = lessons.findIndex(l => l.title === document.getElementById("lessonTitle").textContent);
+  if(current <= 0) return;
+  openLesson(lessons[current - 1].id);
+}
+
+/* =========================================================
+   GRADE (QUIZ)
+   ========================================================= */
+function grade(id){
+  const l = lessons.find(x => x.id === id);
+  let score = 0;
+  l.quiz.forEach((q,i) => {
+    const chosen = document.querySelector(`input[name="q${id}_${i}"]:checked`);
+    const fb = document.getElementById(`rf${id}_${i}`);
+    if(chosen && +chosen.value === q[3]){ score++; fb.textContent = "✓ Correto"; fb.style.color = "#21824b"; }
+    else { fb.textContent = "✗ Revise este conceito"; fb.style.color = "#c34b62"; }
+  });
+  const percent = Math.round(score / l.quiz.length * 100);
+  const result = document.getElementById("quizResult");
+  if(percent >= 70){
+    result.textContent = `🏆 ${score}/${l.quiz.length} (${percent}%). Casa concluída!`;
+    result.style.color = "#21824b";
+    if(!state.passed[id]){ state.passed[id] = true; state.xp += id === 14 ? 500 : 100; }
+    if(id < lessons.length) state.unlocked = Math.max(state.unlocked, id + 1);
+    save();
+    document.getElementById("mood").textContent = "★‿★";
+    document.getElementById("botface").textContent = "🥳";
+    toast(id === 14 ? "👑 BOSS DERROTADO!" : "🔓 Nova casa desbloqueada!");
+    // Liberar botão próximo
+    document.getElementById("btnNext").disabled = false;
+    document.getElementById("btnNext").title = "";
+  } else {
+    state.lives = Math.max(0, state.lives - 1);
+    save();
+    result.textContent = `${score}/${l.quiz.length} (${percent}%). Você precisa de 70%. Leia a explicação novamente e tente.`;
+    result.style.color = "#c34b62";
+    document.getElementById("mood").textContent = "T_T";
+    document.getElementById("botface").textContent = "😢";
+    toast("🤖 Engie: vamos revisar juntos!");
+  }
+}
+
+/* =========================================================
+   CHECK CODE (casas simples)
+   ========================================================= */
+function checkCode(id){
+  const v = (document.getElementById("code_" + id)?.value || "").toLowerCase();
+  let ok = false;
+  if(id === 1) ok = v.includes("windows") || v.includes("android") || v.includes("whatsapp") || v.includes("word") || v.includes("chrome") || v.length > 30;
+  if(id === 2) ok = v.includes("software") && (v.includes("camada") || v.includes("ferramenta") || v.includes("método") || v.includes("processo"));
+  if(id === 3) ok = v.includes("registrar") || v.includes("emitir") || v.includes("consultar") || v.includes("cadastrar");
+  if(id === 4) ok = v.includes("seguran") || v.includes("rápid") || v.includes("fácil") || v.includes("disponível") || v.includes("usabilidade") || v.includes("eficiência");
+  if(id === 5) ok = v.includes("?") && v.length > 40;
+  if(id === 6) ok = v.includes("regra") || v.includes("negócio") || v.includes("política") || v.includes("prazo") || v.includes("limite") || v.includes("multa") || v.includes("desconto");
+  if(id === 7) ok = v.includes("requisito") || v.includes("cliente") || v.includes("entender") || v.includes("expectativa");
+  if(id === 8) ok = v.includes("cascata") && (v.includes("sequencial") || v.includes("simples") || v.includes("etapa"));
+  if(id === 9) ok = v.includes("protótipo") || v.includes("prototip") || v.includes("cliente");
+  if(id === 10) ok = v.includes("dividir") || v.includes("módulo") || v.includes("incremento");
+  if(id === 11) ok = v.includes("bpm") || v.includes("processo") || v.includes("fluxo") || v.includes("informação");
+  if(id === 12) ok = v.includes("viabilidade") && (v.includes("econômica") || v.includes("técnica") || v.includes("operacional"));
+  if(id === 13) ok = (v.includes("cascata") || v.includes("prototip") || v.includes("incremental")) && v.length > 60;
+  const r = document.getElementById("codeResult_" + id);
+  if(ok){
+    r.textContent = "🏆 Muito bom! Você demonstrou entendimento.";
+    r.style.color = "#21824b";
+    state.xp += 50;
+    save();
+    toast("⭐ Desafio prático concluído!");
+    document.getElementById("botface").textContent = "😎";
+  } else {
+    r.textContent = "🤖 Engie: ainda faltam elementos importantes. Releia o conteúdo da casa e tente novamente.";
+    r.style.color = "#c34b62";
+    document.getElementById("botface").textContent = "🤔";
+  }
+}
+
+/* =========================================================
+   BOSS FINAL
+   ========================================================= */
+function peekSolution(){
+  const sol = `ANÁLISE COMPLETA — SISTEMA DE ACADEMIA
+
+REQUISITOS FUNCIONAIS:
+1. O sistema deve permitir cadastrar alunos com dados pessoais, plano e data de matrícula.
+2. O sistema deve registrar a frequência dos alunos por dia e horário.
+3. O sistema deve gerar relatórios mensais de frequência e inadimplência.
+
+REQUISITOS NÃO FUNCIONAIS:
+1. O sistema deve responder às consultas em menos de 2 segundos (ISO 9126 — Eficiência / Comportamento em Relação ao Tempo).
+2. O sistema deve proteger os dados dos alunos com criptografia (ISO 9126 — Funcionalidade / Segurança).
+
+REGRAS DE NEGÓCIO:
+1. Aluno com mensalidade atrasada há mais de 30 dias é bloqueado na catraca.
+2. Aluno com plano anual tem 15% de desconto na renovação.
+3. Cada aluno pode ter no máximo 2 treinos personalizados por semana.
+
+ESTUDO DE VIABILIDADE:
+- Econômica: investimento de R$ 15.000, retorno estimado em 8 meses com redução de inadimplência. VIÁVEL.
+- Técnica: existem frameworks web maduros; a equipe tem experiência. VIÁVEL.
+- Operacional: donos e recepcionistas motivados; treinamento de 2 dias. VIÁVEL.
+
+MODELO DE PROCESSO INDICADO:
+Modelo Incremental — a academia tem várias funcionalidades (cadastro, frequência, financeiro, treinos) que podem ser entregues por módulos. Assim o dono já usa o cadastro enquanto desenvolvemos o financeiro.
+
+CARACTERÍSTICA ISO 9126 MAIS IMPORTANTE:
+Confiabilidade — o sistema precisa manter o desempenho e não perder dados de frequência e pagamentos, pois isso afetaria diretamente o funcionamento da academia.`;
+  const ta = document.getElementById("code_14");
+  if(ta) ta.value = sol;
+  toast("👀 Solução carregada! Estude ela e adapte para o seu contexto.");
+}
+
+function submitBoss(){
+  const code = (document.getElementById("code_14")?.value || "").trim().toLowerCase();
+  const resultEl = document.getElementById("codeResult_14");
+
+  if(!code || code.length < 150){
+    toast("⚠️ Escreva uma análise completa antes de enfrentar o Boss!");
+    return;
+  }
+
+  const checks = {
+    reqFunc: /requisito[s]?\s+funcionais?/i.test(code) || /funcionais?:/i.test(code),
+    reqNaoFunc: /n[ãa]o\s+funcionais?/i.test(code) || /n[ãa]ofuncionais?:/i.test(code),
+    tresFunc: (code.match(/cadastr|registr|consult|gerar|emitir|control/gi) || []).length >= 2,
+    doisNaoFunc: /seguran|rápid|fácil|desempenho|portab|disponível|usabilidade|confiab/i.test(code),
+    regras: /regra[s]?\s+de\s+negócio|política|bloqueado|desconto|multa|prazo|limite/i.test(code),
+    viabilidade: /viabilidade|econômica|técnica|operacional/i.test(code),
+    modelo: /incremental|cascata|prototipa/i.test(code),
+    justificativa: code.length > 400,
+    iso: /iso|9126|funcionalidade|confiabilidade|usabilidade|eficiência|manutenibilidade|portabilidade/i.test(code)
+  };
+
+  const localScore = Object.values(checks).filter(Boolean).length;
+  const localTotal = Object.keys(checks).length;
+
+  if(localScore >= 7){
+    resultEl.textContent = `🏆 BOSS DERROTADO! Você atendeu ${localScore}/${localTotal} critérios da análise. Parabéns!`;
+    resultEl.style.color = "#21824b";
+    document.getElementById("botface").textContent = "🏆";
+    document.getElementById("mood").textContent = "★‿★";
+    if(!state.passed[14]){
+      state.passed[14] = true;
+      state.xp += 500;
+    }
+    save();
+    toast("👑 BOSS DERROTADO! Você é um engenheiro de software!");
+  } else {
+    const missing = Object.entries(checks).filter(([k,v]) => !v).map(([k]) => {
+      const m = {
+        reqFunc:"Requisitos Funcionais",
+        reqNaoFunc:"Requisitos Não Funcionais",
+        tresFunc:"3 exemplos funcionais",
+        doisNaoFunc:"2 exemplos não funcionais",
+        regras:"Regras de Negócio",
+        viabilidade:"Estudo de Viabilidade",
+        modelo:"Modelo de Processo",
+        justificativa:"Justificativa detalhada",
+        iso:"Característica ISO 9126"
+      };
+      return m[k] || k;
+    });
+    resultEl.textContent = `⚠️ ${localScore}/${localTotal} critérios atendidos. Faltam: ${missing.join(', ')}. Revise e tente novamente.`;
+    resultEl.style.color = "#c34b62";
+    document.getElementById("botface").textContent = "😤";
+    state.lives = Math.max(0, state.lives - 1);
+    save();
+  }
+}
+
+/* =========================================================
+   FECHAR / EVENTOS
+   ========================================================= */
+function closeLesson(){ document.getElementById("panel").style.display = "none"; }
+document.getElementById("panel").addEventListener("click", e => { if(e.target.id === "panel") closeLesson(); });
+document.addEventListener("keydown", e => {
+  if(e.key === "Escape") closeLesson();
+  if(document.getElementById("panel").style.display === "flex"){
+    if(e.key === "ArrowRight") nextLesson();
+    if(e.key === "ArrowLeft") prevLesson();
+  }
+});
+
+renderMap();
+updateHUD();
+updateProgress();
+</script>
+</body>
+</html>
