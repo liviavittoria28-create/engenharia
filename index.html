@@ -3,275 +3,250 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Engenharia de Software World • A Jornada de Engie</title>
+<meta name="theme-color" content="#f6acd1">
+<title>Portugol World • A Jornada de Esperioux</title>
 <style>
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0;min-height:100%;font-family:"Trebuchet MS",Arial,sans-serif;color:var(--ink);overflow-x:hidden}
+html{-webkit-text-size-adjust:100%;touch-action:manipulation}
 :root{
-  --ink:#1e2a4a;--outline:#3d4a7a;--pink:#ff6faf;--pink2:#ff91c5;
-  --purple:#7c6fd8;--purple2:#a99af4;--mint:#4ecdc4;--green:#52bf70;
-  --yellow:#ffd866;--cream:#fff8ed;--sky:#a8d8f0;--grass:#54c774;
-  --blue:#4a7bc9;--orange:#ff9f6b;--red:#ff6b6b;--cyan:#5bc0de;
-  --shadow:0 7px 0 rgba(61,74,122,.85),0 16px 28px rgba(30,42,74,.22)
+  --ink:#39264f;--outline:#62466f;--pink:#ff6faf;--pink2:#ff91c5;
+  --purple:#8e70df;--purple2:#b99af4;--mint:#66d9b1;--green:#52bf70;
+  --yellow:#ffd866;--cream:#fff8ed;--sky:#f7b6d8;--grass:#54c774;
+  --shadow:0 7px 0 rgba(74,50,86,.9),0 16px 28px rgba(49,25,63,.22)
 }
-html,body{margin:0;min-height:100%;font-family:"Trebuchet MS",Arial,sans-serif;color:var(--ink);overflow-x:hidden}
-body{background:#a8d8f0}
-button{font:inherit}
+body{background:#f5a9d0;-webkit-user-select:none;-moz-user-select:none;user-select:none}
+button{font:inherit;touch-action:manipulation}
 button:focus-visible{outline:4px solid #fff;outline-offset:3px}
-#world{min-height:100vh;position:relative;overflow:hidden;background:#a8d8f0}
-
-.sky{position:absolute;inset:0 0 48% 0;
-  background:radial-gradient(circle at 18% 23%,#fff9 0 3px,transparent 4px),
+#world{min-height:100vh;position:relative;overflow:hidden;background:#f6acd1}
+.sky{position:absolute;inset:0 0 48% 0;background:
+   radial-gradient(circle at 18% 23%,#fff9 0 3px,transparent 4px),
    radial-gradient(circle at 82% 18%,#fff8 0 4px,transparent 5px),
-   linear-gradient(180deg,#87CEEB,#a8d8f0 70%,#c5e8f7)}
-.rays{position:absolute;left:50%;bottom:-50px;transform:translateX(-50%);width:1300px;height:700px;opacity:.18;
+   linear-gradient(180deg,#f7a6ce,#ffc1df 70%,#f5b7d7)}
+.rays{position:absolute;left:50%;bottom:-50px;transform:translateX(-50%);
+ width:1300px;height:700px;opacity:.2;
  background:repeating-conic-gradient(from -12deg at 50% 100%,#fff 0 7deg,transparent 7deg 15deg)}
-.cloud{position:absolute;width:110px;height:32px;border:4px solid var(--outline);border-radius:40px;background:#fff8;z-index:2;box-shadow:5px 5px 0 rgba(61,74,122,.3);animation:cloudDrift 30s ease-in-out infinite}
-.cloud:before,.cloud:after{content:"";position:absolute;background:inherit;border:inherit;border-bottom:0;border-radius:50%;bottom:12px}
-.cloud:before{width:42px;height:42px;left:15px}.cloud:after{width:52px;height:52px;right:8px}
-.cloud.a{top:70px;left:5%}.cloud.b{top:120px;right:6%;transform:scale(.7);animation-delay:-10s}.cloud.c{top:40px;left:38%;transform:scale(.5);animation-delay:-20s}
+.cloud{position:absolute;width:120px;height:35px;border:4px solid var(--outline);border-radius:40px;background:#fff3d8;z-index:2;box-shadow:5px 5px 0 #d789ad;animation:cloudDrift 30s ease-in-out infinite}
+.cloud:before,.cloud:after{content:"";position:absolute;background:inherit;border:inherit;border-bottom:0;border-radius:50%;bottom:14px}
+.cloud:before{width:48px;height:48px;left:17px}.cloud:after{width:58px;height:58px;right:10px}
+.cloud.a{top:80px;left:5%}.cloud.b{top:130px;right:6%;transform:scale(.75);animation-delay:-10s}.cloud.c{top:40px;left:38%;transform:scale(.55);animation-delay:-20s}
 @keyframes cloudDrift{0%,100%{transform:translateX(0)}50%{transform:translateX(30px)}}
+.cloud.b{animation:cloudDrift 30s ease-in-out infinite;transform:scale(.75)}
+.cloud.c{animation:cloudDrift 30s ease-in-out infinite;transform:scale(.55)}
 
-.topbar{position:relative;z-index:20;padding:16px 22px;display:flex;justify-content:space-between;gap:14px;align-items:center;flex-wrap:wrap}
-.logo{display:flex;align-items:center;gap:12px}
-.logo-egg{width:48px;height:58px;border:4px solid var(--outline);border-radius:50% 50% 46% 46%;background:linear-gradient(135deg,#fff,#c8e0f5);box-shadow:inset -8px -7px #6fa3d8,4px 5px 0 #fff8;animation:eggWiggle 3s ease-in-out infinite;flex-shrink:0}
+.topbar{position:relative;z-index:20;padding:clamp(8px,2vw,18px) clamp(10px,3vw,28px);display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:10px;min-width:0}
+.logo-egg{width:clamp(38px,8vw,53px);height:clamp(46px,10vw,64px);border:4px solid var(--outline);border-radius:50% 50% 46% 46%;
+ background:linear-gradient(135deg,#fff,#d3b7f5);box-shadow:inset -9px -8px #a17ed9,4px 5px 0 #fff8;
+ animation:eggWiggle 3s ease-in-out infinite;flex-shrink:0}
 @keyframes eggWiggle{0%,100%{transform:rotate(0)}25%{transform:rotate(-4deg)}75%{transform:rotate(4deg)}}
-.logo h1{font-size:clamp(14px,3vw,20px);margin:0;text-shadow:2px 2px #fff;color:#1e2a4a}
-.logo small{font-weight:800;opacity:.75;font-size:11px}
+.logo h1{font-size:clamp(13px,3.5vw,21px);margin:0;text-shadow:2px 2px #fff;line-height:1.1}
+.logo small{font-weight:800;opacity:.75;font-size:clamp(9px,2vw,11px)}
+#secretL{cursor:default}
 .hud{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
-.hud span{background:#fff8;border:3px solid var(--outline);border-radius:999px;padding:6px 10px;font-weight:900;box-shadow:3px 3px 0 var(--outline);font-size:12px;transition:transform .2s;white-space:nowrap}
+.hud span{background:#fff8;border:3px solid var(--outline);border-radius:999px;padding:5px 10px;font-weight:900;box-shadow:3px 3px 0 var(--outline);transition:transform .2s;font-size:clamp(11px,2.5vw,14px)}
 .hud span:hover{transform:translateY(-2px)}
-
-.hero{position:relative;z-index:5;text-align:center;padding:3px 18px 0}
-.hero h2{font-size:clamp(26px,5.5vw,58px);line-height:.95;margin:16px 0 8px;color:#3d4a7a;text-shadow:4px 4px #fff,7px 7px #2a3a6a;letter-spacing:-1px}
-.hero p{font-size:clamp(13px,2.5vw,16px);font-weight:900;max-width:760px;margin:0 auto;color:#1e2a4a}
+.hero{position:relative;z-index:5;text-align:center;padding:3px clamp(10px,3vw,18px) 0}
+.hero h2{font-size:clamp(24px,7vw,64px);line-height:.95;margin:12px 0 8px;color:#713cc0;text-shadow:4px 4px #fff,7px 7px #604778}
+.hero p{font-size:clamp(13px,2.5vw,16px);font-weight:900;max-width:750px;margin:0 auto}
 .robot{position:relative;margin:20px auto 0;width:min(500px,92vw);z-index:9;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap}
-.robot-device{width:min(255px,80vw);min-height:155px;padding:16px;border:6px solid var(--outline);border-radius:44% 44% 38% 38%;background:linear-gradient(145deg,#fff8ff,#a8c8f0);box-shadow:inset -12px -10px #6fa3d8, inset 8px 7px #fff, 0 7px 0 #fff7;animation:robotBob 4s ease-in-out infinite}
+.robot-device{width:min(255px,80vw);min-height:155px;padding:15px;border:6px solid var(--outline);
+ border-radius:44% 44% 38% 38%;background:linear-gradient(145deg,#fff8ff,#c8b0f3);
+ box-shadow:inset -12px -10px #9d82d5, inset 8px 7px #fff, 0 7px 0 #fff7;
+ animation:robotBob 4s ease-in-out infinite}
 @keyframes robotBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
-.screen{background:#c4f3d7;border:4px solid var(--outline);border-radius:22px;padding:10px;position:relative;overflow:hidden;text-align:center}
+.screen{background:#c4f3d7;border:4px solid var(--outline);border-radius:22px;padding:10px;position:relative;overflow:hidden}
 .screen:after{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:#fff8;animation:scan 2.8s linear infinite}
 @keyframes scan{to{top:100%}}
-.botface{font-size:46px;line-height:1;animation:float 1.7s ease-in-out infinite}
+.botface{font-size:clamp(34px,8vw,48px);line-height:1;animation:float 1.7s ease-in-out infinite}
 @keyframes float{50%{transform:translateY(-7px) rotate(2deg)}}
-.mood{font-family:monospace;font-weight:900;font-size:22px}
-.buttons{display:flex;justify-content:center;gap:12px;margin-top:10px}.buttons i{width:20px;height:20px;background:#ff80b7;border:4px solid var(--outline);border-radius:50%;box-shadow:0 3px 0 var(--outline)}
-.robot-tag{background:#fff;border:4px solid var(--outline);padding:9px 13px;border-radius:16px;font-weight:900;transform:rotate(-2deg);box-shadow:4px 4px 0 var(--outline);max-width:280px;font-size:13px}
-
-.map-section{position:relative;z-index:4;margin-top:-2px;min-height:1100px;padding:70px 4vw 100px;background:linear-gradient(#74d17d,#51bd6b);clip-path:polygon(0 3%,100% 0,100% 100%,0 100%);overflow:hidden}
-.map-section:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 10% 25%,#fff4 0 4px,transparent 5px),radial-gradient(circle at 72% 65%,#fff4 0 5px,transparent 6px);opacity:.35}
+.mood{font-family:monospace;font-weight:900;font-size:clamp(16px,4vw,22px)}
+.buttons{display:flex;justify-content:center;gap:12px;margin-top:10px}.buttons i{width:16px;height:16px;background:#ff80b7;border:4px solid var(--outline);border-radius:50%;box-shadow:0 3px 0 var(--outline)}
+.robot-tag{background:#fff;border:4px solid var(--outline);padding:9px 13px;border-radius:16px;font-weight:900;transform:rotate(-2deg);box-shadow:4px 4px 0 var(--outline);font-size:clamp(11px,2.5vw,14px);max-width:220px}
+.map-section{position:relative;z-index:4;margin-top:-2px;min-height:1000px;padding:85px 4vw 100px;
+ background:linear-gradient(#74d17d,#51bd6b);clip-path:polygon(0 3%,100% 0,100% 100%,0 100%);overflow:hidden}
+.map-section:before{content:"";position:absolute;inset:0;background:
+ radial-gradient(circle at 10% 25%,#fff4 0 4px,transparent 5px),
+ radial-gradient(circle at 72% 65%,#fff4 0 5px,transparent 6px);opacity:.35}
 .hills{position:absolute;bottom:-10px;left:-5%;width:110%;height:210px;background:#42ad61;border-top:5px solid #398f55;border-radius:50% 50% 0 0}
-.map-title{position:relative;z-index:4;text-align:center;color:#fff;text-shadow:3px 3px #397b50;margin:0 0 12px;font-size:clamp(20px,4vw,27px)}
-.map-sub{position:relative;z-index:4;text-align:center;color:#fff;font-weight:900;margin-bottom:22px;font-size:clamp(11px,2.2vw,14px);padding:0 12px}
+.map-title{position:relative;z-index:4;text-align:center;color:#fff;text-shadow:3px 3px #397b50;margin:0 0 15px;font-size:clamp(20px,5vw,27px)}
+.map-sub{position:relative;z-index:4;text-align:center;color:#fff;font-weight:900;margin-bottom:25px;font-size:clamp(12px,2.5vw,14px);padding:0 10px}
 .map{position:relative;z-index:4;max-width:1180px;min-height:900px;margin:auto}
-.path{position:absolute;z-index:0;left:2%;right:2%;top:38%;height:300px;background:#ffd46d;border:5px solid #b98b50;clip-path:polygon(0 30%,10% 55%,22% 42%,36% 62%,50% 35%,64% 58%,78% 40%,92% 60%,100% 45%,100% 85%,92% 70%,78% 90%,64% 72%,50% 92%,36% 68%,22% 85%,10% 65%,0 82%);filter:drop-shadow(0 7px 0 #3d9958)}
-.map-line{position:absolute;z-index:1;left:8%;right:8%;top:48%;height:8px;background:#fff8;border-radius:10px;transform:rotate(-1deg);opacity:.7}
-.locations{position:relative;z-index:3;display:grid;grid-template-columns:repeat(4,1fr);gap:46px 18px}
-.location{position:relative;min-height:260px;cursor:pointer;transition:.25s}
+.path{position:absolute;z-index:0;left:2%;right:2%;top:40%;height:260px;background:#ffd46d;border:5px solid #b98b50;
+ clip-path:polygon(0 30%,10% 55%,22% 42%,36% 62%,50% 35%,64% 58%,78% 40%,92% 60%,100% 45%,100% 85%,92% 70%,78% 90%,64% 72%,50% 92%,36% 68%,22% 85%,10% 65%,0 82%);
+ filter:drop-shadow(0 7px 0 #3d9958)}
+.map-line{position:absolute;z-index:1;left:8%;right:8%;top:50%;height:8px;background:#fff8;border-radius:10px;transform:rotate(-1deg);opacity:.7}
+.locations{position:relative;z-index:3;display:grid;grid-template-columns:repeat(4,1fr);gap:46px 20px}
+.location{position:relative;min-height:275px;cursor:pointer;transition:.25s}
 .location:hover{transform:translateY(-8px)}
 .location.locked{filter:grayscale(.7);opacity:.62;cursor:not-allowed}
 .location.locked:hover{transform:none}
-.house{position:absolute;bottom:25px;left:6%;right:6%;height:150px;background:#fff1cb;border:5px solid var(--outline);border-radius:16px 16px 10px 10px;box-shadow:var(--shadow);padding:58px 8px 8px;text-align:center}
-.roof{position:absolute;left:-12px;right:-12px;top:-80px;height:115px;border:5px solid var(--outline);background:#4a7bc9;clip-path:polygon(50% 0,100% 78%,94% 92%,6% 92%,0 78%);filter:drop-shadow(0 6px 0 #fff5)}
+.house{position:absolute;bottom:25px;left:6%;right:6%;height:155px;background:#fff1cb;border:5px solid var(--outline);
+ border-radius:16px 16px 10px 10px;box-shadow:var(--shadow);padding:60px 10px 8px;text-align:center}
+.roof{position:absolute;left:-12px;right:-12px;top:-85px;height:120px;border:5px solid var(--outline);background:#ff77b1;
+ clip-path:polygon(50% 0,100% 78%,94% 92%,6% 92%,0 78%);filter:drop-shadow(0 6px 0 #fff5)}
 .roof:after{content:"";position:absolute;left:8%;right:8%;bottom:12px;height:14px;background:#fff6;border-radius:50%}
-.chimney{position:absolute;right:20%;top:-95px;width:22px;height:58px;background:#7a5a3a;border:4px solid var(--outline);border-radius:3px 3px 0 0;z-index:2}
+.chimney{position:absolute;right:20%;top:-100px;width:22px;height:60px;background:#8B6E5A;border:4px solid var(--outline);border-radius:3px 3px 0 0;z-index:2}
 .chimney:after{content:"";position:absolute;top:-15px;left:-8px;width:34px;height:14px;background:rgba(200,200,200,.6);border-radius:50%;animation:smokeUp 3s ease-in-out infinite}
 @keyframes smokeUp{0%{transform:translateY(0) scale(.6);opacity:.7}100%{transform:translateY(-30px) scale(1.3);opacity:0}}
-.location:nth-child(1) .roof{background:#4a7bc9}
-.location:nth-child(2) .roof{background:#4ecdc4}
-.location:nth-child(3) .roof{background:#7c6fd8}
-.location:nth-child(4) .roof{background:#ffd267}
-.location:nth-child(5) .roof{background:#ff8d9e}
-.location:nth-child(6) .roof{background:#62d5e4}
-.location:nth-child(7) .roof{background:#a985e7}
-.location:nth-child(8) .roof{background:#ffaf61}
-.location:nth-child(9) .roof{background:#5bc0de}
-.location:nth-child(10) .roof{background:#ff6b9d}
-.location:nth-child(11) .roof{background:#7b5bd6}
-.location:nth-child(12) .roof{background:#ffb84a}
-.location:nth-child(13) .roof{background:#8fd14f}
-.location:nth-child(14) .roof{background:#ff5555}
-.window{position:absolute;top:44px;width:34px;height:34px;border:4px solid var(--outline);border-radius:9px;background:#6edbed;z-index:2}
-.window.left{left:10px}.window.right{right:10px}
+.location:nth-child(1) .roof{background:#ff77b1}.location:nth-child(2) .roof{background:#73d8c0}
+.location:nth-child(3) .roof{background:#9475e5}.location:nth-child(4) .roof{background:#ffd267}
+.location:nth-child(5) .roof{background:#ff8d9e}.location:nth-child(6) .roof{background:#62d5e4}
+.location:nth-child(7) .roof{background:#a985e7}.location:nth-child(8) .roof{background:#ffaf61}
+.location:nth-child(9) .roof{background:#7b5bd6}.location:nth-child(10) .roof{background:#5bc0de}
+.location:nth-child(11) .roof{background:#e0b052}.location:nth-child(12) .roof{background:#e07a52}
+.window{position:absolute;top:46px;width:36px;height:36px;border:4px solid var(--outline);border-radius:9px;background:#6edbed;z-index:2}
+.window.left{left:12px}.window.right{right:12px}
 .window:before,.window:after{content:"";position:absolute;background:var(--outline)}
 .window:before{top:50%;left:0;width:100%;height:3px;transform:translateY(-50%)}
 .window:after{left:50%;top:0;height:100%;width:3px;transform:translateX(-50%)}
-.door{position:absolute;bottom:6px;left:50%;transform:translateX(-50%);width:44px;height:66px;border:4px solid var(--outline);border-radius:10px 10px 4px 4px;background:#ff94bf;z-index:2}
-.door:after{content:"";position:absolute;right:5px;top:50%;width:7px;height:7px;background:var(--yellow);border-radius:50%;box-shadow:0 0 5px var(--yellow)}
-.sign{position:absolute;top:-108px;left:50%;transform:translateX(-50%);min-width:130px;background:#fff;border:4px solid var(--outline);border-radius:12px;padding:5px 8px;font-weight:900;z-index:6;box-shadow:4px 4px 0 var(--outline);font-size:11px;text-align:center;line-height:1.2}
-.location h3{font-size:16px;margin:0 0 3px}.location p{font-size:10px;font-weight:800;margin:0;line-height:1.3}
+.door{position:absolute;bottom:6px;left:50%;transform:translateX(-50%);width:48px;height:70px;border:4px solid var(--outline);border-radius:10px 10px 4px 4px;background:#ff94bf;z-index:2}
+.door:after{content:"";position:absolute;right:6px;top:50%;width:7px;height:7px;background:var(--yellow);border-radius:50%;box-shadow:0 0 5px var(--yellow)}
+.sign{position:absolute;top:-115px;left:50%;transform:translateX(-50%);min-width:130px;max-width:150px;background:#fff;border:4px solid var(--outline);border-radius:12px;
+ padding:6px 9px;font-weight:900;z-index:6;box-shadow:4px 4px 0 var(--outline);font-size:11px;text-align:center;line-height:1.2}
+.location h3{font-size:clamp(14px,3vw,18px);margin:0 0 3px}.location p{font-size:clamp(10px,2vw,11px);font-weight:800;margin:0}
 .lock{position:absolute;z-index:10;left:50%;top:28px;transform:translateX(-50%);font-size:39px;filter:drop-shadow(3px 3px 0 #fff);animation:lockShake 2s ease-in-out infinite}
 @keyframes lockShake{0%,90%,100%{transform:translateX(-50%) rotate(0)}95%{transform:translateX(-50%) rotate(-10deg)}}
-.lamp{position:absolute;bottom:7px;left:0;font-size:22px}.tree{position:absolute;bottom:5px;right:0;font-size:25px}
-.bush{position:absolute;bottom:15px;left:18%;font-size:18px;opacity:.9}
+.lamp{position:absolute;bottom:7px;left:0;font-size:22px}.tree{position:absolute;bottom:5px;right:0;font-size:27px}
+.bush{position:absolute;bottom:15px;left:18%;font-size:20px;opacity:.9}
 .flower{position:absolute;bottom:2px;right:22%;font-size:14px;animation:flowerBob 2s ease-in-out infinite}
 @keyframes flowerBob{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg)}}
-.ribbon{position:absolute;z-index:8;left:50%;bottom:-4px;transform:translateX(-50%);background:#4a7bc9;border:4px solid var(--outline);color:#fff;border-radius:999px;padding:8px 17px;font-weight:900;box-shadow:4px 4px 0 var(--outline);white-space:nowrap;font-size:13px}
+.ribbon{position:absolute;z-index:8;left:50%;bottom:-4px;transform:translateX(-50%);background:#ff6eae;border:4px solid var(--outline);color:#fff;border-radius:999px;padding:8px 17px;font-weight:900;
+ box-shadow:4px 4px 0 var(--outline);white-space:nowrap;font-size:clamp(11px,2.5vw,14px)}
 .progress-wrap{position:relative;z-index:5;max-width:600px;margin:20px auto 0;padding:0 20px}
-.progress-wrap p{color:#fff;text-align:center;font-weight:900;margin:0 0 8px;text-shadow:2px 2px #397b50;font-size:13px}
+.progress-wrap p{color:#fff;text-align:center;font-weight:900;margin:0 0 8px;text-shadow:2px 2px #397b50;font-size:clamp(12px,2.5vw,15px)}
 .progress-bar{height:22px;background:#fff8;border:4px solid var(--outline);border-radius:99px;overflow:hidden;box-shadow:4px 4px 0 #397b50}
-.progress-fill{height:100%;width:0;background:linear-gradient(90deg,#4ecdc4,#7c6fd8,#ffd267);transition:width .5s ease;border-radius:99px}
+.progress-fill{height:100%;width:0;background:linear-gradient(90deg,#ff70b0,#a77de8,#65d9b1);transition:width .5s ease;border-radius:99px}
 
-.panel{display:none;position:fixed;z-index:100;inset:0;background:#1e2a4acc;backdrop-filter:blur(7px);align-items:center;justify-content:center;padding:10px}
-.lesson{width:min(1120px,100vw);height:min(94vh,900px);background:var(--cream);border:5px solid var(--outline);border-radius:24px;box-shadow:0 14px 0 #0f1a3a,0 30px 50px #0005;overflow:hidden;display:flex;flex-direction:column}
-.lesson-head{padding:14px 18px;background:linear-gradient(90deg,#a8c8f0,#c8b0f3,#bdf1dc);border-bottom:5px solid var(--outline);display:flex;justify-content:space-between;gap:12px;align-items:center}
-.lesson-head h2{margin:0;color:#3d4a7a;font-size:clamp(14px,3vw,22px);line-height:1.3}
-.close{width:42px;height:42px;border:4px solid var(--outline);background:#ff82b6;border-radius:50%;font-size:22px;font-weight:900;cursor:pointer;flex-shrink:0;color:#fff}
-.lesson-body{display:grid;grid-template-columns:230px 1fr;min-height:0;flex:1}
-.side{background:#e4e8f4;border-right:4px solid #8b8cb0;padding:12px;overflow:auto}
-.side button{display:block;width:100%;text-align:left;border:3px solid #6a709a;background:#fff;border-radius:10px;padding:9px;margin-bottom:7px;font-weight:900;cursor:pointer;font-size:12px;line-height:1.3}
-.side button.active{background:#b0c0ef;color:#1e2a4a}
-.content{padding:22px;overflow:auto;-webkit-overflow-scrolling:touch}
-.content h3{font-size:clamp(20px,4vw,28px);margin:0 0 8px;color:#3d4a7a}
-.content h4{color:#4a5a9a;margin:20px 0 8px;font-size:clamp(16px,3vw,19px)}
-.content p,.content li{font-size:clamp(14px,2.4vw,16px);line-height:1.65}
-.content .lead{font-size:clamp(15px,2.6vw,18px);font-weight:900}
-.note{background:#fff;border:4px solid #a8b0d0;border-radius:16px;padding:15px;margin:15px 0;box-shadow:0 5px 0 #d0d8ec}
-.note.tip{background:#e9fff6;border-color:#68b99f}
-.note.warning{background:#fff2d4;border-color:#d9ae5c}
-.note.info{background:#e9f0ff;border-color:#8aa8e8}
-.example{background:#1e2a4a;color:#fff0ff;border:4px solid #4a5a9a;border-radius:14px;padding:15px;font:13px/1.55 Consolas,monospace;white-space:pre-wrap;overflow:auto}
-.diagram{display:grid;grid-template-columns:1fr 60px 1fr;align-items:center;gap:8px;margin:18px 0}
-.dbox{border:4px solid var(--outline);border-radius:14px;background:#fff;padding:14px;text-align:center;font-weight:900;box-shadow:4px 4px 0 #b8c4e0;font-size:13px}
-.arrow{text-align:center;font-size:26px;color:#3d4a7a}
-.compare{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
-.compare > div{border:4px solid var(--outline);background:#fff;border-radius:16px;padding:14px}
-.compare strong{display:block;color:#4a5a9a;margin-bottom:6px;font-size:15px}
-.compare p,.compare li{font-size:13px;line-height:1.55}
-.quiz{margin-top:24px;padding-top:16px;border-top:5px dashed #a8b0d0}
-.quiz h4{color:#3d4a7a}
-.q{background:#fff;border:4px solid #a8b0d0;border-radius:14px;padding:13px;margin:11px 0}
-.q > b{display:block;margin-bottom:8px;font-size:14px;color:#1e2a4a}
-.q label{display:block;padding:9px 11px;margin:6px 0;background:#f0f4ff;border-radius:9px;cursor:pointer;font-size:13px;border:2px solid transparent;transition:all .15s}
-.q label:hover{background:#e0e8ff;border-color:#a8b0d0}
-.q input[type="radio"]{margin-right:8px}
-.result{font-weight:900;margin-top:10px;font-size:13px}
-.code-challenge{margin-top:22px;background:#e8fdf5;border:4px solid #63ae93;border-radius:18px;padding:15px}
-.code-challenge h4{color:#2a7a5a}
-.code-input{width:100%;min-height:160px;background:#1e2a4a;color:#fff;border:4px solid #4a5a9a;border-radius:12px;padding:12px;font:14px Consolas,monospace;resize:vertical;-webkit-appearance:none}
-.btn{border:4px solid var(--outline);border-radius:12px;background:#7c9ee0;padding:10px 14px;font-weight:900;cursor:pointer;box-shadow:0 4px 0 var(--outline);transition:all .1s;font-size:13px;color:#fff;display:inline-block;margin:4px 4px 0 0}
-.btn:active{transform:translateY(3px);box-shadow:0 1px 0 var(--outline)}
-.btn.mint{background:#4ecdc4;border-color:#2a8a82}
-.btn.purple{background:#a98fe8;border-color:#6a4fa8}
-.btn.pink{background:#ff7eb4;border-color:#a8406a}
-.btn.green{background:#52bf70;border-color:#2a7a45}
-.btn.red{background:#ff6b6b;border-color:#a03030}
-.btn:disabled{opacity:.5;cursor:not-allowed}
-
-.nav-bar{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 18px;border-top:5px solid var(--outline);background:linear-gradient(90deg,#f0e4f4,#e4ecf8);flex-wrap:wrap}
-.nav-bar .nav-info{font-weight:900;color:#3d4a7a;font-size:12px;text-align:center;flex:1;min-width:120px}
-.nav-bar .btn{font-size:13px;padding:10px 16px;margin:0}
-.nav-btn-prev{background:#a8b0d0}
-.nav-btn-next{background:#52bf70;border-color:#2a7a45}
-
-.breadcrumb{padding:8px 18px;background:#d8e0f0;border-bottom:3px solid #8b8cb0;font-size:11px;font-weight:900;color:#4a5a9a;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-.breadcrumb span{background:#fff;padding:3px 8px;border-radius:8px;border:2px solid #8b8cb0}
-
+.panel{display:none;position:fixed;z-index:100;inset:0;background:#38274dcc;backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);align-items:center;justify-content:center;padding:8px}
+.lesson{width:min(1120px,100vw);height:min(96vh,850px);background:var(--cream);border:6px solid var(--outline);border-radius:clamp(14px,3vw,28px);
+ box-shadow:0 14px 0 #2a1b38,0 30px 50px #0005;overflow:hidden;display:flex;flex-direction:column}
+.lesson-head{padding:clamp(10px,2.5vw,18px) clamp(12px,3vw,22px);background:linear-gradient(90deg,#ffb3d5,#d8c9ff,#bdf1dc);
+ border-bottom:5px solid var(--outline);display:flex;justify-content:space-between;gap:10px;align-items:center}
+.lesson-head h2{margin:0;color:#663db4;font-size:clamp(15px,3.5vw,28px);line-height:1.15}
+.close{width:clamp(38px,8vw,45px);height:clamp(38px,8vw,45px);border:4px solid var(--outline);background:#ff82b6;border-radius:50%;font-size:clamp(18px,4vw,25px);font-weight:900;cursor:pointer;flex-shrink:0;line-height:1;padding:0}
+.lesson-body{display:grid;grid-template-columns:245px 1fr;min-height:0;flex:1}
+.side{background:#f0e4f4;border-right:4px solid #8b6c96;padding:12px;overflow:auto;-webkit-overflow-scrolling:touch}
+.side button{display:block;width:100%;text-align:left;border:3px solid #80618b;background:#fff;border-radius:12px;padding:9px 10px;margin-bottom:6px;font-weight:900;cursor:pointer;font-size:12px;line-height:1.2}
+.side button.active{background:#bca4ef;color:#38274f}
+.content{padding:clamp(14px,3vw,25px);overflow:auto;-webkit-overflow-scrolling:touch;word-wrap:break-word}
+.content h3{font-size:clamp(20px,4.5vw,31px);margin:0 0 8px;color:#663db4}
+.content h4{color:#764ebd;margin:20px 0 8px;font-size:clamp(16px,3.5vw,21px)}
+.content p,.content li{font-size:clamp(14px,3vw,16px);line-height:1.65}
+.content .lead{font-size:clamp(15px,3.2vw,18px);font-weight:900}
+.note{background:#fff;border:4px solid #c69ac1;border-radius:18px;padding:14px;margin:15px 0;box-shadow:0 5px 0 #ead1e2;font-size:clamp(13px,2.8vw,15px)}
+.note.tip{background:#e9fff6;border-color:#68b99f}.note.warning{background:#fff2d4;border-color:#d9ae5c}
+.example{background:#2c253c;color:#fff0ff;border:4px solid #75568c;border-radius:16px;padding:14px;
+ font:clamp(11px,2.5vw,14px)/1.55 Consolas,"Courier New",monospace;white-space:pre-wrap;overflow-x:auto;-webkit-overflow-scrolling:touch;word-wrap:break-word}
+.example .kw{color:#ff88c8;font-weight:bold}.example .str{color:#ffd866}.example .cm{color:#8aaa7a;font-style:italic}.example .num{color:#88d8ff}
 .solution-tabs{display:flex;gap:6px;margin:12px 0;flex-wrap:wrap}
-.solution-tabs button{background:#fff;border:3px solid var(--outline);border-radius:10px;padding:7px 12px;font-weight:900;cursor:pointer;font-size:12px}
-.solution-tabs button.active{background:#b0c0ef}
+.solution-tabs button{background:#fff;border:3px solid var(--outline);border-radius:10px;padding:8px 12px;font-weight:900;cursor:pointer;font-size:clamp(11px,2.4vw,13px)}
+.solution-tabs button.active{background:#bca4ef}
 .solution-panel{display:none}.solution-panel.active{display:block}
-.toast{position:fixed;z-index:200;bottom:22px;left:50%;transform:translate(-50%,120px);background:#fff;border:4px solid var(--outline);border-radius:15px;padding:12px 18px;font-weight:900;box-shadow:5px 5px 0 var(--outline);transition:.35s;max-width:90vw;text-align:center;font-size:13px;color:#1e2a4a}.toast.show{transform:translate(-50%,0)}
-footer{background:#1e2a4a;color:#fff;text-align:center;padding:26px 18px;font-size:12px;line-height:1.7}
+.diagram{display:grid;grid-template-columns:1fr 60px 1fr;align-items:center;gap:8px;margin:18px 0}
+.dbox{border:4px solid var(--outline);border-radius:15px;background:#fff;padding:12px;text-align:center;font-weight:900;box-shadow:4px 4px 0 #c9b4d2;font-size:clamp(12px,2.5vw,14px)}
+.arrow{text-align:center;font-size:clamp(20px,5vw,30px)}
+.compare{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.compare div{border:4px solid var(--outline);background:#fff;border-radius:16px;padding:12px;font-size:clamp(12px,2.5vw,14px)}
+.compare strong{display:block;color:#7042bd;margin-bottom:6px}
+.quiz{margin-top:30px;padding-top:18px;border-top:5px dashed #c79bbd}
+.q{background:#fff;border:4px solid #a77ca4;border-radius:16px;padding:14px;margin:12px 0;font-size:clamp(13px,2.8vw,15px)}
+.q label{display:block;padding:9px;margin:7px 0;background:#f7eef7;border-radius:10px;cursor:pointer}
+.q label:hover{background:#eadcff}
+.result{font-weight:900;margin-top:10px;font-size:clamp(13px,2.8vw,15px)}
+.code-challenge{margin-top:24px;background:#e8fdf5;border:4px solid #63ae93;border-radius:18px;padding:14px}
+.code-input{width:100%;min-height:180px;background:#292238;color:#fff;border:4px solid #76578c;border-radius:14px;padding:12px;
+ font:clamp(12px,2.6vw,15px)/1.5 Consolas,"Courier New",monospace;resize:vertical;box-sizing:border-box}
+.btn{border:4px solid var(--outline);border-radius:13px;background:#ff7eb4;padding:10px 15px;font-weight:900;cursor:pointer;box-shadow:0 4px 0 var(--outline);transition:all .1s;font-size:clamp(13px,2.8vw,15px)}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 var(--outline)}
+.btn.mint{background:#73dfbd}.btn.purple{background:#b8a2ef}.btn:disabled{opacity:.6;cursor:not-allowed}
+.btn.ia{background:linear-gradient(135deg,#a77de8,#65d9b1);color:#fff;text-shadow:1px 1px 0 rgba(0,0,0,.2)}
+.toast{position:fixed;z-index:200;bottom:22px;left:50%;transform:translate(-50%,120px);background:#fff;border:4px solid var(--outline);border-radius:15px;padding:12px 18px;font-weight:900;box-shadow:5px 5px 0 var(--outline);transition:.35s;max-width:90vw;text-align:center;font-size:clamp(12px,2.5vw,14px)}
+.toast.show{transform:translate(-50%,0)}
+.rubric{background:#fff8e7;border:4px dashed #d9a94c;border-radius:16px;padding:14px;margin:15px 0}
+.rubric ul{margin:8px 0 0 20px;padding:0}
+.rubric li{margin:5px 0;font-size:clamp(12px,2.5vw,14px)}
+.boss-feedback{background:#f5e8ff;border:4px solid #a77de8;border-radius:16px;padding:16px;margin-top:15px;white-space:pre-wrap;font-size:clamp(12px,2.5vw,14px);line-height:1.6;display:none}
+.boss-feedback.show{display:block}
+.ai-thinking{display:none;align-items:center;gap:10px;background:#f0e4ff;border:4px solid #a77de8;border-radius:14px;padding:14px;margin-top:12px;font-size:clamp(12px,2.5vw,14px)}
+.ai-thinking.show{display:flex}
+.ai-dots span{display:inline-block;width:10px;height:10px;background:#a77de8;border-radius:50%;margin:0 2px;animation:aiBounce 1.4s infinite}
+.ai-dots span:nth-child(2){animation-delay:.2s}.ai-dots span:nth-child(3){animation-delay:.4s}
+@keyframes aiBounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-10px)}}
+.ai-badge{display:inline-block;background:linear-gradient(135deg,#a77de8,#65d9b1);color:#fff;font-size:10px;font-weight:900;padding:3px 8px;border-radius:999px;margin-left:6px;vertical-align:middle}
+table.tt{border-collapse:collapse;margin:12px 0;background:#fff;border:4px solid var(--outline);border-radius:12px;overflow:hidden;font-size:clamp(11px,2.4vw,14px);width:100%;max-width:100%}
+table.tt th,table.tt td{border:2px solid #b39bc0;padding:6px 8px;text-align:center;font-weight:900}
+table.tt th{background:#e0cdf0;color:#4a2b66}
+.mesa{border-collapse:collapse;margin:12px 0;background:#fff;border:4px solid var(--outline);border-radius:12px;overflow:hidden;font-size:clamp(11px,2.4vw,14px);width:100%;max-width:100%;font-family:Consolas,monospace}
+.mesa th,.mesa td{border:2px solid #b39bc0;padding:6px 10px;text-align:center;font-weight:900}
+.mesa th{background:#ffe4f3;color:#7a2b66}
+.mesa tr:nth-child(even) td{background:#faf5fc}
+footer{background:#3b2950;color:#fff;text-align:center;padding:28px 18px;font-size:clamp(11px,2.3vw,13px);word-break:break-word}
 
-/* ===================== BOSS ARENA ===================== */
-.boss-arena{position:relative;min-height:320px;background:linear-gradient(180deg,#3a1a4a 0%,#1a0a2a 60%,#08030f 100%);border:5px solid var(--outline);border-radius:18px;overflow:hidden;margin:16px 0;box-shadow:inset 0 0 60px #ff6b6b33,0 6px 0 #0f1a3a;transition:background .3s}
-.boss-arena:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 70% 30%,#ff6b6b55 0 3px,transparent 4px),radial-gradient(circle at 30% 70%,#ffd86655 0 3px,transparent 4px),radial-gradient(circle at 50% 20%,#a99af455 0 2px,transparent 3px);pointer-events:none}
-.arena-floor{position:absolute;bottom:0;left:0;right:0;height:55px;background:linear-gradient(180deg,#4a2a5a,#1a0a2a);border-top:3px solid #8a5aa8;z-index:1}
-.fighter{position:absolute;bottom:45px;transition:all .4s ease;filter:drop-shadow(0 0 14px #fff8);z-index:2}
-.player{left:12%;font-size:62px}
-.boss-sprite{right:12%;font-size:100px;animation:bossIdle 2s ease-in-out infinite;transform-origin:center bottom}
-@keyframes bossIdle{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-8px) scale(1.04)}}
-.hp-bar{position:absolute;top:12px;width:180px;height:22px;border:3px solid #fff;border-radius:999px;overflow:hidden;background:#000a;z-index:3;box-shadow:0 0 10px #fff8}
-.hp-bar.player-hp{left:12px}.hp-bar.boss-hp{right:12px}
-.hp-bar .fill{height:100%;width:100%;transition:width .6s ease}
-.player-hp .fill{background:linear-gradient(90deg,#4ecdc4,#52bf70)}
-.boss-hp .fill{background:linear-gradient(90deg,#ff6b6b,#ffd267)}
-.hp-label{position:absolute;top:14px;z-index:4;color:#fff;font-weight:900;font-size:10px;text-shadow:1px 1px 2px #000;letter-spacing:1px}
-.hp-label.player-lbl{left:20px}.hp-label.boss-lbl{right:20px}
-.arena-msg{position:absolute;top:45%;left:50%;transform:translate(-50%,-50%);color:#fff;font-weight:900;font-size:clamp(16px,3vw,24px);text-align:center;text-shadow:3px 3px 0 #000,0 0 20px #ff6b6b;z-index:10;pointer-events:none;opacity:0;transition:opacity .25s;padding:0 10px;width:90%}
-.arena-msg.show{opacity:1}
+/* Boss — desafios */
+.challenge-card{background:#fff;border:4px solid #a77ca4;border-radius:16px;padding:14px;margin:12px 0}
+.challenge-head{display:flex;justify-content:space-between;align-items:center;gap:10px;cursor:pointer;flex-wrap:wrap}
+.challenge-head b{font-size:clamp(14px,3vw,17px);color:#663db4}
+.challenge-status{font-size:11px;font-weight:900;padding:4px 10px;border-radius:999px;background:#f0e4f4;border:2px solid var(--outline);white-space:nowrap}
+.challenge-status.aprovado{background:#c8f3d8;color:#1a6b3d;border-color:#3fa86b}
+.challenge-status.reprovado{background:#ffd9e1;color:#a33a51;border-color:#c34b62}
+.challenge-body{margin-top:12px;display:none}
+.challenge-body.open{display:block}
+.challenge-enun{background:#f7eef7;border-left:5px solid #a77ca4;padding:10px 14px;border-radius:8px;font-size:clamp(13px,2.8vw,15px);margin-bottom:10px}
+.tab-inner{display:flex;gap:8px;margin:12px 0;flex-wrap:wrap}
+.tab-inner button{background:#fff;border:3px solid var(--outline);border-radius:10px;padding:8px 14px;font-weight:900;cursor:pointer;font-size:clamp(11px,2.4vw,13px)}
+.tab-inner button.active{background:#bca4ef}
+.boss-tab-content{display:none}.boss-tab-content.active{display:block}
 
-@keyframes shakeArena{0%,100%{transform:translate(0,0)}20%{transform:translate(-6px,3px)}40%{transform:translate(6px,-3px)}60%{transform:translate(-4px,-3px)}80%{transform:translate(4px,3px)}}
-.boss-arena.shake{animation:shakeArena .3s}
-@keyframes hitFlash{0%,100%{filter:drop-shadow(0 0 14px #fff8)}50%{filter:drop-shadow(0 0 20px #fff) brightness(3)}}
-.fighter.hit{animation:hitFlash .25s}
-@keyframes playerAttack{0%{transform:translateX(0)}50%{transform:translateX(70px) scale(1.15)}100%{transform:translateX(0)}}
-.player.attacking{animation:playerAttack .4s}
-@keyframes bossStagger{0%,100%{transform:translate(0,0) rotate(0)}25%{transform:translate(15px,-10px) rotate(-15deg)}50%{transform:translate(25px,0) rotate(15deg)}75%{transform:translate(15px,-5px) rotate(-10deg)}}
-.boss-sprite.stagger{animation:bossStagger .6s}
-@keyframes bossFall{to{transform:translate(60px,220px) rotate(120deg);opacity:.2}}
-.boss-sprite.fall{animation:bossFall 1.2s forwards}
-@keyframes bossExplode{0%{transform:scale(1);opacity:1}30%{transform:scale(1.5);opacity:1;filter:brightness(4)}100%{transform:scale(0);opacity:0}}
-.boss-sprite.explode{animation:bossExplode .9s forwards}
-@keyframes playerDie{0%{transform:rotate(0);opacity:1}100%{transform:rotate(90deg) translateY(40px);opacity:.25;filter:grayscale(1)}}
-.player.die{animation:playerDie 1s forwards}
-.boom{position:absolute;font-size:60px;pointer-events:none;animation:boomAnim 1s forwards;z-index:5;transform:translate(-50%,-50%)}
-@keyframes boomAnim{0%{transform:translate(-50%,-50%) scale(0);opacity:0}30%{transform:translate(-50%,-50%) scale(1.5);opacity:1}100%{transform:translate(-50%,-50%) scale(.6);opacity:0}}
-.particle{position:absolute;width:12px;height:12px;border-radius:50%;pointer-events:none;z-index:5;box-shadow:0 0 12px currentColor}
-.lightning{position:absolute;top:0;bottom:55px;width:6px;background:linear-gradient(180deg,#fff,#ffd866,transparent);filter:drop-shadow(0 0 12px #ffd866);animation:lightningAnim .5s forwards;z-index:4}
-@keyframes lightningAnim{0%{opacity:0}20%{opacity:1}100%{opacity:0}}
-
-.result-banner{margin-top:18px;padding:20px;border:5px solid var(--outline);border-radius:18px;text-align:center;font-weight:900;font-size:clamp(14px,2.5vw,18px);box-shadow:0 6px 0 #0f1a3a;line-height:1.5}
-.result-banner.win{background:linear-gradient(135deg,#b8f0d8,#ffd866);color:#1e2a4a}
-.result-banner.lose{background:linear-gradient(135deg,#ffb8c8,#ff6b6b);color:#fff}
-.result-banner h3{margin:0 0 8px;font-size:1.6em}
-.result-banner .stats{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:12px 0;font-size:13px}
-.result-banner .stats span{background:#fff8;border:3px solid var(--outline);border-radius:999px;padding:6px 12px}
-
-.boss-intro{background:linear-gradient(135deg,#2a0a3a,#4a1a5a);border:5px solid var(--outline);border-radius:18px;padding:18px;color:#fff;box-shadow:0 6px 0 #0f1a3a;margin-bottom:14px}
-.boss-intro h3{color:#ffd866;margin:0 0 8px;text-shadow:2px 2px #000}
-.boss-intro p{margin:6px 0;font-size:14px;line-height:1.55}
-.boss-intro ul{margin:6px 0 0 20px;padding:0}
-.boss-intro li{font-size:13px;line-height:1.6}
-
-.written-ex{background:#fff;border:4px solid #a8b0d0;border-radius:16px;padding:14px;margin:12px 0;box-shadow:0 4px 0 #d0d8ec}
-.written-ex h4{margin:0 0 8px;color:#3d4a7a;font-size:14px;line-height:1.4}
-.written-ex .prompt{font-size:13px;color:#4a5a9a;font-weight:700;margin-bottom:8px;line-height:1.55}
-.written-ex textarea{width:100%;min-height:120px;background:#f6f8ff;color:#1e2a4a;border:3px solid #8aa8e8;border-radius:10px;padding:10px;font:13px/1.5 Consolas,monospace;resize:vertical;box-sizing:border-box}
-.written-ex .badge{display:inline-block;background:#7c9ee0;color:#fff;border-radius:999px;padding:3px 10px;font-size:11px;font-weight:900;margin-bottom:6px}
-.boss-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;padding-top:14px;border-top:5px dashed #a8b0d0}
-.boss-actions .btn{font-size:15px;padding:14px 22px;flex:1;min-width:200px}
-.q-progress{position:sticky;top:0;background:#fff8ed;z-index:5;padding:10px 14px;border:3px solid var(--outline);border-radius:12px;font-weight:900;color:#3d4a7a;margin:12px 0;text-align:center;box-shadow:0 4px 0 #d0d8ec}
+#masterBtn{position:fixed;bottom:8px;right:8px;width:26px;height:26px;background:rgba(255,255,255,.06);border:none;border-radius:50%;cursor:pointer;z-index:900;opacity:.15;transition:opacity .3s;padding:0;font-size:14px;color:#fff;display:flex;align-items:center;justify-content:center;-webkit-user-select:none;user-select:none;touch-action:manipulation}
+#masterBtn:hover{opacity:.6}
+#masterBtn:active{opacity:1}
 
 @media(max-width:900px){
-  .locations{grid-template-columns:repeat(3,1fr);gap:38px 14px}
+  .locations{grid-template-columns:repeat(2,1fr);gap:46px 12px}
   .lesson-body{grid-template-columns:1fr}
-  .side{border-right:0;border-bottom:4px solid #8b8cb0;display:flex;gap:6px;overflow-x:auto;padding:10px}
-  .side button{min-width:170px;margin:0;font-size:11px}
+  .side{border-right:0;border-bottom:4px solid #8b6c96;display:flex;gap:7px;overflow-x:auto;padding:8px}
+  .side button{min-width:150px;margin:0;flex-shrink:0;font-size:11px}
+  .compare{grid-template-columns:1fr}
+  .diagram{grid-template-columns:1fr 40px 1fr}
 }
-@media(max-width:640px){
-  .topbar{padding:10px 14px}
-  .hud{display:none}
-  .locations{grid-template-columns:repeat(2,1fr);gap:30px 10px}
-  .map-section{padding:60px 10px 80px;min-height:1600px}
-  .house{height:135px;padding-top:52px}
-  .roof{top:-70px;height:100px}
-  .chimney{top:-82px;height:50px}
-  .sign{top:-95px;min-width:110px;font-size:9px;padding:4px 6px}
-  .location{min-height:230px}
-  .location h3{font-size:13px}
-  .location p{font-size:9px}
-  .lesson{padding:0;border-radius:16px;height:96vh;width:100vw}
-  .lesson-head{padding:10px 12px}
-  .content{padding:14px}
-  .robot-device{width:min(240px,75vw)}
-  .robot-tag{font-size:11px;max-width:230px}
-  .diagram{grid-template-columns:1fr;gap:6px}
-  .arrow{transform:rotate(90deg)}
-  .hero h2{font-size:clamp(22px,7vw,32px)}
+@media(max-width:560px){
+  .topbar{padding:8px 10px;gap:6px}
+  .hero h2{font-size:clamp(22px,8vw,32px)}
+  .locations{grid-template-columns:1fr;gap:40px}
+  .map-section{padding:60px 10px 80px}
+  .robot-tag{display:none}
   .map-title{font-size:18px}
-  .nav-bar{flex-direction:column;gap:8px}
-  .nav-bar .btn{width:100%}
-  .boss-arena{min-height:260px}
-  .player{font-size:48px;left:8%}
-  .boss-sprite{font-size:78px;right:8%}
-  .hp-bar{width:130px}
-  .boss-actions .btn{min-width:100%}
+  .lesson{padding:0;border-width:4px;border-radius:12px}
+  .lesson-head{padding:8px 10px}
+  .lesson-head h2{font-size:14px}
+  .close{width:34px;height:34px;font-size:18px;border-width:3px}
+  .content{padding:12px}
+  .code-input{min-height:140px;font-size:13px}
+  .q{padding:10px}
+  .q label{padding:8px;font-size:12px}
+  .hud{display:flex;gap:4px}
+  .hud span{padding:4px 8px;font-size:10px;border-width:2px;box-shadow:2px 2px 0 var(--outline)}
+  .logo h1{font-size:12px}
+  .logo small{display:none}
+  .example{padding:10px;font-size:11px}
+  .mesa th,.mesa td{padding:4px 6px;font-size:10px}
+  .ribbon{font-size:10px;padding:6px 12px}
 }
-@media(max-width:400px){
-  .locations{grid-template-columns:1fr;gap:26px}
-  .location{min-height:220px}
-  .house{left:15%;right:15%}
+@media(max-width:360px){
+  .hero h2{font-size:20px}
+  .robot-device{padding:10px}
+  .botface{font-size:30px}
+  .content h3{font-size:18px}
+  .content h4{font-size:15px}
 }
+@media(orientation:landscape) and (max-height:500px){
+  .hero h2{margin:6px 0 4px}
+  .robot{margin:8px auto 0}
+  .robot-device{width:180px;min-height:110px;padding:8px}
+  .botface{font-size:28px}
+}
+@media print{.panel,.toast,#masterBtn{display:none!important}}
 </style>
 </head>
 <body>
@@ -279,31 +254,19 @@ footer{background:#1e2a4a;color:#fff;text-align:center;padding:26px 18px;font-si
   <div class="sky"></div><div class="rays"></div>
   <div class="cloud a"></div><div class="cloud b"></div><div class="cloud c"></div>
   <header class="topbar">
-    <div class="logo">
-      <div class="logo-egg"></div>
-      <div><h1>ENGENHARIA DE SOFTWARE WORLD</h1><small>A jornada de Engie 🚀</small></div>
-    </div>
-    <div class="hud">
-      <span>⭐ XP <b id="xp">0</b></span>
-      <span>🏠 <b id="done">1</b>/14</span>
-      <span>💗 <b id="lives">3</b></span>
-    </div>
+    <div class="logo"><div class="logo-egg"></div><div><h1>PORTUGO<span id="secretL">L</span> WORLD</h1><small>A aventura dos Algoritmos</small></div></div>
+    <div class="hud"><span>⭐ XP <b id="xp">0</b></span><span>🏠 <b id="done">1</b>/12</span><span>💗 <b id="lives">3</b></span></div>
   </header>
 
   <section class="hero">
-    <h2>O MUNDO DA ENGENHARIA DE SOFTWARE</h2>
-    <p>Aprenda o que é Software, Requisitos, Regras de Negócio, Viabilidade, BPM, Modelos de Processo e muito mais. Cada conhecimento abre uma nova casinha!</p>
+    <h2>O MUNDO DOS ALGORITMOS</h2>
+    <p>Aprenda do zero, com explicações passo a passo e múltiplas formas de resolver cada problema. Cada conhecimento abre uma nova casinha do mapa.</p>
     <div class="robot">
       <div class="robot-device">
-        <div class="screen">
-          <div class="botface" id="botface">🤖</div>
-          <div class="mood" id="mood">^‿^</div>
-          <b>Olá! Eu sou Engie.</b><br>
-          <small style="font-size:11px">Engenheiro de Software virtual</small>
-        </div>
+        <div class="screen"><div class="botface" id="botface">🤖</div><div class="mood" id="mood">^‿^</div><b>Olá! Eu sou Esperioux.</b><br><small>Seu companheiro de estudos.</small></div>
         <div class="buttons"><i></i><i></i><i></i></div>
       </div>
-      <div class="robot-tag">🤖 Engie<br><small>"Vamos construir software de qualidade juntos!"</small></div>
+      <div class="robot-tag">🤖 Esperioux<br><small>"Vamos descobrir como o computador pensa!"</small></div>
     </div>
   </section>
 
@@ -321,675 +284,826 @@ footer{background:#1e2a4a;color:#fff;text-align:center;padding:26px 18px;font-si
     </div>
     <div class="hills"></div>
   </section>
-  <footer>ENGENHARIA DE SOFTWARE WORLD • Baseado no Roteiro de Atividades 01 • Prof. Dr. Adilson Ferreira da Silva</footer>
+  <footer>PORTUGOL WORLD • Algoritmos e Lógica de Programação • Correção final do Boss com IA (Dify)</footer>
 </div>
 
 <div class="panel" id="panel">
  <div class="lesson">
-  <div class="lesson-head">
-    <h2 id="lessonTitle"></h2>
-    <button class="close" onclick="closeLesson()">×</button>
-  </div>
-  <div class="breadcrumb" id="breadcrumb"></div>
+  <div class="lesson-head"><h2 id="lessonTitle"></h2><button class="close" onclick="closeLesson()">×</button></div>
   <div class="lesson-body">
    <nav class="side" id="side"></nav>
    <main class="content" id="content"></main>
   </div>
-  <div class="nav-bar">
-    <button class="btn nav-btn-prev" id="btnPrev" onclick="prevLesson()">← Anterior</button>
-    <div class="nav-info" id="navInfo">Casa 1 de 14</div>
-    <button class="btn nav-btn-next" id="btnNext" onclick="nextLesson()">Próximo →</button>
-  </div>
  </div>
 </div>
 <div class="toast" id="toast"></div>
+<button id="masterBtn" title="">⚙</button>
 
 <script>
 /* =========================================================
-   LIÇÕES (1 a 13 - mantidas)
+   DIFY API CONFIG
+   ========================================================= */
+const DIFY_CONFIG = {
+  apiKey: 'app-kuYvc5svyi1m4f3b74QoRYYp',
+  baseUrl: 'https://api.dify.ai/v1',
+  chatEndpoint: '/chat-messages'
+};
+
+/* =========================================================
+   PROTEÇÃO LEVE
+   ========================================================= */
+(function(){
+  document.addEventListener('contextmenu', e => e.preventDefault());
+  document.addEventListener('keydown', e => {
+    const k = (e.key || '').toLowerCase();
+    if(e.key === 'F12'){ e.preventDefault(); return false; }
+    if(e.ctrlKey && e.shiftKey && ['i','j','c','k'].includes(k)){ e.preventDefault(); return false; }
+    if(e.ctrlKey && k === 'u'){ e.preventDefault(); return false; }
+    if(e.ctrlKey && k === 's'){ e.preventDefault(); return false; }
+  }, true);
+  document.addEventListener('selectstart', e => {
+    const tag = (e.target.tagName || '').toLowerCase();
+    if(tag === 'textarea' || tag === 'input') return true;
+    e.preventDefault();
+  });
+  document.addEventListener('dragstart', e => e.preventDefault());
+  try{ console.log('%c⚠️ Área de estudo.','font-size:22px;color:#ff3a7d;font-weight:900'); }catch(_){}
+})();
+
+/* =========================================================
+   12 CASAS
    ========================================================= */
 const lessons = [
-{id:1,title:"Casa 1 — O que é Software?",short:"Hardware vs Software, tipos e exemplos.",content:`
-   <h3>💻 Primeiro: o que é Software?</h3>
-   <p class="lead">Software é o conjunto de instruções, programas e dados que fazem o computador funcionar. É a parte <b>lógica</b>, enquanto o hardware é a parte <b>física</b>.</p>
-   <p>Pense assim: o computador é como um corpo humano. O <b>hardware</b> é o corpo (ossos, músculos, órgãos). O <b>software</b> é a mente (pensamentos, memórias, decisões). Sem software, o hardware é só um monte de metal e plástico parado.</p>
-   <div class="compare">
-     <div><strong>🔧 Hardware</strong><p>Parte física: processador, memória RAM, HD, teclado, monitor. Você pode tocar.</p></div>
-     <div><strong>💻 Software</strong><p>Parte lógica: programas, sistemas operacionais, aplicativos, jogos. Você não toca.</p></div>
-   </div>
-   <div class="note tip"><b>💡 Exemplo prático:</b><br>Um celular é hardware. O Android ou iOS é software. O WhatsApp é software. A câmera é hardware, mas o app de câmera é software.</div>
-   <h4>📦 Tipos de Software</h4>
-   <div class="compare">
-     <div><strong>🖥️ Software de Sistema</strong><p>Controla o hardware e dá base para outros programas. Ex: Windows, Linux, macOS, Android, iOS.</p></div>
-     <div><strong>🛠️ Software Utilitário</strong><p>Auxilia na manutenção e segurança. Ex: antivírus, backup, limpadores.</p></div>
-     <div><strong>📱 Software Aplicativo</strong><p>Faz tarefas específicas do usuário. Ex: Word, WhatsApp, Instagram, jogos.</p></div>
-     <div><strong>👨‍💻 Software de Programação</strong><p>Ferramentas para criar outros softwares. Ex: VS Code, compiladores, IDEs.</p></div>
-   </div>
-   <h4>🎯 Software sob encomenda vs Software genérico</h4>
-   <div class="diagram">
-     <div class="dbox">🎯 SOB ENCOMENDA<br><small>Feito para um cliente específico</small></div>
-     <div class="arrow">vs</div>
-     <div class="dbox">🌍 GENÉRICO<br><small>Feito para o mercado em geral</small></div>
-   </div>
-   <p>Um sistema de gestão para uma prefeitura é <b>sob encomenda</b>. Um pacote Office vendido para milhões é <b>genérico</b>.</p>
-   <h4>🌐 Software não é só computador!</h4>
-   <p>Hoje, software está em tudo: <b>celulares, TVs, carros, geladeiras, relógios, aviões, semáforos, caixas eletrônicos</b>. Todo dispositivo moderno tem software embutido.</p>
-   <div class="note warning"><b>⚠️ Para a prova:</b> se a pergunta falar de "parte física" → hardware. Se falar de "instruções", "programas", "parte lógica" → software.</div>
+{id:1,title:"Casa 1 — O que é um Algoritmo?",short:"Comece aqui: lógica e a ideia de algoritmo.",content:`
+   <h3>🧠 Primeiro: o que é um algoritmo?</h3>
+   <p class="lead">Um algoritmo é uma sequência de passos bem definidos que tem por objetivo solucionar um determinado problema.</p>
+   <p>Antes de pensar em código, organize o raciocínio. O algoritmo descreve o que fazer, em que ordem e com quais passos.</p>
+   <div class="note tip"><b>🍰 Pense em uma receita:</b> sequência de instruções que leva a um resultado.</div>
+   <h4>🔎 O algoritmo não é "o código"</h4>
+   <p>Primeiro pensamos na solução; depois representamos como narrativa, fluxograma ou Portugol.</p>
+   <h4>🧩 Exemplo: somar três números</h4>
+   <div class="example"><span class="cm">// Descrição narrativa</span>
+Passo 1 — Receber os três números.
+Passo 2 — Somar os três números.
+Passo 3 — Mostrar o resultado.</div>
+   <div class="note warning"><b>⚠️ Prova:</b> "sequência de passos", "resolver um problema" → conceito de <b>algoritmo</b>.</div>
  `,quiz:[
-  ["O que é software?","Conjunto de instruções e programas que fazem o computador funcionar.",["A parte física do computador.","Conjunto de instruções e programas que fazem o computador funcionar.","Somente jogos."],1],
-  ["Qual das opções é um exemplo de hardware?","Processador.",["WhatsApp.","Processador.","Windows."],1],
-  ["O que é um software de sistema?","Programa que controla o hardware e dá base para outros programas.",["Um jogo.","Programa que controla o hardware e dá base para outros programas.","Um antivírus."],1],
-  ["Qual tipo de software é criado para um cliente específico?","Sob encomenda.",["Genérico.","Sob encomenda.","Utilitário."],1]
+  ["Qual definição corresponde a algoritmo?","Uma sequência de passos bem definidos para solucionar um problema.",["Um desenho decorativo.","Uma sequência de passos bem definidos para solucionar um problema.","Somente um programa compilado."],1],
+  ["Qual exemplo do cotidiano representa um algoritmo?","Uma receita culinária.",["Uma cor aleatória.","Uma receita culinária.","Um computador desligado."],1],
+  ["O que vem antes de sair escrevendo código?","Organizar a solução do problema.",["Escolher a cor da tela.","Organizar a solução do problema.","Comprar um computador."],1]
  ]},
 
-{id:2,title:"Casa 2 — O que é Engenharia de Software?",short:"Conceito, objetivo e as 4 camadas.",content:`
-   <h3>🏗️ Engenharia de Software</h3>
-   <p class="lead">Engenharia de Software é uma disciplina de engenharia relacionada com <b>todos os aspectos da produção de software</b>, desde os estágios iniciais de especificação até a manutenção após a entrega.</p>
-   <div class="note info"><b>📖 Definição (Sommerville, 2007):</b><br>Engenharia de Software é uma disciplina de engenharia relacionada com todos os aspectos de software, desde os estágios iniciais de especificação de sistema até sua manutenção, depois de entrar em operação.</div>
-   <h4>🎯 Objetivo</h4>
-   <p>Proporcionar <b>técnicas</b> para a criação, aperfeiçoamento e implementação de sistemas que atendam às expectativas dos usuários, respeitando prazos e custos.</p>
-   <h4>🧱 As 4 Camadas da Engenharia de Software (Pressman, 2006)</h4>
-   <div class="diagram"><div class="dbox">🔧 FERRAMENTAS<br><small>Compiladores, IDEs, debuggers</small></div><div class="arrow">→</div><div class="dbox">📐 MÉTODOS<br><small>Tarefas técnicas</small></div></div>
-   <div class="diagram"><div class="dbox">📋 PROCESSOS<br><small>Cascata, Prototipação, Incremental</small></div><div class="arrow">→</div><div class="dbox">🎯 FOCO NA QUALIDADE<br><small>Base de tudo</small></div></div>
-   <h4>🔍 Entendendo cada camada</h4>
+{id:2,title:"Casa 2 — Como construir um Algoritmo",short:"Problema → entrada → processamento → saída → teste.",content:`
+   <h3>🗺️ Como construir um algoritmo?</h3>
+   <p class="lead">Não comece pelo código. Comece entendendo o problema.</p>
    <div class="compare">
-     <div><strong>🔧 Ferramentas</strong><p>Fornecem apoio automatizado ou semiautomatizado. Ex: compiladores, editores, debuggers, frameworks de teste.</p></div>
-     <div><strong>📐 Métodos</strong><p>Tarefas técnicas para construir o software. Ex: analisar requisitos, elaborar planos de teste, codificar.</p></div>
-     <div><strong>📋 Processos</strong><p>Conjunto de atividades que guiam o desenvolvedor. Ex: cascata, prototipação, incremental.</p></div>
-     <div><strong>🎯 Foco na Qualidade</strong><p>É a base de tudo. O objetivo é sempre entregar um software de qualidade.</p></div>
+     <div><strong>1. Compreender</strong>Entender o problema.</div>
+     <div><strong>2. Entrada</strong>Quais dados serão fornecidos?</div>
+     <div><strong>3. Processamento</strong>Cálculos e regras.</div>
+     <div><strong>4. Saída</strong>Dados gerados.</div>
+     <div><strong>5. Construir</strong>Representar o algoritmo.</div>
+     <div><strong>6. Testar</strong>Simular para verificar.</div>
    </div>
-   <h4>👨‍💻 O que os Engenheiros de Software fazem?</h4>
-   <ul>
-     <li>Desenvolvimento de <b>software sob encomenda</b> (para um cliente específico)</li>
-     <li>Desenvolvimento de <b>software genérico</b> (para o mercado)</li>
-     <li>Manutenção e evolução de sistemas existentes</li>
-     <li>Consultoria técnica em projetos de TI</li>
-   </ul>
-   <div class="note tip"><b>💡 Analogia da construção civil:</b><br>Assim como um engenheiro civil usa <b>ferramentas</b> (marreta, nível), segue <b>métodos</b> (fundação, alvenaria) e um <b>processo</b> (planta, cronograma) com foco na <b>qualidade</b> da obra — o engenheiro de software faz o mesmo com software!</div>
-   <h4>❓ Por que aplicar Engenharia de Software?</h4>
-   <ul>
-     <li>Utilizar <b>técnicas adequadas</b> para criar software</li>
-     <li><b>Aperfeiçoar e implementar</b> sistemas com qualidade</li>
-     <li>Construir software que <b>atenda às expectativas</b> dos usuários</li>
-     <li>Reduzir riscos, custos e prazos</li>
-   </ul>
-   <div class="note warning"><b>⚠️ Para a prova:</b> memorize as 4 camadas na ordem: <b>Ferramentas → Métodos → Processos → Foco na Qualidade</b>. E saiba diferenciar cada uma.</div>
+   <div class="diagram"><div class="dbox">📥 ENTRADA</div><div class="arrow">→</div><div class="dbox">⚙️ PROCESSAMENTO</div></div>
+   <div class="diagram"><div class="dbox">⚙️ PROCESSAMENTO</div><div class="arrow">→</div><div class="dbox">📤 SAÍDA</div></div>
+   <h4>🧮 Exemplo: média de duas notas</h4>
+   <ul><li><b>Entrada:</b> nota1 e nota2.</li><li><b>Processamento:</b> média = (n1 + n2) / 2.</li><li><b>Saída:</b> a média.</li></ul>
  `,quiz:[
-  ["O que é Engenharia de Software?","Disciplina que trata de todos os aspectos da produção de software.",["Só programar código.","Disciplina que trata de todos os aspectos da produção de software.","Consertar computadores."],1],
-  ["Quais são as 4 camadas da Engenharia de Software?","Ferramentas, Métodos, Processos e Foco na Qualidade.",["Hardware, Software, Firmware, Middleware.","Ferramentas, Métodos, Processos e Foco na Qualidade.","Código, Teste, Deploy, Produção."],1],
-  ["O que são ferramentas na Engenharia de Software?","Apoio automatizado como compiladores e debuggers.",["Apoio automatizado como compiladores e debuggers.","Pessoas da equipe.","Documentos."],0],
-  ["Qual camada é a base de tudo?","Foco na qualidade.",["Ferramentas.","Foco na qualidade.","Processos."],1],
-  ["Os Engenheiros de Software estão envolvidos com:","Desenvolvimento de software sob encomenda ou genérico.",["Só instalação de software.","Desenvolvimento de software sob encomenda ou genérico.","Só compra de software."],1]
+  ["Qual é o primeiro passo do método?","Compreender completamente o problema.",["Programar imediatamente.","Compreender completamente o problema.","Mostrar a saída antes da entrada."],1],
+  ["O processamento faz o quê?","Transforma os dados de entrada em saída.",["Apaga dados.","Transforma os dados de entrada em saída.","Somente desenha."],1],
+  ["Depois de construir, o material recomenda:","Testar simulando.",["Ignorar.","Testar simulando.","Apagar variáveis."],1]
  ]},
 
-{id:3,title:"Casa 3 — Requisitos Funcionais",short:"O que o sistema DEVE FAZER.",content:`
-   <h3>⚙️ Requisitos Funcionais</h3>
-   <p class="lead">Requisitos funcionais correspondem às <b>funcionalidades</b> solicitadas pelos usuários de um sistema e suas derivações.</p>
-   <p>São eles que dizem <b>O QUE</b> o sistema deve fazer. Sem eles, não sabemos o que programar.</p>
-   <h4>📋 Exemplos clássicos de Requisitos Funcionais</h4>
-   <ul>
-     <li>📄 <b>Emissão de um relatório</b> de vendas</li>
-     <li>🖥️ <b>Tela de consulta</b> do andamento de vendas</li>
-     <li>📦 <b>Cadastro de equipamentos</b></li>
-     <li>🔐 <b>Login de usuário</b></li>
-     <li>🛒 <b>Adicionar produto ao carrinho</b></li>
-     <li>💳 <b>Processar pagamento</b></li>
-   </ul>
-   <h4>🏪 Exemplo: Frente de Caixa de uma Loja</h4>
+{id:3,title:"Casa 3 — Formas de representar",short:"Narrativa, fluxograma e Portugol.",content:`
+   <h3>📝 Como escrever um algoritmo?</h3>
    <div class="compare">
-     <div><strong>1. Registrar Venda</strong><p>O sistema deve permitir registrar os produtos vendidos, calcular o total e emitir cupom fiscal.</p></div>
-     <div><strong>2. Consultar Preço</strong><p>O sistema deve permitir consultar o preço de um produto pelo código de barras ou nome.</p></div>
-     <div><strong>3. Aplicar Desconto</strong><p>O sistema deve permitir aplicar descontos percentuais ou em valor fixo sobre o total da venda.</p></div>
+     <div><strong>📖 Narrativa</strong>Linguagem natural.</div>
+     <div><strong>🔷 Fluxograma</strong>Símbolos gráficos.</div>
+     <div><strong>💻 Portugol</strong>Pseudocódigo com regras.</div>
    </div>
-   <div class="note tip"><b>💡 Macete:</b> Requisitos funcionais sempre começam com <b>"O sistema deve..."</b> seguido de uma ação. Se você consegue descrever como um "verbo", é funcional.</div>
-   <h4>📝 Como identificar um requisito funcional</h4>
-   <p>Pergunte: "Isso é algo que o sistema <b>FAZ</b>?" Se sim, é funcional. Se for "como ele faz" ou "quão bem ele faz", provavelmente é não funcional.</p>
-   <div class="note warning"><b>⚠️ Atenção:</b> Não confunda com requisitos não funcionais! "O sistema deve ser rápido" NÃO é funcional (é não funcional). "O sistema deve calcular a média" É funcional.</div>
+   <h4>🎨 MESMO PROBLEMA, 3 REPRESENTAÇÕES</h4>
+   <div class="solution-tabs">
+     <button class="active" onclick="switchTab(this,'rep1')">📖 Narrativa</button>
+     <button onclick="switchTab(this,'rep2')">🔷 Fluxograma</button>
+     <button onclick="switchTab(this,'rep3')">💻 Portugol</button>
+   </div>
+   <div id="rep1" class="solution-panel active"><div class="example">Passo 1 — Receber o primeiro número em A.
+Passo 2 — Receber o segundo em B.
+Passo 3 — Calcular SOMA = A + B.
+Passo 4 — Mostrar SOMA.</div></div>
+   <div id="rep2" class="solution-panel"><div class="example">   [Início] ↓ [Ler A, B] ↓ [SOMA ← A+B] ↓ [Escreva SOMA] ↓ [Fim]</div></div>
+   <div id="rep3" class="solution-panel"><div class="example"><span class="kw">algoritmo</span> "soma"
+<span class="kw">var</span> a, b, r: <span class="kw">inteiro</span>
+<span class="kw">inicio</span>
+   <span class="kw">leia</span>(a)
+   <span class="kw">leia</span>(b)
+   r <span class="num">&lt;-</span> a + b
+   <span class="kw">escreva</span>(r)
+<span class="kw">fimalgoritmo</span></div></div>
  `,quiz:[
-  ["O que são requisitos funcionais?","Funcionalidades que o sistema deve oferecer.",["Como o sistema é construído.","Funcionalidades que o sistema deve oferecer.","Só a interface visual."],1],
-  ["Qual das opções é um requisito funcional?","Emitir relatório de vendas.",["O sistema deve ser rápido.","Emitir relatório de vendas.","O sistema deve ser bonito."],1],
-  ["Um requisito funcional sempre começa com:","O sistema deve...",["O sistema deve...","O sistema precisa ser...","Se o usuário..."],0],
-  ["Qual é exemplo de requisito funcional para um e-commerce?","Adicionar produto ao carrinho.",["O site deve ser bonito.","Adicionar produto ao carrinho.","O site deve carregar rápido."],1]
+  ["Quais três representações?","Narrativa, fluxograma e pseudocódigo/Portugol.",["Narrativa, desenho livre e vídeo.","Narrativa, fluxograma e pseudocódigo/Portugol.","Somente C e Java."],1],
+  ["O que caracteriza fluxograma?","Símbolos gráficos predefinidos.",["Símbolos gráficos predefinidos.","Texto corrido.","Fotografias."],1],
+  ["Pseudocódigo em português é chamado:","Portugol.",["HTML.","Portugol.","CSS."],1]
  ]},
 
-{id:4,title:"Casa 4 — Requisitos Não Funcionais + ISO 9126",short:"Atributos de qualidade e as 6 características.",content:`
-   <h3>✨ Requisitos Não Funcionais</h3>
-   <p class="lead">Requisitos não funcionais são <b>atributos, características ou qualidades</b> que o sistema deve ter para ser bem avaliado pelos usuários.</p>
-   <p>Se os funcionais dizem <b>O QUE</b> o sistema faz, os não funcionais dizem <b>COMO</b> ele faz.</p>
-   <h4>📊 ISO/IEC 9126 — Modelo de Qualidade</h4>
-   <p>É uma norma ISO para qualidade de produto de software. A norma brasileira correspondente é a <b>NBR ISO/IEC 9126</b>. Ela se enquadra no modelo de qualidade das normas da família 9000.</p>
-   <p>A norma estabelece <b>6 características principais</b> de qualidade:</p>
-   <h4>1️⃣ Funcionalidade</h4>
-   <ul>
-     <li><b>Adequação</b> — mede o quanto as funcionalidades são adequadas às necessidades</li>
-     <li><b>Acurácia (precisão)</b> — fornece resultados precisos ou com a precisão acordada</li>
-     <li><b>Interoperabilidade</b> — capacidade de interagir com outros sistemas</li>
-     <li><b>Segurança</b> — protege informações e fornece apenas às pessoas autorizadas</li>
-     <li><b>Conformidade</b> — obedece às leis e normas aplicáveis</li>
-   </ul>
-   <h4>2️⃣ Confiabilidade</h4>
-   <ul>
-     <li><b>Maturidade</b> — capacidade de evitar falhas decorrentes de defeitos</li>
-     <li><b>Tolerância a Falhas</b> — mantém funcionamento adequado mesmo com defeitos</li>
-     <li><b>Recuperabilidade</b> — capacidade de se recuperar após uma falha</li>
-     <li><b>Conformidade</b> — obedece às leis e normas</li>
-   </ul>
-   <h4>3️⃣ Usabilidade</h4>
-   <ul>
-     <li><b>Inteligibilidade</b> — facilidade de compreender as funcionalidades</li>
-     <li><b>Apreensibilidade</b> — facilidade de aprendizado do sistema</li>
-     <li><b>Operacionalidade</b> — facilidade de operação, incluindo tolerância a erros</li>
-     <li><b>Atratividade</b> — características que atraem o usuário</li>
-     <li><b>Conformidade</b> — obedece às normas</li>
-   </ul>
-   <h4>4️⃣ Eficiência</h4>
-   <ul>
-     <li><b>Comportamento em Relação ao Tempo</b> — tempos de resposta dentro das especificações</li>
-     <li><b>Utilização de Recursos</b> — recursos consumidos e capacidade de utilizá-los</li>
-     <li><b>Conformidade</b> — obedece às normas</li>
-   </ul>
-   <h4>5️⃣ Manutenibilidade</h4>
-   <ul>
-     <li><b>Analisabilidade</b> — facilidade de diagnosticar problemas e identificar causas</li>
-     <li><b>Modificabilidade</b> — facilidade de modificar o comportamento</li>
-     <li><b>Estabilidade</b> — evita efeitos colaterais após modificações</li>
-     <li><b>Testabilidade</b> — facilidade de testar o sistema modificado</li>
-     <li><b>Conformidade</b> — obedece às normas</li>
-   </ul>
-   <h4>6️⃣ Portabilidade</h4>
-   <ul>
-     <li><b>Adaptabilidade</b> — adapta-se a diferentes ambientes sem ações adicionais</li>
-     <li><b>Capacidade para ser Instalado</b> — facilidade de instalação em novo ambiente</li>
-     <li><b>Coexistência</b> — convive com outros softwares no mesmo ambiente</li>
-     <li><b>Capacidade para Substituir</b> — substitui outro sistema especificado</li>
-     <li><b>Conformidade</b> — obedece às normas</li>
-   </ul>
-   <div class="note info"><b>📌 Importante:</b> TODAS as 6 características têm uma sub-categoria chamada <b>Conformidade</b>. Ela avalia o quanto o software obedece às leis e normas aplicáveis.</div>
-   <h4>🛒 Exemplo: E-commerce</h4>
-   <p>Um requisito não funcional para um e-commerce: <b>"O site deve carregar a página inicial em menos de 2 segundos"</b> (Eficiência — Comportamento em Relação ao Tempo).</p>
-   <div class="note warning"><b>⚠️ Cuidado:</b> Requisitos não funcionais geralmente envolvem <b>adjetivos</b>: rápido, bonito, seguro, confiável, fácil, portátil. Se descreve uma qualidade, é não funcional.</div>
+{id:4,title:"Casa 4 — Variáveis",short:"Memória, nome, tipo, tamanho e conteúdo.",content:`
+   <h3>📦 O que é uma variável?</h3>
+   <p class="lead">Uma posição de memória com nome, tipo, tamanho e conteúdo que pode variar.</p>
+   <div class="note"><b>Importante:</b> uma variável guarda <b>um valor a cada instante</b>.</div>
+   <h4>🧠 Memória</h4>
+   <p>Cada dígito binário é um <b>bit</b>; 8 bits = <b>byte</b>.</p>
+   <h4>🏷️ Identificadores</h4>
+   <p>Começar com letra ou _; sem espaços; não usar palavras reservadas.</p>
+   <h4>🎨 3 FORMAS DE DECLARAR</h4>
+   <div class="solution-tabs">
+     <button class="active" onclick="switchTab(this,'var1')">Bloco var</button>
+     <button onclick="switchTab(this,'var2')">Direto</button>
+     <button onclick="switchTab(this,'var3')">Múltiplas</button>
+   </div>
+   <div id="var1" class="solution-panel active"><div class="example"><span class="kw">var</span>
+   idade: <span class="kw">inteiro</span>
+   nota: <span class="kw">real</span>
+   nome: <span class="kw">cadeia</span>
+   ok: <span class="kw">logico</span></div></div>
+   <div id="var2" class="solution-panel"><div class="example"><span class="kw">inteiro</span> idade
+<span class="kw">real</span> nota
+<span class="kw">cadeia</span> nome
+<span class="kw">logico</span> ok</div></div>
+   <div id="var3" class="solution-panel"><div class="example"><span class="kw">inteiro</span> a, b, c
+<span class="kw">real</span> x, y</div></div>
  `,quiz:[
-  ["O que são requisitos não funcionais?","Atributos de qualidade do software.",["Funcionalidades do sistema.","Atributos de qualidade do software.","Só a documentação."],1],
-  ["Qual é um requisito não funcional para e-commerce?","O site deve carregar em menos de 2 segundos.",["Adicionar produto ao carrinho.","O site deve carregar em menos de 2 segundos.","Emitir nota fiscal."],1],
-  ["Qual norma trata da qualidade de produto de software?","ISO/IEC 9126.",["ISO 9001.","ISO/IEC 9126.","NBR 15000."],1],
-  ["Qual das 6 características cuida de 'fácil de modificar'?","Manutenibilidade.",["Funcionalidade.","Manutenibilidade.","Portabilidade."],1],
-  ["O que é Conformidade na ISO 9126?","Obedecer às leis e normas aplicáveis.",["Ser bonito.","Obedecer às leis e normas aplicáveis.","Ser rápido."],1],
-  ["Qual característica cuida de 'evitar falhas decorrentes de defeitos'?","Confiabilidade — Maturidade.",["Usabilidade.","Confiabilidade — Maturidade.","Portabilidade."],1]
+  ["Variável representa:","Posição de memória identificada.",["Somente uma tela.","Posição de memória identificada.","Repetição."],1],
+  ["Quantos bits formam um byte?","8 bits.",["2 bits.","8 bits.","100 bits."],1],
+  ["Qual pode ser identificador?","idade.",["idade.","meu nome!","2idade"],0]
  ]},
 
-{id:5,title:"Casa 5 — Levantamento de Requisitos",short:"Conversar com o cliente e entender o problema.",content:`
-   <h3>🔍 Levantamento de Requisitos</h3>
-   <p class="lead">É a atividade realizada pelo desenvolvedor para identificar <b>serviços, objetivos, atributos de qualidade e restrições</b> do sistema, por meio de consulta aos usuários do sistema.</p>
-   <h4>🎯 Por que é tão importante?</h4>
-   <p>Se você não entender o problema, vai construir a solução errada. <b>80% dos problemas em software começam no levantamento de requisitos.</b></p>
-   <div class="note tip"><b>💡 Analogia do médico:</b><br>Antes de receitar remédio, o médico ouve os sintomas, examina, pergunta ao paciente. O engenheiro de software faz o mesmo: <b>ouve o cliente</b>, entende a dor dele, e só depois "receita" a solução.</div>
-   <h4>📋 Técnicas de Levantamento de Requisitos</h4>
+{id:5,title:"Casa 5 — Tipos de Dados",short:"Inteiro, real, lógico, caractere e cadeia.",content:`
+   <h3>🔢 Tipos de dados</h3>
    <div class="compare">
-     <div><strong>🗣️ Entrevistas</strong><p>Conversar diretamente com os usuários e stakeholders.</p></div>
-     <div><strong>📝 Questionários</strong><p>Aplicar formulários para muitas pessoas.</p></div>
-     <div><strong>👀 Observação</strong><p>Ver como o usuário trabalha hoje.</p></div>
-     <div><strong>📚 Análise de Documentos</strong><p>Ler manuais, processos, formulários existentes.</p></div>
-     <div><strong>🧠 Brainstorming</strong><p>Reuniões de ideação com a equipe.</p></div>
-     <div><strong>🎭 Prototipação</strong><p>Mostrar versões iniciais para validar.</p></div>
+     <div><strong>🔢 Inteiro</strong>Sem decimal. Ex: -23, 98, 0.</div>
+     <div><strong>📐 Real</strong>Com decimal. Ex: 23.45, 0.0.</div>
+     <div><strong>🟢 Lógico</strong>V ou F.</div>
+     <div><strong>🔤 Caractere</strong>1 símbolo. Ex: 'A', '3'.</div>
+     <div><strong>💬 Cadeia</strong>Vários chars. Ex: "aluno".</div>
    </div>
-   <h4>🔄 Fluxo do Levantamento de Requisitos</h4>
-   <div class="diagram"><div class="dbox">👤 USUÁRIO<br><small>Tem problemas</small></div><div class="arrow">→</div><div class="dbox">📊 SISTEMA DE INFORMAÇÃO<br><small>Solução proposta</small></div></div>
-   <div class="diagram"><div class="dbox">🔬 ESTUDO DE VIABILIDADE<br><small>É possível? Vale a pena?</small></div><div class="arrow">→</div><div class="dbox">✅ SOLUÇÃO APROVADA<br><small>Desenvolver software</small></div></div>
-   <h4>📋 Especificação de Requisitos</h4>
-   <p>Após o levantamento, os requisitos são <b>documentados</b> em uma Especificação de Requisitos. Este documento serve como contrato entre cliente e desenvolvedor.</p>
-   <div class="note info"><b>📌 O que deve conter:</b><br>• Requisitos Funcionais<br>• Requisitos Não Funcionais<br>• Restrições do sistema<br>• Regras de negócio<br>• Casos de uso</div>
-   <h4>🧠 Capacidade Técnica</h4>
-   <p>Depois de levantar os requisitos, é preciso avaliar: <b>"O software pode ser desenvolvido internamente?"</b> — ou precisamos de terceiros/parceiros?</p>
-   <h4>📌 Exemplo prático</h4>
-   <p>Cliente: "Quero um sistema para minha padaria."</p>
-   <p>Perguntas do engenheiro:</p>
-   <ul>
-     <li>Quem vai usar? (dono, atendentes, clientes?)</li>
-     <li>O que precisa controlar? (vendas, estoque, fiado?)</li>
-     <li>Como é o processo hoje? (papel, planilha?)</li>
-     <li>Qual o prazo e orçamento?</li>
-   </ul>
-   <p>Só depois de responder tudo isso, você tem os requisitos!</p>
-   <div class="note warning"><b>⚠️ Pegadinha da prova:</b> "Levantamento de requisitos" NÃO é a mesma coisa que "levantamento de atributos de qualidade" ou "levantamento de regras de negócio". É o nome técnico do processo completo.</div>
+   <div class="solution-tabs">
+     <button class="active" onclick="switchTab(this,'tip1')">Concatenação</button>
+     <button onclick="switchTab(this,'tip2')">Múltiplos args</button>
+     <button onclick="switchTab(this,'tip3')">Quebra linha</button>
+   </div>
+   <div id="tip1" class="solution-panel active"><div class="example"><span class="kw">escreva</span>("Idade: " + idade)</div></div>
+   <div id="tip2" class="solution-panel"><div class="example"><span class="kw">escreva</span>("Idade: ", idade)</div></div>
+   <div id="tip3" class="solution-panel"><div class="example"><span class="kw">escreva</span>("Idade: ", idade, "\\n")</div></div>
  `,quiz:[
-  ["O que é levantamento de requisitos?","Atividade de identificar serviços, objetivos e restrições do sistema.",["Programar o sistema.","Atividade de identificar serviços, objetivos e restrições do sistema.","Vender o software."],1],
-  ["Qual NÃO é uma técnica de levantamento de requisitos?","Compilar o código.",["Entrevista.","Compilar o código.","Observação."],1],
-  ["Por que o levantamento de requisitos é importante?","Porque sem entender o problema, construímos a solução errada.",["Porque é divertido.","Porque sem entender o problema, construímos a solução errada.","Porque é obrigatório por lei."],1],
-  ["Quem deve ser consultado no levantamento de requisitos?","Os usuários e stakeholders do sistema.",["Só o gerente.","Os usuários e stakeholders do sistema.","Só o programador."],1],
-  ["O que é avaliado depois do levantamento?","A capacidade técnica de desenvolver o software.",["Se o cliente é rico.","A capacidade técnica de desenvolver o software.","Se o software é bonito."],1]
+  ["Exemplo de real?","23.45.",["23.45.","98.","verdadeiro"],0],
+  ["Tipo V/F?","Lógico.",["Inteiro.","Lógico.","Cadeia."],1],
+  ["'A' é:","Um caractere.",["Um real.","Um caractere.","Cadeia obrigatória."],1]
  ]},
 
-{id:6,title:"Casa 6 — Regras de Negócio",short:"As regras que o sistema DEVE respeitar.",content:`
-   <h3>📋 Regras de Negócio</h3>
-   <p class="lead">Regras de negócio são as <b>regras que definem como o negócio funciona</b> e que o sistema deve respeitar. São políticas, condições e restrições que existem na empresa.</p>
-   <p>Diferente dos requisitos funcionais (o que o sistema FAZ), as regras de negócio dizem <b>COMO</b> o negócio deve se comportar, e o sistema precisa respeitar isso.</p>
-   <h4>🔍 Diferença entre Requisito Funcional e Regra de Negócio</h4>
-   <div class="compare">
-     <div><strong>⚙️ Requisito Funcional</strong><p>"O sistema deve calcular o desconto de um cliente." — é a funcionalidade.</p></div>
-     <div><strong>📋 Regra de Negócio</strong><p>"Clientes com mais de 5 anos de cadastro recebem 10% de desconto." — é a regra que a funcionalidade deve respeitar.</p></div>
+{id:6,title:"Casa 6 — Sequência e Operações",short:"Execução passo a passo.",content:`
+   <h3>➡️ Estrutura Sequencial</h3>
+   <p class="lead">As ações são executadas na ordem em que aparecem.</p>
+   <div class="example">soma <span class="num">&lt;-</span> a + b</div>
+   <p>"Calcule a + b e guarde em soma."</p>
+   <div class="solution-tabs">
+     <button class="active" onclick="switchTab(this,'s1')">Variável extra</button>
+     <button onclick="switchTab(this,'s2')">Direto</button>
+     <button onclick="switchTab(this,'s3')">Acumulando</button>
    </div>
-   <h4>📌 Exemplos clássicos de Regras de Negócio</h4>
-   <ul>
-     <li>🏦 <b>Banco:</b> Saque máximo de R$ 1.000,00 por dia</li>
-     <li>🛒 <b>E-commerce:</b> Frete grátis para compras acima de R$ 150,00</li>
-     <li>📚 <b>Biblioteca:</b> Empréstimo de até 3 livros por usuário, por 14 dias</li>
-     <li>🎓 <b>Universidade:</b> Aluno com frequência abaixo de 75% é reprovado automaticamente</li>
-     <li>💼 <b>RH:</b> Funcionário com mais de 1 ano tem direito a 30 dias de férias</li>
-     <li>🏥 <b>Hospital:</b> Paciente só pode ser atendido com cadastro completo</li>
-   </ul>
-   <h4>🎯 Por que as regras de negócio são importantes?</h4>
-   <ul>
-     <li>Elas <b>guiam o comportamento</b> do sistema</li>
-     <li>Elas <b>refletem as políticas</b> da empresa</li>
-     <li>Elas <b>mudam com o tempo</b> — e o sistema precisa acompanhar</li>
-     <li>Se ignoradas, o sistema pode tomar decisões erradas para o negócio</li>
-   </ul>
-   <div class="note tip"><b>💡 Como identificar uma regra de negócio:</b><br>Pergunte: "Existe alguma política da empresa que limita ou condiciona esta operação?" Se sim, é regra de negócio!</div>
-   <div class="note warning"><b>⚠️ Atenção:</b> Regras de negócio são <b>diferentes</b> de requisitos! O requisito funcional é "calcular frete". A regra de negócio é "frete grátis acima de R$150". O requisito funcional é "calcular média". A regra de negócio é "média >= 6 aprova".</div>
-   <h4>📝 Exemplo completo: Sistema de Biblioteca</h4>
-   <div class="compare">
-     <div><strong>Requisitos Funcionais</strong><p>• Cadastrar livros<br>• Registrar empréstimos<br>• Consultar disponibilidade</p></div>
-     <div><strong>Regras de Negócio</strong><p>• Usuário pode pegar até 3 livros<br>• Prazo de 14 dias<br>• Multa de R$ 2,00 por dia de atraso</p></div>
-     <div><strong>Requisitos Não Funcionais</strong><p>• Deve responder em 2 segundos<br>• Deve funcionar em Chrome, Firefox e Edge<br>• Deve proteger dados dos usuários</p></div>
-   </div>
+   <div id="s1" class="solution-panel active"><div class="example"><span class="kw">leia</span>(a)
+<span class="kw">leia</span>(b)
+soma <span class="num">&lt;-</span> a + b
+<span class="kw">escreva</span>(soma)</div></div>
+   <div id="s2" class="solution-panel"><div class="example"><span class="kw">leia</span>(a)
+<span class="kw">leia</span>(b)
+<span class="kw">escreva</span>("Resultado: ", a + b)</div></div>
+   <div id="s3" class="solution-panel"><div class="example">total <span class="num">&lt;-</span> 0
+<span class="kw">leia</span>(a)
+total <span class="num">&lt;-</span> total + a
+<span class="kw">leia</span>(b)
+total <span class="num">&lt;-</span> total + b
+<span class="kw">escreva</span>(total)</div></div>
+   <div class="note warning"><b>⚠️</b> Trocar a ordem pode mudar o resultado.</div>
  `,quiz:[
-  ["O que são regras de negócio?","Políticas e condições que o sistema deve respeitar.",["Funcionalidades do sistema.","Políticas e condições que o sistema deve respeitar.","Só a interface visual."],1],
-  ["Qual é um exemplo de regra de negócio?","Frete grátis para compras acima de R$150.",["Cadastrar produto.","Frete grátis para compras acima de R$150.","Emitir nota fiscal."],1],
-  ["Qual a diferença entre requisito funcional e regra de negócio?","O requisito é O QUE o sistema faz; a regra é COMO o negócio se comporta.",["Não há diferença.","O requisito é O QUE o sistema faz; a regra é COMO o negócio se comporta.","A regra é só decoração."],1],
-  ["Por que as regras de negócio são importantes?","Porque refletem as políticas da empresa e guiam o sistema.",["Porque são bonitas.","Porque refletem as políticas da empresa e guiam o sistema.","Porque são obrigatórias por lei."],1]
+  ["Na sequencial, ações são:","Executadas na ordem em que aparecem.",["Aleatórias.","Executadas na ordem em que aparecem.","Só com repetição."],1],
+  ["leia(a) faz:","Recebe um dado.",["Mostra a variável.","Recebe um dado.","Apaga."],1],
+  ["escreva(soma) faz:","Exibe o valor.",["Exibe o valor.","Repete.","Cria variável."],0]
  ]},
 
-{id:7,title:"Casa 7 — Problemas com Software",short:"Por que projetos falham?",content:`
-   <h3>⚠️ Problemas com Software</h3>
-   <p class="lead">A figura de Pressman (2006) mostra que, sem Engenharia de Software, os projetos tendem a falhar. Vamos entender as causas.</p>
-   <h4>📉 Os 4 grandes problemas (Pressman, 2006)</h4>
+{id:7,title:"Casa 7 — Decisões",short:"SE, SENÃO, relacionais e lógicos.",content:`
+   <h3>🚦 Decisões</h3>
+   <h4>🔎 Relacionais</h4>
    <div class="compare">
-     <div><strong>1. Não funcionam como o esperado</strong><p>O software não faz o que deveria. Causa: <b>levantamento de requisitos ineficiente</b>.</p></div>
-     <div><strong>2. Custo maior que o estimado</strong><p>O projeto sai muito mais caro. Causas: <b>retrabalho, escopo mal definido, falta de planejamento</b>.</p></div>
-     <div><strong>3. Mudanças geram problemas</strong><p>Cada alteração quebra o sistema. Causa: <b>arquitetura ruim, requisitos mal documentados</b>.</p></div>
-     <div><strong>4. Entrega fora do prazo</strong><p>O software atrasa. Causas: <b>subestimação, requisitos instáveis</b>.</p></div>
+     <div><strong>==</strong>igual</div><div><strong>!=</strong>diferente</div>
+     <div><strong>&lt;</strong>menor</div><div><strong>&lt;=</strong>menor/igual</div>
+     <div><strong>&gt;</strong>maior</div><div><strong>&gt;=</strong>maior/igual</div>
    </div>
-   <h4>📊 A Curva Real vs Ideal (Pressman)</h4>
-   <p>Pressman mostra um gráfico com o <b>índice de falhas</b> ao longo do tempo:</p>
-   <ul>
-     <li><b>Curva idealizada (vermelha):</b> os erros são corrigidos e o índice cai rapidamente.</li>
-     <li><b>Curva real (preta):</b> cada mudança gera novos picos de falhas, e o sistema nunca estabiliza totalmente.</li>
-   </ul>
-   <div class="note info"><b>📌 Lição:</b> Sem Engenharia de Software, cada mudança gera novos problemas. Com Engenharia, controlamos o caos.</div>
-   <h4>🔍 Causas comuns de falhas (para a prova)</h4>
-   <ul>
-     <li>❌ <b>Levantamento de requisitos ineficiente</b> (a maior causa!) — software não funciona como esperado</li>
-     <li>❌ <b>Falta de testes adequados</b> — bugs em produção</li>
-     <li>❌ <b>Prazo irreal</b> — entrega fora do prazo</li>
-     <li>❌ <b>Cliente não sabe o que quer</b> — retrabalho</li>
-     <li>❌ <b>Mudanças de requisitos durante o projeto</b> — problemas com mudanças</li>
-     <li>❌ <b>Falta de comunicação</b> entre equipe e cliente</li>
-     <li>❌ <b>Ausência de planejamento</b> — custo maior que o estimado</li>
-   </ul>
-   <div class="note warning"><b>⚠️ Para a prova:</b> memorize as 4 causas principais: (1) Levantamento de requisitos ineficiente, (2) Falta de testes, (3) Custo/prazo irreal, (4) Mudanças não gerenciadas.</div>
+   <h4>🔗 Lógicos</h4><p><b>&& = E</b> • <b>|| = OU</b> • <b>! = NÃO</b>.</p>
+   <div class="solution-tabs">
+     <button class="active" onclick="switchTab(this,'d1')">SE/SENÃO</button>
+     <button onclick="switchTab(this,'d2')">Aninhado</button>
+     <button onclick="switchTab(this,'d3')">Composta</button>
+   </div>
+   <div id="d1" class="solution-panel active"><div class="example"><span class="kw">se</span> (m >= 6.0) <span class="kw">entao</span>
+   <span class="kw">escreva</span>("Aprovado")
+<span class="kw">senao</span>
+   <span class="kw">escreva</span>("Recuperação")
+<span class="kw">fimse</span></div></div>
+   <div id="d2" class="solution-panel"><div class="example"><span class="kw">se</span> (m >= 6.0) <span class="kw">entao</span>
+   <span class="kw">escreva</span>("Aprovado")
+<span class="kw">senao</span>
+   <span class="kw">se</span> (m >= 4.0) <span class="kw">entao</span>
+      <span class="kw">escreva</span>("Recuperação")
+   <span class="kw">senao</span>
+      <span class="kw">escreva</span>("Reprovado")
+   <span class="kw">fimse</span>
+<span class="kw">fimse</span></div></div>
+   <div id="d3" class="solution-panel"><div class="example"><span class="kw">se</span> (m >= 6.0) && (f >= 75) <span class="kw">entao</span>
+   <span class="kw">escreva</span>("Aprovado")
+<span class="kw">senao</span>
+   <span class="kw">escreva</span>("Recuperação")
+<span class="kw">fimse</span></div></div>
  `,quiz:[
-  ["Qual é a principal causa de software não funcionar como esperado?","Levantamento de requisitos ineficiente.",["Falta de computador.","Levantamento de requisitos ineficiente.","Falta de energia."],1],
-  ["O que representa a curva real no gráfico de Pressman?","Que cada mudança gera novos picos de falhas.",["Que o software nunca falha.","Que cada mudança gera novos picos de falhas.","Que o software é perfeito."],1],
-  ["Qual dessas NÃO é uma causa comum de problemas com software?","Boa documentação.",["Prazo irreal.","Boa documentação.","Mudanças de requisitos."],1],
-  ["Como evitar problemas com software?","Aplicando Engenharia de Software.",["Não testando nada.","Aplicando Engenharia de Software.","Programando sem planejar."],1],
-  ["Entrega fora do prazo é causada principalmente por:","Subestimação e requisitos instáveis.",["Falta de computador.","Subestimação e requisitos instáveis.","Excesso de testes."],1]
+  [">=  significa:","Maior ou igual.",["Menor.","Maior ou igual.","Diferente."],1],
+  ["E lógico:","&&.",["||","&&","!"],1],
+  ["SENÃO acontece quando:","A condição do SE não é satisfeita.",["A condição do SE não é satisfeita.","Antes do SE.","Nunca."],0]
  ]},
 
-{id:8,title:"Casa 8 — Modelo Cascata",short:"Sequencial e sistemático. O primeiro modelo.",content:`
-   <h3>💧 Modelo Cascata (Sequencial Linear)</h3>
-   <p class="lead">É o <b>primeiro modelo de processo de desenvolvimento de software publicado</b>. Caracteriza-se pelo desenvolvimento <b>sequencial e sistemático</b>, onde uma fase se inicia quando outra termina.</p>
-   <h4>📋 As 6 Fases do Modelo Cascata</h4>
-   <div class="compare">
-     <div><strong>1. Requisitos</strong><p>Levantamento de serviços, objetivos, atributos de qualidade e restrições do sistema, por meio de consulta aos usuários.</p></div>
-     <div><strong>2. Análise</strong><p>Atividades para compreender o domínio da aplicação, função, desempenho e interface. Requisitos documentados e revistos com o cliente.</p></div>
-     <div><strong>3. Projeto</strong><p>Projeto de múltiplos passos com 4 atributos: <b>estrutura de dados, arquitetura, detalhes procedimentais, interface</b>.</p></div>
-     <div><strong>4. Codificação</strong><p>Construção do código fonte e geração do programa executável, conforme especificado no projeto.</p></div>
-     <div><strong>5. Teste</strong><p>Submissão do software a testes para identificar falhas. Foca em aspectos lógicos internos e funcionais externos.</p></div>
-     <div><strong>6. Manutenção</strong><p>Software entregue ao cliente, podendo sofrer mudanças: correções, atualizações, mudanças na legislação.</p></div>
+{id:8,title:"Casa 8 — Repetições",short:"PARA, ENQUANTO, acumuladores.",content:`
+   <h3>🔁 Repetições</h3>
+   <p class="lead">Repetem trechos enquanto uma condição for atendida.</p>
+   <h4>➕ Acumulador</h4><p>Variável que acumula. Precisa ser inicializada.</p>
+   <h4>🔢 Contador</h4><p>Acumulador que varia de 1 em 1.</p>
+   <div class="solution-tabs">
+     <button class="active" onclick="switchTab(this,'r1')">PARA</button>
+     <button onclick="switchTab(this,'r2')">ENQUANTO</button>
+     <button onclick="switchTab(this,'r3')">FAÇA...ENQUANTO</button>
    </div>
-   <h4>✅ Vantagens</h4>
-   <ul>
-     <li><b>Simplicidade</b> — fácil de entender</li>
-     <li><b>Etapas bem definidas</b> — cada fase tem entregáveis claros</li>
-     <li>Bom para problemas <b>bem compreendidos</b></li>
-   </ul>
-   <h4>❌ Desvantagens</h4>
-   <ul>
-     <li><b>Trabalho visível ao usuário apenas na entrega</b></li>
-     <li><b>Requisitos "não podem" mudar</b> — mudanças são custosas</li>
-     <li>Se o cliente errar na fase de requisitos, o erro se propaga</li>
-   </ul>
-   <div class="note tip"><b>💡 Quando usar:</b> quando os requisitos são <b>claros e estáveis</b>, e o problema é <b>bem compreendido</b> por usuários e desenvolvedores.</div>
-   <div class="note warning"><b>⚠️ Para a prova:</b> Cascata = SEQUENCIAL + SIMPLES + REQUISITOS FIXOS. Desvantagem principal: trabalho visível só na entrega + requisitos não mudam.</div>
+   <div id="r1" class="solution-panel active"><div class="example"><span class="kw">para</span> (i <span class="num">&lt;-</span> 1; i <span class="num">&lt;=</span> 10; i<span class="num">++</span>)
+   <span class="kw">escreva</span>(i)
+<span class="kw">fimpara</span></div></div>
+   <div id="r2" class="solution-panel"><div class="example">i <span class="num">&lt;-</span> 1
+<span class="kw">enquanto</span> (i <span class="num">&lt;=</span> 10) <span class="kw">faca</span>
+   <span class="kw">escreva</span>(i)
+   i <span class="num">&lt;-</span> i + 1
+<span class="kw">fimenquanto</span></div></div>
+   <div id="r3" class="solution-panel"><div class="example">i <span class="num">&lt;-</span> 1
+<span class="kw">faca</span>
+   <span class="kw">escreva</span>(i)
+   i <span class="num">&lt;-</span> i + 1
+<span class="kw">enquanto</span> (i <span class="num">&lt;=</span> 10)</div></div>
+   <div class="note warning"><b>⚠️</b> ENQUANTO testa antes; FAÇA testa depois.</div>
  `,quiz:[
-  ["Qual é o primeiro modelo de processo publicado?","Modelo Cascata.",["Modelo Incremental.","Modelo Cascata.","Modelo de Prototipação."],1],
-  ["Quantas fases tem o Modelo Cascata?","6 fases.",["3 fases.","6 fases.","10 fases."],1],
-  ["Qual é uma vantagem do Modelo Cascata?","Simplicidade e etapas bem definidas.",["Requisitos podem mudar a qualquer momento.","Simplicidade e etapas bem definidas.","Cliente vê o software desde o início."],1],
-  ["Qual é uma desvantagem do Modelo Cascata?","Requisitos não podem mudar facilmente.",["É complexo demais.","Requisitos não podem mudar facilmente.","Não tem documentação."],1],
-  ["Quando é indicado usar o Modelo Cascata?","Quando os requisitos são claros e estáveis.",["Quando o cliente não sabe o que quer.","Quando os requisitos são claros e estáveis.","Quando não há prazo."],1]
+  ["Contador:","Aumenta/diminui de 1 em 1.",["Aumenta/diminui de 1 em 1.","Nunca muda.","Guarda texto."],0],
+  ["ENQUANTO verifica:","Antes do bloco.",["Depois.","Antes do bloco.","Nunca."],1],
+  ["Executa o bloco pelo menos 1x:","FAÇA...ENQUANTO.",["ENQUANTO.","FAÇA...ENQUANTO.","SE."],1]
  ]},
 
-{id:9,title:"Casa 9 — Modelo de Prototipação",short:"Quando o problema não é bem compreendido.",content:`
-   <h3>🎨 Modelo de Prototipação</h3>
-   <p class="lead">Foi concebido para ser utilizado em situações onde o <b>problema não é bem compreendido</b> pelos usuários do sistema e desenvolvedores.</p>
-   <h4>🎯 Como funciona?</h4>
-   <p>Em vez de construir o software completo de uma vez, você constrói <b>protótipos</b> — versões simplificadas para demonstrar funcionalidades e validar requisitos com o cliente.</p>
-   <h4>📋 As 6 Etapas</h4>
-   <div class="compare">
-     <div><strong>1. Coleta e Refinamento</strong><p>Levantamento e especificação de requisitos junto aos usuários.</p></div>
-     <div><strong>2. Projeto Rápido</strong><p>Definição de funcionalidades, interfaces e estruturas de dados necessárias.</p></div>
-     <div><strong>3. Construção do Protótipo</strong><p>Desenvolvimento de uma versão para demonstração do sistema.</p></div>
-     <div><strong>4. Avaliação do Cliente</strong><p>O cliente avalia se o desenvolvedor entendeu o problema.</p></div>
-     <div><strong>5. Refinamento</strong><p>O protótipo é ajustado conforme as observações dos usuários.</p></div>
-     <div><strong>6. Engenharia do Produto</strong><p>Desenvolvimento do software definitivo com base no protótipo aprovado.</p></div>
+{id:9,title:"Casa 9 — Problemas Reais",short:"IMC, par/ímpar, soma 1..N.",content:`
+   <h3>🎯 Problemas reais</h3>
+   <h4>💡 IMC</h4>
+   <div class="solution-tabs">
+     <button class="active" onclick="switchTab(this,'i1')">Direto</button>
+     <button onclick="switchTab(this,'i2')">Variável auxiliar</button>
    </div>
-   <h4>✅ Vantagens</h4>
-   <ul>
-     <li><b>Validação dos requisitos</b> através de interações com o usuário</li>
-     <li>O cliente <b>vê e testa</b> antes da versão final</li>
-     <li>Reduz risco de construir a coisa errada</li>
-   </ul>
-   <h4>❌ Desvantagens</h4>
-   <ul>
-     <li>O desenvolvedor <b>tende a não considerar aspectos</b> que foram desconsiderados para facilitar a construção do protótipo</li>
-     <li>Pode gerar expectativas irreais no cliente</li>
-     <li>Pode dar a impressão de que o software está mais pronto do que está</li>
-   </ul>
-   <div class="note tip"><b>💡 Quando usar:</b> quando o cliente <b>não sabe exatamente o que quer</b>, ou quando o problema é <b>complexo e mal compreendido</b>.</div>
-   <div class="note warning"><b>⚠️ Para a prova:</b> Prototipação = PROBLEMA MAL COMPREENDIDO + INTERAÇÃO COM USUÁRIO + PROTÓTIPO. Desvantagem: desenvolvedor tende a ignorar aspectos desconsiderados no protótipo.</div>
+   <div id="i1" class="solution-panel active"><div class="example"><span class="kw">leia</span>(peso)
+<span class="kw">leia</span>(altura)
+imc <span class="num">&lt;-</span> peso / (altura * altura)
+<span class="kw">escreva</span>("IMC: ", imc)</div></div>
+   <div id="i2" class="solution-panel"><div class="example"><span class="kw">leia</span>(peso)
+<span class="kw">leia</span>(altura)
+a2 <span class="num">&lt;-</span> altura * altura
+imc <span class="num">&lt;-</span> peso / a2
+<span class="kw">escreva</span>("IMC: ", imc)</div></div>
+   <h4>💡 Par/Ímpar</h4>
+   <div class="solution-tabs">
+     <button class="active" onclick="switchTab(this,'p1')">Resto %</button>
+     <button onclick="switchTab(this,'p2')">Divisão</button>
+   </div>
+   <div id="p1" class="solution-panel active"><div class="example"><span class="kw">leia</span>(n)
+<span class="kw">se</span> (n % 2 == 0) <span class="kw">entao</span>
+   <span class="kw">escreva</span>("Par")
+<span class="kw">senao</span>
+   <span class="kw">escreva</span>("Ímpar")
+<span class="kw">fimse</span></div></div>
+   <div id="p2" class="solution-panel"><div class="example"><span class="kw">leia</span>(n)
+<span class="kw">se</span> ((n / 2) * 2 == n) <span class="kw">entao</span>
+   <span class="kw">escreva</span>("Par")
+<span class="kw">senao</span>
+   <span class="kw">escreva</span>("Ímpar")
+<span class="kw">fimse</span></div></div>
+   <h4>💡 Soma 1..N</h4>
+   <div class="solution-tabs">
+     <button class="active" onclick="switchTab(this,'g1')">Loop</button>
+     <button onclick="switchTab(this,'g2')">Gauss</button>
+   </div>
+   <div id="g1" class="solution-panel active"><div class="example"><span class="kw">leia</span>(n)
+soma <span class="num">&lt;-</span> 0
+<span class="kw">para</span> (i <span class="num">&lt;-</span> 1; i <span class="num">&lt;=</span> n; i<span class="num">++</span>)
+   soma <span class="num">&lt;-</span> soma + i
+<span class="kw">fimpara</span>
+<span class="kw">escreva</span>(soma)</div></div>
+   <div id="g2" class="solution-panel"><div class="example"><span class="kw">leia</span>(n)
+soma <span class="num">&lt;-</span> n * (n + 1) / 2
+<span class="kw">escreva</span>(soma)</div></div>
  `,quiz:[
-  ["Quando o Modelo de Prototipação é mais indicado?","Quando o problema não é bem compreendido.",["Quando os requisitos são claros.","Quando o problema não é bem compreendido.","Quando não há prazo."],1],
-  ["Qual é a principal vantagem da prototipação?","Validação dos requisitos com o usuário.",["É mais rápido que todos.","Validação dos requisitos com o usuário.","Não precisa documentar."],1],
-  ["Qual é a principal desvantagem da prototipação?","O desenvolvedor tende a ignorar aspectos desconsiderados no protótipo.",["É muito caro.","O desenvolvedor tende a ignorar aspectos desconsiderados no protótipo.","Não tem vantagens."],1],
-  ["O que é construído ANTES do produto final na prototipação?","Um protótipo para demonstração.",["O produto final.","Um protótipo para demonstração.","Só a documentação."],1]
+  ["Fórmula IMC?","peso / (altura * altura)",["peso + altura","peso / (altura * altura)","peso - altura"],1],
+  ["Par usa:","O operador % (resto)",["+","O operador % (resto)","*"],1],
+  ["Gauss:","n * (n + 1) / 2",["n + 1","n * (n + 1) / 2","n * n"],1]
  ]},
 
-{id:10,title:"Casa 10 — Modelo Incremental",short:"Dividir para conquistar.",content:`
-   <h3>🧩 Modelo Incremental</h3>
-   <p class="lead">Aplica a filosofia <b>"dividir para conquistar"</b>. O desenvolvedor divide o projeto em <b>módulos</b> com baixa coesão e acoplamento, onde cada qual será desenvolvido e acoplado ao sistema.</p>
-   <h4>🎯 Como funciona?</h4>
-   <p>Cada módulo desenvolvido é considerado um <b>incremento</b> ao sistema, que é disponibilizado aos usuários <b>desde a primeira entrega</b>.</p>
-   <h4>📋 Etapas do Modelo Incremental</h4>
+{id:10,title:"Casa 10 — Teste de Mesa",short:"Simule o algoritmo na mão.",content:`
+   <h3>📋 O que é Teste de Mesa?</h3>
+   <p class="lead">Simular a execução do algoritmo <b>na mão</b>, anotando o valor de cada variável em cada passo.</p>
+   <ul>
+     <li>✅ Verificar se o algoritmo está correto</li>
+     <li>🐛 Encontrar bugs de lógica</li>
+     <li>🎯 Prever a saída</li>
+     <li>📝 Estudar para prova</li>
+   </ul>
+   <h4>🎨 COMO FAZER</h4>
    <div class="compare">
-     <div><strong>1. Definir Requisitos Iniciais</strong><p>Levantamento do que o sistema precisa fazer.</p></div>
-     <div><strong>2. Atribuir Requisitos a Incrementos</strong><p>Dividir os requisitos em módulos.</p></div>
-     <div><strong>3. Projetar Arquitetura</strong><p>Definir como os módulos vão se integrar.</p></div>
-     <div><strong>4. Desenvolver Incremento</strong><p>Cada módulo é desenvolvido separadamente.</p></div>
-     <div><strong>5. Validar Incremento</strong><p>Testar o módulo desenvolvido.</p></div>
-     <div><strong>6. Integrar Incremento</strong><p>Acoplar ao sistema existente.</p></div>
-     <div><strong>7. Validar Sistema</strong><p>Testar o sistema completo com o novo módulo.</p></div>
+     <div><strong>1.</strong> Tabela com coluna para cada variável.</div>
+     <div><strong>2.</strong> Uma linha por passo/iteração.</div>
+     <div><strong>3.</strong> Comece pela linha inicial.</div>
+     <div><strong>4.</strong> Execute atualizando os valores.</div>
+     <div><strong>5.</strong> Compare com o esperado.</div>
+     <div><strong>6.</strong> Se der diferente, o bug está na lógica.</div>
    </div>
-   <h4>✅ Vantagens</h4>
-   <ul>
-     <li>O usuário recebe <b>partes funcionais desde o início</b></li>
-     <li>Reduz risco de construir tudo errado de uma vez</li>
-     <li>Facilita a detecção de problemas cedo</li>
-   </ul>
-   <h4>❌ Desvantagens</h4>
-   <ul>
-     <li>Dificuldades para o desenvolvedor efetuar a <b>integração com outros sistemas</b></li>
-     <li>Pode ser necessário refatorar módulos já entregues</li>
-     <li>Requer boa arquitetura desde o começo</li>
-   </ul>
-   <div class="note tip"><b>💡 Quando usar:</b> quando o sistema é <b>grande</b> e pode ser dividido em partes menores, ou quando o cliente <b>precisa de funcionalidades parciais rapidamente</b>.</div>
-   <div class="note warning"><b>⚠️ Para a prova:</b> Incremental = DIVIDIR PARA CONQUISTAR + ENTREGA POR MÓDULOS + USO DESDE O INÍCIO. Desvantagem: dificuldades de integração com outros sistemas.</div>
+   <h4>🧪 EXEMPLO 1 — Acumulador</h4>
+   <div class="example">soma <span class="num">&lt;-</span> 0
+<span class="kw">para</span> i <span class="kw">de</span> 1 <span class="kw">ate</span> 5 <span class="kw">faca</span>
+   soma <span class="num">&lt;-</span> soma + i
+<span class="kw">fimpara</span>
+<span class="kw">escreva</span>(soma)</div>
+   <table class="mesa">
+     <tr><th>Passo</th><th>i</th><th>soma</th></tr>
+     <tr><td>Início</td><td>-</td><td>0</td></tr>
+     <tr><td>1ª</td><td>1</td><td>1</td></tr>
+     <tr><td>2ª</td><td>2</td><td>3</td></tr>
+     <tr><td>3ª</td><td>3</td><td>6</td></tr>
+     <tr><td>4ª</td><td>4</td><td>10</td></tr>
+     <tr><td>5ª</td><td>5</td><td>15</td></tr>
+     <tr><td>Saída</td><td>-</td><td>15</td></tr>
+   </table>
+   <h4>🧪 EXEMPLO 2 — Contador com SE</h4>
+   <div class="example">conte <span class="num">&lt;-</span> 0
+<span class="kw">para</span> i <span class="kw">de</span> 1 <span class="kw">ate</span> 6 <span class="kw">faca</span>
+   <span class="kw">se</span> (i % 2 == 0) <span class="kw">entao</span>
+      conte <span class="num">&lt;-</span> conte + 1
+   <span class="kw">fimse</span>
+<span class="kw">fimpara</span>
+<span class="kw">escreva</span>(conte)</div>
+   <table class="mesa">
+     <tr><th>i</th><th>i%2==0</th><th>conte</th></tr>
+     <tr><td>1</td><td>F</td><td>0</td></tr>
+     <tr><td>2</td><td>V</td><td>1</td></tr>
+     <tr><td>3</td><td>F</td><td>1</td></tr>
+     <tr><td>4</td><td>V</td><td>2</td></tr>
+     <tr><td>5</td><td>F</td><td>2</td></tr>
+     <tr><td>6</td><td>V</td><td>3</td></tr>
+   </table>
+   <h4>🧪 EXEMPLO 3 — Troca com auxiliar</h4>
+   <div class="example">a <span class="num">&lt;-</span> 5
+b <span class="num">&lt;-</span> 3
+aux <span class="num">&lt;-</span> a
+a <span class="num">&lt;-</span> b
+b <span class="num">&lt;-</span> aux</div>
+   <table class="mesa">
+     <tr><th>Linha</th><th>a</th><th>b</th><th>aux</th></tr>
+     <tr><td>a=5</td><td>5</td><td>-</td><td>-</td></tr>
+     <tr><td>b=3</td><td>5</td><td>3</td><td>-</td></tr>
+     <tr><td>aux=a</td><td>5</td><td>3</td><td>5</td></tr>
+     <tr><td>a=b</td><td>3</td><td>3</td><td>5</td></tr>
+     <tr><td>b=aux</td><td>3</td><td>5</td><td>5</td></tr>
+   </table>
+   <h4>🧪 EXEMPLO 4 — ENQUANTO com decremento</h4>
+   <div class="example">x <span class="num">&lt;-</span> 10
+<span class="kw">enquanto</span> (x &gt; 0) <span class="kw">faca</span>
+   x <span class="num">&lt;-</span> x - 3
+   <span class="kw">escreva</span>(x)
+<span class="kw">fimenquanto</span></div>
+   <table class="mesa">
+     <tr><th>Volta</th><th>x antes</th><th>x&gt;0?</th><th>x depois</th></tr>
+     <tr><td>1</td><td>10</td><td>V</td><td>7</td></tr>
+     <tr><td>2</td><td>7</td><td>V</td><td>4</td></tr>
+     <tr><td>3</td><td>4</td><td>V</td><td>1</td></tr>
+     <tr><td>4</td><td>1</td><td>V</td><td>-2</td></tr>
+     <tr><td>Fim</td><td>-2</td><td>F</td><td>-</td></tr>
+   </table>
+   <div class="note warning"><b>⚠️</b> Imprime 4 valores (7, 4, 1, -2).</div>
+   <h4>📝 DICAS DE PROVA</h4>
+   <div class="rubric">
+     <ul>
+       <li>Sempre anote valores <b>antes do laço</b>.</li>
+       <li>Uma linha por iteração, mostrando <b>antes e depois</b>.</li>
+       <li>Marque <b>V/F</b> de cada condição.</li>
+       <li>Cuidado: ENQUANTO testa <b>antes</b>; FAÇA...ENQUANTO testa <b>depois</b>.</li>
+       <li>Se saída diferente do esperado → <b>bug está no código</b>.</li>
+     </ul>
+   </div>
  `,quiz:[
-  ["Qual é a filosofia do Modelo Incremental?","Dividir para conquistar.",["Fazer tudo de uma vez.","Dividir para conquistar.","Não planejar."],1],
-  ["O que é um incremento?","Um módulo desenvolvido e acoplado ao sistema.",["Um bug.","Um módulo desenvolvido e acoplado ao sistema.","Uma fase só de documentação."],1],
-  ["Qual é a principal vantagem do Incremental?","O usuário usa partes funcionais desde o início.",["É mais barato.","O usuário usa partes funcionais desde o início.","Não precisa testar."],1],
-  ["Qual é uma desvantagem do Incremental?","Dificuldades de integração com outros sistemas.",["É lento.","Dificuldades de integração com outros sistemas.","Ninguém gosta."],1]
+  ["O que é teste de mesa?","Simular execução na mão, anotando variáveis a cada passo.",["Rodar no PC.","Simular execução na mão, anotando variáveis a cada passo.","Desenhar fluxograma.","Apagar variáveis."],1],
+  ["<b>[Trace]</b> <code>soma&lt;-0; para i de 1 ate 4 faca soma&lt;-soma+i</code> → soma =","10",["4","6","10","24"],2],
+  ["<b>[Trace]</b> <code>a&lt;-7;b&lt;-2;a&lt;-a-b;b&lt;-a*2</code> →","a=5, b=10",["a=7,b=4","a=5,b=10","a=5,b=4","a=14,b=4"],1],
+  ["<b>[Trace]</b> <code>x&lt;-10; enquanto(x&gt;0) faca x&lt;-x-3; escreva(x)</code> imprime quantos?","4",["2","3","4","5"],2],
+  ["<b>[Trace]</b> <code>conte&lt;-0; para i de 1 ate 5 faca se(i&gt;3) entao conte&lt;-conte+1</code> → conte =","2",["0","2","3","5"],1],
+  ["<b>[Trace]</b> <code>a&lt;-2; para i de 1 ate 3 faca a&lt;-a*2</code> → a =","16",["2","6","8","16"],3],
+  ["<b>[Cuidado]</b> Se a saída der diferente do esperado:","O bug está no código",["O teste está errado","O bug está no código","O PC errou","A variável quebrou"],1],
+  ["<b>[ENQUANTO]</b> Diferença com FAÇA...ENQUANTO:","FAÇA testa depois.",["São iguais.","FAÇA testa depois.","ENQUANTO testa depois.","Ambos infinitos."],1]
  ]},
 
-{id:11,title:"Casa 11 — BPM e Análise de Processos",short:"Business Process Management e como as pessoas trabalham.",content:`
-   <h3>🔄 BPM — Business Process Management</h3>
-   <p class="lead">BPM (Gerenciamento de Processos de Negócio) é uma disciplina que visa <b>analisar, modelar, executar, monitorar e otimizar</b> os processos de uma organização.</p>
-   <p>Antes de construir software, o engenheiro precisa entender <b>como as pessoas trabalham hoje</b>. BPM ajuda nesse mapeamento.</p>
-   <h4>📊 O que o BPM estuda?</h4>
-   <div class="compare">
-     <div><strong>📋 Fluxo das Informações</strong><p>Como os dados circulam dentro da empresa: quem cria, quem usa, quem armazena.</p></div>
-     <div><strong>👥 Como as Pessoas Trabalham</strong><p>Quem faz o quê, em que ordem, com quais ferramentas e quanto tempo leva.</p></div>
-   </div>
-   <h4>🎯 Por que BPM é importante para Engenharia de Software?</h4>
-   <ul>
-     <li>Identifica <b>gargalos</b> e oportunidades de melhoria</li>
-     <li>Ajuda a <b>definir requisitos</b> com base no processo real</li>
-     <li>Evita construir software que <b>não se encaixa</b> no processo</li>
-     <li>Permite <b>automatizar</b> processos manuais</li>
-   </ul>
-   <h4>🔄 Exemplo: Processo de Compras em uma Empresa</h4>
-   <div class="diagram"><div class="dbox">📝 SOLICITANTE<br><small>Pede compra</small></div><div class="arrow">→</div><div class="dbox">✅ GESTOR<br><small>Aprova</small></div></div>
-   <div class="diagram"><div class="dbox">💰 FINANCEIRO<br><small>Verifica verba</small></div><div class="arrow">→</div><div class="dbox">🛒 COMPRA<br><small>Realiza pedido</small></div></div>
-   <div class="diagram"><div class="dbox">📦 RECEBIMENTO<br><small>Confere material</small></div><div class="arrow">→</div><div class="dbox">💳 PAGAMENTO<br><small>Paga fornecedor</small></div></div>
-   <h4>📌 Ferramentas de BPM</h4>
-   <ul>
-     <li><b>BPMN</b> (Business Process Model and Notation) — notação padrão para modelar processos</li>
-     <li><b>Fluxogramas</b> — representação visual simplificada</li>
-     <li><b>BPMS</b> — sistemas que automatizam processos</li>
-   </ul>
-   <div class="note tip"><b>💡 Analogia:</b> Antes de comprar uma máquina para uma fábrica, você precisa entender como a linha de produção funciona. BPM é esse mapeamento da linha de produção da empresa.</div>
-   <div class="note warning"><b>⚠️ Para a prova:</b> BPM = Fluxo das Informações + Como as Pessoas Trabalham. É uma etapa de análise que vem depois do estudo de viabilidade.</div>
+{id:11,title:"Casa 11 — Guia de Bolso",short:"ESCOLHA, vetores, matrizes, tabela-verdade.",content:`
+   <h3>🎒 Guia de Bolso</h3>
+   <h4>➕ Operadores</h4>
+   <div class="example"><span class="kw">+</span> soma · <span class="kw">-</span> sub · <span class="kw">*</span> mult · <span class="kw">/</span> div real
+<span class="kw">\\</span> div inteira · <span class="kw">%</span> resto · <span class="kw">^</span> potência</div>
+   <h4>🥇 Precedência</h4>
+   <div class="example">1º ( )   2º ^   3º * / \\ %   4º + -</div>
+   <p><code>2 + 3 * 4 = 14</code> (não 20!)</p>
+   <h4>🎯 ESCOLHA / CASO</h4>
+   <div class="example"><span class="kw">escolha</span> (opcao)
+   <span class="kw">caso</span> 1
+      <span class="kw">escreva</span>("Um")
+   <span class="kw">caso</span> 2
+      <span class="kw">escreva</span>("Dois")
+   <span class="kw">outrocaso</span>
+      <span class="kw">escreva</span>("Inválido")
+<span class="kw">fimescolha</span></div>
+   <h4>📚 Vetores</h4>
+   <div class="example"><span class="kw">var</span>
+   notas: <span class="kw">vetor</span>[1..5] <span class="kw">de</span> <span class="kw">real</span>
+   i: <span class="kw">inteiro</span>
+<span class="kw">inicio</span>
+   <span class="kw">para</span> i <span class="kw">de</span> 1 <span class="kw">ate</span> 5 <span class="kw">faca</span>
+      <span class="kw">leia</span>(notas[i])
+   <span class="kw">fimpara</span></div>
+   <h4>🔲 Matrizes</h4>
+   <div class="example"><span class="kw">var</span> m: <span class="kw">vetor</span>[1..3,1..3] <span class="kw">de</span> <span class="kw">inteiro</span>
+<span class="kw">para</span> i <span class="kw">de</span> 1 <span class="kw">ate</span> 3 <span class="kw">faca</span>
+   <span class="kw">para</span> j <span class="kw">de</span> 1 <span class="kw">ate</span> 3 <span class="kw">faca</span>
+      <span class="kw">leia</span>(m[i,j])
+   <span class="kw">fimpara</span>
+<span class="kw">fimpara</span></div>
+   <h4>📌 Constantes e Comentários</h4>
+   <div class="example"><span class="kw">const</span> PI = 3.14159
+<span class="cm">// linha</span>
+<span class="cm">/* várias linhas */</span></div>
+   <h4>⏹️ Interrompa / Continua</h4>
+   <div class="example"><span class="kw">se</span> (i = 5) <span class="kw">entao</span>
+   <span class="kw">interrompa</span>
+<span class="kw">fimse</span></div>
+   <h4>🔁 Conversão</h4>
+   <div class="example"><span class="kw">inteiro</span>(3.9)  <span class="kw">real</span>(5)  <span class="kw">cadeia</span>(42)</div>
+   <h4>📊 Tabela-verdade</h4>
+   <table class="tt">
+     <tr><th>A</th><th>B</th><th>A&&B</th><th>A||B</th><th>!A</th></tr>
+     <tr><td>V</td><td>V</td><td>V</td><td>V</td><td>F</td></tr>
+     <tr><td>V</td><td>F</td><td>F</td><td>V</td><td>F</td></tr>
+     <tr><td>F</td><td>V</td><td>F</td><td>V</td><td>V</td></tr>
+     <tr><td>F</td><td>F</td><td>F</td><td>F</td><td>V</td></tr>
+   </table>
+   <h4>🏧 Exemplo: Caixa Eletrônico</h4>
+   <div class="example"><span class="kw">algoritmo</span> "caixa"
+<span class="kw">var</span> saldo, valor: <span class="kw">real</span>; op: <span class="kw">inteiro</span>
+<span class="kw">inicio</span>
+   saldo <span class="num">&lt;-</span> 1000.0
+   <span class="kw">escreva</span>("1-Saldo 2-Saque 3-Dep: ")
+   <span class="kw">leia</span>(op)
+   <span class="kw">escolha</span> (op)
+      <span class="kw">caso</span> 1
+         <span class="kw">escreva</span>("Saldo: ", saldo)
+      <span class="kw">caso</span> 2
+         <span class="kw">leia</span>(valor)
+         <span class="kw">se</span> (valor &lt;= saldo) <span class="kw">entao</span>
+            saldo <span class="num">&lt;-</span> saldo - valor
+            <span class="kw">escreva</span>("Novo saldo: ", saldo)
+         <span class="kw">senao</span>
+            <span class="kw">escreva</span>("Saldo insuficiente")
+         <span class="kw">fimse</span>
+      <span class="kw">caso</span> 3
+         <span class="kw">leia</span>(valor)
+         saldo <span class="num">&lt;-</span> saldo + valor
+      <span class="kw">outrocaso</span>
+         <span class="kw">escreva</span>("Opção inválida")
+   <span class="kw">fimescolha</span>
+<span class="kw">fimalgoritmo</span></div>
  `,quiz:[
-  ["O que significa BPM?","Business Process Management (Gerenciamento de Processos de Negócio).",["Business Product Management.","Business Process Management (Gerenciamento de Processos de Negócio).","Basic Programming Method."],1],
-  ["O que o BPM estuda?","O fluxo das informações e como as pessoas trabalham.",["Só o código-fonte.","O fluxo das informações e como as pessoas trabalham.","Só o banco de dados."],1],
-  ["Por que BPM é importante para Engenharia de Software?","Ajuda a definir requisitos com base no processo real.",["Porque é bonito.","Ajuda a definir requisitos com base no processo real.","Porque é obrigatório por lei."],1],
-  ["Qual notação é padrão para modelar processos?","BPMN.",["HTML.","BPMN.","CSS."],1]
- ]},
-
-{id:12,title:"Casa 12 — Estudo de Viabilidade",short:"É possível? Vale a pena? Capacidade Técnica.",content:`
-   <h3>🔬 Estudo de Viabilidade</h3>
-   <p class="lead">Antes de desenvolver qualquer software, é preciso avaliar se ele é <b>viável</b>: tecnicamente, economicamente e operacionalmente.</p>
-   <p>É a etapa que responde: <b>"Vale a pena investir neste projeto?"</b></p>
-   <h4>📊 Os 3 Tipos de Viabilidade</h4>
-   <div class="compare">
-     <div><strong>💰 Viabilidade Econômica</strong><p>O projeto cabe no orçamento? O retorno justifica o investimento? Os custos são menores que os benefícios?</p></div>
-     <div><strong>🔧 Viabilidade Técnica</strong><p>Existe tecnologia para fazer? A equipe domina as ferramentas? A infraestrutura suporta? O prazo é factível?</p></div>
-     <div><strong>👥 Viabilidade Operacional</strong><p>Os usuários vão adotar o sistema? O processo atual comporta a mudança? Há resistência cultural?</p></div>
-   </div>
-   <h4>🎯 Capacidade Técnica</h4>
-   <p>Pergunta-chave: <b>"O software pode ser desenvolvido internamente?"</b></p>
-   <ul>
-     <li>✅ Se <b>sim</b> → desenvolver internamente</li>
-     <li>❌ Se <b>não</b> → contratar terceiros ou adquirir software pronto</li>
-   </ul>
-   <h4>🔄 Fluxo Completo do Início do Projeto</h4>
-   <div class="diagram"><div class="dbox">👤 USUÁRIO<br><small>Tem problemas</small></div><div class="arrow">→</div><div class="dbox">📊 SISTEMA DE INFORMAÇÃO<br><small>Conceito inicial</small></div></div>
-   <div class="diagram"><div class="dbox">📋 ESPECIFICAÇÃO DE REQUISITOS<br><small>Documentar</small></div><div class="arrow">→</div><div class="dbox">🔬 ESTUDO DE VIABILIDADE<br><small>É possível?</small></div></div>
-   <div class="diagram"><div class="dbox">🔧 CAPACIDADE TÉCNICA<br><small>Podemos desenvolver?</small></div><div class="arrow">→</div><div class="dbox">📊 ANÁLISE DE PROCESSOS<br><small>BPM</small></div></div>
-   <div class="diagram"><div class="dbox">✅ SOLUÇÃO APROVADA<br><small>Viabilidade OK</small></div><div class="arrow">→</div><div class="dbox">🏗️ DESENVOLVER SOFTWARE<br><small>Início do projeto</small></div></div>
-   <h4>📌 Exemplo prático</h4>
-   <p>Uma padaria quer um sistema de gestão:</p>
-   <ul>
-     <li><b>Econômica:</b> Custa R$ 5.000, economizará R$ 2.000/mês em retrabalho. Retorno em 3 meses. ✅ Viável</li>
-     <li><b>Técnica:</b> Existem frameworks prontos, a equipe domina. ✅ Viável</li>
-     <li><b>Operacional:</b> Os atendentes são resistentes a computadores? Talvez precise treinamento. ⚠️ Cuidado</li>
-   </ul>
-   <div class="note tip"><b>💡 Dica:</b> Se qualquer uma das 3 viabilidades falhar, o projeto deve ser <b>repensado ou cancelado</b>. Não adianta desenvolver algo que ninguém vai usar ou que não traz retorno.</div>
-   <div class="note warning"><b>⚠️ Para a prova:</b> Estudo de Viabilidade = Econômica + Técnica + Operacional. Capacidade Técnica = "Podemos desenvolver internamente?"</div>
- `,quiz:[
-  ["O que é Estudo de Viabilidade?","Avaliar se o projeto é viável antes de desenvolvê-lo.",["Programar o sistema.","Avaliar se o projeto é viável antes de desenvolvê-lo.","Vender o software."],1],
-  ["Quais são os 3 tipos de viabilidade?","Econômica, Técnica e Operacional.",["Alta, Média e Baixa.","Econômica, Técnica e Operacional.","Curta, Média e Longa."],1],
-  ["O que a Capacidade Técnica avalia?","Se o software pode ser desenvolvido internamente.",["Se o cliente é rico.","Se o software pode ser desenvolvido internamente.","Se o software é bonito."],1],
-  ["O que acontece se uma viabilidade falhar?","O projeto deve ser repensado ou cancelado.",["Nada.","O projeto deve ser repensado ou cancelado.","O projeto continua normalmente."],1]
- ]},
-
-{id:13,title:"Casa 13 — Comparando os Modelos",short:"Cascata vs Prototipação vs Incremental.",content:`
-   <h3>⚖️ Comparando os Modelos de Processo</h3>
-   <p class="lead">Cada modelo tem seu lugar. Vamos comparar lado a lado para você saber quando usar cada um.</p>
-   <h4>📊 Tabela Comparativa Completa</h4>
-   <div class="compare">
-     <div><strong>💧 Cascata</strong>
-       <p><b>Quando usar:</b> requisitos claros e estáveis; problema bem compreendido.<br><br>
-       <b>Vantagem:</b> simplicidade; etapas bem definidas.<br><br>
-       <b>Desvantagem:</b> trabalho visível só na entrega; requisitos não mudam.<br><br>
-       <b>Fases:</b> 6.</p></div>
-     <div><strong>🎨 Prototipação</strong>
-       <p><b>Quando usar:</b> problema mal compreendido; cliente não sabe o que quer.<br><br>
-       <b>Vantagem:</b> valida requisitos com o usuário; reduz risco.<br><br>
-       <b>Desvantagem:</b> desenvolvedor tende a ignorar aspectos não considerados.<br><br>
-       <b>Fases:</b> 6.</p></div>
-     <div><strong>🧩 Incremental</strong>
-       <p><b>Quando usar:</b> sistemas grandes; entregas parciais; uso desde o início.<br><br>
-       <b>Vantagem:</b> uso desde o início; detecta problemas cedo.<br><br>
-       <b>Desvantagem:</b> dificuldades de integração com outros sistemas.<br><br>
-       <b>Fases:</b> 7.</p></div>
-   </div>
-   <h4>🎯 Como escolher o modelo?</h4>
-   <ul>
-     <li><b>Requisitos claros e fixos?</b> → Cascata</li>
-     <li><b>Cliente não sabe o que quer?</b> → Prototipação</li>
-     <li><b>Sistema grande, pode dividir?</b> → Incremental</li>
-     <li><b>Risco alto, precisa validar cedo?</b> → Prototipação ou Incremental</li>
-     <li><b>Prazo apertado, precisa usar logo?</b> → Incremental</li>
-   </ul>
-   <div class="note warning">
-     <b>⚠️ Fique atento:</b><br><br>
-     • "Simplicidade, etapas bem definidas" → <b>Cascata</b><br>
-     • "Problema não bem compreendido" → <b>Prototipação</b><br>
-     • "Dividir para conquistar" → <b>Incremental</b><br>
-     • "Trabalho visível ao usuário apenas na entrega" → <b>Cascata</b><br>
-     • "Validação de requisitos por interações" → <b>Prototipação</b><br>
-     • "Integração com outros sistemas difícil" → <b>Incremental</b>
-   </div>
-   <h4>📋 Tabela rápida de vantagens/desvantagens</h4>
-   <div class="compare">
-     <div><strong>💧 Cascata</strong><p>✅ Simples, etapas claras<br>❌ Cliente só vê no final, requisitos fixos</p></div>
-     <div><strong>🎨 Prototipação</strong><p>✅ Valida com usuário, reduz risco<br>❌ Pode ignorar aspectos pós-protótipo</p></div>
-     <div><strong>🧩 Incremental</strong><p>✅ Uso desde o início, detecta problemas cedo<br>❌ Difícil integração com outros sistemas</p></div>
-   </div>
-   <div class="note tip"><b>💡 Dica final:</b> memorize esta tabela! Ela cai em quase toda prova de Engenharia de Software.</div>
- `,quiz:[
-  ["Qual modelo tem como vantagem 'simplicidade e etapas bem definidas'?","Cascata.",["Prototipação.","Cascata.","Incremental."],1],
-  ["Qual modelo é indicado quando o problema NÃO é bem compreendido?","Prototipação.",["Cascata.","Prototipação.","Incremental."],1],
-  ["Qual modelo aplica 'dividir para conquistar'?","Incremental.",["Cascata.","Prototipação.","Incremental."],2],
-  ["Qual modelo tem como desvantagem 'trabalho visível apenas na entrega'?","Cascata.",["Cascata.","Prototipação.","Incremental."],0],
-  ["Qual modelo tem dificuldades de integração com outros sistemas?","Incremental.",["Cascata.","Prototipação.","Incremental."],2],
-  ["Qual modelo valida requisitos através de interações com o usuário?","Prototipação.",["Cascata.","Prototipação.","Incremental."],1]
+  ["Operador de RESTO?","%",["/","%","\\\\","^"],1],
+  ["<code>2+3*4</code> = ?","14",["20","14","24","9"],1],
+  ["Menu com várias opções:","ESCOLHA/CASO",["SE","PARA","ESCOLHA/CASO","ENQUANTO"],2],
+  ["Vetor guarda:","Vários valores do mesmo tipo",["Um valor","Vários valores do mesmo tipo","Tipos mistos","Nada"],1],
+  ["<code>5 \\\\ 2</code> = ?","2",["2.5","2","3","0"],1],
+  ["Ambos V → && retorna:","V",["V","F","Nada","Depende"],0]
  ]},
 
 /* =========================================================
-   CASA 14 — TORRE DO BOSS (placeholder; renderização especial)
+   CASA 12 — BOSS FINAL (20 MCQ + 10 DESAFIOS + IA)
    ========================================================= */
-{id:14,title:"👑 Torre do BOSS — Simulado Final",short:"22 questões + 6 exercícios escritos!",content:"",quiz:[]}
+{id:12,title:"👑 Torre do BOSS — Exame Final",short:"20 questões + 10 desafios corrigidos por IA.",content:`
+   <h3>👑 O BOSS FINAL <span class="ai-badge">✨ CORRIGIDO POR IA</span></h3>
+   <p class="lead">Prova completa: <b>20 questões de múltipla escolha</b> + <b>10 desafios de código</b> corrigidos pela IA do Esperioux.</p>
+   <div class="note warning"><b>☠️ Regra do Boss:</b> acertar <b>80%</b> (16/20) do quiz E ser aprovado em <b>8 dos 10 desafios</b> de código pela IA.</div>
+
+   <h4>🎨 COMO FUNCIONA</h4>
+   <ul>
+     <li><b>Prova:</b> 20 questões objetivas (correção local por gabarito).</li>
+     <li><b>Desafios:</b> você escreve código em Portugol e a <b>IA do Esperioux</b> analisa, dá nota e feedback personalizado.</li>
+     <li>Cada desafio tem botão <b>"👀 Ver solução"</b> caso você trave.</li>
+     <li>A IA também verifica com rubrica local como apoio.</li>
+   </ul>
+
+   <h4>📋 DICAS DE SUCESSO</h4>
+   <div class="rubric">
+     <ul>
+       <li>Sempre comece com <code>algoritmo "nome"</code> e termine com <code>fimalgoritmo</code>.</li>
+       <li>Declare <b>todas</b> as variáveis antes do <code>inicio</code>.</li>
+       <li>Feche toda estrutura: <code>fimse</code>, <code>fimpara</code>, <code>fimenquanto</code>, <code>fimescolha</code>.</li>
+       <li>Acumuladores sempre inicializados com 0 antes do laço.</li>
+       <li>Use <code>&lt;-</code> para atribuição.</li>
+     </ul>
+   </div>
+ `,quiz:[
+  ["O que é um algoritmo?","Sequência de passos para resolver um problema.",["Um desenho.","Sequência de passos para resolver um problema.","Um programa executável.","Um banco de dados."],1],
+  ["Qual tipo pode armazenar 25.5?","Real",["Inteiro","Real","Lógico","Caractere"],1],
+  ["Quantos bits formam 1 byte?","8",["2","8","16","1024"],1],
+  ["Operador E lógico em Portugol:","&&",["||","&&","!","=="],1],
+  ["Estrutura ideal para menu com várias opções:","ESCOLHA/CASO",["SE simples","PARA","ESCOLHA/CASO","ENQUANTO"],2],
+  ["<b>[Trace]</b> <code>soma&lt;-0; para i de 1 ate 5 faca soma&lt;-soma+i</code> → soma =","15",["5","10","15","25"],2],
+  ["<b>[Bug]</b> <code>para (i&lt;-1; i&lt;=10; i--)</code> causa:","Loop infinito",["Erro de sintaxe","Loop infinito","Nada","Compila normal"],1],
+  ["Precedência: <code>2 + 3 * 4 - 1</code> = ?","13",["19","13","11","9"],1],
+  ["Verificar par usa:","%",["+","%","*","^"],1],
+  ["Diferença ENQUANTO x FAÇA...ENQUANTO:","FAÇA testa após executar",["São iguais","FAÇA testa após executar","ENQUANTO testa depois","Nenhuma"],1],
+  ["<b>[Trace]</b> <code>a&lt;-5;b&lt;-3;aux&lt;-a;a&lt;-b;b&lt;-aux</code> →","a=3, b=5",["a=5,b=3","a=3,b=5","a=3,b=3","a=5,b=5"],1],
+  ["Vetor em Portugol:","vetor[1..10] de real",["real[10]","vetor[1..10] de real","inteiro vetor","cadeia[10]"],1],
+  ["Estrutura que testa ANTES do bloco:","ENQUANTO",["SE","PARA","ENQUANTO","FAÇA...ENQUANTO"],2],
+  ["Teste de mesa serve para:","Simular execução na mão",["Comprimir código","Simular execução na mão","Renderizar tela","Instalar programa"],1],
+  ["<b>[Trace]</b> <code>conte&lt;-0; para i de 1 ate 5 faca se(i&gt;3) entao conte&lt;-conte+1</code> → conte =","2",["0","2","3","5"],1],
+  ["Nome VÁLIDO de variável:","nome_aluno",["2aluno","nome aluno","nome-aluno","nome_aluno"],3],
+  ["Operador RESTO (módulo):","%",["/","\\\\","%","^"],2],
+  ["Palavra final da estrutura ESCOLHA:","fimescolha",["fimse","fimpara","fimescolha","fimenquanto"],2],
+  ["Pseudocódigo em português:","Portugol",["HTML","Portugol","CSS","Python"],1],
+  ["<b>[Trace]</b> <code>x&lt;-10; enquanto(x&gt;0) faca x&lt;-x-3; escreva(x)</code> imprime quantos?","4",["2","3","4","5"],2]
+ ]}
 ];
 
 /* =========================================================
-   BOSS QUIZ — 22 QUESTÕES (médias e difíceis)
+   10 DESAFIOS DE CÓDIGO (com IA)
    ========================================================= */
-const BOSS_QUIZ = [
-  ["Segundo Sommerville (2007), Engenharia de Software é:", "Definição completa do autor.", ["Uma disciplina de engenharia relacionada com todos os aspectos da produção de software.", "Um conjunto de linguagens de programação.", "Apenas o ato de programar código."], 0],
-  ["Qual das opções NÃO é uma camada da Engenharia de Software segundo Pressman?", "Pressman define 4 camadas.", ["Ferramentas", "Métodos", "Hardware"], 2],
-  ["'O sistema deve emitir um relatório mensal de vendas' é exemplo de:", "Verbo de ação → funcional.", ["Requisito funcional", "Requisito não funcional", "Regra de negócio"], 0],
-  ["'O sistema deve responder em menos de 2 segundos' é exemplo de:", "Atributo de qualidade → não funcional.", ["Requisito funcional", "Requisito não funcional de eficiência", "Regra de negócio"], 1],
-  ["Quantas características principais tem a ISO/IEC 9126?", "Contar as características da norma.", ["4", "6", "8"], 1],
-  ["Qual característica da ISO 9126 trata da 'facilidade de modificar o software'?", "Relacionada a manutenção.", ["Funcionalidade", "Portabilidade", "Manutenibilidade"], 2],
-  ["A sub-característica 'Conformidade' aparece:", "Onde ela é cobrada.", ["Somente em Funcionalidade", "Em todas as 6 características", "Apenas em Eficiência"], 1],
-  ["'Recuperabilidade' é sub-característica de qual característica ISO 9126?", "Capacidade de se recuperar após falha.", ["Funcionalidade", "Confiabilidade", "Usabilidade"], 1],
-  ["Qual a diferença entre requisito funcional e regra de negócio?", "Um é o QUE, o outro é o COMO (política).", ["São sinônimos.", "O requisito é O QUE o sistema faz; a regra é a política do negócio.", "Regra de negócio é só decoração."], 1],
-  ["'Frete grátis para compras acima de R$150' é exemplo de:", "Política do negócio.", ["Requisito funcional", "Regra de negócio", "Requisito não funcional"], 1],
-  ["A Viabilidade Técnica avalia:", "Tecnologia, equipe, infraestrutura.", ["Se o projeto cabe no orçamento", "Se há tecnologia e equipe capazes", "Se o usuário vai adotar o sistema"], 1],
-  ["BPM estuda principalmente:", "Foco do Business Process Management.", ["Código-fonte e banco de dados", "Fluxo das informações e como as pessoas trabalham", "Apenas o marketing da empresa"], 1],
-  ["Qual é a MAIOR causa de problemas em software segundo o material?", "O material destaca uma em especial.", ["Falta de computadores", "Levantamento de requisitos ineficiente", "Falta de energia elétrica"], 1],
-  ["A ordem CORRETA das fases do Modelo Cascata é:", "Requisitos é a primeira fase.", ["Análise → Requisitos → Projeto → Codificação → Teste → Manutenção", "Requisitos → Análise → Projeto → Codificação → Teste → Manutenção", "Projeto → Requisitos → Codificação → Análise → Teste → Manutenção"], 1],
-  ["O Modelo de Prototipação é indicado quando:", "O cliente não sabe bem o que quer.", ["Os requisitos são claros e estáveis", "O problema não é bem compreendido", "Não há orçamento"], 1],
-  ["Qual a PRINCIPAL desvantagem do Modelo Incremental?", "Relacionada a integração.", ["É muito simples", "Dificuldades de integração com outros sistemas", "Não tem vantagens"], 1],
-  ["O Modelo Incremental aplica a filosofia:", "Frase famosa associada a ele.", ["Fazer tudo de uma vez", "Dividir para conquistar", "Planejar sem executar"], 1],
-  ["'Trabalho visível ao usuário apenas na entrega' é desvantagem do modelo:", "Modelo sequencial tradicional.", ["Incremental", "Prototipação", "Cascata"], 2],
-  ["O Levantamento de Requisitos tem como objetivo:", "Atividade inicial do projeto.", ["Escrever o código", "Identificar serviços, objetivos, atributos de qualidade e restrições", "Vender o software"], 1],
-  ["'Empréstimo de até 3 livros por usuário' é exemplo de:", "Política da biblioteca.", ["Requisito funcional", "Regra de negócio", "Requisito não funcional"], 1],
-  ["Qual destas NÃO é uma sub-característica de Manutenibilidade?", "Analisar cada característica.", ["Analisabilidade", "Testabilidade", "Interoperabilidade"], 2],
-  ["Se o cliente não sabe o que quer e o problema é mal compreendido, use:", "Modelo interativo com validação.", ["Cascata", "Incremental", "Prototipação"], 2]
-];
-
-/* =========================================================
-   6 EXERCÍCIOS ESCRITOS (corrigidos por "IA")
-   ========================================================= */
-const BOSS_WRITTEN = [
+const codeChallenges = [
   {
-    titulo:"Exercício 1 — Requisitos de um Sistema de Estacionamento",
-    prompt:"Um shopping quer um sistema para gerenciar o estacionamento. Escreva <b>3 Requisitos Funcionais</b> e <b>2 Requisitos Não Funcionais</b>, indicando a <b>característica ISO 9126</b> de cada requisito não funcional.",
-    keywords:{
-      funcional:/requisito[s]?\s+funcionais?|funcionais?:/i,
-      naoFunc:/n[ãa]o\s*[-]?\s*funcionais?|n[ãa]ofuncionais?/i,
-      acoes:/(cadastr|registr|consult|calcul|emitir|gerar|control|reserv)/gi,
-      iso:/(iso|9126|eficiência|usabilidade|confiabilidade|segurança|portabilidade|manutenibilidade|funcionalidade)/i
-    },
-    minAcoes:3, minLen:200
+    titulo:"Desafio 1 — Soma de dois números",
+    enun:"Leia dois números inteiros e mostre a soma deles.",
+    checks:[
+      { d:"Tem 'algoritmo' e 'fimalgoritmo'", r:/algoritmo[\s\S]+fimalgoritmo/i },
+      { d:"Abriu bloco 'var'", r:/\bvar\b/i },
+      { d:"Usou 'leia' duas vezes", r:/leia\s*\([^)]+\)[\s\S]*?leia\s*\(/i },
+      { d:"Usou o operador '+'", r:/\+/ },
+      { d:"Usou 'escreva' para exibir", r:/escreva\s*\(/i }
+    ],
+    min:4,
+    sol:`algoritmo "soma"
+var
+   a, b, s: inteiro
+inicio
+   escreva("Número 1: ")
+   leia(a)
+   escreva("Número 2: ")
+   leia(b)
+   s <- a + b
+   escreva("Soma: ", s)
+fimalgoritmo`
   },
   {
-    titulo:"Exercício 2 — Regras de Negócio de um Hospital",
-    prompt:"Você foi contratado para desenvolver um sistema para um hospital. Escreva <b>4 Regras de Negócio</b> que o sistema precisa respeitar. Cada regra deve representar uma política real do hospital (ex: limite, prazo, bloqueio, desconto).",
-    keywords:{
-      regra:/(regra[s]?\s+de\s+negócio|polític|limite|máximo|mínimo|prazo|bloquead|exige|obrigat|permit|apenas|somente)/i,
-      acoes:/(paciente|médic|leito|exame|atend|convên|medicament|internaç|consulta)/gi
-    },
-    minAcoes:3, minLen:220
+    titulo:"Desafio 2 — Média de três notas",
+    enun:"Leia três notas (real), calcule a média e mostre o resultado.",
+    checks:[
+      { d:"Tem 'algoritmo' e 'fimalgoritmo'", r:/algoritmo[\s\S]+fimalgoritmo/i },
+      { d:"Declarou variáveis como 'real'", r:/\breal\b/i },
+      { d:"Usou 'leia' três vezes", r:/leia[\s\S]*leia[\s\S]*leia/i },
+      { d:"Dividiu por 3", r:/\/\s*3|3\.0/ },
+      { d:"Usou 'escreva'", r:/escreva\s*\(/i }
+    ],
+    min:4,
+    sol:`algoritmo "media3"
+var
+   n1, n2, n3, m: real
+inicio
+   leia(n1)
+   leia(n2)
+   leia(n3)
+   m <- (n1 + n2 + n3) / 3
+   escreva("Média: ", m)
+fimalgoritmo`
   },
   {
-    titulo:"Exercício 3 — Escolha do Modelo de Processo",
-    prompt:"Uma startup quer criar um aplicativo de streaming (tipo Netflix) e <b>não tem clareza total</b> sobre as funcionalidades. Qual <b>Modelo de Processo</b> você recomendaria? <b>Justifique</b> explicando POR QUE esse modelo é o mais adequado para esse cenário.",
-    keywords:{
-      modelo:/(prototipa|cascata|incremental)/i,
-      justif:/(porque|pois|justific|razão|visto que|devido|adequado|melhor|ideal)/i,
-      contexto:/(cliente|usuário|requisito|compreend|incert|mudanç|valida)/i
-    },
-    minAcoes:2, minLen:200
+    titulo:"Desafio 3 — Par ou ímpar",
+    enun:"Leia um número inteiro e mostre 'Par' se for par ou 'Ímpar' se for ímpar.",
+    checks:[
+      { d:"Tem 'algoritmo' e 'fimalgoritmo'", r:/algoritmo[\s\S]+fimalgoritmo/i },
+      { d:"Usou 'leia'", r:/leia\s*\(/i },
+      { d:"Usou operador % (resto)", r:/%/ },
+      { d:"Usou SE/SENÃO", r:/se[\s\S]+senao/i },
+      { d:"Fechou com 'fimse'", r:/fimse/i }
+    ],
+    min:4,
+    sol:`algoritmo "parimpar"
+var
+   n: inteiro
+inicio
+   leia(n)
+   se (n % 2 = 0) entao
+      escreva("Par")
+   senao
+      escreva("Ímpar")
+   fimse
+fimalgoritmo`
   },
   {
-    titulo:"Exercício 4 — Estudo de Viabilidade",
-    prompt:"Uma escola pública quer um sistema para controlar presença e notas. Faça um <b>Estudo de Viabilidade</b> completo, analisando os <b>3 tipos</b>: Econômica, Técnica e Operacional. Para cada uma, diga se o projeto é viável e por quê.",
-    keywords:{
-      econ:/(econômic|econômic|orçament|invest|custo|retorno|r\$)/i,
-      tec:/(técnic|tecnolog|equipe|infraestrutura|prazo|ferramenta)/i,
-      oper:/(operacional|usuári|adot|treinament|cultura|resistên|aceita)/i
-    },
-    minAcoes:3, minLen:250
+    titulo:"Desafio 4 — Tabuada de 1 a 10",
+    enun:"Leia um número N e mostre a tabuada de N de 1 a 10 usando um laço PARA.",
+    checks:[
+      { d:"Tem 'algoritmo' e 'fimalgoritmo'", r:/algoritmo[\s\S]+fimalgoritmo/i },
+      { d:"Usou laço 'para'", r:/\bpara\b/i },
+      { d:"Laço vai até 10", r:/(ate|to|<=?\s*)\s*10/i },
+      { d:"Usou 'leia' e 'escreva'", r:/leia[\s\S]+escreva/i },
+      { d:"Fechou com 'fimpara'", r:/fimpara/i }
+    ],
+    min:4,
+    sol:`algoritmo "tabuada"
+var
+   n, i: inteiro
+inicio
+   leia(n)
+   para i de 1 ate 10 faca
+      escreva(n, " x ", i, " = ", n * i)
+   fimpara
+fimalgoritmo`
   },
   {
-    titulo:"Exercício 5 — Análise de Processo com BPM",
-    prompt:"Usando os conceitos de <b>BPM</b>, descreva o processo de <b>matrícula de uma faculdade</b>. Liste as etapas em ordem, mencione quem participa de cada etapa e onde estão os possíveis <b>gargalos</b>.",
-    keywords:{
-      etapas:/(etapa|fase|passo|primeir|depois|em seguida|final|fluxo)/gi,
-      atores:/(aluno|secretari|coordenador|financeir|professor|bibliotec)/gi,
-      bpm:/(bpm|processo|fluxo|informaç|gargal|caminho)/i
-    },
-    minAcoes:4, minLen:250
+    titulo:"Desafio 5 — Somar de 1 a N",
+    enun:"Leia um número N e calcule a soma de 1 até N usando acumulador.",
+    checks:[
+      { d:"Tem 'algoritmo' e 'fimalgoritmo'", r:/algoritmo[\s\S]+fimalgoritmo/i },
+      { d:"Declarou variável 'soma'", r:/soma/i },
+      { d:"Inicializou 'soma <- 0'", r:/soma\s*(<-|=)\s*0/i },
+      { d:"Usou laço com acumulador", r:/soma\s*(<-|=)\s*soma\s*\+/i },
+      { d:"Usou 'leia' e 'escreva'", r:/leia[\s\S]+escreva/i }
+    ],
+    min:4,
+    sol:`algoritmo "somaN"
+var
+   n, i, soma: inteiro
+inicio
+   leia(n)
+   soma <- 0
+   para i de 1 ate n faca
+      soma <- soma + i
+   fimpara
+   escreva("Soma: ", soma)
+fimalgoritmo`
   },
   {
-    titulo:"Exercício 6 — Análise Completa de um Sistema de Delivery",
-    prompt:"Faça uma <b>análise completa</b> de um sistema de <b>delivery de comida</b> (tipo iFood). Sua resposta deve conter: <b>3 Requisitos Funcionais</b>, <b>2 Requisitos Não Funcionais</b> (com ISO 9126), <b>2 Regras de Negócio</b>, uma <b>análise de viabilidade resumida</b> e a indicação do <b>Modelo de Processo</b> que você usaria, com justificativa.",
-    keywords:{
-      reqFunc:/(requisito[s]?\s+funcionais?|funcionais?:)/i,
-      reqNaoFunc:/(n[ãa]o\s*[-]?\s*funcionais?|n[ãa]ofuncionais?)/i,
-      regra:/(regra[s]?\s+de\s+negócio|polític|limite|prazo|desconto|frete)/i,
-      via:/(viabilidad|econômic|técnic|operacional)/i,
-      modelo:/(cascata|prototipa|incremental)/i,
-      iso:/(iso|9126|eficiência|usabilidade|confiabilidade|segurança|portabilidade|manutenibilidade|funcionalidade)/i
-    },
-    minAcoes:5, minLen:400
+    titulo:"Desafio 6 — Aprovação com frequência",
+    enun:"Leia média e frequência (%). Mostre 'Aprovado' se média >= 6 E frequência >= 75, senão 'Recuperação'.",
+    checks:[
+      { d:"Tem 'algoritmo' e 'fimalgoritmo'", r:/algoritmo[\s\S]+fimalgoritmo/i },
+      { d:"Leu média e frequência", r:/leia[\s\S]+leia/i },
+      { d:"Usou operador '&&'", r:/&&/ },
+      { d:"Comparou com 6 e 75", r:/6[\s\S]+75|75[\s\S]+6/ },
+      { d:"Usou SE/SENÃO/fimse", r:/se[\s\S]+senao[\s\S]+fimse/i }
+    ],
+    min:4,
+    sol:`algoritmo "aprovacao"
+var
+   m, f: real
+inicio
+   leia(m)
+   leia(f)
+   se (m >= 6.0) && (f >= 75.0) entao
+      escreva("Aprovado")
+   senao
+      escreva("Recuperação")
+   fimse
+fimalgoritmo`
+  },
+  {
+    titulo:"Desafio 7 — Maior de idade",
+    enun:"Leia a idade e mostre 'Maior de idade' se >= 18, senão 'Menor de idade'.",
+    checks:[
+      { d:"Tem 'algoritmo' e 'fimalgoritmo'", r:/algoritmo[\s\S]+fimalgoritmo/i },
+      { d:"Usou 'leia'", r:/leia\s*\(/i },
+      { d:"Comparou com 18", r:/18/ },
+      { d:"Usou SE/SENÃO/fimse", r:/se[\s\S]+senao[\s\S]+fimse/i },
+      { d:"Usou 'escreva'", r:/escreva\s*\(/i }
+    ],
+    min:4,
+    sol:`algoritmo "idade"
+var
+   idade: inteiro
+inicio
+   leia(idade)
+   se (idade >= 18) entao
+      escreva("Maior de idade")
+   senao
+      escreva("Menor de idade")
+   fimse
+fimalgoritmo`
+  },
+  {
+    titulo:"Desafio 8 — Calcular IMC",
+    enun:"Leia peso e altura e calcule IMC = peso / (altura * altura).",
+    checks:[
+      { d:"Tem 'algoritmo' e 'fimalgoritmo'", r:/algoritmo[\s\S]+fimalgoritmo/i },
+      { d:"Declarou variáveis como real", r:/\breal\b/i },
+      { d:"Leu peso e altura", r:/leia[\s\S]+leia/i },
+      { d:"Usou fórmula com multiplicação e divisão", r:/\/[\s\S]*\*|\*[\s\S]*\// },
+      { d:"Usou 'escreva'", r:/escreva\s*\(/i }
+    ],
+    min:4,
+    sol:`algoritmo "imc"
+var
+   peso, altura, imc: real
+inicio
+   leia(peso)
+   leia(altura)
+   imc <- peso / (altura * altura)
+   escreva("IMC: ", imc)
+fimalgoritmo`
+  },
+  {
+    titulo:"Desafio 9 — Contar pares de 1 a 20",
+    enun:"Usando um laço, conte quantos números pares existem entre 1 e 20.",
+    checks:[
+      { d:"Tem 'algoritmo' e 'fimalgoritmo'", r:/algoritmo[\s\S]+fimalgoritmo/i },
+      { d:"Usou laço", r:/(para|enquanto|faca)/i },
+      { d:"Testou par com %", r:/%/ },
+      { d:"Usou acumulador/contador", r:/\w+\s*(<-|=)\s*\w+\s*\+\s*1/i },
+      { d:"Fechou estrutura (fimpara/fimenquanto)", r:/(fimpara|fimenquanto)/i }
+    ],
+    min:4,
+    sol:`algoritmo "conta_pares"
+var
+   i, conte: inteiro
+inicio
+   conte <- 0
+   para i de 1 ate 20 faca
+      se (i % 2 = 0) entao
+         conte <- conte + 1
+      fimse
+   fimpara
+   escreva("Pares: ", conte)
+fimalgoritmo`
+  },
+  {
+    titulo:"Desafio 10 — Menu com ESCOLHA",
+    enun:"Mostre um menu: 1-Somar, 2-Subtrair, 3-Sair. Leia a opção e, com ESCOLHA, execute a ação escolhida.",
+    checks:[
+      { d:"Tem 'algoritmo' e 'fimalgoritmo'", r:/algoritmo[\s\S]+fimalgoritmo/i },
+      { d:"Usou 'escolha'", r:/\bescolha\b/i },
+      { d:"Usou pelo menos 2 'caso'", r:/caso[\s\S]+caso/i },
+      { d:"Usou 'outrocaso'", r:/outrocaso/i },
+      { d:"Fechou com 'fimescolha'", r:/fimescolha/i }
+    ],
+    min:4,
+    sol:`algoritmo "menu"
+var
+   op: inteiro
+inicio
+   escreva("1-Somar 2-Subtrair 3-Sair: ")
+   leia(op)
+   escolha (op)
+      caso 1
+         escreva("Somando...")
+      caso 2
+         escreva("Subtraindo...")
+      caso 3
+         escreva("Saindo...")
+      outrocaso
+         escreva("Opção inválida")
+   fimescolha
+fimalgoritmo`
   }
 ];
 
 /* =========================================================
    ESTADO
    ========================================================= */
-let state = JSON.parse(localStorage.getItem("engSoftWorldState") || '{"xp":0,"unlocked":1,"lives":3,"passed":{}}');
+let state = JSON.parse(localStorage.getItem("portugolWorldState_v4") || '{"xp":0,"unlocked":1,"lives":3,"passed":{},"challenges":{}}');
+const TOTAL_HOUSES = 12;
 
-function save(){
-  localStorage.setItem("engSoftWorldState", JSON.stringify(state));
-  renderMap();
-  updateHUD();
-  updateProgress();
-}
+function save(){localStorage.setItem("portugolWorldState_v4", JSON.stringify(state)); renderMap(); updateHUD(); updateProgress()}
+
 function updateHUD(){
   document.getElementById("xp").textContent = state.xp;
   const passedCount = Object.keys(state.passed).length;
-  document.getElementById("done").textContent = Math.min(passedCount + 1, lessons.length);
+  document.getElementById("done").textContent = Math.min(passedCount + 1, TOTAL_HOUSES);
   document.getElementById("lives").textContent = state.lives;
 }
+
 function updateProgress(){
-  const total = lessons.length;
   const done = Object.keys(state.passed).length;
-  document.getElementById("progressFill").style.width = (done / total) * 100 + "%";
+  document.getElementById("progressFill").style.width = (done / TOTAL_HOUSES * 100) + "%";
 }
 
 /* =========================================================
@@ -1003,6 +1117,17 @@ function renderMap(){
     const el = document.createElement("div");
     el.className = "location" + (locked ? " locked" : "");
     el.onclick = () => locked ? toast("🔒 Complete a casa anterior primeiro!") : openLesson(l.id);
+    const isBoss = (l.id === 12);
+    const isGuia = (l.id === 11);
+    const isMesa = (l.id === 10);
+    let titulo = "🏠 Casa "+l.id;
+    if(isBoss) titulo = "👑 Torre do BOSS";
+    if(isGuia) titulo = "🎒 Guia de Bolso";
+    if(isMesa) titulo = "📋 Teste de Mesa";
+    let signTxt = l.title.replace("Casa "+l.id+" — ","");
+    if(isBoss) signTxt = "👑 BOSS + IA";
+    if(isGuia) signTxt = "GUIA DE BOLSO";
+    if(isMesa) signTxt = "TESTE DE MESA";
     el.innerHTML = `
       <div class="lamp">${i%2?"🌼":"🌱"}</div>
       <div class="tree">${i%3?"🌳":"🌲"}</div>
@@ -1012,22 +1137,33 @@ function renderMap(){
       <div class="house">
         <div class="roof"></div>
         <div class="chimney"></div>
-        <div class="sign">${l.id === 14 ? "👑 BOSS" : l.title.replace("Casa "+l.id+" — ","")}</div>
+        <div class="sign">${signTxt}</div>
         <div class="window left"></div>
         <div class="window right"></div>
         <div class="door"></div>
-        <h3>${l.id === 14 ? "👑 Torre do BOSS" : "🏠 Casa "+l.id}</h3>
+        <h3>${titulo}</h3>
         <p>${l.short}</p>
       </div>`;
     root.appendChild(el);
   });
 }
+
 function toast(msg){
   const t = document.getElementById("toast");
   t.textContent = msg;
   t.classList.add("show");
   clearTimeout(window.toastTimeout);
   window.toastTimeout = setTimeout(() => t.classList.remove("show"), 2800);
+}
+
+function switchTab(btn, panelId){
+  const parent = btn.parentElement;
+  parent.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const panels = parent.parentElement.querySelectorAll('.solution-panel');
+  panels.forEach(p => p.classList.remove('active'));
+  const target = document.getElementById(panelId);
+  if(target) target.classList.add('active');
 }
 
 /* =========================================================
@@ -1037,461 +1173,326 @@ function openLesson(id){
   const l = lessons.find(x => x.id === id);
   if(!l) return;
   document.getElementById("lessonTitle").textContent = l.title;
-
-  const bc = document.getElementById("breadcrumb");
-  bc.innerHTML = `<span>📍 Você está aqui:</span> <span>Casa ${id} de ${lessons.length}</span> <span>${l.short}</span>`;
-
   const side = document.getElementById("side");
   side.innerHTML = "";
   lessons.filter(x => x.id <= state.unlocked).forEach(x => {
     const b = document.createElement("button");
-    b.textContent = (x.id === 14 ? "👑 " : "🏠 ") + x.id + " • " + x.short;
+    const pre = x.id === 12 ? "👑 " : (x.id === 11 ? "🎒 " : (x.id === 10 ? "📋 " : "🏠 "));
+    b.textContent = pre + x.id + " • " + x.short;
     b.className = x.id === id ? "active" : "";
     b.onclick = () => openLesson(x.id);
     side.appendChild(b);
   });
+  let html = l.content;
 
-  let html = "";
-  if(id === 14){
-    html = buildBossFight();
-  } else {
-    html = l.content;
-    html += `<div class="quiz"><h4>🧪 Mini-Quiz da Casa</h4><p><b>Você precisa acertar pelo menos 70% para desbloquear a próxima.</b></p><div id="quizArea">`;
+  if(id !== 12){
+    const exigido = 70;
+    html += `<div class="quiz"><h4>🧪 Simulado da Casa</h4><p><b>Você precisa acertar pelo menos ${exigido}% para desbloquear a próxima.</b></p><div id="quizArea">`;
     l.quiz.forEach((q,i) => {
       html += `<div class="q"><b>${i+1}. ${q[0]}</b>${q[2].map((a,j) => `<label><input type="radio" name="q${id}_${i}" value="${j}"> ${a}</label>`).join("")}<div id="rf${id}_${i}" class="result"></div></div>`;
     });
     html += `<button class="btn" onclick="grade(${id})">✨ VERIFICAR RESPOSTAS</button><div id="quizResult" class="result"></div></div></div>`;
-    html += `<div class="code-challenge"><h4>💻 Desafio Prático</h4><p>${challengeText(id)}</p><textarea class="code-input" id="code_${id}" placeholder="Escreva sua resposta aqui..."></textarea><br><button class="btn mint" onclick="checkCode(${id})">TESTAR MINHA RESPOSTA</button><div id="codeResult_${id}" class="result"></div></div>`;
+
+    if(id < 12){
+      html += `<div class="code-challenge"><h4>💻 Desafio de Portugol</h4><p>${challengeText(id)}</p><textarea class="code-input" id="code_${id}" placeholder="Escreva seu algoritmo aqui..."></textarea><br><button class="btn mint" onclick="checkCode(${id})">TESTAR MEU RACIOCÍNIO</button><div id="codeResult_${id}" class="result"></div></div>`;
+    }
+  } else {
+    html += `
+    <div class="tab-inner" id="bossTabs">
+      <button class="active" onclick="switchBossTab(this,'bossQuiz')">📝 Prova (20 questões)</button>
+      <button onclick="switchBossTab(this,'bossCodes')">💻 10 Desafios (corrigidos por IA)</button>
+    </div>
+
+    <div id="bossQuiz" class="boss-tab-content active">
+      <div class="quiz"><h4>📝 Prova Final — 20 questões</h4>
+      <p><b>Precisa acertar 80% (16 de 20).</b></p><div id="quizArea">`;
+    l.quiz.forEach((q,i) => {
+      html += `<div class="q"><b>${i+1}. ${q[0]}</b>${q[2].map((a,j) => `<label><input type="radio" name="q${id}_${i}" value="${j}"> ${a}</label>`).join("")}<div id="rf${id}_${i}" class="result"></div></div>`;
+    });
+    html += `<button class="btn" onclick="grade(12)">✨ VERIFICAR PROVA</button><div id="quizResult" class="result"></div></div>
+    </div>
+
+    <div id="bossCodes" class="boss-tab-content">
+      <h4>💻 10 Desafios de Código <span class="ai-badge">✨ IA</span></h4>
+      <p><b>Você precisa ser aprovado em pelo menos 8 dos 10 desafios.</b> Escreva o código e clique em <b>"🤖 Corrigir com IA"</b>. A IA do Esperioux dá feedback personalizado.</p>
+      <div id="challengesArea"></div>
+      <div id="bossFinal" style="margin-top:20px"></div>
+    </div>`;
   }
 
   document.getElementById("content").innerHTML = html;
+  if(id === 12) renderChallenges();
   document.getElementById("panel").style.display = "flex";
+}
 
-  document.getElementById("navInfo").textContent = `Casa ${id} de ${lessons.length}`;
-  document.getElementById("btnPrev").disabled = (id === 1);
-  document.getElementById("btnNext").disabled = (id === lessons.length);
-  if(id >= state.unlocked && !state.passed[id]){
-    document.getElementById("btnNext").disabled = true;
-    document.getElementById("btnNext").title = "Complete o quiz para liberar";
-  }
+function switchBossTab(btn, id){
+  document.querySelectorAll('#bossTabs button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.boss-tab-content').forEach(c => c.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
 
-  setTimeout(() => { document.getElementById("content").scrollTop = 0; }, 50);
-  if(id === 14) setTimeout(() => { document.getElementById("content").scrollTop = 0; }, 80);
+function challengeText(id){
+  const c = {
+    1:"Escreva em passos um algoritmo para receber dois números e mostrar a soma.",
+    2:"Escreva um algoritmo identificando entrada, processamento e saída para calcular a média de duas notas.",
+    3:"Escreva o pseudocódigo/Portugol de um algoritmo que leia dois números, some e mostre o resultado.",
+    4:"Crie variáveis para idade (inteiro), nota (real), nome (cadeia) e aprovado (lógico).",
+    5:"Declare variáveis para guardar um número inteiro, um número real, um caractere e uma cadeia.",
+    6:"Escreva um algoritmo sequencial que leia dois números, calcule a soma e mostre o resultado.",
+    7:"Escreva um algoritmo que leia uma média e mostre 'Aprovado' se media >= 6 e 'Recuperação' caso contrário.",
+    8:"Escreva um PARA que mostre os números de 1 a 10.",
+    9:"Escreva um algoritmo que leia um número e mostre se é par ou ímpar usando o operador %.",
+    10:"Faça o teste de mesa (comente passo a passo) de: soma <- 0; para i de 1 ate 3 faca soma <- soma + i. Qual o valor final de soma?",
+    11:"Escreva um ESCOLHA/CASO que leia um número de 1 a 3 e imprima o dia correspondente e outrocaso para inválidos."
+  };
+  return c[id];
 }
 
 /* =========================================================
-   BOSS FIGHT — RENDER
+   RENDER DESAFIOS
    ========================================================= */
-function buildBossFight(){
-  let html = `
-    <div class="boss-intro">
-      <h3>👑 A TORRE DO BOSS FINAL</h3>
-      <p>Você chegou ao último desafio, Engie! O <b>BOSS Engenharius</b> bloqueia o caminho. Ele só cai diante de um verdadeiro engenheiro de software.</p>
-      <p><b>☠️ Regras do combate:</b></p>
-      <ul>
-        <li>Responda <b>22 questões de múltipla escolha</b> (médias e difíceis)</li>
-        <li>Resolva <b>6 exercícios escritos</b> (a IA corrige)</li>
-        <li>A pontuação final define <b>como o boss morre</b></li>
-        <li>Se acertar <b>menos de 70%</b>, <b>VOCÊ cai</b> e precisa tentar de novo</li>
-        <li><b>100% = morte épica</b> com raio e desintegração!</li>
-      </ul>
-    </div>
+function renderChallenges(){
+  const area = document.getElementById("challengesArea");
+  if(!area) return;
+  area.innerHTML = "";
+  codeChallenges.forEach((ch, idx) => {
+    const num = idx + 1;
+    const passado = state.challenges[num] === true;
+    const card = document.createElement("div");
+    card.className = "challenge-card";
+    card.innerHTML = `
+      <div class="challenge-head" onclick="toggleChallenge(${num})">
+        <b>${ch.titulo}</b>
+        <span class="challenge-status ${passado ? 'aprovado' : ''}" id="chStatus_${num}">${passado ? '✅ Aprovado' : 'pendente'}</span>
+      </div>
+      <div class="challenge-body" id="chBody_${num}">
+        <div class="challenge-enun">${ch.enun}</div>
+        <textarea class="code-input" id="chCode_${num}" placeholder="Escreva seu algoritmo aqui..."></textarea>
+        <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+          <button class="btn ia" onclick="gradeChallengeIA(${num})">🤖 Corrigir com IA</button>
+          <button class="btn mint" onclick="gradeChallengeLocal(${num})">📋 Rubrica local</button>
+          <button class="btn purple" onclick="peekChallenge(${num})">👀 Ver solução</button>
+        </div>
+        <div class="ai-thinking" id="chThink_${num}">
+          <div class="ai-dots"><span></span><span></span><span></span></div>
+          <b>Esperioux (IA) está analisando seu código...</b>
+        </div>
+        <div class="boss-feedback" id="chFb_${num}"></div>
+      </div>`;
+    area.appendChild(card);
+  });
+  updateBossFinal();
+}
 
-    <div class="boss-arena" id="bossArena">
-      <div class="hp-bar player-hp"><div class="fill" id="playerHpFill"></div></div>
-      <div class="hp-bar boss-hp"><div class="fill" id="bossHpFill"></div></div>
-      <div class="hp-label player-lbl">🤖 ENGIE</div>
-      <div class="hp-label boss-lbl">👹 BOSS</div>
-      <div class="fighter player" id="playerSprite">🤖</div>
-      <div class="fighter boss-sprite" id="bossSprite">👹</div>
-      <div class="arena-floor"></div>
-      <div class="arena-msg" id="arenaMsg"></div>
-    </div>
+function toggleChallenge(num){
+  const b = document.getElementById("chBody_" + num);
+  if(b) b.classList.toggle("open");
+}
 
-    <div class="q-progress" id="qProgress">📝 Progresso: 0/22 questões respondidas • 0/6 escritos preenchidos</div>
+function peekChallenge(num){
+  const ch = codeChallenges[num - 1];
+  const ta = document.getElementById("chCode_" + num);
+  if(ta){ ta.value = ch.sol; }
+  toast("👀 Solução-modelo carregada!");
+}
 
-    <h3>📋 PARTE 1 — 22 Questões de Múltipla Escolha</h3>
-    <p style="font-size:13px;color:#4a5a9a;font-weight:800">Marque com atenção. Cada questão vale 1 ponto.</p>
-  `;
+/* =========================================================
+   RUBRICA LOCAL (fallback)
+   ========================================================= */
+function gradeChallengeLocal(num){
+  const ch = codeChallenges[num - 1];
+  const code = (document.getElementById("chCode_" + num)?.value || "").trim();
+  const fb = document.getElementById("chFb_" + num);
+  const status = document.getElementById("chStatus_" + num);
 
-  BOSS_QUIZ.forEach((q,i) => {
-    html += `<div class="q"><b>${i+1}. ${q[0]}</b>`;
-    q[2].forEach((a,j) => {
-      html += `<label><input type="radio" name="boss_q${i}" value="${j}" onchange="updateBossProgress()"> ${a}</label>`;
+  if(!code){ toast("⚠️ Escreva seu código primeiro!"); return; }
+
+  const results = ch.checks.map(c => ({ d: c.d, ok: c.r.test(code) }));
+  const acertos = results.filter(r => r.ok).length;
+  const total = results.length;
+  const aprovado = acertos >= ch.min;
+
+  let rel = "📋 CORREÇÃO POR RUBRICA LOCAL\n\n";
+  results.forEach(r => { rel += `${r.ok ? "✅" : "❌"} ${r.d}\n`; });
+  rel += `\n${acertos}/${total} critérios — `;
+  rel += aprovado ? "🏆 APROVADO!" : `⚠️ Reprovado (precisa de ${ch.min}).`;
+
+  fb.textContent = rel;
+  fb.classList.add("show");
+
+  if(aprovado){
+    status.textContent = "✅ Aprovado";
+    status.classList.add("aprovado");
+    status.classList.remove("reprovado");
+    state.challenges[num] = true;
+  } else {
+    status.textContent = "❌ Reprovado";
+    status.classList.add("reprovado");
+    status.classList.remove("aprovado");
+    state.challenges[num] = false;
+  }
+  save();
+  updateBossFinal();
+}
+
+/* =========================================================
+   CORREÇÃO COM IA (DIFY)
+   ========================================================= */
+async function gradeChallengeIA(num){
+  const ch = codeChallenges[num - 1];
+  const code = (document.getElementById("chCode_" + num)?.value || "").trim();
+  const fb = document.getElementById("chFb_" + num);
+  const status = document.getElementById("chStatus_" + num);
+  const think = document.getElementById("chThink_" + num);
+
+  if(!code){ toast("⚠️ Escreva seu código antes de pedir à IA!"); return; }
+
+  fb.classList.remove("show");
+  think.classList.add("show");
+
+  // Rubrica local como apoio
+  const localResults = ch.checks.map(c => ({ d: c.d, ok: c.r.test(code) }));
+  const localAcertos = localResults.filter(r => r.ok).length;
+  const localTotal = localResults.length;
+
+  try {
+    const prompt = `Você é o Esperioux, um robô tutor simpático de algoritmos em Portugol para alunos iniciantes.
+
+O aluno está resolvendo o seguinte DESAFIO:
+"${ch.enun}"
+
+CÓDIGO ESCRITO PELO ALUNO (em Portugol):
+\`\`\`portugol
+${code}
+\`\`\`
+
+Rubrica técnica (checagem automática prévia): ${localAcertos}/${localTotal} critérios atendidos.
+
+Avalie o código com base no enunciado. Seja justo: se cumprir o que foi pedido, aprove mesmo que o código seja diferente de uma solução-modelo. Corrija erros de sintaxe/estrutura de Portugol quando houver.
+
+Responda em português do Brasil, amigável, com emojis moderados, MÁXIMO 180 palavras, neste formato exato:
+
+✅ O QUE ESTÁ CERTO
+(2-4 itens curtos)
+
+❌ O QUE PODE MELHORAR
+(2-4 itens ou "Nada a apontar")
+
+💡 DICA FINAL
+(1 dica curta)
+
+🏆 VEREDITO: APROVADO ou REPROVADO
+(seja direto: aprovado se o código resolve o problema pedido)`;
+
+    const response = await fetch(`${DIFY_CONFIG.baseUrl}${DIFY_CONFIG.chatEndpoint}`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${DIFY_CONFIG.apiKey}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        inputs: {},
+        query: prompt,
+        response_mode: 'blocking',
+        conversation_id: '',
+        user: 'aluno-portugol-world'
+      })
     });
-    html += `</div>`;
-  });
 
-  html += `<h3 style="margin-top:30px">✍️ PARTE 2 — 6 Exercícios Escritos (corrigidos por IA)</h3>
-    <p style="font-size:13px;color:#4a5a9a;font-weight:800">Escreva com suas palavras. A IA avaliará palavras-chave, contexto e coerência.</p>`;
+    if(!response.ok) throw new Error('HTTP ' + response.status);
 
-  BOSS_WRITTEN.forEach((w,i) => {
-    html += `<div class="written-ex">
-      <span class="badge">📝 Vale 1 ponto</span>
-      <h4>${w.titulo}</h4>
-      <div class="prompt">${w.prompt}</div>
-      <textarea id="boss_w${i}" oninput="updateBossProgress()" placeholder="Escreva sua resposta aqui..."></textarea>
-    </div>`;
-  });
+    const data = await response.json();
+    const aiText = data.answer || data.message || '';
 
-  html += `
-    <div class="boss-actions">
-      <button class="btn red" onclick="fightBoss()">⚔️ ENFRENTAR O BOSS</button>
-      <button class="btn purple" onclick="peekBossSolution()">👀 Ver Gabarito das Questões</button>
-    </div>
-    <div id="bossResultArea"></div>
-  `;
+    think.classList.remove("show");
 
-  return html;
-}
+    if(!aiText){
+      throw new Error('Resposta vazia da IA');
+    }
 
-function updateBossProgress(){
-  let qCount = 0;
-  BOSS_QUIZ.forEach((_,i) => {
-    if(document.querySelector(`input[name="boss_q${i}"]:checked`)) qCount++;
-  });
-  let wCount = 0;
-  BOSS_WRITTEN.forEach((_,i) => {
-    const el = document.getElementById(`boss_w${i}`);
-    if(el && el.value.trim().length >= 80) wCount++;
-  });
-  const el = document.getElementById("qProgress");
-  if(el) el.textContent = `📝 Progresso: ${qCount}/22 questões respondidas • ${wCount}/6 escritos preenchidos`;
-}
+    // Verificar aprovação pelo texto
+    const aprovadoIA = /aprovado/i.test(aiText) && !/reprovado/i.test(aiText);
+    // Fallback local
+    const aprovadoLocal = localAcertos >= ch.min;
+    const aprovado = aprovadoIA || aprovadoLocal;
 
-/* =========================================================
-   CORREÇÃO DOS ESCRITOS (IA por heurística de palavras-chave)
-   ========================================================= */
-function corrigirEscrito(w, texto){
-  texto = (texto || "").trim();
-  if(texto.length < w.minLen) return { ok:false, motivo:`Texto muito curto (mínimo ${w.minLen} caracteres).` };
-  const t = texto.toLowerCase();
-  let pontos = 0;
-  let faltando = [];
+    let rel = "🤖 ESPERIOUX (IA) DIZ:\n\n";
+    rel += aiText;
+    if(!aprovadoIA && aprovadoLocal){
+      rel += `\n\n(📋 Rubrica local: ${localAcertos}/${localTotal} — aprovado por critérios técnicos.)`;
+    }
+    fb.textContent = rel;
+    fb.classList.add("show");
 
-  // palavras-chave obrigatórias
-  Object.entries(w.keywords).forEach(([key, regex]) => {
-    if(regex.test(texto)){
-      pontos++;
+    if(aprovado){
+      status.textContent = "✅ Aprovado";
+      status.classList.add("aprovado");
+      status.classList.remove("reprovado");
+      state.challenges[num] = true;
     } else {
-      faltando.push(key);
+      status.textContent = "❌ Reprovado";
+      status.classList.add("reprovado");
+      status.classList.remove("aprovado");
+      state.challenges[num] = false;
     }
-  });
-
-  // contagem de termos de ação
-  const kwAcoes = w.keywords.acoes;
-  if(kwAcoes){
-    const matches = texto.match(kwAcoes) || [];
-    if(matches.length >= w.minAcoes) pontos += 2;
-    else if(matches.length >= Math.ceil(w.minAcoes/2)) pontos += 1;
-    else faltando.push(`poucos termos técnicos (encontrados ${matches.length}, mínimo ${w.minAcoes})`);
-  }
-
-  // Texto rico
-  if(texto.length > w.minLen * 1.5) pontos++;
-  // Presença de marcadores de justificativa
-  if(/porque|pois|logo|portanto|assim|dessa forma|justific/i.test(t)) pontos++;
-
-  const total = 4 + (kwAcoes ? 2 : 0) + 2; // score normalizado
-  const pct = Math.min(100, Math.round((pontos / total) * 100));
-  return { ok: pct >= 60, pct, faltando, motivo: faltando.length ? "Faltou mencionar: " + faltando.join(", ") : "Excelente!" };
-}
-
-/* =========================================================
-   FIGHT BOSS — animação dinâmica
-   ========================================================= */
-function fightBoss(){
-  let qAcertos = 0;
-  BOSS_QUIZ.forEach((q,i) => {
-    const sel = document.querySelector(`input[name="boss_q${i}"]:checked`);
-    if(sel && +sel.value === q[3]) qAcertos++;
-  });
-
-  let wResultados = [];
-  let wAcertos = 0;
-  BOSS_WRITTEN.forEach((w,i) => {
-    const txt = document.getElementById(`boss_w${i}`).value;
-    const r = corrigirEscrito(w, txt);
-    wResultados.push(r);
-    if(r.ok) wAcertos++;
-  });
-
-  const totalPontos = BOSS_QUIZ.length + BOSS_WRITTEN.length; // 28
-  const acertos = qAcertos + wAcertos;
-  const pct = Math.round((acertos / totalPontos) * 100);
-
-  // Bloquear botão e rolar
-  const btn = document.querySelector('.boss-actions .btn.red');
-  if(btn){ btn.disabled = true; btn.textContent = "⚔️ Lutando..."; }
-  document.getElementById("bossResultArea").innerHTML = "";
-  document.getElementById("content").scrollTo({ top: 0, behavior: "smooth" });
-  document.getElementById("panel").scrollTop = 0;
-  document.querySelector(".content").scrollTop = 0;
-
-  // Reset arena
-  const arena = document.getElementById("bossArena");
-  const boss = document.getElementById("bossSprite");
-  const player = document.getElementById("playerSprite");
-  const bossHp = document.getElementById("bossHpFill");
-  const playerHp = document.getElementById("playerHpFill");
-  const msg = document.getElementById("arenaMsg");
-  arena.classList.remove("shake");
-  boss.classList.remove("hit","stagger","fall","explode");
-  player.classList.remove("hit","attacking","die");
-  bossHp.style.width = "100%";
-  playerHp.style.width = "100%";
-  boss.style.animation = "";
-  msg.classList.remove("show");
-
-  // helpers de animação
-  function showMsg(txt, ms=1300){
-    msg.textContent = txt;
-    msg.classList.add("show");
-    clearTimeout(msg._t);
-    msg._t = setTimeout(() => msg.classList.remove("show"), ms);
-  }
-  function shake(){
-    arena.classList.add("shake");
-    setTimeout(() => arena.classList.remove("shake"), 320);
-  }
-  function hit(el, cls){
-    el.classList.add(cls||"hit");
-    setTimeout(() => el.classList.remove(cls||"hit"), 260);
-  }
-  function boom(xp, yp){
-    const b = document.createElement("div");
-    b.className = "boom";
-    b.textContent = "💥";
-    b.style.left = xp + "%";
-    b.style.top = yp + "%";
-    arena.appendChild(b);
-    setTimeout(() => b.remove(), 1100);
-  }
-  function lightning(){
-    const l = document.createElement("div");
-    l.className = "lightning";
-    l.style.left = (25 + Math.random() * 50) + "%";
-    arena.appendChild(l);
-    setTimeout(() => l.remove(), 600);
-  }
-  function particles(count, ox, oy){
-    const colors = ["#ffd866","#ff6b6b","#4ecdc4","#a99af4","#fff","#ff9f6b"];
-    for(let i=0;i<count;i++){
-      const p = document.createElement("div");
-      p.className = "particle";
-      p.style.left = ox + "%";
-      p.style.top = oy + "%";
-      p.style.background = colors[i % colors.length];
-      p.style.color = colors[i % colors.length];
-      arena.appendChild(p);
-      const angle = (Math.PI * 2 * i) / count + Math.random() * 0.5;
-      const dist = 60 + Math.random() * 140;
-      const dx = Math.cos(angle) * dist;
-      const dy = Math.sin(angle) * dist;
-      p.animate([
-        { transform:"translate(0,0) scale(1)", opacity:1 },
-        { transform:`translate(${dx}px, ${dy}px) scale(0)`, opacity:0 }
-      ], { duration: 1200 + Math.random()*400, easing:"cubic-bezier(0.2,0.8,0.2,1)" });
-      setTimeout(() => p.remove(), 1700);
-    }
-  }
-  function attackPlayer(cb){
-    player.classList.add("attacking");
-    setTimeout(() => { player.classList.remove("attacking"); cb && cb(); }, 400);
-  }
-
-  // ============ INÍCIO — Ataque do player ============
-  setTimeout(() => {
-    attackPlayer(() => showMsg("⚔️ Engie parte para o ataque!"));
-  }, 300);
-
-  // ============ CASO 1: DERROTA DO JOGADOR ============
-  if(pct < 70){
-    setTimeout(() => { showMsg("💥 O BOSS contra-ataca!"); shake(); hit(player); playerHp.style.width = "35%"; }, 1100);
-    setTimeout(() => { hit(player); playerHp.style.width = "10%"; shake(); showMsg("💔 Engie está ferido!"); }, 1900);
-    setTimeout(() => { hit(player); playerHp.style.width = "0%"; shake(); boom(20,55); showMsg("☠️ Você foi derrotado..."); }, 2700);
-    setTimeout(() => { player.classList.add("die"); }, 3400);
-    setTimeout(() => { showMsg("💀 TENTE NOVAMENTE", 3200); }, 4200);
-    setTimeout(() => {
-      renderBossResult({ pct, acertos, total:totalPontos, qAcertos, qTotal: BOSS_QUIZ.length, wAcertos, wTotal: BOSS_WRITTEN.length, wResultados, vitoria:false });
-      reativarBotao();
-    }, 6500);
-    return;
-  }
-
-  // ============ VITÓRIA: escalona animação conforme nota ============
-  const tier = pct === 100 ? 4 : pct >= 90 ? 3 : pct >= 80 ? 2 : 1;
-
-  if(tier === 1){
-    // 70-79: morte simples
-    setTimeout(() => { hit(boss); bossHp.style.width = "65%"; showMsg("⚡ Acerto no boss!"); }, 1100);
-    setTimeout(() => { hit(boss); bossHp.style.width = "30%"; shake(); showMsg("🔥 Engie golpeia forte!"); }, 1800);
-    setTimeout(() => { hit(boss); bossHp.style.width = "0%"; shake(); }, 2500);
-    setTimeout(() => { boss.classList.add("stagger"); setTimeout(()=>boss.classList.remove("stagger"),600); particles(15, 75, 60); boom(75,50); }, 3100);
-    setTimeout(() => { boss.classList.add("fall"); showMsg("💥 BOSS DERROTADO!", 2800); }, 3800);
-    setTimeout(() => {
-      renderBossResult({ pct, acertos, total:totalPontos, qAcertos, qTotal: BOSS_QUIZ.length, wAcertos, wTotal: BOSS_WRITTEN.length, wResultados, vitoria:true, tier });
-      reativarBotao();
-    }, 6000);
-  } else if(tier === 2){
-    // 80-89: morte média com explosões
-    setTimeout(() => { hit(boss); bossHp.style.width = "72%"; showMsg("⚡ Ataque!"); }, 900);
-    setTimeout(() => { hit(boss); bossHp.style.width = "45%"; boom(70,45); shake(); showMsg("💢 Explosão!"); }, 1500);
-    setTimeout(() => { hit(boss); bossHp.style.width = "20%"; boom(76,35); boom(65,55); shake(); showMsg("🔥 Engie não para!"); }, 2100);
-    setTimeout(() => { bossHp.style.width = "0%"; boss.classList.add("stagger"); setTimeout(()=>boss.classList.remove("stagger"),600); particles(30,75,55); }, 2800);
-    setTimeout(() => { boss.classList.add("fall"); boom(75,60); showMsg("💥 BOSS DERROTADO!", 2800); }, 3600);
-    setTimeout(() => {
-      renderBossResult({ pct, acertos, total:totalPontos, qAcertos, qTotal: BOSS_QUIZ.length, wAcertos, wTotal: BOSS_WRITTEN.length, wResultados, vitoria:true, tier });
-      reativarBotao();
-    }, 6000);
-  } else if(tier === 3){
-    // 90-99: combo grande
-    const hits = [900, 1300, 1700, 2100, 2500];
-    hits.forEach((t,i) => setTimeout(() => {
-      hit(boss);
-      bossHp.style.width = Math.max(0, 100 - (i+1)*20) + "%";
-      boom(55 + Math.random()*30, 25 + Math.random()*45);
-      shake();
-      showMsg(["⚡ Combo!","💢 Direto!","🔥 Impacto!","⚡ Destruidor!","💥 Final!"][i]);
-    }, t));
-    setTimeout(() => { boss.classList.add("stagger"); setTimeout(()=>boss.classList.remove("stagger"),600); }, 3100);
-    setTimeout(() => { boss.classList.add("fall"); particles(45,75,55); boom(75,50); }, 3800);
-    setTimeout(() => { showMsg("🏆 BOSS DERROTADO!", 3000); }, 4500);
-    setTimeout(() => {
-      renderBossResult({ pct, acertos, total:totalPontos, qAcertos, qTotal: BOSS_QUIZ.length, wAcertos, wTotal: BOSS_WRITTEN.length, wResultados, vitoria:true, tier });
-      reativarBotao();
-    }, 7000);
-  } else {
-    // 100: PERFEITO — desintegração épica
-    const hits = [700, 1000, 1300, 1600, 1900, 2200, 2500, 2800];
-    hits.forEach((t,i) => setTimeout(() => {
-      hit(boss);
-      lightning();
-      bossHp.style.width = Math.max(0, 100 - (i+1)*13) + "%";
-      boom(45 + Math.random()*40, 15 + Math.random()*55);
-      shake();
-      showMsg(["⚡⚡ COMBO PERFEITO! ⚡⚡","💥 Explosão divina!","🔮 Engie desperta o poder!","💫 Golpe definitivo!","🌟 Até o céu treme!","🔥 A arena queima!","💫 Esmagador!","✨ DESINTEGRAÇÃO!"][i], 1100);
-    }, t));
-    setTimeout(() => { boss.classList.add("stagger"); setTimeout(()=>boss.classList.remove("stagger"),600); }, 3400);
-    setTimeout(() => {
-      boss.style.animation = "bossExplode 1s forwards";
-      particles(90, 75, 55);
-      for(let i=0;i<6;i++) setTimeout(lightning, i*90);
-      // flash branco
-      arena.style.background = "linear-gradient(180deg,#fff,#ffd866 60%,#ff9f6b)";
-      setTimeout(() => { arena.style.background = "linear-gradient(180deg,#3a1a4a 0%,#1a0a2a 60%,#08030f 100%)"; }, 380);
-    }, 4000);
-    setTimeout(() => { showMsg("✨ PERFEITO! BOSS DESINTEGRADO! ✨", 4000); }, 5200);
-    setTimeout(() => {
-      renderBossResult({ pct, acertos, total:totalPontos, qAcertos, qTotal: BOSS_QUIZ.length, wAcertos, wTotal: BOSS_WRITTEN.length, wResultados, vitoria:true, tier:4 });
-      reativarBotao();
-    }, 8000);
-  }
-}
-
-function reativarBotao(){
-  const btn = document.querySelector('.boss-actions .btn.red');
-  if(btn){ btn.disabled = false; btn.textContent = "⚔️ ENFRENTAR O BOSS NOVAMENTE"; }
-}
-
-/* =========================================================
-   RESULTADO FINAL DO BOSS
-   ========================================================= */
-function renderBossResult(r){
-  const area = document.getElementById("bossResultArea");
-  const cls = r.vitoria ? "win" : "lose";
-  const title = r.vitoria
-    ? (r.tier === 4 ? "✨ PERFEITO! BOSS DESINTEGRADO! ✨"
-      : r.tier === 3 ? "🏆 VITÓRIA ÉPICA!"
-      : r.tier === 2 ? "🏆 VITÓRIA SÓLIDA!"
-      : "🏆 VITÓRIA!")
-    : "💀 VOCÊ FOI DERROTADO...";
-
-  let wList = r.wResultados.map((x,i) => {
-    const icon = x.ok ? "✅" : "❌";
-    return `<li>${icon} <b>${BOSS_WRITTEN[i].titulo.split("—")[0].trim()}</b> — ${x.pct||0}% ${x.ok?"":"• "+x.motivo}</li>`;
-  }).join("");
-
-  const html = `
-    <div class="result-banner ${cls}">
-      <h3>${title}</h3>
-      <div class="stats">
-        <span>🎯 Total: <b>${r.pct}%</b></span>
-        <span>📋 Quiz: <b>${r.qAcertos}/${r.qTotal}</b></span>
-        <span>✍️ Escritos: <b>${r.wAcertos}/${r.wTotal}</b></span>
-        <span>⭐ Pontos: <b>${r.acertos}/${r.total}</b></span>
-      </div>
-      <div style="text-align:left;max-width:640px;margin:14px auto 0;font-size:13px">
-        <p style="margin:6px 0 4px"><b>📝 Avaliação dos Exercícios Escritos:</b></p>
-        <ul style="margin:0 0 10px 18px;padding:0">${wList}</ul>
-      </div>
-      ${r.vitoria ? "" : `<p style="margin:8px 0 0">Você precisa acertar pelo menos <b>70%</b> para derrotar o BOSS. Revise os conteúdos das casas e tente novamente!</p>`}
-    </div>
-  `;
-  area.innerHTML = html;
-
-  // Atualiza estado
-  if(r.vitoria){
-    if(!state.passed[14]){
-      state.passed[14] = true;
-      // XP proporcional ao desempenho
-      const bonus = r.tier === 4 ? 800 : r.tier === 3 ? 600 : r.tier === 2 ? 450 : 300;
-      state.xp += bonus;
-    }
-    state.unlocked = Math.max(state.unlocked, 14);
     save();
-    document.getElementById("botface").textContent = r.tier === 4 ? "🏆" : "😎";
-    document.getElementById("mood").textContent = "★‿★";
-    toast(r.tier === 4 ? "✨ PERFEITO! BOSS DESINTEGRADO!" : "👑 BOSS DERROTADO!");
-    document.getElementById("btnNext").disabled = true;
-  } else {
-    state.lives = Math.max(0, state.lives - 1);
+    updateBossFinal();
+
+    if(aprovado) toast("🏆 IA aprovou seu código!");
+    else toast("🤖 A IA pediu ajustes. Releia o feedback!");
+
+  } catch (err) {
+    console.error('[IA] erro:', err);
+    think.classList.remove("show");
+
+    // Fallback: rubrica local
+    let rel = "⚠️ A IA não conseguiu responder agora (verifique internet/chave Dify).\n\n";
+    rel += "📋 Usei a rubrica local como fallback:\n\n";
+    localResults.forEach(r => { rel += `${r.ok ? "✅" : "❌"} ${r.d}\n`; });
+    rel += `\n${localAcertos}/${localTotal} critérios — `;
+    const aprovadoLocal = localAcertos >= ch.min;
+    rel += aprovadoLocal ? "🏆 Aprovado pela rubrica local." : `⚠️ Reprovado (precisa de ${ch.min}).`;
+
+    fb.textContent = rel;
+    fb.classList.add("show");
+
+    if(aprovadoLocal){
+      status.textContent = "✅ Aprovado";
+      status.classList.add("aprovado");
+      status.classList.remove("reprovado");
+      state.challenges[num] = true;
+    } else {
+      status.textContent = "❌ Reprovado";
+      status.classList.add("reprovado");
+      status.classList.remove("aprovado");
+      state.challenges[num] = false;
+    }
     save();
-    document.getElementById("botface").textContent = "😢";
-    document.getElementById("mood").textContent = "T_T";
-    toast("💔 Tente novamente!");
+    updateBossFinal();
+    toast("⚠️ IA fora do ar — usei a rubrica local.");
   }
 }
 
-/* =========================================================
-   GABARITO DO BOSS
-   ========================================================= */
-function peekBossSolution(){
-  let html = "📖 <b>GABARITO DAS 22 QUESTÕES:</b>\n\n";
-  BOSS_QUIZ.forEach((q,i) => {
-    html += `${i+1}. ${q[0]}\n   ✔️ ${q[2][q[3]]}\n\n`;
-  });
-  html += "\n📌 BAIXE O PDF E ESTUDE AS EXPLICAÇÕES DAS CASAS 1-13!";
-  const w = window.open("", "_blank");
-  if(w){
-    w.document.write(`<pre style="font-family:Consolas,monospace;font-size:13px;padding:20px;line-height:1.6">${html.replace(/</g,'&lt;')}</pre>`);
-    w.document.title = "Gabarito Boss Final";
+function updateBossFinal(){
+  const el = document.getElementById("bossFinal");
+  if(!el) return;
+  const aprovados = Object.values(state.challenges).filter(v => v === true).length;
+  const quizOk = state.passed[12] === true;
+  let html = `<div class="rubric"><b>Progresso do Boss:</b><br>`;
+  html += `📝 Prova: ${quizOk ? "✅ aprovada" : "❌ ainda não (80%)"}<br>`;
+  html += `💻 Desafios: <b>${aprovados}/10</b> aprovados (precisa de 8)<br>`;
+  if(quizOk && aprovados >= 8){
+    html += `<br>🏆 <b style="color:#1a6b3d">BOSS DERROTADO! Você passou em tudo!</b>`;
   } else {
-    toast("Permita pop-ups para ver o gabarito.");
+    html += `<br>⚠️ Continue: faltam ${Math.max(0, 8 - aprovados)} desafio(s).`;
   }
+  html += `</div>`;
+  el.innerHTML = html;
 }
 
 /* =========================================================
-   NAVEGAÇÃO ENTRE CASAS
-   ========================================================= */
-function nextLesson(){
-  const current = lessons.findIndex(l => l.title === document.getElementById("lessonTitle").textContent);
-  if(current === -1 || current >= lessons.length - 1) return;
-  const nextId = lessons[current + 1].id;
-  if(nextId > state.unlocked){
-    toast("🔒 Complete o quiz desta casa para desbloquear a próxima!");
-    return;
-  }
-  openLesson(nextId);
-}
-function prevLesson(){
-  const current = lessons.findIndex(l => l.title === document.getElementById("lessonTitle").textContent);
-  if(current <= 0) return;
-  openLesson(lessons[current - 1].id);
-}
-
-/* =========================================================
-   GRADE (QUIZ NORMAL)
+   GRADE QUIZ
    ========================================================= */
 function grade(id){
   const l = lessons.find(x => x.id === id);
@@ -1500,64 +1501,101 @@ function grade(id){
     const chosen = document.querySelector(`input[name="q${id}_${i}"]:checked`);
     const fb = document.getElementById(`rf${id}_${i}`);
     if(chosen && +chosen.value === q[3]){ score++; fb.textContent = "✓ Correto"; fb.style.color = "#21824b"; }
-    else { fb.textContent = "✗ Revise este conceito"; fb.style.color = "#c34b62"; }
+    else { fb.textContent = "✗ Revise"; fb.style.color = "#c34b62"; }
   });
   const percent = Math.round(score / l.quiz.length * 100);
+  const exigido = (id === 12) ? 80 : 70;
   const result = document.getElementById("quizResult");
-  if(percent >= 70){
-    result.textContent = `🏆 ${score}/${l.quiz.length} (${percent}%). Casa concluída!`;
+  if(percent >= exigido){
+    result.textContent = `🏆 ${score}/${l.quiz.length} (${percent}%). ${id === 12 ? "Prova aprovada!" : "Casa concluída!"}`;
     result.style.color = "#21824b";
-    if(!state.passed[id]){ state.passed[id] = true; state.xp += 100; }
-    if(id < lessons.length) state.unlocked = Math.max(state.unlocked, id + 1);
+    if(!state.passed[id]){ state.passed[id] = true; state.xp += (id === 12 ? 500 : 100); }
+    if(id < TOTAL_HOUSES) state.unlocked = Math.max(state.unlocked, id + 1);
     save();
     document.getElementById("mood").textContent = "★‿★";
     document.getElementById("botface").textContent = "🥳";
-    toast("🔓 Nova casa desbloqueada!");
-    document.getElementById("btnNext").disabled = false;
-    document.getElementById("btnNext").title = "";
+    toast(id === 12 ? "👑 Prova aprovada!" : "🔓 Nova casa desbloqueada!");
+    if(id === 12) updateBossFinal();
   } else {
     state.lives = Math.max(0, state.lives - 1);
     save();
-    result.textContent = `${score}/${l.quiz.length} (${percent}%). Você precisa de 70%. Leia a explicação novamente e tente.`;
+    result.textContent = `${score}/${l.quiz.length} (${percent}%). Precisa de ${exigido}%.`;
     result.style.color = "#c34b62";
     document.getElementById("mood").textContent = "T_T";
     document.getElementById("botface").textContent = "😢";
-    toast("🤖 Engie: vamos revisar juntos!");
+    toast("🤖 Esperioux: revisar e tentar de novo!");
   }
 }
 
 /* =========================================================
-   CHECK CODE (casas simples)
+   CHECK CODE (casas)
    ========================================================= */
 function checkCode(id){
   const v = (document.getElementById("code_" + id)?.value || "").toLowerCase();
   let ok = false;
-  if(id === 1) ok = v.includes("windows") || v.includes("android") || v.includes("whatsapp") || v.includes("word") || v.includes("chrome") || v.length > 30;
-  if(id === 2) ok = v.includes("software") && (v.includes("camada") || v.includes("ferramenta") || v.includes("método") || v.includes("processo"));
-  if(id === 3) ok = v.includes("registrar") || v.includes("emitir") || v.includes("consultar") || v.includes("cadastrar");
-  if(id === 4) ok = v.includes("seguran") || v.includes("rápid") || v.includes("fácil") || v.includes("disponível") || v.includes("usabilidade") || v.includes("eficiência");
-  if(id === 5) ok = v.includes("?") && v.length > 40;
-  if(id === 6) ok = v.includes("regra") || v.includes("negócio") || v.includes("política") || v.includes("prazo") || v.includes("limite") || v.includes("multa") || v.includes("desconto");
-  if(id === 7) ok = v.includes("requisito") || v.includes("cliente") || v.includes("entender") || v.includes("expectativa");
-  if(id === 8) ok = v.includes("cascata") && (v.includes("sequencial") || v.includes("simples") || v.includes("etapa"));
-  if(id === 9) ok = v.includes("protótipo") || v.includes("prototip") || v.includes("cliente");
-  if(id === 10) ok = v.includes("dividir") || v.includes("módulo") || v.includes("incremento");
-  if(id === 11) ok = v.includes("bpm") || v.includes("processo") || v.includes("fluxo") || v.includes("informação");
-  if(id === 12) ok = v.includes("viabilidade") && (v.includes("econômica") || v.includes("técnica") || v.includes("operacional"));
-  if(id === 13) ok = (v.includes("cascata") || v.includes("prototip") || v.includes("incremental")) && v.length > 60;
+  if(id === 1) ok = v.includes("passo") || v.includes("receber");
+  if(id === 2) ok = v.includes("entrada") && v.includes("process");
+  if(id === 3) ok = v.includes("leia") && v.includes("escreva");
+  if(id === 4) ok = v.includes("inteiro") && v.includes("real") && v.includes("cadeia") && v.includes("logico");
+  if(id === 5) ok = v.includes("inteiro") && v.includes("real") && (v.includes("caractere") || v.includes("caracter")) && v.includes("cadeia");
+  if(id === 6) ok = v.includes("leia") && v.includes("escreva") && v.includes("+");
+  if(id === 7) ok = v.includes("se") && (v.includes(">=") || v.includes("6")) && v.includes("senao");
+  if(id === 8) ok = v.includes("para") && v.includes("10");
+  if(id === 9) ok = v.includes("se") && v.includes("%") && v.includes("senao");
+  if(id === 10) ok = v.includes("soma") && (v.includes("6") || v.includes("passo") || v.includes("volta") || v.includes("i"));
+  if(id === 11) ok = v.includes("escolha") && v.includes("caso") && v.includes("fimescolha");
   const r = document.getElementById("codeResult_" + id);
   if(ok){
-    r.textContent = "🏆 Muito bom! Você demonstrou entendimento.";
+    r.textContent = "🏆 Elementos principais presentes!";
     r.style.color = "#21824b";
     state.xp += 50;
     save();
-    toast("⭐ Desafio prático concluído!");
+    toast("⭐ Desafio concluído!");
     document.getElementById("botface").textContent = "😎";
   } else {
-    r.textContent = "🤖 Engie: ainda faltam elementos importantes. Releia o conteúdo da casa e tente novamente.";
+    r.textContent = "🤖 Faltam elementos. Releia o enunciado.";
     r.style.color = "#c34b62";
     document.getElementById("botface").textContent = "🤔";
   }
+}
+
+/* =========================================================
+   SENHAS
+   ========================================================= */
+let secretCount = 0, secretTimer = null;
+document.getElementById("secretL").addEventListener("click", () => {
+  secretCount++;
+  clearTimeout(secretTimer);
+  secretTimer = setTimeout(() => { secretCount = 0; }, 1500);
+  if(secretCount >= 3){ secretCount = 0; unlockEverything(); }
+});
+
+let btnCount = 0, btnTimer = null;
+document.getElementById("masterBtn").addEventListener("click", () => {
+  btnCount++;
+  clearTimeout(btnTimer);
+  btnTimer = setTimeout(() => { btnCount = 0; }, 1800);
+  if(btnCount >= 5){ btnCount = 0; unlockEverything(); }
+});
+
+document.addEventListener("keydown", e => {
+  if(e.ctrlKey && e.shiftKey && (e.key === 'P' || e.key === 'p')){
+    e.preventDefault();
+    unlockEverything();
+  }
+});
+
+function unlockEverything(){
+  state.unlocked = TOTAL_HOUSES;
+  state.lives = 999;
+  state.xp = Math.max(state.xp, 9999);
+  lessons.forEach(l => { state.passed[l.id] = true; });
+  for(let i = 1; i <= codeChallenges.length; i++) state.challenges[i] = true;
+  save();
+  if(document.getElementById("challengesArea")) renderChallenges();
+  toast("🔓 MODO PROVA ATIVADO! Tudo desbloqueado.");
+  document.getElementById("botface").textContent = "🤓";
+  document.getElementById("mood").textContent = "★‿★";
 }
 
 /* =========================================================
@@ -1565,13 +1603,7 @@ function checkCode(id){
    ========================================================= */
 function closeLesson(){ document.getElementById("panel").style.display = "none"; }
 document.getElementById("panel").addEventListener("click", e => { if(e.target.id === "panel") closeLesson(); });
-document.addEventListener("keydown", e => {
-  if(e.key === "Escape") closeLesson();
-  if(document.getElementById("panel").style.display === "flex"){
-    if(e.key === "ArrowRight") nextLesson();
-    if(e.key === "ArrowLeft") prevLesson();
-  }
-});
+document.addEventListener("keydown", e => { if(e.key === "Escape") closeLesson(); });
 
 renderMap();
 updateHUD();
