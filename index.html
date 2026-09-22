@@ -123,7 +123,11 @@ button:focus-visible{outline:4px solid #fff;outline-offset:3px}
  box-shadow:0 14px 0 #2a1b38,0 30px 50px #0005;overflow:hidden;display:flex;flex-direction:column}
 .lesson-head{padding:clamp(10px,2.5vw,18px) clamp(12px,3vw,22px);background:linear-gradient(90deg,#ffb3d5,#d8c9ff,#bdf1dc);
  border-bottom:5px solid var(--outline);display:flex;justify-content:space-between;gap:10px;align-items:center}
-.lesson-head h2{margin:0;color:#663db4;font-size:clamp(15px,3.5vw,28px);line-height:1.15}
+.lesson-head h2{margin:0;color:#663db4;font-size:clamp(15px,3.5vw,28px);line-height:1.15;flex:1;min-width:0}
+.lesson-head-btns{display:flex;gap:8px;align-items:center;flex-shrink:0}
+.next-lesson-btn{border:4px solid var(--outline);background:linear-gradient(135deg,#65d9b1,#a2edcb);color:#124b39;border-radius:999px;padding:8px 14px;font-weight:900;cursor:pointer;box-shadow:0 4px 0 var(--outline);font-size:clamp(11px,2.4vw,14px);transition:.12s;white-space:nowrap}
+.next-lesson-btn:active{transform:translateY(3px);box-shadow:0 1px 0 var(--outline)}
+.next-lesson-btn:disabled{opacity:.55;cursor:not-allowed;filter:grayscale(.4)}
 .close{width:clamp(38px,8vw,45px);height:clamp(38px,8vw,45px);border:4px solid var(--outline);background:#ff82b6;border-radius:50%;font-size:clamp(18px,4vw,25px);font-weight:900;cursor:pointer;flex-shrink:0;line-height:1;padding:0}
 .lesson-body{display:grid;grid-template-columns:245px 1fr;min-height:0;flex:1}
 .side{background:#f0e4f4;border-right:4px solid #8b6c96;padding:12px;overflow:auto;-webkit-overflow-scrolling:touch}
@@ -183,6 +187,23 @@ table.tt th{background:#e0cdf0;color:#4a2b66}
 .mesa tr:nth-child(even) td{background:#faf5fc}
 footer{background:#3b2950;color:#fff;text-align:center;padding:28px 18px;font-size:clamp(11px,2.3vw,13px);word-break:break-word}
 
+/* Feedback da correção local */
+.code-feedback{margin-top:16px;padding:16px;border-radius:16px;border:4px solid #a77ca4;background:#fff;font-size:clamp(12px,2.6vw,15px);line-height:1.6;display:none}
+.code-feedback.show{display:block}
+.code-feedback.ok{background:#e9fff6;border-color:#3fa86b;box-shadow:0 5px 0 #c6ecd9}
+.code-feedback.nok{background:#fff4f8;border-color:#e08cae;box-shadow:0 5px 0 #f1d0dd}
+.code-feedback h5{margin:0 0 8px;color:#663db4;font-size:clamp(14px,3vw,17px)}
+.code-feedback .fb-list{list-style:none;margin:6px 0 12px;padding:0}
+.code-feedback .fb-list li{margin:4px 0;font-weight:800}
+.code-feedback .fb-block{margin-top:14px;padding:12px;border-radius:12px;background:#faf3ff;border:3px dashed #a77de8}
+.code-feedback .fb-block b{display:block;color:#5a2fa0;margin-bottom:6px;font-size:clamp(13px,2.7vw,15px)}
+.code-feedback .fb-block ul{margin:6px 0 0 20px;padding:0}
+.code-feedback .fb-block li{margin:4px 0;font-size:clamp(12px,2.5vw,14px)}
+.code-example{background:#2c253c;color:#fff0ff;border:3px solid #75568c;border-radius:12px;padding:10px 12px;margin:8px 0;font:clamp(11px,2.4vw,13px)/1.5 Consolas,"Courier New",monospace;white-space:pre-wrap;word-break:break-word;overflow-x:auto}
+.code-example b{color:#ffd866;display:block;margin-bottom:6px;font-family:inherit;font-size:inherit}
+.code-example pre{margin:0;white-space:pre-wrap;font-family:inherit;color:inherit}
+.score-pill{display:inline-block;background:#663db4;color:#fff;border-radius:999px;padding:3px 12px;font-weight:900;font-size:clamp(11px,2.4vw,13px);margin-bottom:8px}
+
 /* Boss — desafios */
 .challenge-card{background:#fff;border:4px solid #a77ca4;border-radius:16px;padding:14px;margin:12px 0}
 .challenge-head{display:flex;justify-content:space-between;align-items:center;gap:10px;cursor:pointer;flex-wrap:wrap}
@@ -218,8 +239,9 @@ footer{background:#3b2950;color:#fff;text-align:center;padding:28px 18px;font-si
   .robot-tag{display:none}
   .map-title{font-size:18px}
   .lesson{padding:0;border-width:4px;border-radius:12px}
-  .lesson-head{padding:8px 10px}
-  .lesson-head h2{font-size:14px}
+  .lesson-head{padding:8px 10px;flex-wrap:nowrap}
+  .lesson-head h2{font-size:13px}
+  .next-lesson-btn{padding:6px 10px;font-size:10px;border-width:3px}
   .close{width:34px;height:34px;font-size:18px;border-width:3px}
   .content{padding:12px}
   .code-input{min-height:140px;font-size:13px}
@@ -289,7 +311,13 @@ footer{background:#3b2950;color:#fff;text-align:center;padding:28px 18px;font-si
 
 <div class="panel" id="panel">
  <div class="lesson">
-  <div class="lesson-head"><h2 id="lessonTitle"></h2><button class="close" onclick="closeLesson()">×</button></div>
+  <div class="lesson-head">
+    <h2 id="lessonTitle"></h2>
+    <div class="lesson-head-btns">
+      <button class="next-lesson-btn" id="nextBtn" onclick="goToNextLesson()" title="Ir para a próxima casa">Próximo →</button>
+      <button class="close" onclick="closeLesson()">×</button>
+    </div>
+  </div>
   <div class="lesson-body">
    <nav class="side" id="side"></nav>
    <main class="content" id="content"></main>
@@ -797,9 +825,6 @@ b <span class="num">&lt;-</span> aux</div>
   ["Ambos V → && retorna:","V",["V","F","Nada","Depende"],0]
  ]},
 
-/* =========================================================
-   CASA 12 — BOSS FINAL (20 MCQ + 10 DESAFIOS + IA)
-   ========================================================= */
 {id:12,title:"👑 Torre do BOSS — Exame Final",short:"20 questões + 10 desafios corrigidos por IA.",content:`
    <h3>👑 O BOSS FINAL <span class="ai-badge">✨ CORRIGIDO POR IA</span></h3>
    <p class="lead">Prova completa: <b>20 questões de múltipla escolha</b> + <b>10 desafios de código</b> corrigidos pela IA do Esperioux.</p>
@@ -848,7 +873,7 @@ b <span class="num">&lt;-</span> aux</div>
 ];
 
 /* =========================================================
-   10 DESAFIOS DE CÓDIGO (com IA)
+   10 DESAFIOS DE CÓDIGO DO BOSS (com IA)
    ========================================================= */
 const codeChallenges = [
   {
@@ -1087,10 +1112,248 @@ fimalgoritmo`
 ];
 
 /* =========================================================
+   GUIA DE CORREÇÃO LOCAL DAS CASAS 1-11
+   (checks, exemplos múltiplos e dicas)
+   ========================================================= */
+const houseCodeGuide = {
+  1: {
+    enun:"Escreva em passos um algoritmo para receber dois números e mostrar a soma.",
+    checks: [
+      { d:"Descreveu a ENTRADA (receber/ler os números)", r: /(receb|ler\b|leia|entrada|pegar|obter|ler os)/i },
+      { d:"Descreveu a SOMA dos valores", r: /(som|\+|adicion|junt)/i },
+      { d:"Descreveu MOSTRAR/EXIBIR o resultado", r: /(mostr|escrev|exib|imprim|sa[íi]da|resultado)/i },
+      { d:"Organizou em passos numerados ou sequência", r: /(passo\s*\d|^\s*\d\s*[\.\-—)]|primeir|depois|em seguida|por fim)/im }
+    ],
+    min: 3,
+    examples: [
+      { titulo: "📘 Exemplo A — Passos numerados", code: "Passo 1 — Receber os dois números (A e B).\nPasso 2 — Calcular SOMA = A + B.\nPasso 3 — Mostrar o valor de SOMA." },
+      { titulo: "📗 Exemplo B — Narrativa", code: "Primeiro, leia dois números inteiros.\nEm seguida, some os dois valores.\nPor fim, exiba o resultado da soma na tela." }
+    ],
+    dicas: [
+      "Toda solução tem 3 partes: entrada → processamento → saída.",
+      "Use verbos no infinitivo (receber, somar, mostrar).",
+      "A ordem dos passos é o que garante que o algoritmo funcione."
+    ]
+  },
+  2: {
+    enun:"Identifique ENTRADA, PROCESSAMENTO e SAÍDA para calcular a média de duas notas.",
+    checks: [
+      { d:"Identificou a ENTRADA (notas)", r: /(entrada|nota)/i },
+      { d:"Identificou o PROCESSAMENTO (média)", r: /(process|m[ée]dia|calcul|divid|\/)/i },
+      { d:"Identificou a SAÍDA (resultado)", r: /(sa[íi]da|resultado|mostr|exib)/i },
+      { d:"Dividiu por 2 OU somou as duas notas", r: /(\/\s*2|2\.0|soma|\+)/i }
+    ],
+    min: 3,
+    examples: [
+      { titulo: "📘 Exemplo A — Estruturado em rótulos", code: "ENTRADA: nota1, nota2\nPROCESSAMENTO: media <- (nota1 + nota2) / 2\nSAÍDA: mostrar media" },
+      { titulo: "📗 Exemplo B — Detalhado em passos", code: "Passo 1 — Receber a primeira nota.\nPasso 2 — Receber a segunda nota.\nPasso 3 — Somar as notas e dividir por 2 (média).\nPasso 4 — Mostrar o valor da média." }
+    ],
+    dicas: [
+      "Entrada: tudo que o algoritmo precisa receber para funcionar.",
+      "Processamento: as contas e transformações sobre os dados.",
+      "Saída: o que mostramos ao final para o usuário."
+    ]
+  },
+  3: {
+    enun:"Escreva o pseudocódigo/Portugol de um algoritmo que leia dois números, some e mostre o resultado.",
+    checks: [
+      { d:"Usou 'algoritmo' e 'fimalgoritmo'", r: /algoritmo[\s\S]+fimalgoritmo/i },
+      { d:"Declarou variáveis (var ou tipo)", r: /\b(var|inteiro|real|leia)\b/i },
+      { d:"Usou 'leia' para as duas entradas", r: /leia[\s\S]*leia/i },
+      { d:"Somou com '+' e atribuiu com '<-'", r: /\+/ },
+      { d:"Usou 'escreva' para mostrar", r: /escreva\s*\(/i }
+    ],
+    min: 4,
+    examples: [
+      { titulo: "📘 Exemplo A — Bloco var clássico", code: "algoritmo \"soma\"\nvar\n   a, b, r: inteiro\ninicio\n   leia(a)\n   leia(b)\n   r <- a + b\n   escreva(r)\nfimalgoritmo" },
+      { titulo: "📗 Exemplo B — Direto no escreva", code: "algoritmo \"soma2\"\nvar\n   a, b: inteiro\ninicio\n   leia(a)\n   leia(b)\n   escreva(\"Soma: \", a + b)\nfimalgoritmo" }
+    ],
+    dicas: [
+      "Sempre comece com 'algoritmo \"nome\"' e feche com 'fimalgoritmo'.",
+      "Declare TODAS as variáveis antes do 'inicio'.",
+      "Use '<-' para atribuição (não '=')."
+    ]
+  },
+  4: {
+    enun:"Crie variáveis para: idade (inteiro), nota (real), nome (cadeia) e aprovado (lógico).",
+    checks: [
+      { d:"Declarou 'idade' como inteiro", r: /idade[\s\S]{0,40}inteiro|inteiro[\s\S]{0,40}idade/i },
+      { d:"Declarou 'nota' como real", r: /nota[\s\S]{0,40}real|real[\s\S]{0,40}nota/i },
+      { d:"Declarou 'nome' como cadeia", r: /nome[\s\S]{0,40}cadeia|cadeia[\s\S]{0,40}nome/i },
+      { d:"Declarou 'aprovado' como logico", r: /(aprovado[\s\S]{0,40}logic|logic[\s\S]{0,40}aprovado)/i }
+    ],
+    min: 3,
+    examples: [
+      { titulo: "📘 Exemplo A — Bloco var", code: "var\n   idade: inteiro\n   nota: real\n   nome: cadeia\n   aprovado: logico" },
+      { titulo: "📗 Exemplo B — Tipo antes do nome", code: "inteiro idade\nreal nota\ncadeia nome\nlogico aprovado" }
+    ],
+    dicas: [
+      "Identificadores começam com letra ou _ e não têm espaço.",
+      "Use 'logico' (sem acento) no Portugol.",
+      "'cadeia' guarda vários caracteres; 'caractere' guarda só um."
+    ]
+  },
+  5: {
+    enun:"Declare variáveis para guardar: um inteiro, um real, um caractere e uma cadeia.",
+    checks: [
+      { d:"Declarou algo como INTEIRO", r: /\binteiro\b/i },
+      { d:"Declarou algo como REAL", r: /\breal\b/i },
+      { d:"Declarou algo como CARACTERE", r: /\bcaracter(e)?\b/i },
+      { d:"Declarou algo como CADEIA", r: /\bcadeia\b/i }
+    ],
+    min: 3,
+    examples: [
+      { titulo: "📘 Exemplo A", code: "var\n   n: inteiro\n   x: real\n   letra: caractere\n   texto: cadeia" },
+      { titulo: "📗 Exemplo B — Misturado", code: "inteiro n\nreal x\ncaractere letra\ncadeia texto" }
+    ],
+    dicas: [
+      "Caractere = 1 símbolo ('A', '3', '@'). Sempre entre apóstrofos em atribuição.",
+      "Cadeia = vários caracteres (\"aluno\", \"Olá mundo\").",
+      "Use 'real' quando o valor puder ter parte decimal."
+    ]
+  },
+  6: {
+    enun:"Escreva um algoritmo sequencial que leia dois números, calcule a soma e mostre o resultado.",
+    checks: [
+      { d:"Usou 'algoritmo' e 'fimalgoritmo'", r: /algoritmo[\s\S]+fimalgoritmo/i },
+      { d:"Usou 'leia' para os dois números", r: /leia[\s\S]*leia/i },
+      { d:"Usou o operador '+'", r: /\+/ },
+      { d:"Usou 'escreva' para exibir o resultado", r: /escreva\s*\(/i }
+    ],
+    min: 3,
+    examples: [
+      { titulo: "📘 Exemplo A — Variável extra", code: "algoritmo \"soma\"\nvar\n   a, b, s: inteiro\ninicio\n   leia(a)\n   leia(b)\n   s <- a + b\n   escreva(s)\nfimalgoritmo" },
+      { titulo: "📗 Exemplo B — Acumulando em total", code: "algoritmo \"acumula\"\nvar\n   a, b, total: inteiro\ninicio\n   total <- 0\n   leia(a)\n   total <- total + a\n   leia(b)\n   total <- total + b\n   escreva(total)\nfimalgoritmo" }
+    ],
+    dicas: [
+      "A ordem dos comandos importa na estrutura sequencial.",
+      "Você pode exibir direto: 'escreva(\"Soma: \", a + b)'.",
+      "Declare TODAS as variáveis antes do 'inicio'."
+    ]
+  },
+  7: {
+    enun:"Leia uma média e mostre 'Aprovado' se média >= 6, senão 'Recuperação'.",
+    checks: [
+      { d:"Usou 'algoritmo' e 'fimalgoritmo'", r: /algoritmo[\s\S]+fimalgoritmo/i },
+      { d:"Usou 'leia' para a média", r: /leia\s*\(/i },
+      { d:"Comparou com 6 (>= 6 ou > 5.9)", r: /(>=\s*6|>\s*5\.9|6\.0)/i },
+      { d:"Usou SE/SENÃO/fimse", r: /se[\s\S]+senao[\s\S]+fimse/i },
+      { d:"Usou 'escreva'", r: /escreva\s*\(/i }
+    ],
+    min: 4,
+    examples: [
+      { titulo: "📘 Exemplo A — SE/SENÃO simples", code: "algoritmo \"aprov\"\nvar\n   m: real\ninicio\n   leia(m)\n   se (m >= 6.0) entao\n      escreva(\"Aprovado\")\n   senao\n      escreva(\"Recuperação\")\n   fimse\nfimalgoritmo" },
+      { titulo: "📗 Exemplo B — SE aninhado (3 faixas)", code: "algoritmo \"aprov3\"\nvar\n   m: real\ninicio\n   leia(m)\n   se (m >= 6.0) entao\n      escreva(\"Aprovado\")\n   senao\n      se (m >= 4.0) entao\n         escreva(\"Recuperação\")\n      senao\n         escreva(\"Reprovado\")\n      fimse\n   fimse\nfimalgoritmo" }
+    ],
+    dicas: [
+      "Toda estrutura 'se' precisa terminar com 'fimse'.",
+      "Use 'senao' (sem acento) no Portugol.",
+      "Para faixas múltiplas, use SE aninhado."
+    ]
+  },
+  8: {
+    enun:"Escreva um PARA que mostre os números de 1 a 10.",
+    checks: [
+      { d:"Usou 'algoritmo' e 'fimalgoritmo'", r: /algoritmo[\s\S]+fimalgoritmo/i },
+      { d:"Usou laço 'para'", r: /\bpara\b/i },
+      { d:"Começou em 1", r: /(<-|=)\s*1/i },
+      { d:"Vai até 10 (ate 10 ou <= 10)", r: /(ate\s*10|<=\s*10)/i },
+      { d:"Fechou com 'fimpara'", r: /fimpara/i }
+    ],
+    min: 4,
+    examples: [
+      { titulo: "📘 Exemplo A — Sintaxe completa", code: "algoritmo \"contar\"\nvar\n   i: inteiro\ninicio\n   para i de 1 ate 10 faca\n      escreva(i)\n   fimpara\nfimalgoritmo" },
+      { titulo: "📗 Exemplo B — Estilo C-like", code: "algoritmo \"contar2\"\nvar\n   i: inteiro\ninicio\n   para (i <- 1; i <= 10; i++)\n      escreva(i)\n   fimpara\nfimalgoritmo" }
+    ],
+    dicas: [
+      "PARA é ideal quando você SABE quantas vezes vai repetir.",
+      "Sempre feche com 'fimpara'.",
+      "Cuidado: começar de 0 ou ir até 9 muda o resultado."
+    ]
+  },
+  9: {
+    enun:"Leia um número e mostre se é par ou ímpar usando o operador %.",
+    checks: [
+      { d:"Usou 'algoritmo' e 'fimalgoritmo'", r: /algoritmo[\s\S]+fimalgoritmo/i },
+      { d:"Usou 'leia'", r: /leia\s*\(/i },
+      { d:"Usou o operador % (resto)", r: /%/ },
+      { d:"Usou SE/SENÃO/fimse", r: /se[\s\S]+senao[\s\S]+fimse/i },
+      { d:"Comparou resto com 0", r: /%\s*2\s*[=]{1,2}\s*0|0\s*[=]{1,2}\s*2\s*%/ }
+    ],
+    min: 4,
+    examples: [
+      { titulo: "📘 Exemplo A — Com %", code: "algoritmo \"parimpar\"\nvar\n   n: inteiro\ninicio\n   leia(n)\n   se (n % 2 = 0) entao\n      escreva(\"Par\")\n   senao\n      escreva(\"Ímpar\")\n   fimse\nfimalgoritmo" },
+      { titulo: "📗 Exemplo B — Sem %", code: "algoritmo \"parimpar2\"\nvar\n   n: inteiro\ninicio\n   leia(n)\n   se ((n / 2) * 2 = n) entao\n      escreva(\"Par\")\n   senao\n      escreva(\"Ímpar\")\n   fimse\nfimalgoritmo" }
+    ],
+    dicas: [
+      "O operador % devolve o RESTO da divisão inteira.",
+      "Par: resto da divisão por 2 é igual a 0.",
+      "Sempre feche com 'fimse'."
+    ]
+  },
+  10: {
+    enun:"Faça o teste de mesa de: soma <- 0; para i de 1 ate 3 faca soma <- soma + i. Qual o valor final de soma?",
+    checks: [
+      { d:"Mencionou a variável 'soma'", r: /soma/i },
+      { d:"Mencionou a variável 'i' ou iteração", r: /\bi\b|itera|volta|passo/i },
+      { d:"Mostrou valores intermediários (1, 3, 6)", r: /(1[\s\S]{0,8}3|3[\s\S]{0,8}6|6)/ },
+      { d:"Concluiu com soma final = 6", r: /(soma[\s\S]{0,20}6|=\s*6|final[\s\S]{0,15}6)/i }
+    ],
+    min: 3,
+    examples: [
+      { titulo: "📘 Exemplo A — Tabela passo a passo", code: "i=1 → soma = 0 + 1 = 1\ni=2 → soma = 1 + 2 = 3\ni=3 → soma = 3 + 3 = 6\nValor final de soma = 6" },
+      { titulo: "📗 Exemplo B — Narrativa", code: "Antes do laço: soma = 0.\n1ª volta: i=1, soma = 0+1 = 1.\n2ª volta: i=2, soma = 1+2 = 3.\n3ª volta: i=3, soma = 3+3 = 6.\nSaída final: soma = 6." }
+    ],
+    dicas: [
+      "Sempre comece pela linha inicial (fora do laço).",
+      "Anote o valor de CADA variável em CADA iteração.",
+      "Some 1+2+3 = 6. É a soma dos números de 1 a 3."
+    ]
+  },
+  11: {
+    enun:"Escreva um ESCOLHA/CASO que leia um número de 1 a 3 e imprima o dia correspondente, com outrocaso para inválidos.",
+    checks: [
+      { d:"Usou 'algoritmo' e 'fimalgoritmo'", r: /algoritmo[\s\S]+fimalgoritmo/i },
+      { d:"Usou 'escolha'", r: /\bescolha\b/i },
+      { d:"Usou pelo menos 2 'caso'", r: /caso[\s\S]+caso/i },
+      { d:"Usou 'outrocaso'", r: /outrocaso/i },
+      { d:"Fechou com 'fimescolha'", r: /fimescolha/i }
+    ],
+    min: 4,
+    examples: [
+      { titulo: "📘 Exemplo A — Com outrocaso", code: "algoritmo \"dias\"\nvar\n   op: inteiro\ninicio\n   leia(op)\n   escolha (op)\n      caso 1\n         escreva(\"Segunda\")\n      caso 2\n         escreva(\"Terça\")\n      caso 3\n         escreva(\"Quarta\")\n      outrocaso\n         escreva(\"Inválido\")\n   fimescolha\nfimalgoritmo" },
+      { titulo: "📗 Exemplo B — Menu amigável", code: "algoritmo \"menu_dias\"\nvar\n   op: inteiro\ninicio\n   escreva(\"1-Seg 2-Ter 3-Qua: \")\n   leia(op)\n   escolha (op)\n      caso 1\n         escreva(\"Você escolheu Segunda\")\n      caso 2\n         escreva(\"Você escolheu Terça\")\n      caso 3\n         escreva(\"Você escolheu Quarta\")\n      outrocaso\n         escreva(\"Opção inválida\")\n   fimescolha\nfimalgoritmo" }
+    ],
+    dicas: [
+      "ESCOLHA/CASO é ideal para menus e opções fixas.",
+      "Sempre inclua 'outrocaso' para tratar entradas inválidas.",
+      "Feche a estrutura com 'fimescolha'."
+    ]
+  }
+};
+
+/* =========================================================
+   UTIL
+   ========================================================= */
+function escapeHtml(s){
+  return String(s)
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;')
+    .replace(/'/g,'&#39;');
+}
+
+/* =========================================================
    ESTADO
    ========================================================= */
-let state = JSON.parse(localStorage.getItem("portugolWorldState_v4") || '{"xp":0,"unlocked":1,"lives":3,"passed":{},"challenges":{}}');
+let state = JSON.parse(localStorage.getItem("portugolWorldState_v4") || '{"xp":0,"unlocked":1,"lives":3,"passed":{},"challenges":{},"codeXp":{}}');
+if(!state.codeXp) state.codeXp = {};
+if(!state.challenges) state.challenges = {};
+if(!state.passed) state.passed = {};
+
 const TOTAL_HOUSES = 12;
+let currentLessonId = null;
 
 function save(){localStorage.setItem("portugolWorldState_v4", JSON.stringify(state)); renderMap(); updateHUD(); updateProgress()}
 
@@ -1167,11 +1430,47 @@ function switchTab(btn, panelId){
 }
 
 /* =========================================================
+   NAVEGAÇÃO ENTRE CASAS — BOTÃO PRÓXIMO
+   ========================================================= */
+function goToNextLesson(){
+  if(currentLessonId === null) return;
+  const next = currentLessonId + 1;
+  if(next > TOTAL_HOUSES){
+    toast("🏁 Você chegou ao fim da jornada!");
+    return;
+  }
+  if(next > state.unlocked){
+    toast("🔒 Conclua esta casa primeiro para liberar a próxima!");
+    return;
+  }
+  openLesson(next);
+}
+
+function updateNextButton(){
+  const btn = document.getElementById("nextBtn");
+  if(!btn) return;
+  if(currentLessonId === null){ btn.disabled = true; return; }
+  const next = currentLessonId + 1;
+  if(next > TOTAL_HOUSES){
+    btn.textContent = "🏁 Fim";
+    btn.disabled = true;
+  } else if(next > state.unlocked){
+    btn.textContent = "🔒 Próximo bloqueado";
+    btn.disabled = true;
+  } else {
+    const pre = next === 12 ? "👑 " : (next === 11 ? "🎒 " : (next === 10 ? "📋 " : "🏠 "));
+    btn.textContent = pre + "Próximo →";
+    btn.disabled = false;
+  }
+}
+
+/* =========================================================
    ABRIR LIÇÃO
    ========================================================= */
 function openLesson(id){
   const l = lessons.find(x => x.id === id);
   if(!l) return;
+  currentLessonId = id;
   document.getElementById("lessonTitle").textContent = l.title;
   const side = document.getElementById("side");
   side.innerHTML = "";
@@ -1194,7 +1493,14 @@ function openLesson(id){
     html += `<button class="btn" onclick="grade(${id})">✨ VERIFICAR RESPOSTAS</button><div id="quizResult" class="result"></div></div></div>`;
 
     if(id < 12){
-      html += `<div class="code-challenge"><h4>💻 Desafio de Portugol</h4><p>${challengeText(id)}</p><textarea class="code-input" id="code_${id}" placeholder="Escreva seu algoritmo aqui..."></textarea><br><button class="btn mint" onclick="checkCode(${id})">TESTAR MEU RACIOCÍNIO</button><div id="codeResult_${id}" class="result"></div></div>`;
+      const guide = houseCodeGuide[id];
+      const enunText = guide ? guide.enun : challengeText(id);
+      html += `<div class="code-challenge"><h4>💻 Desafio de Portugol <span class="ai-badge" style="background:linear-gradient(135deg,#ffb84d,#65d9b1)">CORRIGIDO LOCALMENTE</span></h4>
+        <p>${enunText}</p>
+        <textarea class="code-input" id="code_${id}" placeholder="Escreva seu algoritmo aqui..."></textarea><br>
+        <button class="btn mint" onclick="checkCode(${id})">🧠 CORRIGIR MEU CÓDIGO</button>
+        <div class="code-feedback" id="codeResult_${id}"></div>
+      </div>`;
     }
   } else {
     html += `
@@ -1223,6 +1529,7 @@ function openLesson(id){
   document.getElementById("content").innerHTML = html;
   if(id === 12) renderChallenges();
   document.getElementById("panel").style.display = "flex";
+  updateNextButton();
 }
 
 function switchBossTab(btn, id){
@@ -1250,7 +1557,80 @@ function challengeText(id){
 }
 
 /* =========================================================
-   RENDER DESAFIOS
+   CORREÇÃO LOCAL DAS CASAS (COM EXEMPLOS E DICAS)
+   ========================================================= */
+function checkCode(id){
+  const guide = houseCodeGuide[id];
+  const box = document.getElementById("codeResult_" + id);
+  if(!guide || !box) return;
+
+  const code = (document.getElementById("code_" + id)?.value || "").trim();
+
+  if(!code){
+    toast("⚠️ Escreva seu código primeiro!");
+    box.classList.remove("show","ok","nok");
+    return;
+  }
+
+  const results = guide.checks.map(c => ({ d: c.d, ok: c.r.test(code) }));
+  const acertos = results.filter(r => r.ok).length;
+  const total = results.length;
+  const percent = Math.round(acertos / total * 100);
+  const aprovado = acertos >= guide.min;
+
+  let html = "";
+  html += `<h5>${aprovado ? "🏆 Muito bem! Desafio concluído." : "🤖 Quase lá! Vamos revisar."}</h5>`;
+  html += `<span class="score-pill">${acertos}/${total} critérios • ${percent}%</span>`;
+  html += `<ul class="fb-list">`;
+  results.forEach(x => {
+    html += `<li>${x.ok ? "✅" : "❌"} ${x.d}</li>`;
+  });
+  html += `</ul>`;
+
+  // Dicas (mostradas quando NÃO aprovado, ou como reforço quando aprovado)
+  if(!aprovado){
+    html += `<div class="fb-block"><b>💡 Dicas do Esperioux</b><ul>`;
+    guide.dicas.forEach(d => html += `<li>${d}</li>`);
+    html += `</ul></div>`;
+  } else {
+    html += `<div class="fb-block"><b>💡 Reforce estes pontos</b><ul>`;
+    guide.dicas.forEach(d => html += `<li>${d}</li>`);
+    html += `</ul></div>`;
+  }
+
+  // Exemplos múltiplos — sempre mostrados como referência
+  html += `<div class="fb-block"><b>📚 Exemplos de solução (compare com a sua!)</b>`;
+  guide.examples.forEach(ex => {
+    html += `<div class="code-example"><b>${ex.titulo}</b><pre>${escapeHtml(ex.code)}</pre></div>`;
+  });
+  html += `</div>`;
+
+  box.innerHTML = html;
+  box.classList.remove("ok","nok");
+  box.classList.add("show");
+  box.classList.add(aprovado ? "ok" : "nok");
+
+  if(aprovado){
+    // XP apenas uma vez por casa
+    if(!state.codeXp[id]){
+      state.codeXp[id] = true;
+      state.xp += 50;
+      save();
+      toast("⭐ Desafio concluído! +50 XP");
+    } else {
+      toast("🏆 Desafio concluído!");
+    }
+    document.getElementById("botface").textContent = "😎";
+    document.getElementById("mood").textContent = "★‿★";
+  } else {
+    document.getElementById("botface").textContent = "🤔";
+    document.getElementById("mood").textContent = "•_•";
+    toast("🤖 Releia as dicas e os exemplos abaixo!");
+  }
+}
+
+/* =========================================================
+   RENDER DESAFIOS DO BOSS
    ========================================================= */
 function renderChallenges(){
   const area = document.getElementById("challengesArea");
@@ -1298,7 +1678,7 @@ function peekChallenge(num){
 }
 
 /* =========================================================
-   RUBRICA LOCAL (fallback)
+   RUBRICA LOCAL (fallback do Boss)
    ========================================================= */
 function gradeChallengeLocal(num){
   const ch = codeChallenges[num - 1];
@@ -1351,7 +1731,6 @@ async function gradeChallengeIA(num){
   fb.classList.remove("show");
   think.classList.add("show");
 
-  // Rubrica local como apoio
   const localResults = ch.checks.map(c => ({ d: c.d, ok: c.r.test(code) }));
   const localAcertos = localResults.filter(r => r.ok).length;
   const localTotal = localResults.length;
@@ -1411,9 +1790,7 @@ Responda em português do Brasil, amigável, com emojis moderados, MÁXIMO 180 p
       throw new Error('Resposta vazia da IA');
     }
 
-    // Verificar aprovação pelo texto
     const aprovadoIA = /aprovado/i.test(aiText) && !/reprovado/i.test(aiText);
-    // Fallback local
     const aprovadoLocal = localAcertos >= ch.min;
     const aprovado = aprovadoIA || aprovadoLocal;
 
@@ -1446,7 +1823,6 @@ Responda em português do Brasil, amigável, com emojis moderados, MÁXIMO 180 p
     console.error('[IA] erro:', err);
     think.classList.remove("show");
 
-    // Fallback: rubrica local
     let rel = "⚠️ A IA não conseguiu responder agora (verifique internet/chave Dify).\n\n";
     rel += "📋 Usei a rubrica local como fallback:\n\n";
     localResults.forEach(r => { rel += `${r.ok ? "✅" : "❌"} ${r.d}\n`; });
@@ -1514,7 +1890,8 @@ function grade(id){
     save();
     document.getElementById("mood").textContent = "★‿★";
     document.getElementById("botface").textContent = "🥳";
-    toast(id === 12 ? "👑 Prova aprovada!" : "🔓 Nova casa desbloqueada!");
+    toast(id === 12 ? "👑 Prova aprovada!" : "🔓 Nova casa desbloqueada! Use 'Próximo →'");
+    updateNextButton();
     if(id === 12) updateBossFinal();
   } else {
     state.lives = Math.max(0, state.lives - 1);
@@ -1524,38 +1901,6 @@ function grade(id){
     document.getElementById("mood").textContent = "T_T";
     document.getElementById("botface").textContent = "😢";
     toast("🤖 Esperioux: revisar e tentar de novo!");
-  }
-}
-
-/* =========================================================
-   CHECK CODE (casas)
-   ========================================================= */
-function checkCode(id){
-  const v = (document.getElementById("code_" + id)?.value || "").toLowerCase();
-  let ok = false;
-  if(id === 1) ok = v.includes("passo") || v.includes("receber");
-  if(id === 2) ok = v.includes("entrada") && v.includes("process");
-  if(id === 3) ok = v.includes("leia") && v.includes("escreva");
-  if(id === 4) ok = v.includes("inteiro") && v.includes("real") && v.includes("cadeia") && v.includes("logico");
-  if(id === 5) ok = v.includes("inteiro") && v.includes("real") && (v.includes("caractere") || v.includes("caracter")) && v.includes("cadeia");
-  if(id === 6) ok = v.includes("leia") && v.includes("escreva") && v.includes("+");
-  if(id === 7) ok = v.includes("se") && (v.includes(">=") || v.includes("6")) && v.includes("senao");
-  if(id === 8) ok = v.includes("para") && v.includes("10");
-  if(id === 9) ok = v.includes("se") && v.includes("%") && v.includes("senao");
-  if(id === 10) ok = v.includes("soma") && (v.includes("6") || v.includes("passo") || v.includes("volta") || v.includes("i"));
-  if(id === 11) ok = v.includes("escolha") && v.includes("caso") && v.includes("fimescolha");
-  const r = document.getElementById("codeResult_" + id);
-  if(ok){
-    r.textContent = "🏆 Elementos principais presentes!";
-    r.style.color = "#21824b";
-    state.xp += 50;
-    save();
-    toast("⭐ Desafio concluído!");
-    document.getElementById("botface").textContent = "😎";
-  } else {
-    r.textContent = "🤖 Faltam elementos. Releia o enunciado.";
-    r.style.color = "#c34b62";
-    document.getElementById("botface").textContent = "🤔";
   }
 }
 
@@ -1593,6 +1938,7 @@ function unlockEverything(){
   for(let i = 1; i <= codeChallenges.length; i++) state.challenges[i] = true;
   save();
   if(document.getElementById("challengesArea")) renderChallenges();
+  updateNextButton();
   toast("🔓 MODO PROVA ATIVADO! Tudo desbloqueado.");
   document.getElementById("botface").textContent = "🤓";
   document.getElementById("mood").textContent = "★‿★";
