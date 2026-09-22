@@ -123,11 +123,7 @@ button:focus-visible{outline:4px solid #fff;outline-offset:3px}
  box-shadow:0 14px 0 #2a1b38,0 30px 50px #0005;overflow:hidden;display:flex;flex-direction:column}
 .lesson-head{padding:clamp(10px,2.5vw,18px) clamp(12px,3vw,22px);background:linear-gradient(90deg,#ffb3d5,#d8c9ff,#bdf1dc);
  border-bottom:5px solid var(--outline);display:flex;justify-content:space-between;gap:10px;align-items:center}
-.lesson-head h2{margin:0;color:#663db4;font-size:clamp(15px,3.5vw,28px);line-height:1.15;flex:1;min-width:0}
-.lesson-head-btns{display:flex;gap:8px;align-items:center;flex-shrink:0}
-.next-lesson-btn{border:4px solid var(--outline);background:linear-gradient(135deg,#65d9b1,#a2edcb);color:#124b39;border-radius:999px;padding:8px 14px;font-weight:900;cursor:pointer;box-shadow:0 4px 0 var(--outline);font-size:clamp(11px,2.4vw,14px);transition:.12s;white-space:nowrap}
-.next-lesson-btn:active{transform:translateY(3px);box-shadow:0 1px 0 var(--outline)}
-.next-lesson-btn:disabled{opacity:.55;cursor:not-allowed;filter:grayscale(.4)}
+.lesson-head h2{margin:0;color:#663db4;font-size:clamp(15px,3.5vw,28px);line-height:1.15}
 .close{width:clamp(38px,8vw,45px);height:clamp(38px,8vw,45px);border:4px solid var(--outline);background:#ff82b6;border-radius:50%;font-size:clamp(18px,4vw,25px);font-weight:900;cursor:pointer;flex-shrink:0;line-height:1;padding:0}
 .lesson-body{display:grid;grid-template-columns:245px 1fr;min-height:0;flex:1}
 .side{background:#f0e4f4;border-right:4px solid #8b6c96;padding:12px;overflow:auto;-webkit-overflow-scrolling:touch}
@@ -140,6 +136,7 @@ button:focus-visible{outline:4px solid #fff;outline-offset:3px}
 .content .lead{font-size:clamp(15px,3.2vw,18px);font-weight:900}
 .note{background:#fff;border:4px solid #c69ac1;border-radius:18px;padding:14px;margin:15px 0;box-shadow:0 5px 0 #ead1e2;font-size:clamp(13px,2.8vw,15px)}
 .note.tip{background:#e9fff6;border-color:#68b99f}.note.warning{background:#fff2d4;border-color:#d9ae5c}
+.note.step{background:#e8f0ff;border-color:#6d8fd4}
 .example{background:#2c253c;color:#fff0ff;border:4px solid #75568c;border-radius:16px;padding:14px;
  font:clamp(11px,2.5vw,14px)/1.55 Consolas,"Courier New",monospace;white-space:pre-wrap;overflow-x:auto;-webkit-overflow-scrolling:touch;word-wrap:break-word}
 .example .kw{color:#ff88c8;font-weight:bold}.example .str{color:#ffd866}.example .cm{color:#8aaa7a;font-style:italic}.example .num{color:#88d8ff}
@@ -165,6 +162,9 @@ button:focus-visible{outline:4px solid #fff;outline-offset:3px}
 .btn:active{transform:translateY(3px);box-shadow:0 1px 0 var(--outline)}
 .btn.mint{background:#73dfbd}.btn.purple{background:#b8a2ef}.btn:disabled{opacity:.6;cursor:not-allowed}
 .btn.ia{background:linear-gradient(135deg,#a77de8,#65d9b1);color:#fff;text-shadow:1px 1px 0 rgba(0,0,0,.2)}
+.btn.next{background:linear-gradient(135deg,#ffd866,#ff91c5);display:none;margin-top:14px;font-size:clamp(14px,3vw,17px);padding:12px 22px}
+.btn.next.show{display:inline-block;animation:nextPulse 1.5s ease-in-out infinite}
+@keyframes nextPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
 .toast{position:fixed;z-index:200;bottom:22px;left:50%;transform:translate(-50%,120px);background:#fff;border:4px solid var(--outline);border-radius:15px;padding:12px 18px;font-weight:900;box-shadow:5px 5px 0 var(--outline);transition:.35s;max-width:90vw;text-align:center;font-size:clamp(12px,2.5vw,14px)}
 .toast.show{transform:translate(-50%,0)}
 .rubric{background:#fff8e7;border:4px dashed #d9a94c;border-radius:16px;padding:14px;margin:15px 0}
@@ -185,24 +185,8 @@ table.tt th{background:#e0cdf0;color:#4a2b66}
 .mesa th,.mesa td{border:2px solid #b39bc0;padding:6px 10px;text-align:center;font-weight:900}
 .mesa th{background:#ffe4f3;color:#7a2b66}
 .mesa tr:nth-child(even) td{background:#faf5fc}
+.mesa .destaque{background:#ffe9a8!important;font-weight:900}
 footer{background:#3b2950;color:#fff;text-align:center;padding:28px 18px;font-size:clamp(11px,2.3vw,13px);word-break:break-word}
-
-/* Feedback da correção local */
-.code-feedback{margin-top:16px;padding:16px;border-radius:16px;border:4px solid #a77ca4;background:#fff;font-size:clamp(12px,2.6vw,15px);line-height:1.6;display:none}
-.code-feedback.show{display:block}
-.code-feedback.ok{background:#e9fff6;border-color:#3fa86b;box-shadow:0 5px 0 #c6ecd9}
-.code-feedback.nok{background:#fff4f8;border-color:#e08cae;box-shadow:0 5px 0 #f1d0dd}
-.code-feedback h5{margin:0 0 8px;color:#663db4;font-size:clamp(14px,3vw,17px)}
-.code-feedback .fb-list{list-style:none;margin:6px 0 12px;padding:0}
-.code-feedback .fb-list li{margin:4px 0;font-weight:800}
-.code-feedback .fb-block{margin-top:14px;padding:12px;border-radius:12px;background:#faf3ff;border:3px dashed #a77de8}
-.code-feedback .fb-block b{display:block;color:#5a2fa0;margin-bottom:6px;font-size:clamp(13px,2.7vw,15px)}
-.code-feedback .fb-block ul{margin:6px 0 0 20px;padding:0}
-.code-feedback .fb-block li{margin:4px 0;font-size:clamp(12px,2.5vw,14px)}
-.code-example{background:#2c253c;color:#fff0ff;border:3px solid #75568c;border-radius:12px;padding:10px 12px;margin:8px 0;font:clamp(11px,2.4vw,13px)/1.5 Consolas,"Courier New",monospace;white-space:pre-wrap;word-break:break-word;overflow-x:auto}
-.code-example b{color:#ffd866;display:block;margin-bottom:6px;font-family:inherit;font-size:inherit}
-.code-example pre{margin:0;white-space:pre-wrap;font-family:inherit;color:inherit}
-.score-pill{display:inline-block;background:#663db4;color:#fff;border-radius:999px;padding:3px 12px;font-weight:900;font-size:clamp(11px,2.4vw,13px);margin-bottom:8px}
 
 /* Boss — desafios */
 .challenge-card{background:#fff;border:4px solid #a77ca4;border-radius:16px;padding:14px;margin:12px 0}
@@ -239,9 +223,8 @@ footer{background:#3b2950;color:#fff;text-align:center;padding:28px 18px;font-si
   .robot-tag{display:none}
   .map-title{font-size:18px}
   .lesson{padding:0;border-width:4px;border-radius:12px}
-  .lesson-head{padding:8px 10px;flex-wrap:nowrap}
-  .lesson-head h2{font-size:13px}
-  .next-lesson-btn{padding:6px 10px;font-size:10px;border-width:3px}
+  .lesson-head{padding:8px 10px}
+  .lesson-head h2{font-size:14px}
   .close{width:34px;height:34px;font-size:18px;border-width:3px}
   .content{padding:12px}
   .code-input{min-height:140px;font-size:13px}
@@ -282,7 +265,7 @@ footer{background:#3b2950;color:#fff;text-align:center;padding:28px 18px;font-si
 
   <section class="hero">
     <h2>O MUNDO DOS ALGORITMOS</h2>
-    <p>Aprenda do zero, com explicações passo a passo e múltiplas formas de resolver cada problema. Cada conhecimento abre uma nova casinha do mapa.</p>
+    <p>Aprenda do zero, com explicações passo a passo. Cada conhecimento abre uma nova casinha do mapa.</p>
     <div class="robot">
       <div class="robot-device">
         <div class="screen"><div class="botface" id="botface">🤖</div><div class="mood" id="mood">^‿^</div><b>Olá! Eu sou Esperioux.</b><br><small>Seu companheiro de estudos.</small></div>
@@ -311,13 +294,7 @@ footer{background:#3b2950;color:#fff;text-align:center;padding:28px 18px;font-si
 
 <div class="panel" id="panel">
  <div class="lesson">
-  <div class="lesson-head">
-    <h2 id="lessonTitle"></h2>
-    <div class="lesson-head-btns">
-      <button class="next-lesson-btn" id="nextBtn" onclick="goToNextLesson()" title="Ir para a próxima casa">Próximo →</button>
-      <button class="close" onclick="closeLesson()">×</button>
-    </div>
-  </div>
+  <div class="lesson-head"><h2 id="lessonTitle"></h2><button class="close" onclick="closeLesson()">×</button></div>
   <div class="lesson-body">
    <nav class="side" id="side"></nav>
    <main class="content" id="content"></main>
@@ -359,18 +336,19 @@ const DIFY_CONFIG = {
 })();
 
 /* =========================================================
-   12 CASAS
+   12 CASAS — Código só quando o tema pede!
    ========================================================= */
 const lessons = [
-{id:1,title:"Casa 1 — O que é um Algoritmo?",short:"Comece aqui: lógica e a ideia de algoritmo.",content:`
+/* ========== CASA 1 — Conceitual, SEM código ========== */
+{id:1,title:"Casa 1 — O que é um Algoritmo?",short:"Comece aqui: lógica e a ideia de algoritmo.",codigo:false,content:`
    <h3>🧠 Primeiro: o que é um algoritmo?</h3>
    <p class="lead">Um algoritmo é uma sequência de passos bem definidos que tem por objetivo solucionar um determinado problema.</p>
-   <p>Antes de pensar em código, organize o raciocínio. O algoritmo descreve o que fazer, em que ordem e com quais passos.</p>
+   <p>Antes de pensar em código, organize o raciocínio. O algoritmo descreve <b>o que fazer</b>, <b>em que ordem</b> e <b>com quais passos</b>.</p>
    <div class="note tip"><b>🍰 Pense em uma receita:</b> sequência de instruções que leva a um resultado.</div>
    <h4>🔎 O algoritmo não é "o código"</h4>
    <p>Primeiro pensamos na solução; depois representamos como narrativa, fluxograma ou Portugol.</p>
-   <h4>🧩 Exemplo: somar três números</h4>
-   <div class="example"><span class="cm">// Descrição narrativa</span>
+   <h4>🧩 Exemplo: somar três números (só descrição)</h4>
+   <div class="example"><span class="cm">// Descrição narrativa — SEM código</span>
 Passo 1 — Receber os três números.
 Passo 2 — Somar os três números.
 Passo 3 — Mostrar o resultado.</div>
@@ -381,7 +359,8 @@ Passo 3 — Mostrar o resultado.</div>
   ["O que vem antes de sair escrevendo código?","Organizar a solução do problema.",["Escolher a cor da tela.","Organizar a solução do problema.","Comprar um computador."],1]
  ]},
 
-{id:2,title:"Casa 2 — Como construir um Algoritmo",short:"Problema → entrada → processamento → saída → teste.",content:`
+/* ========== CASA 2 — Conceitual, SEM código ========== */
+{id:2,title:"Casa 2 — Como construir um Algoritmo",short:"Problema → entrada → processamento → saída → teste.",codigo:false,content:`
    <h3>🗺️ Como construir um algoritmo?</h3>
    <p class="lead">Não comece pelo código. Comece entendendo o problema.</p>
    <div class="compare">
@@ -394,7 +373,7 @@ Passo 3 — Mostrar o resultado.</div>
    </div>
    <div class="diagram"><div class="dbox">📥 ENTRADA</div><div class="arrow">→</div><div class="dbox">⚙️ PROCESSAMENTO</div></div>
    <div class="diagram"><div class="dbox">⚙️ PROCESSAMENTO</div><div class="arrow">→</div><div class="dbox">📤 SAÍDA</div></div>
-   <h4>🧮 Exemplo: média de duas notas</h4>
+   <h4>🧮 Exemplo: média de duas notas (só descrição)</h4>
    <ul><li><b>Entrada:</b> nota1 e nota2.</li><li><b>Processamento:</b> média = (n1 + n2) / 2.</li><li><b>Saída:</b> a média.</li></ul>
  `,quiz:[
   ["Qual é o primeiro passo do método?","Compreender completamente o problema.",["Programar imediatamente.","Compreender completamente o problema.","Mostrar a saída antes da entrada."],1],
@@ -402,7 +381,8 @@ Passo 3 — Mostrar o resultado.</div>
   ["Depois de construir, o material recomenda:","Testar simulando.",["Ignorar.","Testar simulando.","Apagar variáveis."],1]
  ]},
 
-{id:3,title:"Casa 3 — Formas de representar",short:"Narrativa, fluxograma e Portugol.",content:`
+/* ========== CASA 3 — AQUI SIM mostra código (tema: representações) ========== */
+{id:3,title:"Casa 3 — Formas de representar",short:"Narrativa, fluxograma e Portugol.",codigo:false,content:`
    <h3>📝 Como escrever um algoritmo?</h3>
    <div class="compare">
      <div><strong>📖 Narrativa</strong>Linguagem natural.</div>
@@ -420,52 +400,49 @@ Passo 2 — Receber o segundo em B.
 Passo 3 — Calcular SOMA = A + B.
 Passo 4 — Mostrar SOMA.</div></div>
    <div id="rep2" class="solution-panel"><div class="example">   [Início] ↓ [Ler A, B] ↓ [SOMA ← A+B] ↓ [Escreva SOMA] ↓ [Fim]</div></div>
-   <div id="rep3" class="solution-panel"><div class="example"><span class="kw">algoritmo</span> "soma"
-<span class="kw">var</span> a, b, r: <span class="kw">inteiro</span>
-<span class="kw">inicio</span>
-   <span class="kw">leia</span>(a)
-   <span class="kw">leia</span>(b)
-   r <span class="num">&lt;-</span> a + b
-   <span class="kw">escreva</span>(r)
-<span class="kw">fimalgoritmo</span></div></div>
+   <div id="rep3" class="solution-panel"><div class="example"><span class="kw">programa</span>
+{
+    <span class="kw">funcao inicio</span>()
+    {
+        <span class="kw">inteiro</span> a, b, r
+        <span class="kw">escreva</span>("Digite o primeiro número: ")
+        <span class="kw">leia</span>(a)
+        <span class="kw">escreva</span>("Digite o segundo número: ")
+        <span class="kw">leia</span>(b)
+        r = a + b
+        <span class="kw">escreva</span>("Soma: ", r)
+    }
+}</div></div>
+   <div class="note tip"><b>💡 No Portugol Studio:</b> o código fica dentro de <code>programa { funcao inicio() { ... } }</code>.</div>
  `,quiz:[
   ["Quais três representações?","Narrativa, fluxograma e pseudocódigo/Portugol.",["Narrativa, desenho livre e vídeo.","Narrativa, fluxograma e pseudocódigo/Portugol.","Somente C e Java."],1],
   ["O que caracteriza fluxograma?","Símbolos gráficos predefinidos.",["Símbolos gráficos predefinidos.","Texto corrido.","Fotografias."],1],
   ["Pseudocódigo em português é chamado:","Portugol.",["HTML.","Portugol.","CSS."],1]
  ]},
 
-{id:4,title:"Casa 4 — Variáveis",short:"Memória, nome, tipo, tamanho e conteúdo.",content:`
+/* ========== CASA 4 — Conceitual sobre variáveis, SEM código obrigatório ========== */
+{id:4,title:"Casa 4 — Variáveis",short:"Memória, nome, tipo, tamanho e conteúdo.",codigo:false,content:`
    <h3>📦 O que é uma variável?</h3>
    <p class="lead">Uma posição de memória com nome, tipo, tamanho e conteúdo que pode variar.</p>
    <div class="note"><b>Importante:</b> uma variável guarda <b>um valor a cada instante</b>.</div>
    <h4>🧠 Memória</h4>
    <p>Cada dígito binário é um <b>bit</b>; 8 bits = <b>byte</b>.</p>
-   <h4>🏷️ Identificadores</h4>
-   <p>Começar com letra ou _; sem espaços; não usar palavras reservadas.</p>
-   <h4>🎨 3 FORMAS DE DECLARAR</h4>
-   <div class="solution-tabs">
-     <button class="active" onclick="switchTab(this,'var1')">Bloco var</button>
-     <button onclick="switchTab(this,'var2')">Direto</button>
-     <button onclick="switchTab(this,'var3')">Múltiplas</button>
+   <h4>🏷️ Identificadores (nomes válidos)</h4>
+   <p>✅ Começar com letra ou _ • ❌ sem espaços • ❌ não usar palavras reservadas.</p>
+   <div class="compare">
+     <div><strong>✅ Válido</strong>idade<br>nome_aluno<br>_total</div>
+     <div><strong>❌ Inválido</strong>2idade<br>nome aluno<br>se</div>
+     <div><strong>💡 Dica</strong>Use nomes que digam o que a variável guarda!</div>
    </div>
-   <div id="var1" class="solution-panel active"><div class="example"><span class="kw">var</span>
-   idade: <span class="kw">inteiro</span>
-   nota: <span class="kw">real</span>
-   nome: <span class="kw">cadeia</span>
-   ok: <span class="kw">logico</span></div></div>
-   <div id="var2" class="solution-panel"><div class="example"><span class="kw">inteiro</span> idade
-<span class="kw">real</span> nota
-<span class="kw">cadeia</span> nome
-<span class="kw">logico</span> ok</div></div>
-   <div id="var3" class="solution-panel"><div class="example"><span class="kw">inteiro</span> a, b, c
-<span class="kw">real</span> x, y</div></div>
+   <div class="note tip"><b>🍰 Analogia:</b> uma variável é como uma <b>caixinha etiquetada</b>. A etiqueta é o nome, o conteúdo é o valor.</div>
  `,quiz:[
   ["Variável representa:","Posição de memória identificada.",["Somente uma tela.","Posição de memória identificada.","Repetição."],1],
   ["Quantos bits formam um byte?","8 bits.",["2 bits.","8 bits.","100 bits."],1],
   ["Qual pode ser identificador?","idade.",["idade.","meu nome!","2idade"],0]
  ]},
 
-{id:5,title:"Casa 5 — Tipos de Dados",short:"Inteiro, real, lógico, caractere e cadeia.",content:`
+/* ========== CASA 5 — Tipos de dados, exemplos de declaração ========== */
+{id:5,title:"Casa 5 — Tipos de Dados",short:"Inteiro, real, lógico, caractere e cadeia.",codigo:false,content:`
    <h3>🔢 Tipos de dados</h3>
    <div class="compare">
      <div><strong>🔢 Inteiro</strong>Sem decimal. Ex: -23, 98, 0.</div>
@@ -474,43 +451,60 @@ Passo 4 — Mostrar SOMA.</div></div>
      <div><strong>🔤 Caractere</strong>1 símbolo. Ex: 'A', '3'.</div>
      <div><strong>💬 Cadeia</strong>Vários chars. Ex: "aluno".</div>
    </div>
+   <h4>📋 Como declarar no Portugol Studio</h4>
+   <div class="example"><span class="kw">inteiro</span> idade
+<span class="kw">real</span> nota
+<span class="kw">cadeia</span> nome
+<span class="kw">logico</span> aprovado</div>
+   <h4>🎨 Como mostrar valores</h4>
    <div class="solution-tabs">
      <button class="active" onclick="switchTab(this,'tip1')">Concatenação</button>
      <button onclick="switchTab(this,'tip2')">Múltiplos args</button>
-     <button onclick="switchTab(this,'tip3')">Quebra linha</button>
    </div>
    <div id="tip1" class="solution-panel active"><div class="example"><span class="kw">escreva</span>("Idade: " + idade)</div></div>
    <div id="tip2" class="solution-panel"><div class="example"><span class="kw">escreva</span>("Idade: ", idade)</div></div>
-   <div id="tip3" class="solution-panel"><div class="example"><span class="kw">escreva</span>("Idade: ", idade, "\\n")</div></div>
  `,quiz:[
   ["Exemplo de real?","23.45.",["23.45.","98.","verdadeiro"],0],
   ["Tipo V/F?","Lógico.",["Inteiro.","Lógico.","Cadeia."],1],
   ["'A' é:","Um caractere.",["Um real.","Um caractere.","Cadeia obrigatória."],1]
  ]},
 
-{id:6,title:"Casa 6 — Sequência e Operações",short:"Execução passo a passo.",content:`
+/* ========== CASA 6 — Sequência, mostra código ========== */
+{id:6,title:"Casa 6 — Sequência e Operações",short:"Execução passo a passo.",codigo:false,content:`
    <h3>➡️ Estrutura Sequencial</h3>
    <p class="lead">As ações são executadas na ordem em que aparecem.</p>
-   <div class="example">soma <span class="num">&lt;-</span> a + b</div>
-   <p>"Calcule a + b e guarde em soma."</p>
+   <div class="note tip"><b>📖 Leia assim:</b> <code>soma = a + b</code> significa "calcule a + b e guarde em soma".</div>
+   <h4>🎨 3 FORMAS DE RESOLVER O MESMO PROBLEMA</h4>
    <div class="solution-tabs">
      <button class="active" onclick="switchTab(this,'s1')">Variável extra</button>
      <button onclick="switchTab(this,'s2')">Direto</button>
      <button onclick="switchTab(this,'s3')">Acumulando</button>
    </div>
-   <div id="s1" class="solution-panel active"><div class="example"><span class="kw">leia</span>(a)
-<span class="kw">leia</span>(b)
-soma <span class="num">&lt;-</span> a + b
-<span class="kw">escreva</span>(soma)</div></div>
-   <div id="s2" class="solution-panel"><div class="example"><span class="kw">leia</span>(a)
-<span class="kw">leia</span>(b)
-<span class="kw">escreva</span>("Resultado: ", a + b)</div></div>
-   <div id="s3" class="solution-panel"><div class="example">total <span class="num">&lt;-</span> 0
-<span class="kw">leia</span>(a)
-total <span class="num">&lt;-</span> total + a
-<span class="kw">leia</span>(b)
-total <span class="num">&lt;-</span> total + b
-<span class="kw">escreva</span>(total)</div></div>
+   <div id="s1" class="solution-panel active"><div class="example"><span class="kw">funcao inicio</span>()
+{
+    <span class="kw">inteiro</span> a, b, soma
+    <span class="kw">leia</span>(a)
+    <span class="kw">leia</span>(b)
+    soma = a + b
+    <span class="kw">escreva</span>(soma)
+}</div></div>
+   <div id="s2" class="solution-panel"><div class="example"><span class="kw">funcao inicio</span>()
+{
+    <span class="kw">inteiro</span> a, b
+    <span class="kw">leia</span>(a)
+    <span class="kw">leia</span>(b)
+    <span class="kw">escreva</span>("Resultado: ", a + b)
+}</div></div>
+   <div id="s3" class="solution-panel"><div class="example"><span class="kw">funcao inicio</span>()
+{
+    <span class="kw">inteiro</span> a, b, total
+    total = 0
+    <span class="kw">leia</span>(a)
+    total = total + a
+    <span class="kw">leia</span>(b)
+    total = total + b
+    <span class="kw">escreva</span>(total)
+}</div></div>
    <div class="note warning"><b>⚠️</b> Trocar a ordem pode mudar o resultado.</div>
  `,quiz:[
   ["Na sequencial, ações são:","Executadas na ordem em que aparecem.",["Aleatórias.","Executadas na ordem em que aparecem.","Só com repetição."],1],
@@ -518,230 +512,332 @@ total <span class="num">&lt;-</span> total + b
   ["escreva(soma) faz:","Exibe o valor.",["Exibe o valor.","Repete.","Cria variável."],0]
  ]},
 
-{id:7,title:"Casa 7 — Decisões",short:"SE, SENÃO, relacionais e lógicos.",content:`
+/* ========== CASA 7 — Decisões, mostra código ========== */
+{id:7,title:"Casa 7 — Decisões",short:"SE, SENÃO, relacionais e lógicos.",codigo:false,content:`
    <h3>🚦 Decisões</h3>
-   <h4>🔎 Relacionais</h4>
+   <p class="lead">Permitem que o programa escolha <b>caminhos diferentes</b> conforme uma condição.</p>
+   <h4>🔎 Operadores Relacionais</h4>
    <div class="compare">
      <div><strong>==</strong>igual</div><div><strong>!=</strong>diferente</div>
      <div><strong>&lt;</strong>menor</div><div><strong>&lt;=</strong>menor/igual</div>
      <div><strong>&gt;</strong>maior</div><div><strong>&gt;=</strong>maior/igual</div>
    </div>
-   <h4>🔗 Lógicos</h4><p><b>&& = E</b> • <b>|| = OU</b> • <b>! = NÃO</b>.</p>
+   <h4>🔗 Operadores Lógicos (Portuguol Studio)</h4>
+   <p><b>e</b> = E • <b>ou</b> = OU • <b>nao</b> = NÃO</p>
+   <h4>🎨 3 FORMAS DE USAR DECISÃO</h4>
    <div class="solution-tabs">
      <button class="active" onclick="switchTab(this,'d1')">SE/SENÃO</button>
      <button onclick="switchTab(this,'d2')">Aninhado</button>
-     <button onclick="switchTab(this,'d3')">Composta</button>
+     <button onclick="switchTab(this,'d3')">Composta (e)</button>
    </div>
-   <div id="d1" class="solution-panel active"><div class="example"><span class="kw">se</span> (m >= 6.0) <span class="kw">entao</span>
-   <span class="kw">escreva</span>("Aprovado")
+   <div id="d1" class="solution-panel active"><div class="example"><span class="kw">funcao inicio</span>()
+{
+    <span class="kw">real</span> media
+    <span class="kw">leia</span>(media)
+    <span class="kw">se</span> (media >= 6.0)
+    {
+        <span class="kw">escreva</span>("Aprovado")
+    }
+    <span class="kw">senao</span>
+    {
+        <span class="kw">escreva</span>("Recuperação")
+    }
+}</div></div>
+   <div id="d2" class="solution-panel"><div class="example"><span class="kw">se</span> (media >= 6.0)
+{
+    <span class="kw">escreva</span>("Aprovado")
+}
 <span class="kw">senao</span>
-   <span class="kw">escreva</span>("Recuperação")
-<span class="kw">fimse</span></div></div>
-   <div id="d2" class="solution-panel"><div class="example"><span class="kw">se</span> (m >= 6.0) <span class="kw">entao</span>
-   <span class="kw">escreva</span>("Aprovado")
+{
+    <span class="kw">se</span> (media >= 4.0)
+    {
+        <span class="kw">escreva</span>("Recuperação")
+    }
+    <span class="kw">senao</span>
+    {
+        <span class="kw">escreva</span>("Reprovado")
+    }
+}</div></div>
+   <div id="d3" class="solution-panel"><div class="example"><span class="kw">se</span> (media >= 6.0 <span class="kw">e</span> frequencia >= 75)
+{
+    <span class="kw">escreva</span>("Aprovado")
+}
 <span class="kw">senao</span>
-   <span class="kw">se</span> (m >= 4.0) <span class="kw">entao</span>
-      <span class="kw">escreva</span>("Recuperação")
-   <span class="kw">senao</span>
-      <span class="kw">escreva</span>("Reprovado")
-   <span class="kw">fimse</span>
-<span class="kw">fimse</span></div></div>
-   <div id="d3" class="solution-panel"><div class="example"><span class="kw">se</span> (m >= 6.0) && (f >= 75) <span class="kw">entao</span>
-   <span class="kw">escreva</span>("Aprovado")
-<span class="kw">senao</span>
-   <span class="kw">escreva</span>("Recuperação")
-<span class="kw">fimse</span></div></div>
+{
+    <span class="kw">escreva</span>("Recuperação")
+}</div></div>
+   <div class="note warning"><b>⚠️ No Portugol Studio</b> use <code>e</code>, <code>ou</code>, <code>nao</code> — NÃO use &&, ||, !.</div>
  `,quiz:[
   [">=  significa:","Maior ou igual.",["Menor.","Maior ou igual.","Diferente."],1],
-  ["E lógico:","&&.",["||","&&","!"],1],
+  ["E lógico em Portugol Studio:","e.",["ou","e","nao"],1],
   ["SENÃO acontece quando:","A condição do SE não é satisfeita.",["A condição do SE não é satisfeita.","Antes do SE.","Nunca."],0]
  ]},
 
-{id:8,title:"Casa 8 — Repetições",short:"PARA, ENQUANTO, acumuladores.",content:`
+/* ========== CASA 8 — Repetições, mostra código ========== */
+{id:8,title:"Casa 8 — Repetições",short:"PARA, ENQUANTO, acumuladores.",codigo:false,content:`
    <h3>🔁 Repetições</h3>
    <p class="lead">Repetem trechos enquanto uma condição for atendida.</p>
-   <h4>➕ Acumulador</h4><p>Variável que acumula. Precisa ser inicializada.</p>
+   <h4>➕ Acumulador</h4><p>Variável que acumula. Precisa ser inicializada com 0.</p>
    <h4>🔢 Contador</h4><p>Acumulador que varia de 1 em 1.</p>
    <div class="solution-tabs">
      <button class="active" onclick="switchTab(this,'r1')">PARA</button>
      <button onclick="switchTab(this,'r2')">ENQUANTO</button>
      <button onclick="switchTab(this,'r3')">FAÇA...ENQUANTO</button>
    </div>
-   <div id="r1" class="solution-panel active"><div class="example"><span class="kw">para</span> (i <span class="num">&lt;-</span> 1; i <span class="num">&lt;=</span> 10; i<span class="num">++</span>)
-   <span class="kw">escreva</span>(i)
-<span class="kw">fimpara</span></div></div>
-   <div id="r2" class="solution-panel"><div class="example">i <span class="num">&lt;-</span> 1
-<span class="kw">enquanto</span> (i <span class="num">&lt;=</span> 10) <span class="kw">faca</span>
-   <span class="kw">escreva</span>(i)
-   i <span class="num">&lt;-</span> i + 1
-<span class="kw">fimenquanto</span></div></div>
-   <div id="r3" class="solution-panel"><div class="example">i <span class="num">&lt;-</span> 1
-<span class="kw">faca</span>
-   <span class="kw">escreva</span>(i)
-   i <span class="num">&lt;-</span> i + 1
-<span class="kw">enquanto</span> (i <span class="num">&lt;=</span> 10)</div></div>
-   <div class="note warning"><b>⚠️</b> ENQUANTO testa antes; FAÇA testa depois.</div>
+   <div id="r1" class="solution-panel active"><div class="example"><span class="kw">funcao inicio</span>()
+{
+    <span class="kw">inteiro</span> i
+    <span class="kw">para</span> (i = 1; i <= 10; i++)
+    {
+        <span class="kw">escreva</span>(i)
+    }
+}</div></div>
+   <div id="r2" class="solution-panel"><div class="example"><span class="kw">funcao inicio</span>()
+{
+    <span class="kw">inteiro</span> i = 1
+    <span class="kw">enquanto</span> (i <= 10)
+    {
+        <span class="kw">escreva</span>(i)
+        i++
+    }
+}</div></div>
+   <div id="r3" class="solution-panel"><div class="example"><span class="kw">funcao inicio</span>()
+{
+    <span class="kw">inteiro</span> i = 1
+    <span class="kw">faca</span>
+    {
+        <span class="kw">escreva</span>(i)
+        i++
+    } <span class="kw">enquanto</span> (i <= 10)
+}</div></div>
+   <div class="note warning"><b>⚠️</b> ENQUANTO testa <b>antes</b>; FAÇA testa <b>depois</b> (executa ao menos 1x).</div>
  `,quiz:[
   ["Contador:","Aumenta/diminui de 1 em 1.",["Aumenta/diminui de 1 em 1.","Nunca muda.","Guarda texto."],0],
   ["ENQUANTO verifica:","Antes do bloco.",["Depois.","Antes do bloco.","Nunca."],1],
   ["Executa o bloco pelo menos 1x:","FAÇA...ENQUANTO.",["ENQUANTO.","FAÇA...ENQUANTO.","SE."],1]
  ]},
 
-{id:9,title:"Casa 9 — Problemas Reais",short:"IMC, par/ímpar, soma 1..N.",content:`
+/* ========== CASA 9 — Problemas reais, mostra código ========== */
+{id:9,title:"Casa 9 — Problemas Reais",short:"IMC, par/ímpar, soma 1..N.",codigo:false,content:`
    <h3>🎯 Problemas reais</h3>
    <h4>💡 IMC</h4>
    <div class="solution-tabs">
      <button class="active" onclick="switchTab(this,'i1')">Direto</button>
      <button onclick="switchTab(this,'i2')">Variável auxiliar</button>
    </div>
-   <div id="i1" class="solution-panel active"><div class="example"><span class="kw">leia</span>(peso)
-<span class="kw">leia</span>(altura)
-imc <span class="num">&lt;-</span> peso / (altura * altura)
-<span class="kw">escreva</span>("IMC: ", imc)</div></div>
-   <div id="i2" class="solution-panel"><div class="example"><span class="kw">leia</span>(peso)
-<span class="kw">leia</span>(altura)
-a2 <span class="num">&lt;-</span> altura * altura
-imc <span class="num">&lt;-</span> peso / a2
-<span class="kw">escreva</span>("IMC: ", imc)</div></div>
+   <div id="i1" class="solution-panel active"><div class="example"><span class="kw">funcao inicio</span>()
+{
+    <span class="kw">real</span> peso, altura, imc
+    <span class="kw">leia</span>(peso)
+    <span class="kw">leia</span>(altura)
+    imc = peso / (altura * altura)
+    <span class="kw">escreva</span>("IMC: ", imc)
+}</div></div>
+   <div id="i2" class="solution-panel"><div class="example"><span class="kw">funcao inicio</span>()
+{
+    <span class="kw">real</span> peso, altura, a2, imc
+    <span class="kw">leia</span>(peso)
+    <span class="kw">leia</span>(altura)
+    a2 = altura * altura
+    imc = peso / a2
+    <span class="kw">escreva</span>("IMC: ", imc)
+}</div></div>
    <h4>💡 Par/Ímpar</h4>
    <div class="solution-tabs">
      <button class="active" onclick="switchTab(this,'p1')">Resto %</button>
      <button onclick="switchTab(this,'p2')">Divisão</button>
    </div>
-   <div id="p1" class="solution-panel active"><div class="example"><span class="kw">leia</span>(n)
-<span class="kw">se</span> (n % 2 == 0) <span class="kw">entao</span>
-   <span class="kw">escreva</span>("Par")
-<span class="kw">senao</span>
-   <span class="kw">escreva</span>("Ímpar")
-<span class="kw">fimse</span></div></div>
-   <div id="p2" class="solution-panel"><div class="example"><span class="kw">leia</span>(n)
-<span class="kw">se</span> ((n / 2) * 2 == n) <span class="kw">entao</span>
-   <span class="kw">escreva</span>("Par")
-<span class="kw">senao</span>
-   <span class="kw">escreva</span>("Ímpar")
-<span class="kw">fimse</span></div></div>
+   <div id="p1" class="solution-panel active"><div class="example"><span class="kw">funcao inicio</span>()
+{
+    <span class="kw">inteiro</span> n
+    <span class="kw">leia</span>(n)
+    <span class="kw">se</span> (n % 2 == 0)
+    {
+        <span class="kw">escreva</span>("Par")
+    }
+    <span class="kw">senao</span>
+    {
+        <span class="kw">escreva</span>("Ímpar")
+    }
+}</div></div>
+   <div id="p2" class="solution-panel"><div class="example"><span class="kw">funcao inicio</span>()
+{
+    <span class="kw">inteiro</span> n
+    <span class="kw">leia</span>(n)
+    <span class="kw">se</span> ((n / 2) * 2 == n)
+    {
+        <span class="kw">escreva</span>("Par")
+    }
+    <span class="kw">senao</span>
+    {
+        <span class="kw">escreva</span>("Ímpar")
+    }
+}</div></div>
    <h4>💡 Soma 1..N</h4>
    <div class="solution-tabs">
      <button class="active" onclick="switchTab(this,'g1')">Loop</button>
      <button onclick="switchTab(this,'g2')">Gauss</button>
    </div>
-   <div id="g1" class="solution-panel active"><div class="example"><span class="kw">leia</span>(n)
-soma <span class="num">&lt;-</span> 0
-<span class="kw">para</span> (i <span class="num">&lt;-</span> 1; i <span class="num">&lt;=</span> n; i<span class="num">++</span>)
-   soma <span class="num">&lt;-</span> soma + i
-<span class="kw">fimpara</span>
-<span class="kw">escreva</span>(soma)</div></div>
-   <div id="g2" class="solution-panel"><div class="example"><span class="kw">leia</span>(n)
-soma <span class="num">&lt;-</span> n * (n + 1) / 2
-<span class="kw">escreva</span>(soma)</div></div>
+   <div id="g1" class="solution-panel active"><div class="example"><span class="kw">funcao inicio</span>()
+{
+    <span class="kw">inteiro</span> n, i, soma = 0
+    <span class="kw">leia</span>(n)
+    <span class="kw">para</span> (i = 1; i <= n; i++)
+    {
+        soma = soma + i
+    }
+    <span class="kw">escreva</span>(soma)
+}</div></div>
+   <div id="g2" class="solution-panel"><div class="example"><span class="kw">funcao inicio</span>()
+{
+    <span class="kw">inteiro</span> n, soma
+    <span class="kw">leia</span>(n)
+    soma = n * (n + 1) / 2
+    <span class="kw">escreva</span>(soma)
+}</div></div>
  `,quiz:[
   ["Fórmula IMC?","peso / (altura * altura)",["peso + altura","peso / (altura * altura)","peso - altura"],1],
   ["Par usa:","O operador % (resto)",["+","O operador % (resto)","*"],1],
   ["Gauss:","n * (n + 1) / 2",["n + 1","n * (n + 1) / 2","n * n"],1]
  ]},
 
-{id:10,title:"Casa 10 — Teste de Mesa",short:"Simule o algoritmo na mão.",content:`
+/* ========== CASA 10 — TESTE DE MESA MUITO EXPLICADO ========== */
+{id:10,title:"Casa 10 — Teste de Mesa",short:"Aprenda a simular o algoritmo na mão, devagar.",codigo:false,content:`
    <h3>📋 O que é Teste de Mesa?</h3>
-   <p class="lead">Simular a execução do algoritmo <b>na mão</b>, anotando o valor de cada variável em cada passo.</p>
+   <p class="lead">É você <b>simular o algoritmo na mão</b>, como se fosse o computador, anotando o valor de CADA variável a CADA passo.</p>
+   <div class="note tip"><b>🍰 Analogia:</b> Imagine que você é o computador. Você tem uma folha com caixinhas (as variáveis). A cada linha do código, você apaga e reescreve o valor dentro das caixinhas.</div>
+
+   <h4>❓ Por que fazer isso?</h4>
    <ul>
-     <li>✅ Verificar se o algoritmo está correto</li>
-     <li>🐛 Encontrar bugs de lógica</li>
-     <li>🎯 Prever a saída</li>
-     <li>📝 Estudar para prova</li>
+     <li>✅ <b>Verificar</b> se o algoritmo está correto</li>
+     <li>🐛 <b>Encontrar bugs</b> de lógica (erros que o computador não avisa)</li>
+     <li>🎯 <b>Prever a saída</b> antes de rodar</li>
+     <li>📝 <b>Estudar para prova</b> — a maioria das provas pede teste de mesa!</li>
    </ul>
-   <h4>🎨 COMO FAZER</h4>
-   <div class="compare">
-     <div><strong>1.</strong> Tabela com coluna para cada variável.</div>
-     <div><strong>2.</strong> Uma linha por passo/iteração.</div>
-     <div><strong>3.</strong> Comece pela linha inicial.</div>
-     <div><strong>4.</strong> Execute atualizando os valores.</div>
-     <div><strong>5.</strong> Compare com o esperado.</div>
-     <div><strong>6.</strong> Se der diferente, o bug está na lógica.</div>
-   </div>
-   <h4>🧪 EXEMPLO 1 — Acumulador</h4>
-   <div class="example">soma <span class="num">&lt;-</span> 0
-<span class="kw">para</span> i <span class="kw">de</span> 1 <span class="kw">ate</span> 5 <span class="kw">faca</span>
-   soma <span class="num">&lt;-</span> soma + i
-<span class="kw">fimpara</span>
+
+   <h4>🎨 COMO FAZER — 6 PASSOS</h4>
+   <div class="note step"><b>Passo 1.</b> Desenhe uma tabela com uma coluna para CADA variável do código (+ uma coluna "Passo" ou "Linha").</div>
+   <div class="note step"><b>Passo 2.</b> Comece na primeira linha de execução. Anote o valor inicial de cada variável.</div>
+   <div class="note step"><b>Passo 3.</b> Desça linha por linha. A cada mudança de valor, escreva uma nova linha na tabela.</div>
+   <div class="note step"><b>Passo 4.</b> Se tiver laço (para/enquanto), repita o bloco até a condição falhar.</div>
+   <div class="note step"><b>Passo 5.</b> Anote o V/F de cada condição quando aparecer <code>se</code> ou <code>enquanto</code>.</div>
+   <div class="note step"><b>Passo 6.</b> No fim, compare o valor final com o que você esperava. Se der diferente → <b>o bug está na lógica do código</b>!</div>
+
+   <h4>🧪 EXEMPLO PASSO A PASSO — Acumulador</h4>
+   <p>Código:</p>
+   <div class="example">soma = 0
+<span class="kw">para</span> (i = 1; i <= 5; i++)
+{
+    soma = soma + i
+}
 <span class="kw">escreva</span>(soma)</div>
+   <p><b>Vamos simular juntos:</b></p>
+   <ul>
+     <li><b>Antes do laço:</b> soma = 0. O i ainda não existe.</li>
+     <li><b>1ª volta:</b> i = 1. soma recebe 0 + 1 = <b>1</b>.</li>
+     <li><b>2ª volta:</b> i = 2. soma recebe 1 + 2 = <b>3</b>.</li>
+     <li><b>3ª volta:</b> i = 3. soma recebe 3 + 3 = <b>6</b>.</li>
+     <li><b>4ª volta:</b> i = 4. soma recebe 6 + 4 = <b>10</b>.</li>
+     <li><b>5ª volta:</b> i = 5. soma recebe 10 + 5 = <b>15</b>.</li>
+     <li><b>Fim:</b> i virou 6, condição i <= 5 falhou. Sai do laço.</li>
+     <li><b>Saída:</b> 15.</li>
+   </ul>
+   <p>Tabela final:</p>
    <table class="mesa">
-     <tr><th>Passo</th><th>i</th><th>soma</th></tr>
-     <tr><td>Início</td><td>-</td><td>0</td></tr>
-     <tr><td>1ª</td><td>1</td><td>1</td></tr>
-     <tr><td>2ª</td><td>2</td><td>3</td></tr>
-     <tr><td>3ª</td><td>3</td><td>6</td></tr>
-     <tr><td>4ª</td><td>4</td><td>10</td></tr>
-     <tr><td>5ª</td><td>5</td><td>15</td></tr>
-     <tr><td>Saída</td><td>-</td><td>15</td></tr>
+     <tr><th>Passo</th><th>i</th><th>soma</th><th>Observação</th></tr>
+     <tr><td>Início</td><td>-</td><td>0</td><td>antes do laço</td></tr>
+     <tr><td>1ª volta</td><td>1</td><td>1</td><td>0 + 1</td></tr>
+     <tr><td>2ª volta</td><td>2</td><td>3</td><td>1 + 2</td></tr>
+     <tr><td>3ª volta</td><td>3</td><td>6</td><td>3 + 3</td></tr>
+     <tr><td>4ª volta</td><td>4</td><td>10</td><td>6 + 4</td></tr>
+     <tr><td>5ª volta</td><td>5</td><td class="destaque">15</td><td>10 + 5 → saída</td></tr>
+     <tr><td>Fim</td><td>6</td><td>15</td><td>i virou 6, condição falhou</td></tr>
    </table>
-   <h4>🧪 EXEMPLO 2 — Contador com SE</h4>
-   <div class="example">conte <span class="num">&lt;-</span> 0
-<span class="kw">para</span> i <span class="kw">de</span> 1 <span class="kw">ate</span> 6 <span class="kw">faca</span>
-   <span class="kw">se</span> (i % 2 == 0) <span class="kw">entao</span>
-      conte <span class="num">&lt;-</span> conte + 1
-   <span class="kw">fimse</span>
-<span class="kw">fimpara</span>
+
+   <h4>🧪 EXEMPLO 2 — Contador dentro de SE</h4>
+   <p>Código:</p>
+   <div class="example">conte = 0
+<span class="kw">para</span> (i = 1; i <= 6; i++)
+{
+    <span class="kw">se</span> (i % 2 == 0)
+    {
+        conte = conte + 1
+    }
+}
 <span class="kw">escreva</span>(conte)</div>
+   <p><b>Traduzindo:</b> conta quantos números pares existem entre 1 e 6.</p>
    <table class="mesa">
-     <tr><th>i</th><th>i%2==0</th><th>conte</th></tr>
-     <tr><td>1</td><td>F</td><td>0</td></tr>
-     <tr><td>2</td><td>V</td><td>1</td></tr>
-     <tr><td>3</td><td>F</td><td>1</td></tr>
-     <tr><td>4</td><td>V</td><td>2</td></tr>
-     <tr><td>5</td><td>F</td><td>2</td></tr>
-     <tr><td>6</td><td>V</td><td>3</td></tr>
+     <tr><th>i</th><th>i%2==0 ?</th><th>conte</th><th>Por quê</th></tr>
+     <tr><td>1</td><td>F</td><td>0</td><td>ímpar, não conta</td></tr>
+     <tr><td>2</td><td>V</td><td>1</td><td>par, conta</td></tr>
+     <tr><td>3</td><td>F</td><td>1</td><td>ímpar</td></tr>
+     <tr><td>4</td><td>V</td><td>2</td><td>par, conta</td></tr>
+     <tr><td>5</td><td>F</td><td>2</td><td>ímpar</td></tr>
+     <tr><td>6</td><td>V</td><td class="destaque">3</td><td>par, conta → saída</td></tr>
    </table>
-   <h4>🧪 EXEMPLO 3 — Troca com auxiliar</h4>
-   <div class="example">a <span class="num">&lt;-</span> 5
-b <span class="num">&lt;-</span> 3
-aux <span class="num">&lt;-</span> a
-a <span class="num">&lt;-</span> b
-b <span class="num">&lt;-</span> aux</div>
+   <p><b>Resultado:</b> conte = 3 (existem 3 pares: 2, 4, 6).</p>
+
+   <h4>🧪 EXEMPLO 3 — Trocar valores com auxiliar</h4>
+   <p>Código:</p>
+   <div class="example">a = 5
+b = 3
+aux = a
+a = b
+b = aux</div>
+   <p><b>Objetivo:</b> trocar os valores de a e b sem perder nenhum.</p>
    <table class="mesa">
      <tr><th>Linha</th><th>a</th><th>b</th><th>aux</th></tr>
-     <tr><td>a=5</td><td>5</td><td>-</td><td>-</td></tr>
-     <tr><td>b=3</td><td>5</td><td>3</td><td>-</td></tr>
-     <tr><td>aux=a</td><td>5</td><td>3</td><td>5</td></tr>
-     <tr><td>a=b</td><td>3</td><td>3</td><td>5</td></tr>
-     <tr><td>b=aux</td><td>3</td><td>5</td><td>5</td></tr>
+     <tr><td>a = 5</td><td>5</td><td>-</td><td>-</td></tr>
+     <tr><td>b = 3</td><td>5</td><td>3</td><td>-</td></tr>
+     <tr><td>aux = a</td><td>5</td><td>3</td><td>5</td></tr>
+     <tr><td>a = b</td><td>3</td><td>3</td><td>5</td></tr>
+     <tr><td>b = aux</td><td>3</td><td class="destaque">5</td><td>5</td></tr>
    </table>
+   <p><b>Resultado:</b> a = 3, b = 5 (trocados!). O aux guardou o valor antigo de a para não perder.</p>
+
    <h4>🧪 EXEMPLO 4 — ENQUANTO com decremento</h4>
-   <div class="example">x <span class="num">&lt;-</span> 10
-<span class="kw">enquanto</span> (x &gt; 0) <span class="kw">faca</span>
-   x <span class="num">&lt;-</span> x - 3
-   <span class="kw">escreva</span>(x)
-<span class="kw">fimenquanto</span></div>
+   <p>Código:</p>
+   <div class="example">x = 10
+<span class="kw">enquanto</span> (x > 0)
+{
+    x = x - 3
+    <span class="kw">escreva</span>(x)
+}</div>
+   <p><b>Atenção:</b> o ENQUANTO testa ANTES de cada volta. Se a condição for F, ele nem entra.</p>
    <table class="mesa">
-     <tr><th>Volta</th><th>x antes</th><th>x&gt;0?</th><th>x depois</th></tr>
-     <tr><td>1</td><td>10</td><td>V</td><td>7</td></tr>
-     <tr><td>2</td><td>7</td><td>V</td><td>4</td></tr>
-     <tr><td>3</td><td>4</td><td>V</td><td>1</td></tr>
-     <tr><td>4</td><td>1</td><td>V</td><td>-2</td></tr>
-     <tr><td>Fim</td><td>-2</td><td>F</td><td>-</td></tr>
+     <tr><th>Volta</th><th>x antes</th><th>x > 0 ?</th><th>x depois</th><th>Impresso</th></tr>
+     <tr><td>1ª</td><td>10</td><td>V</td><td>7</td><td>7</td></tr>
+     <tr><td>2ª</td><td>7</td><td>V</td><td>4</td><td>4</td></tr>
+     <tr><td>3ª</td><td>4</td><td>V</td><td>1</td><td>1</td></tr>
+     <tr><td>4ª</td><td>1</td><td>V</td><td>-2</td><td>-2</td></tr>
+     <tr><td>Teste final</td><td>-2</td><td>F</td><td>-</td><td>sai do laço</td></tr>
    </table>
-   <div class="note warning"><b>⚠️</b> Imprime 4 valores (7, 4, 1, -2).</div>
+   <p><b>Saída:</b> 4 valores impressos: 7, 4, 1, -2.</p>
+
    <h4>📝 DICAS DE PROVA</h4>
    <div class="rubric">
      <ul>
-       <li>Sempre anote valores <b>antes do laço</b>.</li>
+       <li>Sempre anote os valores <b>antes do laço</b>.</li>
        <li>Uma linha por iteração, mostrando <b>antes e depois</b>.</li>
        <li>Marque <b>V/F</b> de cada condição.</li>
        <li>Cuidado: ENQUANTO testa <b>antes</b>; FAÇA...ENQUANTO testa <b>depois</b>.</li>
-       <li>Se saída diferente do esperado → <b>bug está no código</b>.</li>
+       <li>Se a saída real for diferente do esperado → <b>bug na lógica do código</b>.</li>
+       <li>Use uma folha de rascunho — não tente fazer de cabeça!</li>
      </ul>
    </div>
  `,quiz:[
   ["O que é teste de mesa?","Simular execução na mão, anotando variáveis a cada passo.",["Rodar no PC.","Simular execução na mão, anotando variáveis a cada passo.","Desenhar fluxograma.","Apagar variáveis."],1],
-  ["<b>[Trace]</b> <code>soma&lt;-0; para i de 1 ate 4 faca soma&lt;-soma+i</code> → soma =","10",["4","6","10","24"],2],
-  ["<b>[Trace]</b> <code>a&lt;-7;b&lt;-2;a&lt;-a-b;b&lt;-a*2</code> →","a=5, b=10",["a=7,b=4","a=5,b=10","a=5,b=4","a=14,b=4"],1],
-  ["<b>[Trace]</b> <code>x&lt;-10; enquanto(x&gt;0) faca x&lt;-x-3; escreva(x)</code> imprime quantos?","4",["2","3","4","5"],2],
-  ["<b>[Trace]</b> <code>conte&lt;-0; para i de 1 ate 5 faca se(i&gt;3) entao conte&lt;-conte+1</code> → conte =","2",["0","2","3","5"],1],
-  ["<b>[Trace]</b> <code>a&lt;-2; para i de 1 ate 3 faca a&lt;-a*2</code> → a =","16",["2","6","8","16"],3],
+  ["<b>[Trace]</b> <code>soma=0; para(i=1; i<=4; i++) soma=soma+i</code> → soma =","10",["4","6","10","24"],2],
+  ["<b>[Trace]</b> <code>a=7; b=2; a=a-b; b=a*2</code> →","a=5, b=10",["a=7,b=4","a=5,b=10","a=5,b=4","a=14,b=4"],1],
+  ["<b>[Trace]</b> <code>x=10; enquanto(x>0){ x=x-3; escreva(x) }</code> imprime quantos?","4",["2","3","4","5"],2],
+  ["<b>[Trace]</b> <code>conte=0; para(i=1;i<=5;i++) se(i>3) conte=conte+1</code> → conte =","2",["0","2","3","5"],1],
+  ["<b>[Trace]</b> <code>a=2; para(i=1;i<=3;i++) a=a*2</code> → a =","16",["2","6","8","16"],3],
   ["<b>[Cuidado]</b> Se a saída der diferente do esperado:","O bug está no código",["O teste está errado","O bug está no código","O PC errou","A variável quebrou"],1],
   ["<b>[ENQUANTO]</b> Diferença com FAÇA...ENQUANTO:","FAÇA testa depois.",["São iguais.","FAÇA testa depois.","ENQUANTO testa depois.","Ambos infinitos."],1]
  ]},
 
-{id:11,title:"Casa 11 — Guia de Bolso",short:"ESCOLHA, vetores, matrizes, tabela-verdade.",content:`
+/* ========== CASA 11 — Guia de Bolso ========== */
+{id:11,title:"Casa 11 — Guia de Bolso",short:"ESCOLHA, vetores, matrizes, tabela-verdade.",codigo:false,content:`
    <h3>🎒 Guia de Bolso</h3>
    <h4>➕ Operadores</h4>
    <div class="example"><span class="kw">+</span> soma · <span class="kw">-</span> sub · <span class="kw">*</span> mult · <span class="kw">/</span> div real
@@ -751,611 +847,372 @@ b <span class="num">&lt;-</span> aux</div>
    <p><code>2 + 3 * 4 = 14</code> (não 20!)</p>
    <h4>🎯 ESCOLHA / CASO</h4>
    <div class="example"><span class="kw">escolha</span> (opcao)
-   <span class="kw">caso</span> 1
-      <span class="kw">escreva</span>("Um")
-   <span class="kw">caso</span> 2
-      <span class="kw">escreva</span>("Dois")
-   <span class="kw">outrocaso</span>
-      <span class="kw">escreva</span>("Inválido")
-<span class="kw">fimescolha</span></div>
+{
+    <span class="kw">caso</span> 1:
+        <span class="kw">escreva</span>("Um")
+        <span class="kw">pare</span>
+    <span class="kw">caso</span> 2:
+        <span class="kw">escreva</span>("Dois")
+        <span class="kw">pare</span>
+    <span class="kw">caso contrario</span>:
+        <span class="kw">escreva</span>("Inválido")
+}</div>
    <h4>📚 Vetores</h4>
-   <div class="example"><span class="kw">var</span>
-   notas: <span class="kw">vetor</span>[1..5] <span class="kw">de</span> <span class="kw">real</span>
-   i: <span class="kw">inteiro</span>
-<span class="kw">inicio</span>
-   <span class="kw">para</span> i <span class="kw">de</span> 1 <span class="kw">ate</span> 5 <span class="kw">faca</span>
-      <span class="kw">leia</span>(notas[i])
-   <span class="kw">fimpara</span></div>
+   <div class="example"><span class="kw">real</span> notas[5]
+<span class="kw">para</span> (i = 0; i < 5; i++)
+{
+    <span class="kw">leia</span>(notas[i])
+}</div>
    <h4>🔲 Matrizes</h4>
-   <div class="example"><span class="kw">var</span> m: <span class="kw">vetor</span>[1..3,1..3] <span class="kw">de</span> <span class="kw">inteiro</span>
-<span class="kw">para</span> i <span class="kw">de</span> 1 <span class="kw">ate</span> 3 <span class="kw">faca</span>
-   <span class="kw">para</span> j <span class="kw">de</span> 1 <span class="kw">ate</span> 3 <span class="kw">faca</span>
-      <span class="kw">leia</span>(m[i,j])
-   <span class="kw">fimpara</span>
-<span class="kw">fimpara</span></div>
+   <div class="example"><span class="kw">inteiro</span> m[3][3]
+<span class="kw">para</span> (i = 0; i < 3; i++)
+{
+    <span class="kw">para</span> (j = 0; j < 3; j++)
+    {
+        <span class="kw">leia</span>(m[i][j])
+    }
+}</div>
    <h4>📌 Constantes e Comentários</h4>
-   <div class="example"><span class="kw">const</span> PI = 3.14159
+   <div class="example"><span class="kw">const real</span> PI = 3.14159
 <span class="cm">// linha</span>
 <span class="cm">/* várias linhas */</span></div>
-   <h4>⏹️ Interrompa / Continua</h4>
-   <div class="example"><span class="kw">se</span> (i = 5) <span class="kw">entao</span>
-   <span class="kw">interrompa</span>
-<span class="kw">fimse</span></div>
-   <h4>🔁 Conversão</h4>
-   <div class="example"><span class="kw">inteiro</span>(3.9)  <span class="kw">real</span>(5)  <span class="kw">cadeia</span>(42)</div>
    <h4>📊 Tabela-verdade</h4>
    <table class="tt">
-     <tr><th>A</th><th>B</th><th>A&&B</th><th>A||B</th><th>!A</th></tr>
+     <tr><th>A</th><th>B</th><th>A e B</th><th>A ou B</th><th>nao A</th></tr>
      <tr><td>V</td><td>V</td><td>V</td><td>V</td><td>F</td></tr>
      <tr><td>V</td><td>F</td><td>F</td><td>V</td><td>F</td></tr>
      <tr><td>F</td><td>V</td><td>F</td><td>V</td><td>V</td></tr>
      <tr><td>F</td><td>F</td><td>F</td><td>F</td><td>V</td></tr>
    </table>
-   <h4>🏧 Exemplo: Caixa Eletrônico</h4>
-   <div class="example"><span class="kw">algoritmo</span> "caixa"
-<span class="kw">var</span> saldo, valor: <span class="kw">real</span>; op: <span class="kw">inteiro</span>
-<span class="kw">inicio</span>
-   saldo <span class="num">&lt;-</span> 1000.0
-   <span class="kw">escreva</span>("1-Saldo 2-Saque 3-Dep: ")
-   <span class="kw">leia</span>(op)
-   <span class="kw">escolha</span> (op)
-      <span class="kw">caso</span> 1
-         <span class="kw">escreva</span>("Saldo: ", saldo)
-      <span class="kw">caso</span> 2
-         <span class="kw">leia</span>(valor)
-         <span class="kw">se</span> (valor &lt;= saldo) <span class="kw">entao</span>
-            saldo <span class="num">&lt;-</span> saldo - valor
-            <span class="kw">escreva</span>("Novo saldo: ", saldo)
-         <span class="kw">senao</span>
-            <span class="kw">escreva</span>("Saldo insuficiente")
-         <span class="kw">fimse</span>
-      <span class="kw">caso</span> 3
-         <span class="kw">leia</span>(valor)
-         saldo <span class="num">&lt;-</span> saldo + valor
-      <span class="kw">outrocaso</span>
-         <span class="kw">escreva</span>("Opção inválida")
-   <span class="kw">fimescolha</span>
-<span class="kw">fimalgoritmo</span></div>
  `,quiz:[
   ["Operador de RESTO?","%",["/","%","\\\\","^"],1],
   ["<code>2+3*4</code> = ?","14",["20","14","24","9"],1],
   ["Menu com várias opções:","ESCOLHA/CASO",["SE","PARA","ESCOLHA/CASO","ENQUANTO"],2],
   ["Vetor guarda:","Vários valores do mesmo tipo",["Um valor","Vários valores do mesmo tipo","Tipos mistos","Nada"],1],
   ["<code>5 \\\\ 2</code> = ?","2",["2.5","2","3","0"],1],
-  ["Ambos V → && retorna:","V",["V","F","Nada","Depende"],0]
+  ["Ambos V → 'e' retorna:","V",["V","F","Nada","Depende"],0]
  ]},
 
-{id:12,title:"👑 Torre do BOSS — Exame Final",short:"20 questões + 10 desafios corrigidos por IA.",content:`
+/* ========== CASA 12 — BOSS ========== */
+{id:12,title:"👑 Torre do BOSS — Exame Final",short:"20 questões + 10 desafios corrigidos por IA.",codigo:false,content:`
    <h3>👑 O BOSS FINAL <span class="ai-badge">✨ CORRIGIDO POR IA</span></h3>
    <p class="lead">Prova completa: <b>20 questões de múltipla escolha</b> + <b>10 desafios de código</b> corrigidos pela IA do Esperioux.</p>
    <div class="note warning"><b>☠️ Regra do Boss:</b> acertar <b>80%</b> (16/20) do quiz E ser aprovado em <b>8 dos 10 desafios</b> de código pela IA.</div>
-
-   <h4>🎨 COMO FUNCIONA</h4>
-   <ul>
-     <li><b>Prova:</b> 20 questões objetivas (correção local por gabarito).</li>
-     <li><b>Desafios:</b> você escreve código em Portugol e a <b>IA do Esperioux</b> analisa, dá nota e feedback personalizado.</li>
-     <li>Cada desafio tem botão <b>"👀 Ver solução"</b> caso você trave.</li>
-     <li>A IA também verifica com rubrica local como apoio.</li>
-   </ul>
-
    <h4>📋 DICAS DE SUCESSO</h4>
    <div class="rubric">
      <ul>
-       <li>Sempre comece com <code>algoritmo "nome"</code> e termine com <code>fimalgoritmo</code>.</li>
-       <li>Declare <b>todas</b> as variáveis antes do <code>inicio</code>.</li>
-       <li>Feche toda estrutura: <code>fimse</code>, <code>fimpara</code>, <code>fimenquanto</code>, <code>fimescolha</code>.</li>
-       <li>Acumuladores sempre inicializados com 0 antes do laço.</li>
-       <li>Use <code>&lt;-</code> para atribuição.</li>
+       <li>Sempre comece com <code>programa {</code> e termine com <code>}</code>.</li>
+       <li>Use <code>funcao inicio() { ... }</code> para o bloco principal.</li>
+       <li>Use <code>=</code> para atribuição (não <code>&lt;-</code>).</li>
+       <li>Feche blocos com chaves <code>{ }</code>.</li>
+       <li>Operadores lógicos: <code>e</code>, <code>ou</code>, <code>nao</code>.</li>
      </ul>
    </div>
  `,quiz:[
   ["O que é um algoritmo?","Sequência de passos para resolver um problema.",["Um desenho.","Sequência de passos para resolver um problema.","Um programa executável.","Um banco de dados."],1],
   ["Qual tipo pode armazenar 25.5?","Real",["Inteiro","Real","Lógico","Caractere"],1],
   ["Quantos bits formam 1 byte?","8",["2","8","16","1024"],1],
-  ["Operador E lógico em Portugol:","&&",["||","&&","!","=="],1],
+  ["Operador E lógico em Portugol Studio:","e",["ou","e","nao","=="],1],
   ["Estrutura ideal para menu com várias opções:","ESCOLHA/CASO",["SE simples","PARA","ESCOLHA/CASO","ENQUANTO"],2],
-  ["<b>[Trace]</b> <code>soma&lt;-0; para i de 1 ate 5 faca soma&lt;-soma+i</code> → soma =","15",["5","10","15","25"],2],
-  ["<b>[Bug]</b> <code>para (i&lt;-1; i&lt;=10; i--)</code> causa:","Loop infinito",["Erro de sintaxe","Loop infinito","Nada","Compila normal"],1],
+  ["<b>[Trace]</b> <code>soma=0; para(i=1;i<=5;i++) soma=soma+i</code> → soma =","15",["5","10","15","25"],2],
+  ["<b>[Bug]</b> <code>para (i=1; i<=10; i--)</code> causa:","Loop infinito",["Erro de sintaxe","Loop infinito","Nada","Compila normal"],1],
   ["Precedência: <code>2 + 3 * 4 - 1</code> = ?","13",["19","13","11","9"],1],
   ["Verificar par usa:","%",["+","%","*","^"],1],
   ["Diferença ENQUANTO x FAÇA...ENQUANTO:","FAÇA testa após executar",["São iguais","FAÇA testa após executar","ENQUANTO testa depois","Nenhuma"],1],
-  ["<b>[Trace]</b> <code>a&lt;-5;b&lt;-3;aux&lt;-a;a&lt;-b;b&lt;-aux</code> →","a=3, b=5",["a=5,b=3","a=3,b=5","a=3,b=3","a=5,b=5"],1],
-  ["Vetor em Portugol:","vetor[1..10] de real",["real[10]","vetor[1..10] de real","inteiro vetor","cadeia[10]"],1],
+  ["<b>[Trace]</b> <code>a=5;b=3;aux=a;a=b;b=aux</code> →","a=3, b=5",["a=5,b=3","a=3,b=5","a=3,b=3","a=5,b=5"],1],
+  ["Vetor em Portugol Studio:","real notas[5]",["real[10]","real notas[5]","inteiro vetor","cadeia[10]"],1],
   ["Estrutura que testa ANTES do bloco:","ENQUANTO",["SE","PARA","ENQUANTO","FAÇA...ENQUANTO"],2],
   ["Teste de mesa serve para:","Simular execução na mão",["Comprimir código","Simular execução na mão","Renderizar tela","Instalar programa"],1],
-  ["<b>[Trace]</b> <code>conte&lt;-0; para i de 1 ate 5 faca se(i&gt;3) entao conte&lt;-conte+1</code> → conte =","2",["0","2","3","5"],1],
+  ["<b>[Trace]</b> <code>conte=0; para(i=1;i<=5;i++) se(i>3) conte=conte+1</code> → conte =","2",["0","2","3","5"],1],
   ["Nome VÁLIDO de variável:","nome_aluno",["2aluno","nome aluno","nome-aluno","nome_aluno"],3],
   ["Operador RESTO (módulo):","%",["/","\\\\","%","^"],2],
-  ["Palavra final da estrutura ESCOLHA:","fimescolha",["fimse","fimpara","fimescolha","fimenquanto"],2],
+  ["Palavra que fecha o caso na estrutura ESCOLHA:","pare",["fimse","fimpara","pare","fimenquanto"],2],
   ["Pseudocódigo em português:","Portugol",["HTML","Portugol","CSS","Python"],1],
-  ["<b>[Trace]</b> <code>x&lt;-10; enquanto(x&gt;0) faca x&lt;-x-3; escreva(x)</code> imprime quantos?","4",["2","3","4","5"],2]
+  ["<b>[Trace]</b> <code>x=10; enquanto(x>0){ x=x-3; escreva(x) }</code> imprime quantos?","4",["2","3","4","5"],2]
  ]}
 ];
 
 /* =========================================================
-   10 DESAFIOS DE CÓDIGO DO BOSS (com IA)
+   10 DESAFIOS DE CÓDIGO (Boss)
    ========================================================= */
 const codeChallenges = [
   {
     titulo:"Desafio 1 — Soma de dois números",
     enun:"Leia dois números inteiros e mostre a soma deles.",
     checks:[
-      { d:"Tem 'algoritmo' e 'fimalgoritmo'", r:/algoritmo[\s\S]+fimalgoritmo/i },
-      { d:"Abriu bloco 'var'", r:/\bvar\b/i },
+      { d:"Tem 'programa' e 'funcao inicio'", r:/programa[\s\S]+funcao\s+inicio/i },
+      { d:"Declarou variáveis inteiras", r:/\binteiro\b/i },
       { d:"Usou 'leia' duas vezes", r:/leia\s*\([^)]+\)[\s\S]*?leia\s*\(/i },
       { d:"Usou o operador '+'", r:/\+/ },
       { d:"Usou 'escreva' para exibir", r:/escreva\s*\(/i }
     ],
     min:4,
-    sol:`algoritmo "soma"
-var
-   a, b, s: inteiro
-inicio
-   escreva("Número 1: ")
-   leia(a)
-   escreva("Número 2: ")
-   leia(b)
-   s <- a + b
-   escreva("Soma: ", s)
-fimalgoritmo`
+    sol:`programa
+{
+    funcao inicio()
+    {
+        inteiro a, b, s
+        escreva("Número 1: ")
+        leia(a)
+        escreva("Número 2: ")
+        leia(b)
+        s = a + b
+        escreva("Soma: ", s)
+    }
+}`
   },
   {
     titulo:"Desafio 2 — Média de três notas",
     enun:"Leia três notas (real), calcule a média e mostre o resultado.",
     checks:[
-      { d:"Tem 'algoritmo' e 'fimalgoritmo'", r:/algoritmo[\s\S]+fimalgoritmo/i },
+      { d:"Tem 'programa' e 'funcao inicio'", r:/programa[\s\S]+funcao\s+inicio/i },
       { d:"Declarou variáveis como 'real'", r:/\breal\b/i },
       { d:"Usou 'leia' três vezes", r:/leia[\s\S]*leia[\s\S]*leia/i },
       { d:"Dividiu por 3", r:/\/\s*3|3\.0/ },
       { d:"Usou 'escreva'", r:/escreva\s*\(/i }
     ],
     min:4,
-    sol:`algoritmo "media3"
-var
-   n1, n2, n3, m: real
-inicio
-   leia(n1)
-   leia(n2)
-   leia(n3)
-   m <- (n1 + n2 + n3) / 3
-   escreva("Média: ", m)
-fimalgoritmo`
+    sol:`programa
+{
+    funcao inicio()
+    {
+        real n1, n2, n3, m
+        leia(n1)
+        leia(n2)
+        leia(n3)
+        m = (n1 + n2 + n3) / 3
+        escreva("Média: ", m)
+    }
+}`
   },
   {
     titulo:"Desafio 3 — Par ou ímpar",
     enun:"Leia um número inteiro e mostre 'Par' se for par ou 'Ímpar' se for ímpar.",
     checks:[
-      { d:"Tem 'algoritmo' e 'fimalgoritmo'", r:/algoritmo[\s\S]+fimalgoritmo/i },
+      { d:"Tem 'programa' e 'funcao inicio'", r:/programa[\s\S]+funcao\s+inicio/i },
       { d:"Usou 'leia'", r:/leia\s*\(/i },
       { d:"Usou operador % (resto)", r:/%/ },
-      { d:"Usou SE/SENÃO", r:/se[\s\S]+senao/i },
-      { d:"Fechou com 'fimse'", r:/fimse/i }
+      { d:"Usou 'se' e 'senao'", r:/se[\s\S]+senao/i },
+      { d:"Usou 'escreva'", r:/escreva\s*\(/i }
     ],
     min:4,
-    sol:`algoritmo "parimpar"
-var
-   n: inteiro
-inicio
-   leia(n)
-   se (n % 2 = 0) entao
-      escreva("Par")
-   senao
-      escreva("Ímpar")
-   fimse
-fimalgoritmo`
+    sol:`programa
+{
+    funcao inicio()
+    {
+        inteiro n
+        leia(n)
+        se (n % 2 == 0)
+        {
+            escreva("Par")
+        }
+        senao
+        {
+            escreva("Ímpar")
+        }
+    }
+}`
   },
   {
     titulo:"Desafio 4 — Tabuada de 1 a 10",
-    enun:"Leia um número N e mostre a tabuada de N de 1 a 10 usando um laço PARA.",
+    enun:"Leia um número N e mostre a tabuada de N de 1 a 10 usando um laço 'para'.",
     checks:[
-      { d:"Tem 'algoritmo' e 'fimalgoritmo'", r:/algoritmo[\s\S]+fimalgoritmo/i },
+      { d:"Tem 'programa' e 'funcao inicio'", r:/programa[\s\S]+funcao\s+inicio/i },
       { d:"Usou laço 'para'", r:/\bpara\b/i },
-      { d:"Laço vai até 10", r:/(ate|to|<=?\s*)\s*10/i },
+      { d:"Laço vai até 10", r:/(<=?\s*10|10\s*)/i },
       { d:"Usou 'leia' e 'escreva'", r:/leia[\s\S]+escreva/i },
-      { d:"Fechou com 'fimpara'", r:/fimpara/i }
+      { d:"Usou variável para o número", r:/\bn\b/i }
     ],
     min:4,
-    sol:`algoritmo "tabuada"
-var
-   n, i: inteiro
-inicio
-   leia(n)
-   para i de 1 ate 10 faca
-      escreva(n, " x ", i, " = ", n * i)
-   fimpara
-fimalgoritmo`
+    sol:`programa
+{
+    funcao inicio()
+    {
+        inteiro n, i
+        leia(n)
+        para (i = 1; i <= 10; i++)
+        {
+            escreva(n, " x ", i, " = ", n * i)
+        }
+    }
+}`
   },
   {
     titulo:"Desafio 5 — Somar de 1 a N",
     enun:"Leia um número N e calcule a soma de 1 até N usando acumulador.",
     checks:[
-      { d:"Tem 'algoritmo' e 'fimalgoritmo'", r:/algoritmo[\s\S]+fimalgoritmo/i },
+      { d:"Tem 'programa' e 'funcao inicio'", r:/programa[\s\S]+funcao\s+inicio/i },
       { d:"Declarou variável 'soma'", r:/soma/i },
-      { d:"Inicializou 'soma <- 0'", r:/soma\s*(<-|=)\s*0/i },
-      { d:"Usou laço com acumulador", r:/soma\s*(<-|=)\s*soma\s*\+/i },
+      { d:"Inicializou 'soma = 0'", r:/soma\s*=\s*0/i },
+      { d:"Usou laço com acumulador", r:/soma\s*=\s*soma\s*\+/i },
       { d:"Usou 'leia' e 'escreva'", r:/leia[\s\S]+escreva/i }
     ],
     min:4,
-    sol:`algoritmo "somaN"
-var
-   n, i, soma: inteiro
-inicio
-   leia(n)
-   soma <- 0
-   para i de 1 ate n faca
-      soma <- soma + i
-   fimpara
-   escreva("Soma: ", soma)
-fimalgoritmo`
+    sol:`programa
+{
+    funcao inicio()
+    {
+        inteiro n, i, soma = 0
+        leia(n)
+        para (i = 1; i <= n; i++)
+        {
+            soma = soma + i
+        }
+        escreva("Soma: ", soma)
+    }
+}`
   },
   {
     titulo:"Desafio 6 — Aprovação com frequência",
-    enun:"Leia média e frequência (%). Mostre 'Aprovado' se média >= 6 E frequência >= 75, senão 'Recuperação'.",
+    enun:"Leia média e frequência (%). Mostre 'Aprovado' se média >= 6 E frequência >= 75.",
     checks:[
-      { d:"Tem 'algoritmo' e 'fimalgoritmo'", r:/algoritmo[\s\S]+fimalgoritmo/i },
+      { d:"Tem 'programa' e 'funcao inicio'", r:/programa[\s\S]+funcao\s+inicio/i },
       { d:"Leu média e frequência", r:/leia[\s\S]+leia/i },
-      { d:"Usou operador '&&'", r:/&&/ },
+      { d:"Usou operador 'e'", r:/\be\b/ },
       { d:"Comparou com 6 e 75", r:/6[\s\S]+75|75[\s\S]+6/ },
-      { d:"Usou SE/SENÃO/fimse", r:/se[\s\S]+senao[\s\S]+fimse/i }
+      { d:"Usou 'se' e 'senao'", r:/se[\s\S]+senao/i }
     ],
     min:4,
-    sol:`algoritmo "aprovacao"
-var
-   m, f: real
-inicio
-   leia(m)
-   leia(f)
-   se (m >= 6.0) && (f >= 75.0) entao
-      escreva("Aprovado")
-   senao
-      escreva("Recuperação")
-   fimse
-fimalgoritmo`
+    sol:`programa
+{
+    funcao inicio()
+    {
+        real media, frequencia
+        leia(media)
+        leia(frequencia)
+        se (media >= 6.0 e frequencia >= 75.0)
+        {
+            escreva("Aprovado")
+        }
+        senao
+        {
+            escreva("Recuperação")
+        }
+    }
+}`
   },
   {
     titulo:"Desafio 7 — Maior de idade",
     enun:"Leia a idade e mostre 'Maior de idade' se >= 18, senão 'Menor de idade'.",
     checks:[
-      { d:"Tem 'algoritmo' e 'fimalgoritmo'", r:/algoritmo[\s\S]+fimalgoritmo/i },
+      { d:"Tem 'programa' e 'funcao inicio'", r:/programa[\s\S]+funcao\s+inicio/i },
       { d:"Usou 'leia'", r:/leia\s*\(/i },
       { d:"Comparou com 18", r:/18/ },
-      { d:"Usou SE/SENÃO/fimse", r:/se[\s\S]+senao[\s\S]+fimse/i },
+      { d:"Usou 'se' e 'senao'", r:/se[\s\S]+senao/i },
       { d:"Usou 'escreva'", r:/escreva\s*\(/i }
     ],
     min:4,
-    sol:`algoritmo "idade"
-var
-   idade: inteiro
-inicio
-   leia(idade)
-   se (idade >= 18) entao
-      escreva("Maior de idade")
-   senao
-      escreva("Menor de idade")
-   fimse
-fimalgoritmo`
+    sol:`programa
+{
+    funcao inicio()
+    {
+        inteiro idade
+        leia(idade)
+        se (idade >= 18)
+        {
+            escreva("Maior de idade")
+        }
+        senao
+        {
+            escreva("Menor de idade")
+        }
+    }
+}`
   },
   {
     titulo:"Desafio 8 — Calcular IMC",
     enun:"Leia peso e altura e calcule IMC = peso / (altura * altura).",
     checks:[
-      { d:"Tem 'algoritmo' e 'fimalgoritmo'", r:/algoritmo[\s\S]+fimalgoritmo/i },
+      { d:"Tem 'programa' e 'funcao inicio'", r:/programa[\s\S]+funcao\s+inicio/i },
       { d:"Declarou variáveis como real", r:/\breal\b/i },
       { d:"Leu peso e altura", r:/leia[\s\S]+leia/i },
       { d:"Usou fórmula com multiplicação e divisão", r:/\/[\s\S]*\*|\*[\s\S]*\// },
       { d:"Usou 'escreva'", r:/escreva\s*\(/i }
     ],
     min:4,
-    sol:`algoritmo "imc"
-var
-   peso, altura, imc: real
-inicio
-   leia(peso)
-   leia(altura)
-   imc <- peso / (altura * altura)
-   escreva("IMC: ", imc)
-fimalgoritmo`
+    sol:`programa
+{
+    funcao inicio()
+    {
+        real peso, altura, imc
+        leia(peso)
+        leia(altura)
+        imc = peso / (altura * altura)
+        escreva("IMC: ", imc)
+    }
+}`
   },
   {
     titulo:"Desafio 9 — Contar pares de 1 a 20",
     enun:"Usando um laço, conte quantos números pares existem entre 1 e 20.",
     checks:[
-      { d:"Tem 'algoritmo' e 'fimalgoritmo'", r:/algoritmo[\s\S]+fimalgoritmo/i },
-      { d:"Usou laço", r:/(para|enquanto|faca)/i },
+      { d:"Tem 'programa' e 'funcao inicio'", r:/programa[\s\S]+funcao\s+inicio/i },
+      { d:"Usou laço 'para'", r:/\bpara\b/i },
       { d:"Testou par com %", r:/%/ },
-      { d:"Usou acumulador/contador", r:/\w+\s*(<-|=)\s*\w+\s*\+\s*1/i },
-      { d:"Fechou estrutura (fimpara/fimenquanto)", r:/(fimpara|fimenquanto)/i }
+      { d:"Usou acumulador/contador", r:/\w+\s*=\s*\w+\s*\+\s*1/i },
+      { d:"Usou 'escreva'", r:/escreva\s*\(/i }
     ],
     min:4,
-    sol:`algoritmo "conta_pares"
-var
-   i, conte: inteiro
-inicio
-   conte <- 0
-   para i de 1 ate 20 faca
-      se (i % 2 = 0) entao
-         conte <- conte + 1
-      fimse
-   fimpara
-   escreva("Pares: ", conte)
-fimalgoritmo`
+    sol:`programa
+{
+    funcao inicio()
+    {
+        inteiro i, conte = 0
+        para (i = 1; i <= 20; i++)
+        {
+            se (i % 2 == 0)
+            {
+                conte = conte + 1
+            }
+        }
+        escreva("Pares: ", conte)
+    }
+}`
   },
   {
     titulo:"Desafio 10 — Menu com ESCOLHA",
-    enun:"Mostre um menu: 1-Somar, 2-Subtrair, 3-Sair. Leia a opção e, com ESCOLHA, execute a ação escolhida.",
+    enun:"Mostre um menu: 1-Somar, 2-Subtrair, 3-Sair. Use ESCOLHA/CASO.",
     checks:[
-      { d:"Tem 'algoritmo' e 'fimalgoritmo'", r:/algoritmo[\s\S]+fimalgoritmo/i },
+      { d:"Tem 'programa' e 'funcao inicio'", r:/programa[\s\S]+funcao\s+inicio/i },
       { d:"Usou 'escolha'", r:/\bescolha\b/i },
       { d:"Usou pelo menos 2 'caso'", r:/caso[\s\S]+caso/i },
-      { d:"Usou 'outrocaso'", r:/outrocaso/i },
-      { d:"Fechou com 'fimescolha'", r:/fimescolha/i }
+      { d:"Usou 'caso contrario'", r:/caso\s+contrario/i },
+      { d:"Usou 'pare' nos casos", r:/pare/i }
     ],
     min:4,
-    sol:`algoritmo "menu"
-var
-   op: inteiro
-inicio
-   escreva("1-Somar 2-Subtrair 3-Sair: ")
-   leia(op)
-   escolha (op)
-      caso 1
-         escreva("Somando...")
-      caso 2
-         escreva("Subtraindo...")
-      caso 3
-         escreva("Saindo...")
-      outrocaso
-         escreva("Opção inválida")
-   fimescolha
-fimalgoritmo`
+    sol:`programa
+{
+    funcao inicio()
+    {
+        inteiro op
+        escreva("1-Somar 2-Subtrair 3-Sair: ")
+        leia(op)
+        escolha (op)
+        {
+            caso 1:
+                escreva("Somando...")
+                pare
+            caso 2:
+                escreva("Subtraindo...")
+                pare
+            caso 3:
+                escreva("Saindo...")
+                pare
+            caso contrario:
+                escreva("Opção inválida")
+        }
+    }
+}`
   }
 ];
 
 /* =========================================================
-   GUIA DE CORREÇÃO LOCAL DAS CASAS 1-11
-   (checks, exemplos múltiplos e dicas)
-   ========================================================= */
-const houseCodeGuide = {
-  1: {
-    enun:"Escreva em passos um algoritmo para receber dois números e mostrar a soma.",
-    checks: [
-      { d:"Descreveu a ENTRADA (receber/ler os números)", r: /(receb|ler\b|leia|entrada|pegar|obter|ler os)/i },
-      { d:"Descreveu a SOMA dos valores", r: /(som|\+|adicion|junt)/i },
-      { d:"Descreveu MOSTRAR/EXIBIR o resultado", r: /(mostr|escrev|exib|imprim|sa[íi]da|resultado)/i },
-      { d:"Organizou em passos numerados ou sequência", r: /(passo\s*\d|^\s*\d\s*[\.\-—)]|primeir|depois|em seguida|por fim)/im }
-    ],
-    min: 3,
-    examples: [
-      { titulo: "📘 Exemplo A — Passos numerados", code: "Passo 1 — Receber os dois números (A e B).\nPasso 2 — Calcular SOMA = A + B.\nPasso 3 — Mostrar o valor de SOMA." },
-      { titulo: "📗 Exemplo B — Narrativa", code: "Primeiro, leia dois números inteiros.\nEm seguida, some os dois valores.\nPor fim, exiba o resultado da soma na tela." }
-    ],
-    dicas: [
-      "Toda solução tem 3 partes: entrada → processamento → saída.",
-      "Use verbos no infinitivo (receber, somar, mostrar).",
-      "A ordem dos passos é o que garante que o algoritmo funcione."
-    ]
-  },
-  2: {
-    enun:"Identifique ENTRADA, PROCESSAMENTO e SAÍDA para calcular a média de duas notas.",
-    checks: [
-      { d:"Identificou a ENTRADA (notas)", r: /(entrada|nota)/i },
-      { d:"Identificou o PROCESSAMENTO (média)", r: /(process|m[ée]dia|calcul|divid|\/)/i },
-      { d:"Identificou a SAÍDA (resultado)", r: /(sa[íi]da|resultado|mostr|exib)/i },
-      { d:"Dividiu por 2 OU somou as duas notas", r: /(\/\s*2|2\.0|soma|\+)/i }
-    ],
-    min: 3,
-    examples: [
-      { titulo: "📘 Exemplo A — Estruturado em rótulos", code: "ENTRADA: nota1, nota2\nPROCESSAMENTO: media <- (nota1 + nota2) / 2\nSAÍDA: mostrar media" },
-      { titulo: "📗 Exemplo B — Detalhado em passos", code: "Passo 1 — Receber a primeira nota.\nPasso 2 — Receber a segunda nota.\nPasso 3 — Somar as notas e dividir por 2 (média).\nPasso 4 — Mostrar o valor da média." }
-    ],
-    dicas: [
-      "Entrada: tudo que o algoritmo precisa receber para funcionar.",
-      "Processamento: as contas e transformações sobre os dados.",
-      "Saída: o que mostramos ao final para o usuário."
-    ]
-  },
-  3: {
-    enun:"Escreva o pseudocódigo/Portugol de um algoritmo que leia dois números, some e mostre o resultado.",
-    checks: [
-      { d:"Usou 'algoritmo' e 'fimalgoritmo'", r: /algoritmo[\s\S]+fimalgoritmo/i },
-      { d:"Declarou variáveis (var ou tipo)", r: /\b(var|inteiro|real|leia)\b/i },
-      { d:"Usou 'leia' para as duas entradas", r: /leia[\s\S]*leia/i },
-      { d:"Somou com '+' e atribuiu com '<-'", r: /\+/ },
-      { d:"Usou 'escreva' para mostrar", r: /escreva\s*\(/i }
-    ],
-    min: 4,
-    examples: [
-      { titulo: "📘 Exemplo A — Bloco var clássico", code: "algoritmo \"soma\"\nvar\n   a, b, r: inteiro\ninicio\n   leia(a)\n   leia(b)\n   r <- a + b\n   escreva(r)\nfimalgoritmo" },
-      { titulo: "📗 Exemplo B — Direto no escreva", code: "algoritmo \"soma2\"\nvar\n   a, b: inteiro\ninicio\n   leia(a)\n   leia(b)\n   escreva(\"Soma: \", a + b)\nfimalgoritmo" }
-    ],
-    dicas: [
-      "Sempre comece com 'algoritmo \"nome\"' e feche com 'fimalgoritmo'.",
-      "Declare TODAS as variáveis antes do 'inicio'.",
-      "Use '<-' para atribuição (não '=')."
-    ]
-  },
-  4: {
-    enun:"Crie variáveis para: idade (inteiro), nota (real), nome (cadeia) e aprovado (lógico).",
-    checks: [
-      { d:"Declarou 'idade' como inteiro", r: /idade[\s\S]{0,40}inteiro|inteiro[\s\S]{0,40}idade/i },
-      { d:"Declarou 'nota' como real", r: /nota[\s\S]{0,40}real|real[\s\S]{0,40}nota/i },
-      { d:"Declarou 'nome' como cadeia", r: /nome[\s\S]{0,40}cadeia|cadeia[\s\S]{0,40}nome/i },
-      { d:"Declarou 'aprovado' como logico", r: /(aprovado[\s\S]{0,40}logic|logic[\s\S]{0,40}aprovado)/i }
-    ],
-    min: 3,
-    examples: [
-      { titulo: "📘 Exemplo A — Bloco var", code: "var\n   idade: inteiro\n   nota: real\n   nome: cadeia\n   aprovado: logico" },
-      { titulo: "📗 Exemplo B — Tipo antes do nome", code: "inteiro idade\nreal nota\ncadeia nome\nlogico aprovado" }
-    ],
-    dicas: [
-      "Identificadores começam com letra ou _ e não têm espaço.",
-      "Use 'logico' (sem acento) no Portugol.",
-      "'cadeia' guarda vários caracteres; 'caractere' guarda só um."
-    ]
-  },
-  5: {
-    enun:"Declare variáveis para guardar: um inteiro, um real, um caractere e uma cadeia.",
-    checks: [
-      { d:"Declarou algo como INTEIRO", r: /\binteiro\b/i },
-      { d:"Declarou algo como REAL", r: /\breal\b/i },
-      { d:"Declarou algo como CARACTERE", r: /\bcaracter(e)?\b/i },
-      { d:"Declarou algo como CADEIA", r: /\bcadeia\b/i }
-    ],
-    min: 3,
-    examples: [
-      { titulo: "📘 Exemplo A", code: "var\n   n: inteiro\n   x: real\n   letra: caractere\n   texto: cadeia" },
-      { titulo: "📗 Exemplo B — Misturado", code: "inteiro n\nreal x\ncaractere letra\ncadeia texto" }
-    ],
-    dicas: [
-      "Caractere = 1 símbolo ('A', '3', '@'). Sempre entre apóstrofos em atribuição.",
-      "Cadeia = vários caracteres (\"aluno\", \"Olá mundo\").",
-      "Use 'real' quando o valor puder ter parte decimal."
-    ]
-  },
-  6: {
-    enun:"Escreva um algoritmo sequencial que leia dois números, calcule a soma e mostre o resultado.",
-    checks: [
-      { d:"Usou 'algoritmo' e 'fimalgoritmo'", r: /algoritmo[\s\S]+fimalgoritmo/i },
-      { d:"Usou 'leia' para os dois números", r: /leia[\s\S]*leia/i },
-      { d:"Usou o operador '+'", r: /\+/ },
-      { d:"Usou 'escreva' para exibir o resultado", r: /escreva\s*\(/i }
-    ],
-    min: 3,
-    examples: [
-      { titulo: "📘 Exemplo A — Variável extra", code: "algoritmo \"soma\"\nvar\n   a, b, s: inteiro\ninicio\n   leia(a)\n   leia(b)\n   s <- a + b\n   escreva(s)\nfimalgoritmo" },
-      { titulo: "📗 Exemplo B — Acumulando em total", code: "algoritmo \"acumula\"\nvar\n   a, b, total: inteiro\ninicio\n   total <- 0\n   leia(a)\n   total <- total + a\n   leia(b)\n   total <- total + b\n   escreva(total)\nfimalgoritmo" }
-    ],
-    dicas: [
-      "A ordem dos comandos importa na estrutura sequencial.",
-      "Você pode exibir direto: 'escreva(\"Soma: \", a + b)'.",
-      "Declare TODAS as variáveis antes do 'inicio'."
-    ]
-  },
-  7: {
-    enun:"Leia uma média e mostre 'Aprovado' se média >= 6, senão 'Recuperação'.",
-    checks: [
-      { d:"Usou 'algoritmo' e 'fimalgoritmo'", r: /algoritmo[\s\S]+fimalgoritmo/i },
-      { d:"Usou 'leia' para a média", r: /leia\s*\(/i },
-      { d:"Comparou com 6 (>= 6 ou > 5.9)", r: /(>=\s*6|>\s*5\.9|6\.0)/i },
-      { d:"Usou SE/SENÃO/fimse", r: /se[\s\S]+senao[\s\S]+fimse/i },
-      { d:"Usou 'escreva'", r: /escreva\s*\(/i }
-    ],
-    min: 4,
-    examples: [
-      { titulo: "📘 Exemplo A — SE/SENÃO simples", code: "algoritmo \"aprov\"\nvar\n   m: real\ninicio\n   leia(m)\n   se (m >= 6.0) entao\n      escreva(\"Aprovado\")\n   senao\n      escreva(\"Recuperação\")\n   fimse\nfimalgoritmo" },
-      { titulo: "📗 Exemplo B — SE aninhado (3 faixas)", code: "algoritmo \"aprov3\"\nvar\n   m: real\ninicio\n   leia(m)\n   se (m >= 6.0) entao\n      escreva(\"Aprovado\")\n   senao\n      se (m >= 4.0) entao\n         escreva(\"Recuperação\")\n      senao\n         escreva(\"Reprovado\")\n      fimse\n   fimse\nfimalgoritmo" }
-    ],
-    dicas: [
-      "Toda estrutura 'se' precisa terminar com 'fimse'.",
-      "Use 'senao' (sem acento) no Portugol.",
-      "Para faixas múltiplas, use SE aninhado."
-    ]
-  },
-  8: {
-    enun:"Escreva um PARA que mostre os números de 1 a 10.",
-    checks: [
-      { d:"Usou 'algoritmo' e 'fimalgoritmo'", r: /algoritmo[\s\S]+fimalgoritmo/i },
-      { d:"Usou laço 'para'", r: /\bpara\b/i },
-      { d:"Começou em 1", r: /(<-|=)\s*1/i },
-      { d:"Vai até 10 (ate 10 ou <= 10)", r: /(ate\s*10|<=\s*10)/i },
-      { d:"Fechou com 'fimpara'", r: /fimpara/i }
-    ],
-    min: 4,
-    examples: [
-      { titulo: "📘 Exemplo A — Sintaxe completa", code: "algoritmo \"contar\"\nvar\n   i: inteiro\ninicio\n   para i de 1 ate 10 faca\n      escreva(i)\n   fimpara\nfimalgoritmo" },
-      { titulo: "📗 Exemplo B — Estilo C-like", code: "algoritmo \"contar2\"\nvar\n   i: inteiro\ninicio\n   para (i <- 1; i <= 10; i++)\n      escreva(i)\n   fimpara\nfimalgoritmo" }
-    ],
-    dicas: [
-      "PARA é ideal quando você SABE quantas vezes vai repetir.",
-      "Sempre feche com 'fimpara'.",
-      "Cuidado: começar de 0 ou ir até 9 muda o resultado."
-    ]
-  },
-  9: {
-    enun:"Leia um número e mostre se é par ou ímpar usando o operador %.",
-    checks: [
-      { d:"Usou 'algoritmo' e 'fimalgoritmo'", r: /algoritmo[\s\S]+fimalgoritmo/i },
-      { d:"Usou 'leia'", r: /leia\s*\(/i },
-      { d:"Usou o operador % (resto)", r: /%/ },
-      { d:"Usou SE/SENÃO/fimse", r: /se[\s\S]+senao[\s\S]+fimse/i },
-      { d:"Comparou resto com 0", r: /%\s*2\s*[=]{1,2}\s*0|0\s*[=]{1,2}\s*2\s*%/ }
-    ],
-    min: 4,
-    examples: [
-      { titulo: "📘 Exemplo A — Com %", code: "algoritmo \"parimpar\"\nvar\n   n: inteiro\ninicio\n   leia(n)\n   se (n % 2 = 0) entao\n      escreva(\"Par\")\n   senao\n      escreva(\"Ímpar\")\n   fimse\nfimalgoritmo" },
-      { titulo: "📗 Exemplo B — Sem %", code: "algoritmo \"parimpar2\"\nvar\n   n: inteiro\ninicio\n   leia(n)\n   se ((n / 2) * 2 = n) entao\n      escreva(\"Par\")\n   senao\n      escreva(\"Ímpar\")\n   fimse\nfimalgoritmo" }
-    ],
-    dicas: [
-      "O operador % devolve o RESTO da divisão inteira.",
-      "Par: resto da divisão por 2 é igual a 0.",
-      "Sempre feche com 'fimse'."
-    ]
-  },
-  10: {
-    enun:"Faça o teste de mesa de: soma <- 0; para i de 1 ate 3 faca soma <- soma + i. Qual o valor final de soma?",
-    checks: [
-      { d:"Mencionou a variável 'soma'", r: /soma/i },
-      { d:"Mencionou a variável 'i' ou iteração", r: /\bi\b|itera|volta|passo/i },
-      { d:"Mostrou valores intermediários (1, 3, 6)", r: /(1[\s\S]{0,8}3|3[\s\S]{0,8}6|6)/ },
-      { d:"Concluiu com soma final = 6", r: /(soma[\s\S]{0,20}6|=\s*6|final[\s\S]{0,15}6)/i }
-    ],
-    min: 3,
-    examples: [
-      { titulo: "📘 Exemplo A — Tabela passo a passo", code: "i=1 → soma = 0 + 1 = 1\ni=2 → soma = 1 + 2 = 3\ni=3 → soma = 3 + 3 = 6\nValor final de soma = 6" },
-      { titulo: "📗 Exemplo B — Narrativa", code: "Antes do laço: soma = 0.\n1ª volta: i=1, soma = 0+1 = 1.\n2ª volta: i=2, soma = 1+2 = 3.\n3ª volta: i=3, soma = 3+3 = 6.\nSaída final: soma = 6." }
-    ],
-    dicas: [
-      "Sempre comece pela linha inicial (fora do laço).",
-      "Anote o valor de CADA variável em CADA iteração.",
-      "Some 1+2+3 = 6. É a soma dos números de 1 a 3."
-    ]
-  },
-  11: {
-    enun:"Escreva um ESCOLHA/CASO que leia um número de 1 a 3 e imprima o dia correspondente, com outrocaso para inválidos.",
-    checks: [
-      { d:"Usou 'algoritmo' e 'fimalgoritmo'", r: /algoritmo[\s\S]+fimalgoritmo/i },
-      { d:"Usou 'escolha'", r: /\bescolha\b/i },
-      { d:"Usou pelo menos 2 'caso'", r: /caso[\s\S]+caso/i },
-      { d:"Usou 'outrocaso'", r: /outrocaso/i },
-      { d:"Fechou com 'fimescolha'", r: /fimescolha/i }
-    ],
-    min: 4,
-    examples: [
-      { titulo: "📘 Exemplo A — Com outrocaso", code: "algoritmo \"dias\"\nvar\n   op: inteiro\ninicio\n   leia(op)\n   escolha (op)\n      caso 1\n         escreva(\"Segunda\")\n      caso 2\n         escreva(\"Terça\")\n      caso 3\n         escreva(\"Quarta\")\n      outrocaso\n         escreva(\"Inválido\")\n   fimescolha\nfimalgoritmo" },
-      { titulo: "📗 Exemplo B — Menu amigável", code: "algoritmo \"menu_dias\"\nvar\n   op: inteiro\ninicio\n   escreva(\"1-Seg 2-Ter 3-Qua: \")\n   leia(op)\n   escolha (op)\n      caso 1\n         escreva(\"Você escolheu Segunda\")\n      caso 2\n         escreva(\"Você escolheu Terça\")\n      caso 3\n         escreva(\"Você escolheu Quarta\")\n      outrocaso\n         escreva(\"Opção inválida\")\n   fimescolha\nfimalgoritmo" }
-    ],
-    dicas: [
-      "ESCOLHA/CASO é ideal para menus e opções fixas.",
-      "Sempre inclua 'outrocaso' para tratar entradas inválidas.",
-      "Feche a estrutura com 'fimescolha'."
-    ]
-  }
-};
-
-/* =========================================================
-   UTIL
-   ========================================================= */
-function escapeHtml(s){
-  return String(s)
-    .replace(/&/g,'&amp;')
-    .replace(/</g,'&lt;')
-    .replace(/>/g,'&gt;')
-    .replace(/"/g,'&quot;')
-    .replace(/'/g,'&#39;');
-}
-
-/* =========================================================
    ESTADO
    ========================================================= */
-let state = JSON.parse(localStorage.getItem("portugolWorldState_v4") || '{"xp":0,"unlocked":1,"lives":3,"passed":{},"challenges":{},"codeXp":{}}');
-if(!state.codeXp) state.codeXp = {};
-if(!state.challenges) state.challenges = {};
-if(!state.passed) state.passed = {};
-
+let state = JSON.parse(localStorage.getItem("portugolWorldState_v5") || '{"xp":0,"unlocked":1,"lives":3,"passed":{},"challenges":{}}');
 const TOTAL_HOUSES = 12;
-let currentLessonId = null;
 
-function save(){localStorage.setItem("portugolWorldState_v4", JSON.stringify(state)); renderMap(); updateHUD(); updateProgress()}
+function save(){localStorage.setItem("portugolWorldState_v5", JSON.stringify(state)); renderMap(); updateHUD(); updateProgress()}
 
 function updateHUD(){
   document.getElementById("xp").textContent = state.xp;
@@ -1430,47 +1287,11 @@ function switchTab(btn, panelId){
 }
 
 /* =========================================================
-   NAVEGAÇÃO ENTRE CASAS — BOTÃO PRÓXIMO
-   ========================================================= */
-function goToNextLesson(){
-  if(currentLessonId === null) return;
-  const next = currentLessonId + 1;
-  if(next > TOTAL_HOUSES){
-    toast("🏁 Você chegou ao fim da jornada!");
-    return;
-  }
-  if(next > state.unlocked){
-    toast("🔒 Conclua esta casa primeiro para liberar a próxima!");
-    return;
-  }
-  openLesson(next);
-}
-
-function updateNextButton(){
-  const btn = document.getElementById("nextBtn");
-  if(!btn) return;
-  if(currentLessonId === null){ btn.disabled = true; return; }
-  const next = currentLessonId + 1;
-  if(next > TOTAL_HOUSES){
-    btn.textContent = "🏁 Fim";
-    btn.disabled = true;
-  } else if(next > state.unlocked){
-    btn.textContent = "🔒 Próximo bloqueado";
-    btn.disabled = true;
-  } else {
-    const pre = next === 12 ? "👑 " : (next === 11 ? "🎒 " : (next === 10 ? "📋 " : "🏠 "));
-    btn.textContent = pre + "Próximo →";
-    btn.disabled = false;
-  }
-}
-
-/* =========================================================
    ABRIR LIÇÃO
    ========================================================= */
 function openLesson(id){
   const l = lessons.find(x => x.id === id);
   if(!l) return;
-  currentLessonId = id;
   document.getElementById("lessonTitle").textContent = l.title;
   const side = document.getElementById("side");
   side.innerHTML = "";
@@ -1484,41 +1305,21 @@ function openLesson(id){
   });
   let html = l.content;
 
-  if(id !== 12){
-    const exigido = 70;
-    html += `<div class="quiz"><h4>🧪 Simulado da Casa</h4><p><b>Você precisa acertar pelo menos ${exigido}% para desbloquear a próxima.</b></p><div id="quizArea">`;
-    l.quiz.forEach((q,i) => {
-      html += `<div class="q"><b>${i+1}. ${q[0]}</b>${q[2].map((a,j) => `<label><input type="radio" name="q${id}_${i}" value="${j}"> ${a}</label>`).join("")}<div id="rf${id}_${i}" class="result"></div></div>`;
-    });
-    html += `<button class="btn" onclick="grade(${id})">✨ VERIFICAR RESPOSTAS</button><div id="quizResult" class="result"></div></div></div>`;
+  // Quiz SEMPRE
+  const exigido = (id === 12) ? 80 : 70;
+  html += `<div class="quiz"><h4>🧪 Simulado da Casa</h4><p><b>Você precisa acertar pelo menos ${exigido}% para desbloquear a próxima.</b></p><div id="quizArea">`;
+  l.quiz.forEach((q,i) => {
+    html += `<div class="q"><b>${i+1}. ${q[0]}</b>${q[2].map((a,j) => `<label><input type="radio" name="q${id}_${i}" value="${j}"> ${a}</label>`).join("")}<div id="rf${id}_${i}" class="result"></div></div>`;
+  });
+  html += `<button class="btn" onclick="grade(${id})">✨ VERIFICAR RESPOSTAS</button><div id="quizResult" class="result"></div></div></div>`;
 
-    if(id < 12){
-      const guide = houseCodeGuide[id];
-      const enunText = guide ? guide.enun : challengeText(id);
-      html += `<div class="code-challenge"><h4>💻 Desafio de Portugol <span class="ai-badge" style="background:linear-gradient(135deg,#ffb84d,#65d9b1)">CORRIGIDO LOCALMENTE</span></h4>
-        <p>${enunText}</p>
-        <textarea class="code-input" id="code_${id}" placeholder="Escreva seu algoritmo aqui..."></textarea><br>
-        <button class="btn mint" onclick="checkCode(${id})">🧠 CORRIGIR MEU CÓDIGO</button>
-        <div class="code-feedback" id="codeResult_${id}"></div>
-      </div>`;
-    }
-  } else {
+  // Boss: aba extra
+  if(id === 12){
     html += `
-    <div class="tab-inner" id="bossTabs">
-      <button class="active" onclick="switchBossTab(this,'bossQuiz')">📝 Prova (20 questões)</button>
-      <button onclick="switchBossTab(this,'bossCodes')">💻 10 Desafios (corrigidos por IA)</button>
+    <div class="tab-inner" id="bossTabs" style="margin-top:20px">
+      <button class="active" onclick="switchBossTab(this,'bossCodes')">💻 10 Desafios (corrigidos por IA)</button>
     </div>
-
-    <div id="bossQuiz" class="boss-tab-content active">
-      <div class="quiz"><h4>📝 Prova Final — 20 questões</h4>
-      <p><b>Precisa acertar 80% (16 de 20).</b></p><div id="quizArea">`;
-    l.quiz.forEach((q,i) => {
-      html += `<div class="q"><b>${i+1}. ${q[0]}</b>${q[2].map((a,j) => `<label><input type="radio" name="q${id}_${i}" value="${j}"> ${a}</label>`).join("")}<div id="rf${id}_${i}" class="result"></div></div>`;
-    });
-    html += `<button class="btn" onclick="grade(12)">✨ VERIFICAR PROVA</button><div id="quizResult" class="result"></div></div>
-    </div>
-
-    <div id="bossCodes" class="boss-tab-content">
+    <div id="bossCodes" class="boss-tab-content active">
       <h4>💻 10 Desafios de Código <span class="ai-badge">✨ IA</span></h4>
       <p><b>Você precisa ser aprovado em pelo menos 8 dos 10 desafios.</b> Escreva o código e clique em <b>"🤖 Corrigir com IA"</b>. A IA do Esperioux dá feedback personalizado.</p>
       <div id="challengesArea"></div>
@@ -1526,10 +1327,26 @@ function openLesson(id){
     </div>`;
   }
 
+  // Botão PRÓXIMA CASA
+  if(id < TOTAL_HOUSES){
+    html += `<div style="text-align:center"><button class="btn next" id="nextBtn" onclick="goNext(${id})">🏠 Próxima Casa →</button></div>`;
+  } else {
+    html += `<div style="text-align:center"><button class="btn next" id="nextBtn" onclick="closeLesson()">🏆 Voltar ao Mapa</button></div>`;
+  }
+
   document.getElementById("content").innerHTML = html;
   if(id === 12) renderChallenges();
   document.getElementById("panel").style.display = "flex";
-  updateNextButton();
+}
+
+function goNext(currentId){
+  const next = currentId + 1;
+  if(next <= TOTAL_HOUSES && next <= state.unlocked){
+    openLesson(next);
+    document.getElementById("content").scrollTop = 0;
+  } else {
+    toast("🔒 Complete o quiz para desbloquear!");
+  }
 }
 
 function switchBossTab(btn, id){
@@ -1539,98 +1356,8 @@ function switchBossTab(btn, id){
   document.getElementById(id).classList.add('active');
 }
 
-function challengeText(id){
-  const c = {
-    1:"Escreva em passos um algoritmo para receber dois números e mostrar a soma.",
-    2:"Escreva um algoritmo identificando entrada, processamento e saída para calcular a média de duas notas.",
-    3:"Escreva o pseudocódigo/Portugol de um algoritmo que leia dois números, some e mostre o resultado.",
-    4:"Crie variáveis para idade (inteiro), nota (real), nome (cadeia) e aprovado (lógico).",
-    5:"Declare variáveis para guardar um número inteiro, um número real, um caractere e uma cadeia.",
-    6:"Escreva um algoritmo sequencial que leia dois números, calcule a soma e mostre o resultado.",
-    7:"Escreva um algoritmo que leia uma média e mostre 'Aprovado' se media >= 6 e 'Recuperação' caso contrário.",
-    8:"Escreva um PARA que mostre os números de 1 a 10.",
-    9:"Escreva um algoritmo que leia um número e mostre se é par ou ímpar usando o operador %.",
-    10:"Faça o teste de mesa (comente passo a passo) de: soma <- 0; para i de 1 ate 3 faca soma <- soma + i. Qual o valor final de soma?",
-    11:"Escreva um ESCOLHA/CASO que leia um número de 1 a 3 e imprima o dia correspondente e outrocaso para inválidos."
-  };
-  return c[id];
-}
-
 /* =========================================================
-   CORREÇÃO LOCAL DAS CASAS (COM EXEMPLOS E DICAS)
-   ========================================================= */
-function checkCode(id){
-  const guide = houseCodeGuide[id];
-  const box = document.getElementById("codeResult_" + id);
-  if(!guide || !box) return;
-
-  const code = (document.getElementById("code_" + id)?.value || "").trim();
-
-  if(!code){
-    toast("⚠️ Escreva seu código primeiro!");
-    box.classList.remove("show","ok","nok");
-    return;
-  }
-
-  const results = guide.checks.map(c => ({ d: c.d, ok: c.r.test(code) }));
-  const acertos = results.filter(r => r.ok).length;
-  const total = results.length;
-  const percent = Math.round(acertos / total * 100);
-  const aprovado = acertos >= guide.min;
-
-  let html = "";
-  html += `<h5>${aprovado ? "🏆 Muito bem! Desafio concluído." : "🤖 Quase lá! Vamos revisar."}</h5>`;
-  html += `<span class="score-pill">${acertos}/${total} critérios • ${percent}%</span>`;
-  html += `<ul class="fb-list">`;
-  results.forEach(x => {
-    html += `<li>${x.ok ? "✅" : "❌"} ${x.d}</li>`;
-  });
-  html += `</ul>`;
-
-  // Dicas (mostradas quando NÃO aprovado, ou como reforço quando aprovado)
-  if(!aprovado){
-    html += `<div class="fb-block"><b>💡 Dicas do Esperioux</b><ul>`;
-    guide.dicas.forEach(d => html += `<li>${d}</li>`);
-    html += `</ul></div>`;
-  } else {
-    html += `<div class="fb-block"><b>💡 Reforce estes pontos</b><ul>`;
-    guide.dicas.forEach(d => html += `<li>${d}</li>`);
-    html += `</ul></div>`;
-  }
-
-  // Exemplos múltiplos — sempre mostrados como referência
-  html += `<div class="fb-block"><b>📚 Exemplos de solução (compare com a sua!)</b>`;
-  guide.examples.forEach(ex => {
-    html += `<div class="code-example"><b>${ex.titulo}</b><pre>${escapeHtml(ex.code)}</pre></div>`;
-  });
-  html += `</div>`;
-
-  box.innerHTML = html;
-  box.classList.remove("ok","nok");
-  box.classList.add("show");
-  box.classList.add(aprovado ? "ok" : "nok");
-
-  if(aprovado){
-    // XP apenas uma vez por casa
-    if(!state.codeXp[id]){
-      state.codeXp[id] = true;
-      state.xp += 50;
-      save();
-      toast("⭐ Desafio concluído! +50 XP");
-    } else {
-      toast("🏆 Desafio concluído!");
-    }
-    document.getElementById("botface").textContent = "😎";
-    document.getElementById("mood").textContent = "★‿★";
-  } else {
-    document.getElementById("botface").textContent = "🤔";
-    document.getElementById("mood").textContent = "•_•";
-    toast("🤖 Releia as dicas e os exemplos abaixo!");
-  }
-}
-
-/* =========================================================
-   RENDER DESAFIOS DO BOSS
+   RENDER DESAFIOS
    ========================================================= */
 function renderChallenges(){
   const area = document.getElementById("challengesArea");
@@ -1648,7 +1375,7 @@ function renderChallenges(){
       </div>
       <div class="challenge-body" id="chBody_${num}">
         <div class="challenge-enun">${ch.enun}</div>
-        <textarea class="code-input" id="chCode_${num}" placeholder="Escreva seu algoritmo aqui..."></textarea>
+        <textarea class="code-input" id="chCode_${num}" placeholder="programa {\\n    funcao inicio() {\\n        ...\\n    }\\n}"></textarea>
         <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
           <button class="btn ia" onclick="gradeChallengeIA(${num})">🤖 Corrigir com IA</button>
           <button class="btn mint" onclick="gradeChallengeLocal(${num})">📋 Rubrica local</button>
@@ -1678,7 +1405,7 @@ function peekChallenge(num){
 }
 
 /* =========================================================
-   RUBRICA LOCAL (fallback do Boss)
+   RUBRICA LOCAL
    ========================================================= */
 function gradeChallengeLocal(num){
   const ch = codeChallenges[num - 1];
@@ -1736,21 +1463,31 @@ async function gradeChallengeIA(num){
   const localTotal = localResults.length;
 
   try {
-    const prompt = `Você é o Esperioux, um robô tutor simpático de algoritmos em Portugol para alunos iniciantes.
+    const prompt = `Você é o Esperioux, um robô tutor simpático de algoritmos em Portugol Studio para alunos iniciantes.
 
 O aluno está resolvendo o seguinte DESAFIO:
 "${ch.enun}"
 
-CÓDIGO ESCRITO PELO ALUNO (em Portugol):
+CÓDIGO ESCRITO PELO ALUNO (em Portugol Studio):
 \`\`\`portugol
 ${code}
 \`\`\`
 
-Rubrica técnica (checagem automática prévia): ${localAcertos}/${localTotal} critérios atendidos.
+Rubrica técnica: ${localAcertos}/${localTotal} critérios atendidos.
 
-Avalie o código com base no enunciado. Seja justo: se cumprir o que foi pedido, aprove mesmo que o código seja diferente de uma solução-modelo. Corrija erros de sintaxe/estrutura de Portugol quando houver.
+Avalie o código com base no enunciado. Seja justo: se cumprir o que foi pedido, aprove mesmo que o código seja diferente de uma solução-modelo.
 
-Responda em português do Brasil, amigável, com emojis moderados, MÁXIMO 180 palavras, neste formato exato:
+SINTAXE CORRETA do Portugol Studio:
+- programa { funcao inicio() { ... } }
+- Variáveis dentro de funcao inicio()
+- Atribuição com =
+- se (condicao) { ... } senao { ... }
+- para (i = 0; i < n; i++) { ... }
+- enquanto (condicao) { ... }
+- escolha (var) { caso 1: ... pare; caso contrario: ... }
+- Operadores lógicos: e, ou, nao
+
+Responda em português do Brasil, amigável, MÁXIMO 180 palavras, neste formato exato:
 
 ✅ O QUE ESTÁ CERTO
 (2-4 itens curtos)
@@ -1761,8 +1498,7 @@ Responda em português do Brasil, amigável, com emojis moderados, MÁXIMO 180 p
 💡 DICA FINAL
 (1 dica curta)
 
-🏆 VEREDITO: APROVADO ou REPROVADO
-(seja direto: aprovado se o código resolve o problema pedido)`;
+🏆 VEREDITO: APROVADO ou REPROVADO`;
 
     const response = await fetch(`${DIFY_CONFIG.baseUrl}${DIFY_CONFIG.chatEndpoint}`, {
       method: 'POST',
@@ -1785,17 +1521,13 @@ Responda em português do Brasil, amigável, com emojis moderados, MÁXIMO 180 p
     const aiText = data.answer || data.message || '';
 
     think.classList.remove("show");
-
-    if(!aiText){
-      throw new Error('Resposta vazia da IA');
-    }
+    if(!aiText) throw new Error('Resposta vazia');
 
     const aprovadoIA = /aprovado/i.test(aiText) && !/reprovado/i.test(aiText);
     const aprovadoLocal = localAcertos >= ch.min;
     const aprovado = aprovadoIA || aprovadoLocal;
 
-    let rel = "🤖 ESPERIOUX (IA) DIZ:\n\n";
-    rel += aiText;
+    let rel = "🤖 ESPERIOUX (IA) DIZ:\n\n" + aiText;
     if(!aprovadoIA && aprovadoLocal){
       rel += `\n\n(📋 Rubrica local: ${localAcertos}/${localTotal} — aprovado por critérios técnicos.)`;
     }
@@ -1816,19 +1548,17 @@ Responda em português do Brasil, amigável, com emojis moderados, MÁXIMO 180 p
     save();
     updateBossFinal();
 
-    if(aprovado) toast("🏆 IA aprovou seu código!");
-    else toast("🤖 A IA pediu ajustes. Releia o feedback!");
+    toast(aprovado ? "🏆 IA aprovou seu código!" : "🤖 A IA pediu ajustes.");
 
   } catch (err) {
     console.error('[IA] erro:', err);
     think.classList.remove("show");
 
-    let rel = "⚠️ A IA não conseguiu responder agora (verifique internet/chave Dify).\n\n";
-    rel += "📋 Usei a rubrica local como fallback:\n\n";
+    let rel = "⚠️ A IA não conseguiu responder agora.\n\n📋 Rubrica local:\n\n";
     localResults.forEach(r => { rel += `${r.ok ? "✅" : "❌"} ${r.d}\n`; });
-    rel += `\n${localAcertos}/${localTotal} critérios — `;
+    rel += `\n${localAcertos}/${localTotal} — `;
     const aprovadoLocal = localAcertos >= ch.min;
-    rel += aprovadoLocal ? "🏆 Aprovado pela rubrica local." : `⚠️ Reprovado (precisa de ${ch.min}).`;
+    rel += aprovadoLocal ? "🏆 Aprovado." : `⚠️ Reprovado (precisa de ${ch.min}).`;
 
     fb.textContent = rel;
     fb.classList.add("show");
@@ -1868,7 +1598,7 @@ function updateBossFinal(){
 }
 
 /* =========================================================
-   GRADE QUIZ
+   GRADE QUIZ + MOSTRAR BOTÃO PRÓXIMA
    ========================================================= */
 function grade(id){
   const l = lessons.find(x => x.id === id);
@@ -1890,8 +1620,10 @@ function grade(id){
     save();
     document.getElementById("mood").textContent = "★‿★";
     document.getElementById("botface").textContent = "🥳";
-    toast(id === 12 ? "👑 Prova aprovada!" : "🔓 Nova casa desbloqueada! Use 'Próximo →'");
-    updateNextButton();
+    // Mostrar botão "Próxima Casa"
+    const nb = document.getElementById("nextBtn");
+    if(nb) nb.classList.add("show");
+    toast(id === 12 ? "👑 Prova aprovada!" : "🔓 Nova casa desbloqueada!");
     if(id === 12) updateBossFinal();
   } else {
     state.lives = Math.max(0, state.lives - 1);
@@ -1938,7 +1670,6 @@ function unlockEverything(){
   for(let i = 1; i <= codeChallenges.length; i++) state.challenges[i] = true;
   save();
   if(document.getElementById("challengesArea")) renderChallenges();
-  updateNextButton();
   toast("🔓 MODO PROVA ATIVADO! Tudo desbloqueado.");
   document.getElementById("botface").textContent = "🤓";
   document.getElementById("mood").textContent = "★‿★";
