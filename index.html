@@ -309,7 +309,9 @@ footer{background:#3b2950;color:#fff;text-align:center;padding:28px 18px;font-si
    DIFY API CONFIG
    ========================================================= */
 const DIFY_CONFIG = {
-  apiKey: 'app-kuYvc5svyi1m4f3b74QoRYYp',
+  // A chave da Dify não pode ficar no navegador: qualquer visitante conseguiria copiá-la.
+  // A correção por IA só volta com um servidor intermediário que guarde a chave. Sem chave, vale a rubrica local.
+  apiKey: '',
   baseUrl: 'https://api.dify.ai/v1',
   chatEndpoint: '/chat-messages'
 };
@@ -1377,7 +1379,7 @@ function renderChallenges(){
         <div class="challenge-enun">${ch.enun}</div>
         <textarea class="code-input" id="chCode_${num}" placeholder="programa {\\n    funcao inicio() {\\n        ...\\n    }\\n}"></textarea>
         <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
-          <button class="btn ia" onclick="gradeChallengeIA(${num})">🤖 Corrigir com IA</button>
+          ${DIFY_CONFIG.apiKey ? `<button class="btn ia" onclick="gradeChallengeIA(${num})">🤖 Corrigir com IA</button>` : ''}
           <button class="btn mint" onclick="gradeChallengeLocal(${num})">📋 Rubrica local</button>
           <button class="btn purple" onclick="peekChallenge(${num})">👀 Ver solução</button>
         </div>
@@ -1463,6 +1465,7 @@ async function gradeChallengeIA(num){
   const localTotal = localResults.length;
 
   try {
+    if(!DIFY_CONFIG.apiKey) throw new Error('IA desativada');
     const prompt = `Você é o Esperioux, um robô tutor simpático de algoritmos em Portugol Studio para alunos iniciantes.
 
 O aluno está resolvendo o seguinte DESAFIO:
